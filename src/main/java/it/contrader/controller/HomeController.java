@@ -9,7 +9,7 @@ public class HomeController implements Controller {
 
     public HomeController() {
         loginService = new LoginService();
-         int a=1;
+        int a=1; //modifica di supercori
     }
 
     public void doControl(Request request) {
