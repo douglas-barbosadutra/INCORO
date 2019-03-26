@@ -3,14 +3,14 @@
 
 
 
-git status              //mi dice le modifiche attualmente sul mio pc rispetto alla precedente versione del file 
-git stash              //
+git status              //mi dice in lista le modifiche attualmente sul mio pc rispetto alla precedente versione del file (in rosso abbiamo le cose modificate)
+git stash              
 git fetch
-git pull
+git pull               //scarica a te le modifiche fatte da altri
 git stash pop
-git add .                  //aggiunge le tue modifiche al commit
-git commit -m "msg"       //per lasciare il commento
-git push                  
+git add .                  //aggiunge tutte le tue modifiche al commit
+git commit -m "msg"       //per lasciare il commento alla modifica fatta 
+git push                 //manda la modifica
 
 COMANDI AVANZATI CON RELATIVA SPIEGAZIONE
 git config --list
