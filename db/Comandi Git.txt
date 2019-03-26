@@ -1,11 +1,16 @@
-git status
-git stash
+
+
+
+
+
+git status              //mi dice le modifiche attualmente sul mio pc rispetto alla precedente versione del file 
+git stash              //
 git fetch
 git pull
 git stash pop
-git add .
-git commit -m "msg"
-git push
+git add .                  //aggiunge le tue modifiche al commit
+git commit -m "msg"       //per lasciare il commento
+git push                  
 
 COMANDI AVANZATI CON RELATIVA SPIEGAZIONE
 git config --list
