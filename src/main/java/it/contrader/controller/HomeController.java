@@ -9,6 +9,7 @@ public class HomeController implements Controller {
 
     public HomeController() {
         loginService = new LoginService();
+         int a=1;
     }
 
     public void doControl(Request request) {
