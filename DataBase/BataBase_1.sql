@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `db_contrader` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
-USE `db_contrader`;
+CREATE DATABASE  IF NOT EXISTS `incorojava` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
+USE `incorojava`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: db_contrader
+-- Host: localhost    Database: incorojava
 -- ------------------------------------------------------
 -- Server version	8.0.11
 
@@ -128,4 +128,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-26 16:27:18
+-- Dump completed on 2019-03-26 17:20:01
