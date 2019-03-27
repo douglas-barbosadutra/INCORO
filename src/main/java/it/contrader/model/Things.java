@@ -1,29 +1,29 @@
 package it.contrader.model;
 
 public class Things {
-	private int ThingsId;
-	private String Thingsname;
+	private int thingsId;
+	private String thingsname;
 
 	public Things() {
 	}
 
-	public Things(String Thingsname, String password, int Thingstype) {
-		this.Thingsname = Thingsname;
+	public Things(String thingsname) {
+		this.thingsname = thingsname;
 	}
 
 	public int getThingsId() {
-		return ThingsId;
+		return thingsId;
 	}
-	public void setThingsId(int ThingsId) {
-		this.ThingsId = ThingsId;
+	public void setThingsId(int thingsId) {
+		this.thingsId = thingsId;
 	}
 
-	public void setThingsname(String Thingsname) {
-		this.Thingsname = Thingsname;
+	public void setThingsname(String thingsname) {
+		this.thingsname = thingsname;
 	}
 
 	public String getThingsname() {
-		return Thingsname;
+		return thingsname;
 	}
 
 	@Override
