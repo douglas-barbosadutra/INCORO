@@ -20,7 +20,7 @@ public class UserServiceTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		userTest = new UserDTO("AdminTest", "password", "admin");
+		userTest = new UserDTO("AdminTest", "password", 1);
 		userService = new UserService();
 		userService.insertUser(userTest);
 		userIdTest = TestUtils.getLastInsertedID("user");
@@ -34,7 +34,7 @@ public class UserServiceTest {
 
 	@Test
 	public void testInsertUser() {
-		UserDTO userInsertTest = new UserDTO("insertTest", "password", "admin");
+		UserDTO userInsertTest = new UserDTO("insertTest", "password", 1);
 		
 		//userService.insertUser(userInsertTest);
 		boolean userInsertedCheck = userService.insertUser(userInsertTest);
