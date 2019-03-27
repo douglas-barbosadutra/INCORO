@@ -4,12 +4,12 @@ public class User {
 	private int userId;
 	private String username;
 	private String password;
-	private String usertype;
+	private Integer usertype;
 
 	public User() {
 	}
 
-	public User(String username, String password, String usertype) {
+	public User(String username, String password, Integer usertype) {
 		this.username = username;
 		this.password = password;
 		this.usertype = usertype;
@@ -38,17 +38,17 @@ public class User {
 		return username;
 	}
 
-	public String getUsertype() {
+	public Integer getUsertype() {
 		return usertype;
 	}
 
-	public void setUsertype(String usertype) {
+	public void setUsertype(Integer usertype) {
 		this.usertype = usertype;
 	}
 
 	@Override
 	public String toString() {
-		return this.getUserId() + "\t" + this.getUsername() + "\t" + this.getPassword() + "\t" + this.getUsertype();
+		return this.getUserId() + "\t" + this.getUsername() + "\t" + this.getPassword() + "\t" + this.getUsertype().toString();
 	}
 
 	public boolean equals(User userCompare) {
@@ -56,7 +56,7 @@ public class User {
 			return false;
 		}
 
-		if (!this.getUsertype().equals(userCompare.getUsertype())) {
+		if (!this.getPassword().equals(userCompare.getPassword())) {
 			return false;
 		}
 		if (!this.getUsertype().equals(userCompare.getUsertype())) {

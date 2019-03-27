@@ -33,7 +33,7 @@ public class UserDAO {
 				int userId = resultSet.getInt("userId");
 				String username = resultSet.getString("username");
 				String password = resultSet.getString("password");
-				String usertype = resultSet.getString("usertype");
+				int usertype = resultSet.getInt("usertype");
 				user = new User(username, password, usertype);
 				user.setUserId(userId);
 				usersList.add(user);
@@ -50,7 +50,7 @@ public class UserDAO {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
 			preparedStatement.setString(1, user.getUsername());
 			preparedStatement.setString(2, user.getPassword());
-			preparedStatement.setString(3, user.getUsertype());
+			preparedStatement.setInt(3, user.getUsertype());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
