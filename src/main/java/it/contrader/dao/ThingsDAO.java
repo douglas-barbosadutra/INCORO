@@ -17,7 +17,7 @@ public class ThingsDAO {
 	private final String QUERY_READ = "SELECT * FROM things WHERE idthing=?";
 
 	private final String QUERY_UPDATE = "UPDATE things SET name=?, WHERE idthing=?";
-	private final String QUERY_DELETE = "DELETE FROM user WHERE idthing=?";
+	private final String QUERY_DELETE = "DELETE FROM things WHERE idthing=?";
 
 	public ThingsDAO() {
 
