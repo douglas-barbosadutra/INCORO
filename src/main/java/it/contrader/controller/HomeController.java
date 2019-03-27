@@ -9,7 +9,6 @@ public class HomeController implements Controller {
 
     public HomeController() {
         loginService = new LoginService();
-        int a=1; //modifica di supercori
     }
 
     public void doControl(Request request) {
@@ -18,14 +17,14 @@ public class HomeController implements Controller {
             String password = request.get("password").toString();
             
             //Change view according userType
-            String userType= loginService.login(nomeUtente, password);
+            Integer userType= loginService.login(nomeUtente, password);
             if(userType==null)
                 MainDispatcher.getInstance().callAction("Login", "doControl", request);
             
-            if (userType.equals("superuser"))
+            if (userType.equals(new Integer(1)))
                 MainDispatcher.getInstance().callView("HomeAdmin", request);
             
-            if (userType.equals("user"))
+            if (userType.equals(new Integer(2)))
             	MainDispatcher.getInstance().callView("HomeBO", request);
            
         }
