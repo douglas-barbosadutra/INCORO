@@ -30,7 +30,6 @@ public class ThingsDAO {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
 			Things thing;
-			//User user;
 			while (resultSet.next()) {
 				int idthing = resultSet.getInt("idthing");
 				String thingname = resultSet.getString("name");
