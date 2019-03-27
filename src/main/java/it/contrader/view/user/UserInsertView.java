@@ -23,15 +23,16 @@ public class UserInsertView implements View {
 
 	@Override
 	public void showOptions() {
-		String username, password, usertype;
-
+		String username, password;
+		Integer usertype;
 		System.out.println("Inserisci i campi dell'utente:");
 		System.out.println("Digita l'username: ");
 		username = getInput();
 		System.out.println("Digita la password: ");
 		password = getInput();
-		System.out.println("Inserisci la tipologia utente");
-		usertype=getInput();
+		//System.out.println("Inserisci la tipologia utente");
+		//usertype=getInput();
+		usertype = 2;
 		if (!username.equals("") && !password.equals("") && !usertype.equals("")) {
 			
 			usersController.insertUser(new UserDTO(username, password, usertype));
