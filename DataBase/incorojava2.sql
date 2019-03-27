@@ -26,7 +26,8 @@ CREATE TABLE `label` (
   `idLabel` int(11) NOT NULL,
   `nomeLabel` varchar(45) NOT NULL,
   PRIMARY KEY (`idLabel`),
-  CONSTRAINT `fklath` FOREIGN KEY (`idLabel`) REFERENCES `things` (`idthing`)
+  KEY `fklaus_idx` (`idLabel`),
+  CONSTRAINT `fklaus` FOREIGN KEY (`idLabel`) REFERENCES `user` (`idUsers`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -49,7 +50,9 @@ DROP TABLE IF EXISTS `things`;
 CREATE TABLE `things` (
   `idthing` int(11) NOT NULL,
   `Nome` varchar(45) NOT NULL,
-  PRIMARY KEY (`idthing`)
+  PRIMARY KEY (`idthing`),
+  CONSTRAINT `fkthla` FOREIGN KEY (`idthing`) REFERENCES `label` (`idLabel`),
+  CONSTRAINT `fkthus` FOREIGN KEY (`idthing`) REFERENCES `user` (`idUsers`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -74,9 +77,7 @@ CREATE TABLE `user` (
   `username` varchar(45) NOT NULL,
   `password` varchar(45) DEFAULT NULL,
   `tipo` int(11) NOT NULL,
-  PRIMARY KEY (`idUsers`),
-  CONSTRAINT `fkusla` FOREIGN KEY (`idUsers`) REFERENCES `label` (`idLabel`),
-  CONSTRAINT `fkutth` FOREIGN KEY (`idUsers`) REFERENCES `things` (`idthing`)
+  PRIMARY KEY (`idUsers`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -98,4 +99,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-27 10:42:41
+-- Dump completed on 2019-03-27 11:36:28
