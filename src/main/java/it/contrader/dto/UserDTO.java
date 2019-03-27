@@ -4,9 +4,9 @@ public class UserDTO {
 	private int userId;
 	private String username;
 	private String password;
-	private String usertype;
+	private Integer usertype;
 
-	public UserDTO(String username, String password, String usertype) {
+	public UserDTO(String username, String password, Integer usertype) {
 		this.username = username;
 		this.password = password;
 		this.usertype = usertype;
@@ -38,11 +38,11 @@ public class UserDTO {
 		this.password = password;
 	}
 
-	public String getUsertype() {
+	public Integer getUsertype() {
 		return usertype;
 	}
 
-	public void setUsertype(String usertype) {
+	public void setUsertype(Integer usertype) {
 		this.usertype = usertype;
 	}
 
