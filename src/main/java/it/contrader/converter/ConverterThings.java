@@ -26,8 +26,8 @@ public class ConverterThings {
 			things = new Things();
 			things.setIdthing(thingsDTO.getIdthing());
 			things.setNome(thingsDTO.getNome());
-			thingsDTO.setIduser(thingsDTO.getIduser());
-			thingsDTO.setIdlabel(thingsDTO.getIdlabel());
+			things.setIduser(thingsDTO.getIduser());
+			things.setIdlabel(thingsDTO.getIdlabel());
 		}
 		return things;
 	}

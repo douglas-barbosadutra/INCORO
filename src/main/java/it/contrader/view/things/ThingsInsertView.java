@@ -23,12 +23,26 @@ public class ThingsInsertView implements View {
 	@Override
 	public void showOptions() {
 		String name;
+		String idUserString;
+		String idLabelString;
 		System.out.println("Inserisci il nome della things:");
 		System.out.println("Digita il nome: ");
 		name = getInput();
-		if (!name.equals("") ) {
-			thingsController.insertThings(new thingsDTO(name));
+		
+		System.out.println("Inserisci l'idUser della tabella things:");
+		System.out.println("Digita l'idUser: ");
+		idUserString = getInput();
+		int idUser = Integer.parseInt(idUserString);
+		
+		System.out.println("Inserisci l'idLabel della tabella things:");
+		System.out.println("Digita l'idLabel: ");
+		idLabelString = getInput();
+		int idLabel = Integer.parseInt(idLabelString);
+		
+		if (!name.equals("") && (!idUserString.equals("")) && (!idLabelString.equals("") ))  {
+			thingsController.insertThings(new thingsDTO(name, idUser, idLabel));
 		}
+		
 	}
 
 	@Override

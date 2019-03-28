@@ -13,7 +13,10 @@ import it.contrader.model.User;
 public class ThingsDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM things";
-	private final String QUERY_INSERT = "INSERT INTO things (Nome) VALUES (?)";
+	//private final String QUERY_INSERT = "INSERT INTO things (Nome) VALUES (?)";
+	private final String QUERY_INSERT = "INSERT INTO things (Nome, iduser, idlabel) VALUES (?,?,?)";
+
+	
 	private final String QUERY_READ = "SELECT * FROM things WHERE idthing=?";
 
 	private final String QUERY_UPDATE = "UPDATE things SET Nome=?, WHERE idthing=?";
@@ -48,6 +51,8 @@ public class ThingsDAO {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
 			preparedStatement.setString(1, thing.getNome());
+			preparedStatement.setInt(2, thing.getIduser());
+			preparedStatement.setInt(3, thing.getIdlabel());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {

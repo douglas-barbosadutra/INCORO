@@ -10,6 +10,12 @@ public class thingsDTO {
 
 		this.Nome = name;
 	}
+	
+	public thingsDTO(String name, int iduser, int idlabel) {
+		this.Nome = name;
+		this.iduser = iduser;
+		this.idlabel = idlabel;
+	}
 
 	public thingsDTO() {}
 
