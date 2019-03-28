@@ -10,7 +10,7 @@ import it.contrader.service.ThingsService;
 public class ThingsController implements Controller {
 
 	
-	private static String sub_package = "thing.";
+	private static String sub_package = "things.";
 	private ThingsService thingService;
 	private Request request;
 
@@ -18,11 +18,11 @@ public class ThingsController implements Controller {
 		this.thingService = new ThingsService();
 	}
 
-	public List<Things> getAllUser() {
-		return this.thingService.getAllUser();
+	public List<Things> getAllThings() {
+		return this.thingService.getAllThings();
 	}
 
-	public thingsDTO readUser(int thingId) {
+	public thingsDTO readThings(int thingId) {
 		return this.thingService.readThings(thingId);
 	}
 
