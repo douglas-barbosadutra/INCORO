@@ -44,7 +44,7 @@ public class ThingsController implements Controller {
 		String choice = (String) request.get("choice");
 
 		if (mode == "menu") {
-			MainDispatcher.getInstance().callView("User", null);
+			MainDispatcher.getInstance().callView("Things", null);
 		} else {
 			switch (choice.toUpperCase()) {
 			case "L":
