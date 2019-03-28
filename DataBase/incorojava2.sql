@@ -52,9 +52,13 @@ DROP TABLE IF EXISTS `things`;
 CREATE TABLE `things` (
   `idthing` int(11) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(45) NOT NULL,
+  `iduser` int(11) NOT NULL,
+  `idlabel` int(11) NOT NULL,
   PRIMARY KEY (`idthing`),
-  CONSTRAINT `fkthla` FOREIGN KEY (`idthing`) REFERENCES `label` (`idLabel`),
-  CONSTRAINT `fkthus` FOREIGN KEY (`idthing`) REFERENCES `user` (`idUsers`)
+  KEY `fkUserThing_idx` (`iduser`),
+  KEY `fkThingsLabel_idx` (`idlabel`),
+  CONSTRAINT `fkThingsLabel` FOREIGN KEY (`idlabel`) REFERENCES `label` (`idLabel`),
+  CONSTRAINT `fkUserThing` FOREIGN KEY (`iduser`) REFERENCES `user` (`idUsers`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -89,7 +93,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','admin',0),(2,'ivano','ivano',1),(3,'corinne','corinne',1);
+INSERT INTO `user` VALUES (1,'andrea','1221',212);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -102,4 +106,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-27 12:02:54
+-- Dump completed on 2019-03-28 10:20:45
