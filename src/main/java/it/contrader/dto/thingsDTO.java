@@ -1,4 +1,3 @@
-
 package it.contrader.dto;
 
 public class thingsDTO {
@@ -45,9 +44,4 @@ public class thingsDTO {
 	public void setNome(String nome) {
 		Nome = nome;
 	} 
-	
-	
-	
-	
-	
 }

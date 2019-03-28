@@ -95,8 +95,6 @@ public class LabelDAO {
 					labelToUpdate.setNomeLabel(labelRead.getNomeLabel());
 				}
 				
-				
-				
 				// Update the label
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
 				preparedStatement.setString(1, labelToUpdate.getNomeLabel());
