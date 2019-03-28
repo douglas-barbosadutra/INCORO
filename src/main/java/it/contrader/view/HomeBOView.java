@@ -20,10 +20,11 @@ public class HomeBOView implements View {
         System.out.println("Seleziona cosa vuoi gestire:");
         System.out.println("[T]hings [L]abels [E]sci ");
         this.choice = this.getInput();
+        if (this.choice.equals("L")) this.choice = new String("Q");
     }
 
     public void submit() {
-        if (choice.equalsIgnoreCase("Y"))
+        if (choice.equalsIgnoreCase("T"))
         	MainDispatcher.getInstance().callView("Things", null);
             //MainDispatcher.getInstance().callAction("Client", "doControl", null);
         else if (choice.equalsIgnoreCase("L"))
