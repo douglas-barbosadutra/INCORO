@@ -17,14 +17,36 @@ public class LabelDAO {
 	private final String QUERY_ALL = "SELECT * FROM label";
 	private final String QUERY_INSERT = "INSERT INTO label (nomeLabel) VALUES (?)";
 	private final String QUERY_READ = "SELECT * FROM label WHERE idLabel=?";
-
+	private final String QUERY_WUSER = "SELECT * FROM label WHERE idUsers=?";
+	
 	private final String QUERY_UPDATE = "UPDATE label SET nomeLabel=? WHERE idLabel=?";
 	private final String QUERY_DELETE = "DELETE FROM label WHERE idLabel=?";
 
 	public LabelDAO() {
 
 	}
-
+	
+	public List<Label> getLabelByUser(int idUser) {
+		Connection connection = ConnectionSingleton.getInstance();
+		List<Label> LabelList = new ArrayList<>();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_WUSER);
+			preparedStatement.setInt(1, idUser);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			Label Label;
+			while (resultSet.next()) {
+				int idLabel = resultSet.getInt("idLabel");
+				String nomeLabel = resultSet.getString("nomeLabel");
+				Label = new Label(nomeLabel);
+				Label.setIdLabel(idLabel);
+				LabelList.add(Label);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return LabelList;
+		}
+	
 	public List<Label> getAllLabel() {
 		List<Label> LabelList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
@@ -80,7 +102,7 @@ public class LabelDAO {
 
 	}
 
-	public boolean updatelabel(Label labelToUpdate) {
+	public boolean updateLabel(Label labelToUpdate) {
 		Connection connection = ConnectionSingleton.getInstance();
 
 		// Check if id is present

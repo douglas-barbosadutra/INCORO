@@ -13,10 +13,15 @@ public class LabelView implements View {
 	private LabelController labelController;
 	private Request request;
 	private String choice;
+	private int idUserLocale ;
 	
+	public void LabelView(int idUser) {
+		this.labelController = new LabelController();	
+		this.idUserLocale = idUser;
+	}
 	public void LabelView() {
-		this.labelController = new LabelController();	}
-	
+		this.labelController = new LabelController();	
+	}
 	@Override
 	public void showResults(Request request) {
 		// TODO Auto-generated method stub
@@ -31,7 +36,7 @@ public class LabelView implements View {
 		
 		System.out.println("ID\nome");
 		System.out.print("------------------------------------------------------");
-		List<Label> labels = labelController.getAllLabel();
+		List<Label> labels = labelController.getLabelByUser(idUserLocale);
 		System.out.println();
 		labels.forEach(label -> System.out.println(labels.toString()));
 		System.out.println();
