@@ -14,7 +14,10 @@ public class HomeBOView implements View {
     
     public void showResults(Request request) {
     	System.out.println("Benvenuto in INCORO "+request.get("nomeUtente").toString());
+    	System.out.println("------" + request.get("idUser") +"------");
+
     this.idUser = Integer.parseInt(request.get("idUser").toString());
+	System.out.println("------" +idUser+"------");
     
     
     }
@@ -29,11 +32,14 @@ public class HomeBOView implements View {
     }
 
     public void submit() {
-        if (choice.equalsIgnoreCase("T"))
+		if (choice.equalsIgnoreCase("T"))
         	MainDispatcher.getInstance().callView("Things", null);
             //MainDispatcher.getInstance().callAction("Client", "doControl", null);
-        else if (choice.equalsIgnoreCase("L"))
-        	MainDispatcher.getInstance().callView("Labels", null);
+        else if (choice.equalsIgnoreCase("L")) {
+        	Request request = new Request();
+        	request.put("idUser", this.idUser);
+        	MainDispatcher.getInstance().callView("Label", request);
+        	}
             //MainDispatcher.getInstance().callAction("Order", "doControl", null);
         else {
             Request request = new Request();

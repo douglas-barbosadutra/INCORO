@@ -26,7 +26,9 @@ public class HomeController implements Controller {
             
             if (userType.equals(new Integer(1))) {
             	Integer idUser = loginService.loginUser(nomeUtente, password);
+            	System.out.println("------" + idUser +"------");
             	request.put("idUser", idUser);
+            	System.out.println("------" + request.get("idUser") +"------");
             	MainDispatcher.getInstance().callView("HomeBO", request);
             }
         }

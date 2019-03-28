@@ -12,34 +12,34 @@ public class LabelController implements Controller {
 
 	
 	private static String sub_package = "Label.";
-	private LabelService LabelsService;
+	private LabelService labelsService;
 	private Request request;
 
 	public LabelController() {
-		this.LabelsService = new LabelService();
+		this.labelsService = new LabelService();
 	}
 
 	public List<Label> getAllLabel() {
-		return this.LabelsService.getAllLabel();
+		return this.labelsService.getAllLabel();
 	}
 
 	public LabelDTO readLabel(int LabelId) {
-		return this.LabelsService.readLabel(LabelId);
+		return this.labelsService.readLabel(LabelId);
 	}
 
 	public boolean insertLabel(LabelDTO LabelsDTO) {
-		return this.LabelsService.insertLabel(LabelsDTO);
+		return this.labelsService.insertLabel(LabelsDTO);
 	}
 
 	public boolean updateLabel(LabelDTO LabelsDTO) {
-		return this.LabelsService.updateLabel(LabelsDTO);
+		return this.labelsService.updateLabel(LabelsDTO);
 	}
 
 	public boolean deleteLabel(Integer LabelsId) {
-		return this.LabelsService.deleteLabel(LabelsId);
+		return this.labelsService.deleteLabel(LabelsId);
 	}
 	public List<Label> getLabelByUser(int idUser) {
-		return this.LabelsService.getLabelByUser(idUser);
+		return this.labelsService.getLabelByUser(idUser);
 	}
  
 	@Override

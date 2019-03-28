@@ -15,16 +15,14 @@ public class LabelView implements View {
 	private String choice;
 	private int idUserLocale ;
 	
-	public void LabelView(int idUser) {
-		this.labelController = new LabelController();	
-		this.idUserLocale = idUser;
-	}
 	public void LabelView() {
+		System.out.println("corinne ciao basta scrivere ciao cose ciao a caso ciao nei commit ciao");
 		this.labelController = new LabelController();	
 	}
-	@Override
+
 	public void showResults(Request request) {
 		// TODO Auto-generated method stub
+		this.idUserLocale = Integer.parseInt(request.get("idUser").toString());
 
 	}
 
@@ -34,9 +32,11 @@ public class LabelView implements View {
 
 		System.out.println("\n------ Gestione label possedute -------\n");
 		
-		System.out.println("ID\nome");
+		System.out.println("ID\\nome");
 		System.out.print("------------------------------------------------------");
+		System.out.println(idUserLocale);
 		List<Label> labels = labelController.getLabelByUser(idUserLocale);
+		
 		System.out.println();
 		labels.forEach(label -> System.out.println(labels.toString()));
 		System.out.println();
