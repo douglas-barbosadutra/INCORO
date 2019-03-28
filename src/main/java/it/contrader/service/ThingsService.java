@@ -15,8 +15,8 @@ public class ThingsService {
 		this.thingsDAO = new ThingsDAO();
 	}
 
-	public List<Things> getAllUser() {
-		return this.thingsDAO.getAllUser();
+	public List<Things> getAllThings() {
+		return this.thingsDAO.getAllThings();
 	}
 
 	public boolean insertThings(thingsDTO thingsDTO) {

@@ -29,7 +29,7 @@ public class ThingsView implements View {
 		
 		System.out.println("ID\tUsername\tPassword\tTipoUtente");
 		System.out.print("------------------------------------------------------");
-		List<Things> things = thingsController.getAllUser();
+		List<Things> things = thingsController.getAllThings();
 		System.out.println();
 		things.forEach(thing -> System.out.println(thing.toString()));
 		System.out.println();

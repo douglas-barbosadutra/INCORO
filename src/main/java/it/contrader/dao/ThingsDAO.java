@@ -23,7 +23,7 @@ public class ThingsDAO {
 
 	}
 
-	public List<Things> getAllUser() {
+	public List<Things> getAllThings() {
 		List<Things> thingList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
