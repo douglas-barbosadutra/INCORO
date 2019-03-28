@@ -21,10 +21,10 @@ public class HomeController implements Controller {
             if(userType==null)
                 MainDispatcher.getInstance().callAction("Login", "doControl", request);
             
-            if (userType.equals(new Integer(1)))
+            if (userType.equals(new Integer(0)))
                 MainDispatcher.getInstance().callView("HomeAdmin", request);
             
-            if (userType.equals(new Integer(2)))
+            if (userType.equals(new Integer(1)))
             	MainDispatcher.getInstance().callView("HomeBO", request);
            
         }
