@@ -1,38 +1,50 @@
 package it.contrader.model;
 
 public class Label {
-	private int LabelId;
-	private String Labelname;
+	private int idLabel;
+	private int idusers;
+	private String nomeLabel;
 
 	public Label() {
 	}
 
-	public Label(String Labelname, String password, int Labeltype) {
-		this.Labelname = Labelname;
+	public Label(String Labelname) {
+		this.nomeLabel = Labelname;
 	}
 
-	public int getLabelId() {
-		return LabelId;
-	}
-	public void setLabelId(int LabelId) {
-		this.LabelId = LabelId;
+	
+
+	public int getIdLabel() {
+		return idLabel;
 	}
 
-	public void setLabelname(String Labelname) {
-		this.Labelname = Labelname;
+	public void setIdLabel(int idLabel) {
+		this.idLabel = idLabel;
 	}
 
-	public String getLabelname() {
-		return Labelname;
+	public int getIdusers() {
+		return idusers;
+	}
+
+	public void setIdusers(int idusers) {
+		this.idusers = idusers;
+	}
+
+	public String getNomeLabel() {
+		return nomeLabel;
+	}
+
+	public void setNomeLabel(String nomeLabel) {
+		this.nomeLabel = nomeLabel;
 	}
 
 	@Override
 	public String toString() {
-		return this.getLabelId() + "\t" + this.getLabelname();
+		return this.getIdLabel() + "\t" + this.getNomeLabel() + "\t" + this.getIdusers();
 	}
 
 	public boolean equals(Label LabelCompare) {
-		if (!this.getLabelname().equals(LabelCompare.getLabelname())) {
+		if (!this.getNomeLabel().equals(LabelCompare.getNomeLabel())) {
 			return false;
 		}
 		return true;

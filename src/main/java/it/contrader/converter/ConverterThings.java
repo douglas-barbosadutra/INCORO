@@ -12,8 +12,10 @@ public class ConverterThings {
 		thingsDTO ThingsDTO = null;
 		if (thing != null) {
 			ThingsDTO = new thingsDTO();
-			ThingsDTO.setThingsId(thing.getThingsId());
-			ThingsDTO.setName(thing.getThingsname());
+			ThingsDTO.setIdthing(thing.getIdthing());
+			ThingsDTO.setNome(thing.getNome());
+			ThingsDTO.setIduser(thing.getIduser());
+			ThingsDTO.setIdlabel(thing.getIdlabel());
 		}
 		return ThingsDTO;
 	}
@@ -22,8 +24,10 @@ public class ConverterThings {
 		Things things = null;
 		if (thingsDTO != null) {
 			things = new Things();
-			things.setThingsId(thingsDTO.getThingsId());
-			things.setThingsname(thingsDTO.getName());
+			things.setIdthing(thingsDTO.getIdthing());
+			things.setNome(thingsDTO.getNome());
+			thingsDTO.setIduser(thingsDTO.getIduser());
+			thingsDTO.setIdlabel(thingsDTO.getIdlabel());
 		}
 		return things;
 	}

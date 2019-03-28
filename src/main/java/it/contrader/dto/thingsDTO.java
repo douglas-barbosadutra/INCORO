@@ -2,29 +2,52 @@
 package it.contrader.dto;
 
 public class thingsDTO {
-	private int userId;
-	private String name;
+	private int idthing;
+	private int iduser;
+	private int idlabel;
+	private String Nome;
 	
-	public thingsDTO(int userId, String name) {
-		this.userId = userId;
-		this.name = name;
-	}
-	
-	public thingsDTO() {} 
-	
-	public int getThingsId() {
-		return userId;
+	public thingsDTO(String name) {
+
+		this.Nome = name;
 	}
 
-	public void setThingsId(int userId) {
-		this.userId = userId;
+	public thingsDTO() {}
+
+	public int getIdthing() {
+		return idthing;
 	}
 
-	public String getName() {
-		return name;
+	public void setIdthing(int idthing) {
+		this.idthing = idthing;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public int getIduser() {
+		return iduser;
 	}
+
+	public void setIduser(int iduser) {
+		this.iduser = iduser;
+	}
+
+	public int getIdlabel() {
+		return idlabel;
+	}
+
+	public void setIdlabel(int idlabel) {
+		this.idlabel = idlabel;
+	}
+
+	public String getNome() {
+		return Nome;
+	}
+
+	public void setNome(String nome) {
+		Nome = nome;
+	} 
+	
+	
+	
+	
+	
 }

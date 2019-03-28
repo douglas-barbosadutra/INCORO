@@ -13,10 +13,10 @@ import it.contrader.model.User;
 public class ThingsDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM things";
-	private final String QUERY_INSERT = "INSERT INTO things (name) VALUES (?)";
+	private final String QUERY_INSERT = "INSERT INTO things (Nome) VALUES (?)";
 	private final String QUERY_READ = "SELECT * FROM things WHERE idthing=?";
 
-	private final String QUERY_UPDATE = "UPDATE things SET name=?, WHERE idthing=?";
+	private final String QUERY_UPDATE = "UPDATE things SET Nome=?, WHERE idthing=?";
 	private final String QUERY_DELETE = "DELETE FROM things WHERE idthing=?";
 
 	public ThingsDAO() {
@@ -34,7 +34,7 @@ public class ThingsDAO {
 				int idthing = resultSet.getInt("idthing");
 				String thingname = resultSet.getString("name");
 				thing = new Things(thingname);
-				thing.setThingsId(idthing);
+				thing.setIdthing(idthing);
 				thingList.add(thing);
 			}
 		} catch (SQLException e) {
@@ -47,7 +47,7 @@ public class ThingsDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setString(1, thing.getThingsname());
+			preparedStatement.setString(1, thing.getNome());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
@@ -65,9 +65,9 @@ public class ThingsDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			String name;
-			name = resultSet.getString("name");
+			name = resultSet.getString("Nome");
 			Things thing = new Things(name);
-			thing.setThingsId(resultSet.getInt("idThings"));
+			thing.setIdthing(resultSet.getInt("idthing"));
 
 			return thing;
 		} catch (SQLException e) {
@@ -81,20 +81,20 @@ public class ThingsDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 
 		// Check if id is present
-		if (thingToUpdate.getThingsId() == 0)
+		if (thingToUpdate.getIdthing() == 0)
 			return false;
 
-		Things thingRead = readThings(thingToUpdate.getThingsId());
+		Things thingRead = readThings(thingToUpdate.getIdthing());
 		if (!thingRead.equals(thingToUpdate)) {
 			try {
 				// Fill the userToUpdate object
-				if (thingToUpdate.getThingsname() == null || thingToUpdate.getThingsname().equals("")) {
-					thingToUpdate.setThingsname(thingRead.getThingsname());
+				if (thingToUpdate.getNome() == null || thingToUpdate.getNome().equals("")) {
+					thingToUpdate.setNome(thingRead.getNome());
 				}
 					
 				// Update the user
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-				preparedStatement.setString(1, thingToUpdate.getThingsname());
+				preparedStatement.setString(1, thingToUpdate.getNome());
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
 					return true;

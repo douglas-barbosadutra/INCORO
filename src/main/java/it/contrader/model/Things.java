@@ -1,38 +1,59 @@
 package it.contrader.model;
 
 public class Things {
-	private int thingsId;
-	private String thingsname;
+	private int idthing;
+	private String Nome;
+	private int iduser;
+	private int idlabel;
 
 	public Things() {
 	}
 
 	public Things(String thingsname) {
-		this.thingsname = thingsname;
+		this.Nome = thingsname;
 	}
 
-	public int getThingsId() {
-		return thingsId;
-	}
-	public void setThingsId(int thingsId) {
-		this.thingsId = thingsId;
+	
+
+	public int getIdthing() {
+		return idthing;
 	}
 
-	public void setThingsname(String thingsname) {
-		this.thingsname = thingsname;
+	public void setIdthing(int idthing) {
+		this.idthing = idthing;
 	}
 
-	public String getThingsname() {
-		return thingsname;
+	public String getNome() {
+		return Nome;
+	}
+
+	public void setNome(String nome) {
+		Nome = nome;
+	}
+
+	public int getIduser() {
+		return iduser;
+	}
+
+	public void setIduser(int iduser) {
+		this.iduser = iduser;
+	}
+
+	public int getIdlabel() {
+		return idlabel;
+	}
+
+	public void setIdlabel(int idlabel) {
+		this.idlabel = idlabel;
 	}
 
 	@Override
 	public String toString() {
-		return this.getThingsId() + "\t" + this.getThingsname();
+		return this.getIdthing() + "\t" + this.getNome() + "\t" + this.getIdlabel() + "\t" + this.getIduser();
 	}
 
 	public boolean equals(Things ThingsCompare) {
-		if (!this.getThingsname().equals(ThingsCompare.getThingsname())) {
+		if (!this.getNome().equals(ThingsCompare.getNome())) {
 			return false;
 		}
 		return true;
