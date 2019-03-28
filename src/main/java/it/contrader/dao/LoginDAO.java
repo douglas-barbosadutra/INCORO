@@ -54,9 +54,8 @@ public class LoginDAO {
             if(statement.executeQuery().next()) {
             	rs = statement.executeQuery();
             	rs.next();
-            	userId = rs.getInt("userId");
-            }
-            
+            	userId = rs.getInt("idUsers");
+            } 
             return userId;
         }
         catch (SQLException e) {
