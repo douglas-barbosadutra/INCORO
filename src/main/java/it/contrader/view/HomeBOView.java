@@ -6,7 +6,7 @@ import it.contrader.main.MainDispatcher;
 
 import java.util.Scanner;
 
-public class HomeBOview implements View {
+public class HomeBOView implements View {
 
     private String choice;
 

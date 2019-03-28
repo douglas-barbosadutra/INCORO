@@ -31,7 +31,7 @@ public class LoginDAO {
             if(statement.executeQuery().next()) {
             	rs = statement.executeQuery();
             	rs.next();
-            	userType = rs.getInt("usertype");
+            	userType = rs.getInt("tipo");
             }
             
             return userType;
