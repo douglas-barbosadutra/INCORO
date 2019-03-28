@@ -9,9 +9,14 @@ import java.util.Scanner;
 public class HomeBOView implements View {
 
     private String choice;
-
+    
+    private Integer idUser;
+    
     public void showResults(Request request) {
     	System.out.println("Benvenuto in INCORO "+request.get("nomeUtente").toString());
+    this.idUser = Integer.parseInt(request.get("idUser").toString());
+    
+    
     }
 //mod
 

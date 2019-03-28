@@ -41,4 +41,27 @@ public class LoginDAO {
             return null;
         }
     }
+    public Integer loginUser (String username, String password) {
+
+        Connection connection = ConnectionSingleton.getInstance();
+        try {
+            PreparedStatement statement = connection.prepareStatement(QUERY_LOGIN);
+            statement.setString(1, username);
+            statement.setString(2, password);
+            
+            Integer userId=null;
+            ResultSet rs;
+            if(statement.executeQuery().next()) {
+            	rs = statement.executeQuery();
+            	rs.next();
+            	userId = rs.getInt("userId");
+            }
+            
+            return userId;
+        }
+        catch (SQLException e) {
+            GestoreEccezioni.getInstance().gestisciEccezione(e);
+            return null;
+        }
+    }
 }

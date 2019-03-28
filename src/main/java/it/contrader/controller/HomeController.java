@@ -24,9 +24,11 @@ public class HomeController implements Controller {
             if (userType.equals(new Integer(0)))
                 MainDispatcher.getInstance().callView("HomeAdmin", request);
             
-            if (userType.equals(new Integer(1)))
+            if (userType.equals(new Integer(1))) {
+            	Integer idUser = loginService.loginUser(nomeUtente, password);
+            	request.put("idUser", idUser);
             	MainDispatcher.getInstance().callView("HomeBO", request);
-           
+            }
         }
         else MainDispatcher.getInstance().callView("Login", null);
 
