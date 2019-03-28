@@ -32,7 +32,7 @@ public class ThingsDAO {
 			Things thing;
 			while (resultSet.next()) {
 				int idthing = resultSet.getInt("idthing");
-				String thingname = resultSet.getString("name");
+				String thingname = resultSet.getString("Nome");
 				thing = new Things(thingname);
 				thing.setIdthing(idthing);
 				thingList.add(thing);
