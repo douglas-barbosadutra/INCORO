@@ -45,5 +45,4 @@ public class UserDTO {
 	public void setUsertype(Integer usertype) {
 		this.usertype = usertype;
 	}
-
 }

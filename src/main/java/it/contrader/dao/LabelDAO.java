@@ -15,11 +15,12 @@ import it.contrader.model.Label;
 public class LabelDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM label";
-	private final String QUERY_INSERT = "INSERT INTO label (nomeLabel,idusers) VALUES (?,?)";
-	private final String QUERY_READ = "SELECT * FROM label WHERE idLabel=?";
-	private final String QUERY_WUSER = "SELECT * FROM label WHERE idusers=?";
+	private final String QUERY_INSERT = "INSERT INTO label (name, idusers) VALUES (?,?)";
 	
-	private final String QUERY_UPDATE = "UPDATE label SET nomeLabel=? WHERE idLabel=?";
+	private final String QUERY_READ = "SELECT * FROM label WHERE idLabel=?";
+	private final String QUERY_WUSER = "SELECT * FROM label WHERE fktouser=?";
+	
+	private final String QUERY_UPDATE = "UPDATE label SET name=? WHERE idLabel=?";
 	private final String QUERY_DELETE = "DELETE FROM label WHERE idLabel=?";
 
 	public LabelDAO() {
@@ -36,10 +37,10 @@ public class LabelDAO {
 			Label Label;
 			while (resultSet.next()) {
 				int idLabel = resultSet.getInt("idLabel");
-				String nomeLabel = resultSet.getString("nomeLabel");
-				int idUsr = resultSet.getInt("idusers");
+				String nomeLabel = resultSet.getString("name");
+				int idUsr = resultSet.getInt("fktouser");
 				Label = new Label(nomeLabel);
-				Label.setIdLabel(idLabel);
+				Label.setIdlabel(idLabel);
 				Label.setIdusers(idUsr);
 				LabelList.add(Label);
 			}
@@ -58,9 +59,9 @@ public class LabelDAO {
 			Label Label;
 			while (resultSet.next()) {
 				int idLabel = resultSet.getInt("idLabel");
-				String nomeLabel = resultSet.getString("nomeLabel");
+				String nomeLabel = resultSet.getString("name");
 				Label = new Label(nomeLabel);
-				Label.setIdLabel(idLabel);
+				Label.setIdlabel(idLabel);
 				LabelList.add(Label);
 			}
 		} catch (SQLException e) {
@@ -73,7 +74,7 @@ public class LabelDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setString(1, Label.getNomeLabel());
+			preparedStatement.setString(1, Label.getName());
 			preparedStatement.setInt(2, Label.getIdusers());
 			preparedStatement.execute();
 			return true;
@@ -92,9 +93,9 @@ public class LabelDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			String nomeLabel;
-			nomeLabel = resultSet.getString("nomeLabel");
+			nomeLabel = resultSet.getString("name");
 			Label Label = new Label(nomeLabel);
-			Label.setIdLabel(resultSet.getInt("idLabel"));
+			Label.setIdlabel(resultSet.getInt("idLabel"));
 
 			return Label;
 		} catch (SQLException e) {
@@ -108,22 +109,22 @@ public class LabelDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 
 		// Check if id is present
-		if (labelToUpdate.getIdLabel() == 0)
+		if (labelToUpdate.getIdlabel() == 0)
 			return false;
 
-		Label labelRead = readLabel(labelToUpdate.getIdLabel());
+		Label labelRead = readLabel(labelToUpdate.getIdlabel());
 		if (!labelRead.equals(labelToUpdate)) {
 			try {
 				// Fill the labelToUpdate object
-				if (labelToUpdate.getNomeLabel() == null || labelToUpdate.getNomeLabel().equals("")) {
-					labelToUpdate.setNomeLabel(labelRead.getNomeLabel());
+				if (labelToUpdate.getName() == null || labelToUpdate.getName().equals("")) {
+					labelToUpdate.setName(labelRead.getName());
 				}
 				
 				// Update the label
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-				preparedStatement.setString(1, labelToUpdate.getNomeLabel());
+				preparedStatement.setString(1, labelToUpdate.getName());
 				
-				preparedStatement.setInt(2, labelToUpdate.getIdLabel());
+				preparedStatement.setInt(2, labelToUpdate.getIdlabel());
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
 					return true;

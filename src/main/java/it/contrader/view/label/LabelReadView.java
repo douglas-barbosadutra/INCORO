@@ -28,16 +28,16 @@ public class LabelReadView implements View {
 
 	@Override
 	public void showOptions() {
-		int userIdToRead;
+		int labeIdToRead;
 
 		System.out.println("Inserisci l'ID della label:");
 
 		try {
-			userIdToRead = Integer.parseInt(getInput());
-			LabelDTO userDB = labelsController.readLabel(userIdToRead);
+			labeIdToRead = Integer.parseInt(getInput());
+			LabelDTO labelDTO = labelsController.readLabel(labeIdToRead);
 
-			System.out.println("Id: " + userDB.getIdLabel());
-			System.out.println("Username: " + userDB.getNomeLabel());
+			System.out.println("Id: " + labelDTO.getIdLabel());
+			System.out.println("Username: " + labelDTO.getNomeLabel());
 			
 			//Wait user to show
 			System.out.println("Premi un tasto per continuare");

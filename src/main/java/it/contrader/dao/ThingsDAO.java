@@ -33,9 +33,9 @@ public class ThingsDAO {
 			Things thing;
 			while (resultSet.next()) {
 				int idthing = resultSet.getInt("idthing");
-				String thingname = resultSet.getString("Nome");
-				int idUs = resultSet.getInt("iduser");
-				int idla = resultSet.getInt("idlabel");
+				String thingname = resultSet.getString("name");
+				int idUs = resultSet.getInt("fktouser");
+				int idla = resultSet.getInt("fktolabel");
 				thing = new Things(thingname);
 				thing.setIdthing(idthing);
 				thing.setIduser(idUs);
@@ -52,7 +52,7 @@ public class ThingsDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setString(1, thing.getNome());
+			preparedStatement.setString(1, thing.getName());
 			preparedStatement.setInt(2, thing.getIduser());
 			preparedStatement.setInt(3, thing.getIdlabel());
 			preparedStatement.execute();
@@ -70,7 +70,7 @@ public class ThingsDAO {
 			preparedStatement.setInt(1, idThings);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
-			String name = resultSet.getString("Nome");
+			String name = resultSet.getString("name");
 			Things thing = new Things(name);
 			thing.setIdthing(resultSet.getInt("idthing"));	
 			return thing;
@@ -93,12 +93,12 @@ public class ThingsDAO {
 		if (!thingRead.equals(thingToUpdate)) {
 			try {
 				// Fill the userToUpdate object
-				if (thingToUpdate.getNome() == null || thingToUpdate.getNome().equals("")) {
-					thingToUpdate.setNome(thingRead.getNome());
+				if (thingToUpdate.getName() == null || thingToUpdate.getName().equals("")) {
+					thingToUpdate.setNome(thingRead.getName());
 				}
 				
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
-				preparedStatement.setString(1, thingToUpdate.getNome());
+				preparedStatement.setString(1, thingToUpdate.getName());
 				preparedStatement.setInt(2, thingToUpdate.getIdthing());
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)

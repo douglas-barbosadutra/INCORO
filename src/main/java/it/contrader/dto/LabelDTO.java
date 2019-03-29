@@ -3,12 +3,12 @@ package it.contrader.dto;
 
 	public class LabelDTO {
 		private int idLabel;
-		private int idusers;
+		private int idUsers;
 		private String nomeLabel;
 
 
-		public LabelDTO(String Labelname) {
-			this.nomeLabel = Labelname;
+		public LabelDTO(String LabelName) {
+			this.nomeLabel = LabelName;
 
 		}
 		
@@ -23,11 +23,11 @@ package it.contrader.dto;
 		}
 
 		public int getIdusers() {
-			return idusers;
+			return idUsers;
 		}
 
 		public void setIdusers(int idusers) {
-			this.idusers = idusers;
+			this.idUsers = idusers;
 		}
 
 		public String getNomeLabel() {
@@ -37,12 +37,4 @@ package it.contrader.dto;
 		public void setNomeLabel(String nomeLabel) {
 			this.nomeLabel = nomeLabel;
 		} 
-		
-		
-
-
-
-	}
-
-
-
+}

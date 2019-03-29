@@ -12,11 +12,11 @@ import it.contrader.model.User;
 public class UserDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM user";
-	private final String QUERY_INSERT = "INSERT INTO user (username, password, tipo) VALUES (?,?,?)";
-	private final String QUERY_READ = "SELECT * FROM user WHERE idUsers=?";
+	private final String QUERY_INSERT = "INSERT INTO user (username, password, type) VALUES (?,?,?)";
+	private final String QUERY_READ = "SELECT * FROM user WHERE idUser=?";
 
-	private final String QUERY_UPDATE = "UPDATE user SET username=?, password=?, tipo=? WHERE idUsers=?";
-	private final String QUERY_DELETE = "DELETE FROM user WHERE idUsers=?";
+	private final String QUERY_UPDATE = "UPDATE user SET username=?, password=?, typo=? WHERE idUser=?";
+	private final String QUERY_DELETE = "DELETE FROM user WHERE idUser=?";
 
 	public UserDAO() {
 
@@ -30,10 +30,10 @@ public class UserDAO {
 			ResultSet resultSet = statement.executeQuery(QUERY_ALL);
 			User user;
 			while (resultSet.next()) {
-				int idUsers = resultSet.getInt("idUsers");
+				int idUsers = resultSet.getInt("idUser");
 				String username = resultSet.getString("username");
 				String password = resultSet.getString("password");
-				int tipo = resultSet.getInt("tipo");
+				int tipo = resultSet.getInt("type");
 				user = new User(username, password, tipo);
 				user.setidUsers(idUsers);
 				usersList.add(user);
@@ -71,9 +71,9 @@ public class UserDAO {
 			int tipo;
 			username = resultSet.getString("username");
 			password = resultSet.getString("password");
-			tipo = resultSet.getInt("tipo");
+			tipo = resultSet.getInt("type");
 			User user = new User(username, password, tipo);
-			user.setidUsers(resultSet.getInt("idUsers"));
+			user.setidUsers(resultSet.getInt("idUser"));
 
 			return user;
 		} catch (SQLException e) {

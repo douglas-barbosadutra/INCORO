@@ -17,6 +17,5 @@ public class LoginService {
     public Integer loginUser (String username, String password) {
         return this.loginDAO.loginUser (username, password);
     }
-    
-    
+       
 }

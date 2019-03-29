@@ -13,7 +13,7 @@ public class ConverterThings {
 		if (thing != null) {
 			ThingsDTO = new thingsDTO();
 			ThingsDTO.setIdthing(thing.getIdthing());
-			ThingsDTO.setNome(thing.getNome());
+			ThingsDTO.setNome(thing.getName());
 			ThingsDTO.setIduser(thing.getIduser());
 			ThingsDTO.setIdlabel(thing.getIdlabel());
 		}

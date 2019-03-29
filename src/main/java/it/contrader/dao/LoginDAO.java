@@ -31,7 +31,7 @@ public class LoginDAO {
             if(statement.executeQuery().next()) {
             	rs = statement.executeQuery();
             	rs.next();
-            	userType = rs.getInt("tipo");
+            	userType = rs.getInt("type");
             }
             
             return userType;
@@ -54,7 +54,7 @@ public class LoginDAO {
             if(statement.executeQuery().next()) {
             	rs = statement.executeQuery();
             	rs.next();
-            	userId = rs.getInt("idUsers");
+            	userId = rs.getInt("idUser");
             } 
             return userId;
         }

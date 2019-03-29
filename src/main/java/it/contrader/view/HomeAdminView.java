@@ -14,7 +14,7 @@ public class HomeAdminView implements View {
     private String choice;
 
     public void showResults(Request request) {
-    	System.out.println("Benvenuto in WMES "+request.get("nomeUtente").toString());
+    	System.out.println("Benvenuto in INCORO "+request.get("nomeUtente").toString());
     }
 
 
@@ -44,6 +44,4 @@ public class HomeAdminView implements View {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
-
-
 }

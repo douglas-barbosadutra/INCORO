@@ -2,7 +2,7 @@ package it.contrader.model;
 
 public class Things {
 	private int idthing;
-	private String Nome;
+	private String name;
 	private int iduser;
 	private int idlabel;
 
@@ -10,11 +10,11 @@ public class Things {
 	}
 
 	public Things(String thingsname) {
-		this.Nome = thingsname;
+		this.name = thingsname;
 	}
 
 	public Things(String thingsname, int idUser, int idLabel) {
-		this.Nome = thingsname;
+		this.name = thingsname;
 		this.iduser = idUser;
 		this.idlabel = idLabel;
 	}
@@ -27,12 +27,12 @@ public class Things {
 		this.idthing = idthing;
 	}
 
-	public String getNome() {
-		return Nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		Nome = nome;
+	public void setNome(String name) {
+		this.name = name;
 	}
 
 	public int getIduser() {
@@ -53,11 +53,11 @@ public class Things {
 
 	@Override
 	public String toString() {
-		return this.getIdthing() + "\t" + this.getNome() + "\t" + this.getIdlabel() + "\t" + this.getIduser();
+		return this.getIdthing() + "\t" + this.getName() + "\t" + this.getIdlabel() + "\t" + this.getIduser();
 	}
 
 	public boolean equals(Things ThingsCompare) {
-		if (!this.getNome().equals(ThingsCompare.getNome())) {
+		if (!this.getName().equals(ThingsCompare.getName())) {
 			return false;
 		}
 		return true;
