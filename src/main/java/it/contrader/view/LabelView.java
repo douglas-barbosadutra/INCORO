@@ -53,6 +53,7 @@ public class LabelView implements View {
 		request = new Request();
 		request.put("choice", choice);
 		request.put("mode", "");
+		request.put("idUser", idUserLocale);
 	}
 
 	@Override
