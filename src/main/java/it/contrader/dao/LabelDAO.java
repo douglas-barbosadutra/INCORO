@@ -15,9 +15,9 @@ import it.contrader.model.Label;
 public class LabelDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM label";
-	private final String QUERY_INSERT = "INSERT INTO label (nomeLabel) VALUES (?)";
+	private final String QUERY_INSERT = "INSERT INTO label (nomeLabel,idusers) VALUES (?,?)";
 	private final String QUERY_READ = "SELECT * FROM label WHERE idLabel=?";
-	private final String QUERY_WUSER = "SELECT * FROM label WHERE idUsers=?";
+	private final String QUERY_WUSER = "SELECT * FROM label WHERE idusers=?";
 	
 	private final String QUERY_UPDATE = "UPDATE label SET nomeLabel=? WHERE idLabel=?";
 	private final String QUERY_DELETE = "DELETE FROM label WHERE idLabel=?";
@@ -74,7 +74,7 @@ public class LabelDAO {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
 			preparedStatement.setString(1, Label.getNomeLabel());
-			
+			preparedStatement.setInt(2, Label.getIdusers());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
