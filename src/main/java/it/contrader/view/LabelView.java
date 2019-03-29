@@ -40,7 +40,7 @@ public class LabelView implements View {
 		List<Label> labels = labelController.getLabelByUser(idUserLocale);
 		
 		System.out.println();
-		labels.forEach(label -> System.out.println(labels.toString()));
+		labels.forEach(label -> System.out.println(label.toString()));
 		System.out.println();
 		
 		System.out.println("Scegli l'operazione da effettuare:");
