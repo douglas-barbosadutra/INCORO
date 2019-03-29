@@ -37,8 +37,10 @@ public class LabelDAO {
 			while (resultSet.next()) {
 				int idLabel = resultSet.getInt("idLabel");
 				String nomeLabel = resultSet.getString("nomeLabel");
+				int idUsr = resultSet.getInt("idusers");
 				Label = new Label(nomeLabel);
 				Label.setIdLabel(idLabel);
+				Label.setIdusers(idUsr);
 				LabelList.add(Label);
 			}
 		} catch (SQLException e) {
