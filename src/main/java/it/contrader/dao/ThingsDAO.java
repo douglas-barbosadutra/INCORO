@@ -15,8 +15,6 @@ public class ThingsDAO {
 	private final String QUERY_ALL = "SELECT * FROM things";
 	//private final String QUERY_INSERT = "INSERT INTO things (Nome) VALUES (?)";
 	private final String QUERY_INSERT = "INSERT INTO things (Nome, iduser, idlabel) VALUES (?,?,?)";
-
-	
 	private final String QUERY_READ = "SELECT * FROM things WHERE idthing=?";
 
 	private final String QUERY_UPDATE = "UPDATE things SET Nome=?, WHERE idthing=?";

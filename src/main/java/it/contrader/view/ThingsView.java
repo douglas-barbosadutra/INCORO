@@ -27,7 +27,7 @@ public class ThingsView implements View {
 		
 		System.out.println("\n------ Gestione things -------\n");
 		
-		System.out.println("ID\tUsername\tPassword\tTipoUtente");
+		System.out.println("ID\tNome things\tUtente\tLabel");
 		System.out.print("------------------------------------------------------");
 		List<Things> things = thingsController.getAllThings();
 		System.out.println();
@@ -54,6 +54,6 @@ public class ThingsView implements View {
 
 	@Override
 	public void submit() {
-		    MainDispatcher.getInstance().callAction("Things", "doControl", this.request);
+		    MainDispatcher.getInstance().callAction("Thing", "doControl", this.request);
 	}
 }
