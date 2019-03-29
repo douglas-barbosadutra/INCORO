@@ -13,11 +13,11 @@ import it.contrader.model.User;
 public class ThingsDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM things";
-	//private final String QUERY_INSERT = "INSERT INTO things (Nome) VALUES (?)";
 	private final String QUERY_INSERT = "INSERT INTO things (Nome, iduser, idlabel) VALUES (?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM things WHERE idthing=?";
 
-	private final String QUERY_UPDATE = "UPDATE things SET Nome=?, WHERE idthing=?";
+	private final String QUERY_UPDATE = "UPDATE things SET Nome=? WHERE idthing=?";
+	
 	private final String QUERY_DELETE = "DELETE FROM things WHERE idthing=?";
 
 	public ThingsDAO() {
@@ -61,7 +61,6 @@ public class ThingsDAO {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return false;
 		}
-
 	}
 
 	public Things readThings(int idThings) {
@@ -71,11 +70,9 @@ public class ThingsDAO {
 			preparedStatement.setInt(1, idThings);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
-			String name;
-			name = resultSet.getString("Nome");
+			String name = resultSet.getString("Nome");
 			Things thing = new Things(name);
-			thing.setIdthing(resultSet.getInt("idthing"));
-
+			thing.setIdthing(resultSet.getInt("idthing"));	
 			return thing;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
@@ -90,7 +87,8 @@ public class ThingsDAO {
 		// Check if id is present
 		if (thingToUpdate.getIdthing() == 0)
 			return false;
-
+		
+		// otteniamo l'oggetto thing
 		Things thingRead = readThings(thingToUpdate.getIdthing());
 		if (!thingRead.equals(thingToUpdate)) {
 			try {
@@ -98,10 +96,10 @@ public class ThingsDAO {
 				if (thingToUpdate.getNome() == null || thingToUpdate.getNome().equals("")) {
 					thingToUpdate.setNome(thingRead.getNome());
 				}
-					
-				// Update the user
+				
 				PreparedStatement preparedStatement = (PreparedStatement) connection.prepareStatement(QUERY_UPDATE);
 				preparedStatement.setString(1, thingToUpdate.getNome());
+				preparedStatement.setInt(2, thingToUpdate.getIdthing());
 				int a = preparedStatement.executeUpdate();
 				if (a > 0)
 					return true;
@@ -112,9 +110,7 @@ public class ThingsDAO {
 				return false;
 			}
 		}
-
-		return false;
-		
+		return false;	
 	}
 
 	public boolean deleteThings(Integer id) {

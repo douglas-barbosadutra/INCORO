@@ -51,5 +51,4 @@ public class ConnectionSingleton {
         }
         return connection;
     }
-
 }

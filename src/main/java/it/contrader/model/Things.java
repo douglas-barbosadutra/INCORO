@@ -13,6 +13,12 @@ public class Things {
 		this.Nome = thingsname;
 	}
 
+	public Things(String thingsname, int idUser, int idLabel) {
+		this.Nome = thingsname;
+		this.iduser = idUser;
+		this.idlabel = idLabel;
+	}
+	
 	public int getIdthing() {
 		return idthing;
 	}
