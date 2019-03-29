@@ -56,7 +56,7 @@ public class ThingsDeleteView implements View {
 		request = new Request();
 		request.put("mode", "menu");
 		request.put("choice", "");
-		MainDispatcher.getInstance().callAction("Thing", "doControl", request);
+		MainDispatcher.getInstance().callAction("Things", "doControl", request);
 	}
 
 }
