@@ -54,6 +54,6 @@ public class ThingsView implements View {
 
 	@Override
 	public void submit() {
-		    MainDispatcher.getInstance().callAction("Thing", "doControl", this.request);
+		    MainDispatcher.getInstance().callAction("Things", "doControl", this.request);
 	}
 }

@@ -27,7 +27,6 @@ public class ConverterLabel {
 			Label.setIdLabel(LabelDTO.getIdLabel());
 			Label.setNomeLabel(LabelDTO.getNomeLabel());
 			LabelDTO.setIdusers(Label.getIdusers());
-			
 		}
 		return Label;
 	}

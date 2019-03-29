@@ -34,8 +34,12 @@ public class ThingsDAO {
 			while (resultSet.next()) {
 				int idthing = resultSet.getInt("idthing");
 				String thingname = resultSet.getString("Nome");
+				int idUs = resultSet.getInt("iduser");
+				int idla = resultSet.getInt("idlabel");
 				thing = new Things(thingname);
 				thing.setIdthing(idthing);
+				thing.setIduser(idUs);
+				thing.setIdlabel(idla);
 				thingList.add(thing);
 			}
 		} catch (SQLException e) {
