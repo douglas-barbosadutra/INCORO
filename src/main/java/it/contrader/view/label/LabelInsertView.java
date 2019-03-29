@@ -29,12 +29,16 @@ public class LabelInsertView implements View {
 		System.out.println("Inserisci i campi della label:");
 		System.out.println("Digita la descrizione: ");
 		username = getInput();
+		System.out.println("Digita l' iduser proprietario);");
+		int iduserL = Integer.parseInt(getInput());
 		//System.out.println("Inserisci la tipologia utente");
 		//usertype=getInput();
 		
 		if (!username.equals("") ) {
-			
-			labelController.insertLabel(new LabelDTO(username));
+			LabelDTO wLabel = new LabelDTO();
+			wLabel.setIdusers(iduserL);
+			wLabel.setNomeLabel(username);
+			labelController.insertLabel(wLabel);
 		}
 	}
 
