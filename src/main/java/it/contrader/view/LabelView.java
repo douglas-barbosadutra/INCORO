@@ -1,10 +1,12 @@
 package it.contrader.view;
 
 import java.util.List;
+import java.util.Scanner;
 
 import it.contrader.controller.LabelController;
 import it.contrader.controller.Request;
 import it.contrader.controller.UserController;
+import it.contrader.main.MainDispatcher;
 import it.contrader.model.Label;
 import it.contrader.model.User;
 
@@ -16,7 +18,11 @@ public class LabelView implements View {
 	private int idUserLocale ;
 	
 	public LabelView() {
+<<<<<<< HEAD
 		System.out.println("corinne ciao basta scrivere ciao cose ciao a caso ciao nei commit ciao");
+=======
+		//System.out.println("corinne ciao basta scrivere ciao cose ciao a caso ciao nei commit ciao");
+>>>>>>> 06514543e3546eb5152b7019ffbbe218076837b6
 		this.labelController = new LabelController();	
 	}
 
@@ -55,14 +61,14 @@ public class LabelView implements View {
 
 	@Override
 	public String getInput() {
-		// TODO Auto-generated method stub
-		return null;
+		Scanner scanner = new Scanner(System.in);
+		return scanner.nextLine();
 	}
 
 	@Override
 	public void submit() {
 		// TODO Auto-generated method stub
-
+		MainDispatcher.getInstance().callAction("Label", "doControl", this.request);
 	}
 
 }
