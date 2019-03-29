@@ -49,7 +49,7 @@ public class LabelController implements Controller {
 
 		if (mode == "menu") {
 			MainDispatcher.getInstance().callView("Label", null);
-		} else {
+		} else {			
 			switch (choice.toUpperCase()) {
 			case "L":
 				MainDispatcher.getInstance().callView(sub_package + "LabelRead", null);

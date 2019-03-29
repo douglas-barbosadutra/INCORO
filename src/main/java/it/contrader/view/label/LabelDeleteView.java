@@ -9,6 +9,7 @@ import it.contrader.controller.LabelController;
 import it.contrader.controller.Request;
 import it.contrader.controller.UserController;
 import it.contrader.main.MainDispatcher;
+import it.contrader.model.Label;
 import it.contrader.model.User;
 import it.contrader.view.View;
 
@@ -23,7 +24,7 @@ public class LabelDeleteView implements View {
 
 	@Override
 	public void showResults(Request request) {
-	}
+		}
 
 	@Override
 	public void showOptions() {
@@ -37,10 +38,8 @@ public class LabelDeleteView implements View {
 		//System.out.println();
 		//System.out.println("Digita l'ID:");
 		String usersId = getInput();
-
 		if (usersId != null && StringUtils.isStrictlyNumeric(usersId)) {
 			labelController.deleteLabel(Integer.parseInt(usersId));
-			
 		} else {
 			System.out.println("Valore inserito errato");
 		}
@@ -57,7 +56,7 @@ public class LabelDeleteView implements View {
 		request = new Request();
 		request.put("mode", "menu");
 		request.put("choice", "");
-		MainDispatcher.getInstance().callAction("User", "doControl", request);
+		MainDispatcher.getInstance().callAction("Label", "doControl", request);
 	}
 
 }

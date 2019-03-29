@@ -3,19 +3,21 @@ package it.contrader.view.label;
 import java.util.List;
 import java.util.Scanner;
 
+import it.contrader.controller.LabelController;
 import it.contrader.controller.Request;
 import it.contrader.controller.UserController;
+import it.contrader.dto.LabelDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.view.View;
 
 public class LabelUpdateView implements View {
 
-	private UserController usersController;
+	private LabelController labelsController;
 	private Request request;
 
 	public LabelUpdateView() {
-		this.usersController = new UserController();
+		this.labelsController = new LabelController();
 	}
 
 	@Override
@@ -31,23 +33,23 @@ public class LabelUpdateView implements View {
 		 * List<User> users; Integer usersId; String password; users =
 		 * usersController.getAllUsers();
 		 */
-		System.out.println("\n----- Seleziona l'ID dell'utente da modificate  -----\n");
+		System.out.println("\n----- Seleziona l'ID della label da modificate  -----\n");
 		// System.out.println();
 		// users.forEach(us_type -> System.out.println(us_type.toString()));
 		// System.out.println();
-		UserDTO userDTO = new UserDTO();
+		LabelDTO labelDTO = new LabelDTO();
 
-		System.out.println("Digita l'Id dell'utente da modificare:");
+		System.out.println("Digita l'Id della label da modificare:");
 		try {
 			userIdToUpdate = Integer.parseInt(getInput());
 			if (userIdToUpdate != 0) {
-				userDTO.setUserId(userIdToUpdate);
+				labelDTO.setIdLabel(userIdToUpdate);
 
 				System.out.println("Digita la nuova username:");
 				username = getInput();
 				if (!username.equals(""))
-					userDTO.setUsername(username);
-				usersController.updateUser(userDTO);
+					labelDTO.setNomeLabel(username);
+				labelsController.updateLabel(labelDTO);
 		
 
 			}
@@ -68,7 +70,7 @@ public class LabelUpdateView implements View {
 		request = new Request();
 		request.put("mode", "menu");
 		request.put("choice", "");
-		MainDispatcher.getInstance().callAction("User", "doControl", request);
+		MainDispatcher.getInstance().callAction("Label", "doControl", request);
 	}
 
 }

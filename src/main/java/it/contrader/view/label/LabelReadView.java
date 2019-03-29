@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+import it.contrader.controller.LabelController;
 import it.contrader.controller.Request;
 import it.contrader.controller.UserController;
+import it.contrader.dto.LabelDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.model.User;
@@ -13,11 +15,11 @@ import it.contrader.view.View;
 
 public class LabelReadView implements View {
 
-	private UserController usersController;
+	private LabelController labelsController;
 	private Request request;
 
 	public LabelReadView() {
-		this.usersController = new UserController();
+		this.labelsController = new LabelController();
 	}
 
 	@Override
@@ -28,16 +30,14 @@ public class LabelReadView implements View {
 	public void showOptions() {
 		int userIdToRead;
 
-		System.out.println("Inserisci l'ID dell'utente:");
+		System.out.println("Inserisci l'ID della label:");
 
 		try {
 			userIdToRead = Integer.parseInt(getInput());
-			UserDTO userDB = usersController.readUser(userIdToRead);
+			LabelDTO userDB = labelsController.readLabel(userIdToRead);
 
-			System.out.println("Id: " + userDB.getUserId());
-			System.out.println("Username: " + userDB.getUsername());
-			System.out.println("Password: " + userDB.getPassword());
-			System.out.println("User type: " + userDB.getUsertype());
+			System.out.println("Id: " + userDB.getIdLabel());
+			System.out.println("Username: " + userDB.getNomeLabel());
 			
 			//Wait user to show
 			System.out.println("Premi un tasto per continuare");
@@ -64,7 +64,7 @@ public class LabelReadView implements View {
 		request = new Request();
 		request.put("mode", "menu");
 		request.put("choice", "");
-		MainDispatcher.getInstance().callAction("User", "doControl", request);
+		MainDispatcher.getInstance().callAction("Label", "doControl", request);
 	}
 
 }
