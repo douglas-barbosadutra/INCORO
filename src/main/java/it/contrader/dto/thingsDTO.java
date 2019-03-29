@@ -7,7 +7,6 @@ public class thingsDTO {
 	private String Nome;
 	
 	public thingsDTO(String name) {
-
 		this.Nome = name;
 	}
 	

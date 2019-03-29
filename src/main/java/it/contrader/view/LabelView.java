@@ -18,7 +18,7 @@ public class LabelView implements View {
 	private int idUserLocale ;
 	
 	public LabelView() {
-		//System.out.println("corinne ciao basta scrivere ciao cose ciao a caso ciao nei commit ciao");
+
 		this.labelController = new LabelController();	
 	}
 

@@ -13,8 +13,6 @@ public class Things {
 		this.Nome = thingsname;
 	}
 
-	
-
 	public int getIdthing() {
 		return idthing;
 	}
