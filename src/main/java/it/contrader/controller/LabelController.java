@@ -11,7 +11,7 @@ import it.contrader.service.LabelService;
 public class LabelController implements Controller {
 
 	
-	private static String sub_package = "Label.";
+	private static String sub_package = "label.";
 	private LabelService labelsService;
 	private Request request;
 
