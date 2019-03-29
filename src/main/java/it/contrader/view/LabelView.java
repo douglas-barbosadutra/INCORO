@@ -33,14 +33,14 @@ public class LabelView implements View {
 		// TODO Auto-generated method stub
 
 		System.out.println("\n------ Gestione label possedute -------\n");
-		//labelController.toString();
+		
 		System.out.println("ID\\nome");
 		System.out.print("------------------------------------------------------");
 		System.out.println(idUserLocale);
-		//List<Label> labels = labelController.getLabelByUser(idUserLocale);
+		List<Label> labels = labelController.getLabelByUser(idUserLocale);
 		
 		System.out.println();
-		//labels.forEach(label -> System.out.println(labels.toString()));
+		labels.forEach(label -> System.out.println(labels.toString()));
 		System.out.println();
 		
 		System.out.println("Scegli l'operazione da effettuare:");
