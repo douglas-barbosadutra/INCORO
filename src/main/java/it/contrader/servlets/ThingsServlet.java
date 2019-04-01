@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import it.contrader.dto.UsersDTO;
-import it.contrader.service.UsersServiceDTO;
+import it.contrader.dto.ThingsDTO;
+import it.contrader.service.ThingsServiceDTO;
 
 
 	public class ThingsServlet extends HttpServlet {
@@ -39,8 +39,8 @@ import it.contrader.service.UsersServiceDTO;
 				final Integer fktouser = Integer.parseInt(request.getParameter("fktouser"));
 				final Integer fktolabel = Integer.parseInt(request.getParameter("fktolabel"));
 				final ThingsDTO thing = new ThingsDTO(id,name, fktouser, fktolabel);
-				ThingsServiceDTO.insertThings(thing);
-				showAllUsers(request, response);
+				thingsServiceDTO.insertThings(thing);
+				showAllThings(request, response);
 				break;
 						
 			case "update":
@@ -53,17 +53,18 @@ import it.contrader.service.UsersServiceDTO;
 				final String nameUpdate = request.getParameter("name");
 				final Integer fktouserUpdate = Integer.parseInt(request.getParameter("fktouser"));
 				final Integer fktolabelUpdate = Integer.parseInt(request.getParameter("fktolabel"));
-				final ThingsDTO thing = new ThingsDTO(idUpdate,nameUpdate,fktouserUpdate, fktolabelUpdate);
+				final ThingsDTO things1 = new ThingsDTO(idUpdate,nameUpdate,fktouserUpdate, fktolabelUpdate);
 											
-				thingsServiceDTO.updateThings(thing);
+				thingsServiceDTO.updateThings(things1);
 				showAllThings(request, response);
 				break;
 
 			case "delete":
 				final Integer idUpdat = Integer.parseInt(request.getParameter("id"));
-				
-				final ThingsDTO use = new ThingsDTO(idUpdat,"" ,"", 1);
-				thingsServiceDTO.deleteUsers(use);
+				final Integer idBO = Integer.parseInt(request.getParameter("fktouser"));
+				final Integer idLab = Integer.parseInt(request.getParameter("fktolabel"));
+				final ThingsDTO things2 = new ThingsDTO(idUpdat,"", idBO, idLab);
+				thingsServiceDTO.deleteThings(things2);
 				showAllThings(request, response);
 				break;
 
