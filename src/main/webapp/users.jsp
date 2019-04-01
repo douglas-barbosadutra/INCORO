@@ -60,21 +60,15 @@
 
 								<tr>
 
-									<th><%out.println(users.get(i).getID()); %></th>
+									<th><%out.println(users.get(i).getId()); %></th>
 
-									<th><%out.println(users.get(i).getName()); %></th>
-
-									<th><%out.println(users.get(i).getSurname()); %></th>
-
-									<th><%out.println(users.get(i).getEmail()); %></th>
-
-									<th><%out.println(users.get(i).getPhone()); %></th>
-
+									<th><%out.println(users.get(i).getUsername()); %></th>
 									
-
+									<th><%out.println(users.get(i).getPassword()); %></th>
+									
 									<%if(mode.equals("delete")){
 
-										%><th><a style="text-decoration:none; text-align:center;" class="btn btn-primary" href="UserServlet?action=deleteUser&id=<%=users.get(i).getID()%>">elimina</a></th><%
+										%><th><a style="text-decoration:none; text-align:center;" class="btn btn-primary" href="UserServlet?action=deleteUser&id=<%=users.get(i).getId()%>">elimina</a></th><%
 
 									} %>
 								</tr><%
