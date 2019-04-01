@@ -29,7 +29,7 @@ public class UsersServlet extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		final String scelta = request.getParameter("richiesta");
-		final HttpSession session = request.getSession(true);
+		final HttpSession session = request.getSession(true); //sto impostando una serie di pulsanti
 
 		switch (scelta) {
 
@@ -40,10 +40,10 @@ public class UsersServlet extends HttpServlet {
 			break;			
 
 		case "insert":
-			final Integer id = Integer.parseInt(request.getParameter("id"));
+			final Integer id = Integer.parseInt(request.getParameter("idUser"));
 			final String username = request.getParameter("username");
 			final String password = request.getParameter("password");
-			final String ruolo = request.getParameter("ruolo");
+			final Integer ruolo = Integer.parseInt(request.getParameter("type"));
 			final UsersDTO users = new UsersDTO(id,username, password, ruolo);
 			usersServiceDTO.insertUsers(users);
 			showAllUsers(request, response);
@@ -59,7 +59,7 @@ public class UsersServlet extends HttpServlet {
 			final Integer idUpdate = Integer.parseInt(request.getParameter("id"));
 			final String usernameUpdate = request.getParameter("username");
 			final String passwordUpdate = request.getParameter("password");
-			final String ruoloUpdate = request.getParameter("ruolo");
+			final Integer ruoloUpdate = Integer.parseInt(request.getParameter("ruolo"));
 			final UsersDTO user = new UsersDTO(idUpdate, usernameUpdate,passwordUpdate, ruoloUpdate);
 					
 				
@@ -71,13 +71,13 @@ public class UsersServlet extends HttpServlet {
 		case "delete":
 			final Integer idUpdat = Integer.parseInt(request.getParameter("id"));
 			
-			final UsersDTO use = new UsersDTO(idUpdat,"" ,"","");
+			final UsersDTO use = new UsersDTO(idUpdat,"" ,"", 1);
 			usersServiceDTO.deleteUsers(use);
 			showAllUsers(request, response);
 			break;
 
 		case "Indietro":
-			response.sendRedirect("home.jsp");
+			response.sendRedirect("homeAdmin.jsp");
 			break;
 
 		case "LogsMenu":

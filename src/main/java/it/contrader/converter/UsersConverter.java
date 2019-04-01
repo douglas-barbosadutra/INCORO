@@ -20,7 +20,7 @@ public class UsersConverter {
 
 		Users users = null;
 		if (usersDTO != null) {
-			users = new Users(usersDTO.getId(), usersDTO.getUsername(), usersDTO.getPassword(), usersDTO.getRuolo());
+			users = new Users(usersDTO.getId(), usersDTO.getUsername(), usersDTO.getPassword(), usersDTO.getType());
 		}
 
 		return users;
@@ -33,7 +33,7 @@ public class UsersConverter {
 
 		UsersDTO usersDTO = null;
 		if (users != null) {
-			usersDTO = new UsersDTO(users.getId(), users.getUsername(), users.getPassword(), users.getRuolo());
+			usersDTO = new UsersDTO(users.getId(), users.getUsername(), users.getPassword(), users.getType());
 		}
 
 		return usersDTO;

@@ -6,7 +6,7 @@
 	<div>
 		<form action="LoginServlet" method="post">
 			<h3>
-				username: <input type="text" id="user" name="username"
+				username: <input type="text" id="#user" name="username"
 					placeholder="inserisci username">
 			</h3>
 			<h3>

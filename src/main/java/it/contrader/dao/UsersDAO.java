@@ -23,11 +23,11 @@ public class UsersDAO {
 	 * intendiamo recuperare tutte le tuple dal db. Se volessimo creare una query
 	 * per l'inserimento, un nome identificativo potrebbe essere INSERT_ESEMPIO
 	 */
-	private final String GET_ALL = "select * from users";
-	private final String QUERY_INSERT = "INSERT INTO users (id, username, password, ruolo) values (?,?,?,?)";
-	private final String QUERY_DELETE = "DELETE FROM users WHERE id = (?)";
-	private final String QUERY_UPDATE = "UPDATE users SET username, password, ruolo =(?,?,?) WHERE id = (?)";
-	private final String QUERY_LOGIN = "select * from users where username=(?) and password=(?)";
+	private final String GET_ALL = "select * from user";
+	private final String QUERY_INSERT = "INSERT INTO user (idUser, username, password, type) values (?,?,?,?)";
+	private final String QUERY_DELETE = "DELETE FROM user WHERE idUser = (?)";
+	private final String QUERY_UPDATE = "UPDATE user SET username, password, type =(?,?,?) WHERE idUser = (?)";
+	private final String QUERY_LOGIN = "select * from user where username=(?) and password=(?)";
 
 	/**
 	 * Il suddetto metodo si occupa interagire con il database e restituire tutte le
@@ -48,9 +48,9 @@ public class UsersDAO {
 			while (resultSet.next()) {
 				String name = resultSet.getString("username");
 				String pass = resultSet.getString("password");
-				Integer id = resultSet.getInt("id");
-				String ruolo = resultSet.getString("ruolo");
-				utente = new Users(id, name, pass, ruolo);
+				Integer idUser = resultSet.getInt("idUser");
+				Integer type = resultSet.getInt("type");
+				utente = new Users(idUser, name, pass, type);
 			}
 
 		} catch (SQLException e) {
@@ -71,7 +71,7 @@ public class UsersDAO {
 				final Integer id = resultSet.getInt("id");
 				final String username = resultSet.getString("username");
 				final String password = resultSet.getString("password");
-				final String ruolo = resultSet.getString("ruolo");
+				final Integer ruolo = resultSet.getInt("ruolo");
 
 				users.add(new Users(id, username, password, ruolo));
 			}
@@ -89,7 +89,7 @@ public class UsersDAO {
 			preparedStatement.setInt(1, users.getId());
 			preparedStatement.setString(2, users.getUsername());
 			preparedStatement.setString(3, users.getPassword());
-			preparedStatement.setString(4, users.getRuolo());
+			preparedStatement.setInt(4, users.getType());
 			return true;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
@@ -119,7 +119,7 @@ public class UsersDAO {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_UPDATE);
 			preparedStatement.setString(1, users.getUsername());
 			preparedStatement.setString(2, users.getPassword());
-			preparedStatement.setString(3, users.getRuolo());
+			preparedStatement.setInt(3, users.getType());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {

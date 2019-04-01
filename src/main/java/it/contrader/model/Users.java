@@ -11,20 +11,20 @@ public class Users {
 	 * <br>
 	 * Possiamo avere n colonne
 	 */
-	private Integer id;
+	private Integer idUser;
 	private String username;
 	private String password;
-	private String ruolo;
+	private int type;
 
 	/**
 	 * Costruttore con parametri
 	 */
-	public Users(Integer id, String username, String password, String ruolo) {
+	public Users(Integer id, String username, String password, int ruolo) {
 		super();
-		this.id = id;
+		this.idUser = id;
 		this.username = username;
 		this.password = password;
-		this.ruolo = ruolo;
+		this.type = ruolo;
 
 		
 	}
@@ -34,11 +34,11 @@ public class Users {
 	 * model o di settarle
 	 */
 	public Integer getId() {
-		return id;
+		return idUser;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.idUser = id;
 	}
 
 	public String getUsername() {
@@ -55,11 +55,11 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getRuolo() {
-		return ruolo;
+	public int getType() {
+		return type;
 	}
 
-	public void setRuolo(String ruolo) {
-		this.ruolo = ruolo;
+	public void setType(int ruolo) {
+		this.type = ruolo;
 	}
 }
