@@ -57,9 +57,5 @@ public class Things {
 
 	public void setFktolabel(int fktolabel) {
 		this.fktolabel = fktolabel;
-	}
-	
-	
-	
-	
+	}	
 }
