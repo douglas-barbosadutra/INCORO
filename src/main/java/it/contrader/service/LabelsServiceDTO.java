@@ -40,12 +40,12 @@ public class LabelsServiceDTO {
 }
 	
 	public boolean deleteLabels (LabelsDTO LabelsDTO) {
-		return this.LabelsDAO.deleteLabels(LabelsConverter.toEntity(LabelsDTO));
+		return this.LabelsDAO.deleteLabel(LabelsConverter.toEntity(LabelsDTO));
 		
 }
 	
 	public boolean insertLabels (LabelsDTO LabelsDTO) {
-		return this.LabelsDAO.insertLabels(LabelsConverter.toEntity(LabelsDTO));
+		return this.LabelsDAO.insertLabel(LabelsConverter.toEntity(LabelsDTO));
 	
 }
 		
