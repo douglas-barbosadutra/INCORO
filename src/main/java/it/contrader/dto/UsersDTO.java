@@ -50,5 +50,4 @@ public class UsersDTO {
 	public void setType(int type) {
 		this.type = type;
 	}
-
 }

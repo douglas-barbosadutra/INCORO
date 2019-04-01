@@ -33,7 +33,6 @@ public class UsersServiceDTO {
 		for (Users users : list) {
 			listDTO.add(UsersConverter.toDTO(users));
 		}
-
 		return listDTO;
 	}
 	

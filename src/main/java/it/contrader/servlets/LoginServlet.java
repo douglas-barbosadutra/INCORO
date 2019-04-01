@@ -30,8 +30,7 @@ public class LoginServlet extends HttpServlet {
 			if (usersDTO != null)
 				session.setAttribute("utente", usersDTO);
 
-			// verifichiamo che tipo di ruolo ha all'interno dell'applicazione
-			// e lo reindirizziamo nella jsp opportuna
+			// verifichiamo che tipo di ruolo ha all'interno dell'applicazione e lo reindirizziamo nella jsp opportuna
 			switch (usersDTO.getType()) {
 			case 0:
 				getServletContext().getRequestDispatcher("/homeAdmin.jsp").forward(request, response);

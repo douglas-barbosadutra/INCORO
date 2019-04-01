@@ -24,9 +24,7 @@ public class Users {
 		this.idUser = id;
 		this.username = username;
 		this.password = password;
-		this.type = ruolo;
-
-		
+		this.type = ruolo;	
 	}
 
 	/**

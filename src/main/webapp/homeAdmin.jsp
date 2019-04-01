@@ -5,9 +5,6 @@
 <body>
 	<h1>Benvenuto: ${utente.getUsername()}</h1>
 	
-
-	
-
 		<ul>
 
 			<li>
@@ -20,8 +17,6 @@
 
 	  		</li>
 
-	  		
-
 	  		<li>
 
 		  		<div class="dropdown">
@@ -32,20 +27,22 @@
 
 	  		</li>
 
-	  		
-
 	  		<li>
 
 		  		<div class="dropdown">
 
-					<a href="UsersServlet?action=UsersManagement" class="dropbtn">Lista utenti</a>				
+					<a href="UsersServlet?action=UsersManager" class="dropbtn">Lista utenti prova</a>				
 
 				</div>
 
 	  		</li>
-
+			
+			<li>
+		  		<div class="dropdown">
+					<a href="UsersServlet?action=update" class="dropbtn">Aggiorna utenti</a>				
+				</div>
+	  		</li>
 	  		
-
 	  		<li>
 
 		  		<div class="dropdown">
@@ -87,7 +84,6 @@
      <input type="submit" value="Logout" name="Logout">
      </form>
 -->
-
 
 </body>
 </html>

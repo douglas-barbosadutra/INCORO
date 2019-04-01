@@ -27,7 +27,7 @@ public class UsersServlet extends HttpServlet {
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		final String scelta = request.getParameter("richiesta");
+		final String scelta = request.getParameter("action").toString();
 		final HttpSession session = request.getSession(true); //sto impostando una serie di pulsanti
 
 		switch (scelta) {
@@ -50,9 +50,9 @@ public class UsersServlet extends HttpServlet {
 					
 		case "update":
 			System.out.println("id: "+Integer.parseInt(request.getParameter("id")));
-			System.out.println("username: "+request.getParameter("username"));
-			System.out.println("password: "+request.getParameter("password"));
-			System.out.println("ruolo: "+request.getParameter("ruolo"));
+			System.out.println("username: "+ request.getParameter("username"));
+			System.out.println("password: "+ request.getParameter("password"));
+			System.out.println("ruolo: "+ request.getParameter("ruolo"));
 		     	
 			final Integer idUpdate = Integer.parseInt(request.getParameter("id"));
 			final String usernameUpdate = request.getParameter("username");
@@ -85,8 +85,8 @@ public class UsersServlet extends HttpServlet {
 	
 private void showAllUsers(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-	allUsers = this.usersServiceDTO.getAllUsers();
-	request.setAttribute("allUsers", allUsers);
-	getServletContext().getRequestDispatcher("/users.jsp").forward(request, response);
-}
+		allUsers = this.usersServiceDTO.getAllUsers();
+		request.setAttribute("allUsers", allUsers);
+		getServletContext().getRequestDispatcher("/users.jsp").forward(request, response);
+	}
 }
