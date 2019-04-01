@@ -32,7 +32,7 @@ CREATE TABLE `label` (
   KEY `fklaus_idx` (`idLabel`),
   KEY `fkUserLabel_idx` (`fktouser`),
   CONSTRAINT `fkUserLabel` FOREIGN KEY (`fktouser`) REFERENCES `user` (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `label` (
 
 LOCK TABLES `label` WRITE;
 /*!40000 ALTER TABLE `label` DISABLE KEYS */;
-INSERT INTO `label` VALUES (1,'Automobili',5);
+INSERT INTO `label` VALUES (1,'auto',5),(2,'moto',6);
 /*!40000 ALTER TABLE `label` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,16 +53,16 @@ DROP TABLE IF EXISTS `things`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `things` (
-  `idthing` int(11) NOT NULL AUTO_INCREMENT,
+  `idThing` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `fktouser` int(11) NOT NULL,
   `fktolabel` int(11) NOT NULL,
-  PRIMARY KEY (`idthing`),
+  PRIMARY KEY (`idThing`),
   KEY `fkThingslabel_idx` (`fktolabel`),
   KEY `fkThingsUser_idx` (`fktouser`),
   CONSTRAINT `fkThingsUser` FOREIGN KEY (`fktouser`) REFERENCES `user` (`idUser`),
   CONSTRAINT `fkThingslabel` FOREIGN KEY (`fktolabel`) REFERENCES `label` (`idLabel`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,7 @@ CREATE TABLE `things` (
 
 LOCK TABLES `things` WRITE;
 /*!40000 ALTER TABLE `things` DISABLE KEYS */;
-INSERT INTO `things` VALUES (3,'fiat punto',5,1),(10,'fff',5,1),(14,'prova',5,1);
+INSERT INTO `things` VALUES (3,'fiat punto',5,1),(10,'test',5,1),(14,'prova',5,1);
 /*!40000 ALTER TABLE `things` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-29 17:10:30
+-- Dump completed on 2019-04-01 14:12:01
