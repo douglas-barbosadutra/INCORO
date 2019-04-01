@@ -27,12 +27,7 @@ public class LabelUpdateView implements View {
 	@Override
 	public void showOptions() {
 		int userIdToUpdate;
-		String username,password, usertype;
-
-		/*
-		 * List<User> users; Integer usersId; String password; users =
-		 * usersController.getAllUsers();
-		 */
+		String nome;
 		System.out.println("\n----- Seleziona l'ID della label da modificate  -----\n");
 		// System.out.println();
 		// users.forEach(us_type -> System.out.println(us_type.toString()));
@@ -45,18 +40,15 @@ public class LabelUpdateView implements View {
 			if (userIdToUpdate != 0) {
 				labelDTO.setIdLabel(userIdToUpdate);
 
-				System.out.println("Digita la nuova username:");
-				username = getInput();
-				if (!username.equals(""))
-					labelDTO.setNomeLabel(username);
+				System.out.println("Digita il nuovo nome:");
+				nome = getInput();
+				if (!nome.equals(""))
+					labelDTO.setNome(nome);
 				labelsController.updateLabel(labelDTO);
-		
-
 			}
 		} catch (Exception e) {
 			System.out.println("Hai inserito un valore errato");
 		}
-
 	}
 
 	@Override
@@ -72,5 +64,4 @@ public class LabelUpdateView implements View {
 		request.put("choice", "");
 		MainDispatcher.getInstance().callAction("Label", "doControl", request);
 	}
-
 }

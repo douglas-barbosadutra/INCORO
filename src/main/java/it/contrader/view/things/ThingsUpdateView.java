@@ -25,7 +25,7 @@ public class ThingsUpdateView implements View {
 	@Override
 	public void showOptions() {
 		int thingsIdToUpdate;
-		String nomeLabel;
+		String nomeThings;
 		System.out.println("\n----- Seleziona l'ID della things da modificate  -----\n");
 		thingsDTO thingsDTO = new thingsDTO();
 		System.out.println("Digita l'Id della things da modificare:");
@@ -34,9 +34,9 @@ public class ThingsUpdateView implements View {
 			if (thingsIdToUpdate != 0) {
 				thingsDTO.setIdthing(thingsIdToUpdate);
 				System.out.println("Digita il nuovo nome della things:");
-				nomeLabel = getInput();
-				if (!nomeLabel.equals(""))
-					thingsDTO.setNome(nomeLabel);
+				nomeThings = getInput();
+				if (!nomeThings.equals(""))
+					thingsDTO.setNome(nomeThings);
 				thingsController.updateThings(thingsDTO);
 			}
 		} catch (Exception e) {

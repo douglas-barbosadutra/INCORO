@@ -1,7 +1,6 @@
 package it.contrader.view;
 
 import java.util.Scanner;
-
 import it.contrader.controller.Request;
 import it.contrader.main.MainDispatcher;
 
@@ -9,16 +8,16 @@ public class LoginView implements View {
 
 	private String nomeUtente;
 	private String password;
-
-	public void showResults(Request request) {
-		
+	
+	// questo metodo non viene usato
+	public void showResults(Request request) {	
 	}
 
 	public void showOptions() {
 		System.out.println("----- .:LOGIN:. ----");
-		System.out.println("Nome utente:");
+		System.out.println("Nome utente: ");
 		nomeUtente = getInput();
-		System.out.println("Password:");
+		System.out.println("Password: ");
 		password = getInput();
 	}
 
@@ -26,7 +25,6 @@ public class LoginView implements View {
 		Request request = new Request();
 		request.put("nomeUtente", nomeUtente);
 		request.put("password", password);
-		
 		MainDispatcher.getInstance().callAction("Home", "doControl", request);
 	}
 
@@ -35,7 +33,7 @@ public class LoginView implements View {
 		return scanner.nextLine();
 	}
 
+	// questo metodo non viene usato
 	protected void send() {
 	}
-
 }

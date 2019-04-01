@@ -23,8 +23,7 @@ public class MainDispatcher {
 	}
 
 	public void callAction(String controller, String action, Request request) {
-		Controller oggettoController = (Controller) ReflectionUtils
-				.instantiateClass("it.contrader.controller." + controller + "Controller");
+		Controller oggettoController = (Controller) ReflectionUtils.instantiateClass("it.contrader.controller." + controller + "Controller");
 		try {
 			Method metodo = oggettoController.getClass().getMethod(action, Request.class);
 			metodo.invoke(oggettoController, request);
@@ -45,7 +44,6 @@ public class MainDispatcher {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
-		
+		}		
 	}
 }

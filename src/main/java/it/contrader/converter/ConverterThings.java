@@ -33,13 +33,13 @@ public class ConverterThings {
 	}
 
 	public static List<thingsDTO> toListDTO(List<Things> list) {
-		List<thingsDTO> listUserDTO = new ArrayList<>();
+		List<thingsDTO> listThingsDTO = new ArrayList<>();
 		if (!list.isEmpty()) {
 			for (Things thing : list) {
-				listUserDTO.add(ConverterThings.toDTO(thing));
+				listThingsDTO.add(ConverterThings.toDTO(thing));
 			}
 		}
-		return listUserDTO;
+		return listThingsDTO;
 	}
 
 	public static List<Things> toListEntity(List<thingsDTO> listThingDTO) {

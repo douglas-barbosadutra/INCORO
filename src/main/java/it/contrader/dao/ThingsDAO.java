@@ -13,12 +13,10 @@ import it.contrader.model.User;
 public class ThingsDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM things";
-	private final String QUERY_INSERT = "INSERT INTO things (Nome, iduser, idlabel) VALUES (?,?,?)";
-	private final String QUERY_READ = "SELECT * FROM things WHERE idthing=?";
-
-	private final String QUERY_UPDATE = "UPDATE things SET Nome=? WHERE idthing=?";
-	
-	private final String QUERY_DELETE = "DELETE FROM things WHERE idthing=?";
+	private final String QUERY_INSERT = "INSERT INTO things (name, fktouser, fktolabel) VALUES (?,?,?)";
+	private final String QUERY_READ = "SELECT * FROM things WHERE idThing=?";
+	private final String QUERY_UPDATE = "UPDATE things SET name=? WHERE idThing=?";
+	private final String QUERY_DELETE = "DELETE FROM things WHERE idThing=?";
 
 	public ThingsDAO() {
 

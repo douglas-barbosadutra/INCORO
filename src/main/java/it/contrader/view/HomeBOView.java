@@ -9,26 +9,24 @@ import java.util.Scanner;
 public class HomeBOView implements View {
 
     private String choice;
-    
     private Integer idUser;
     
     public void showResults(Request request) {
-    	System.out.println("Benvenuto in INCORO "+request.get("nomeUtente").toString());
-    	System.out.println("------" + request.get("idUser") +"------");
-
-    this.idUser = Integer.parseInt(request.get("idUser").toString());
-	System.out.println("------" +idUser+"------");
-    
-    
+    	System.out.print("Benvenuto in INCORO "+ request.get("nomeUtente").toString() + " ");
+    	System.out.println("il tuo Id Utente è : " + request.get("idUser"));
+    	
+    	this.idUser = Integer.parseInt(request.get("idUser").toString());
+    	//System.out.println("------" +idUser+"------");
     }
-//mod
 
     public void showOptions() {
-        System.out.println("-------MENU-------\n");
+        System.out.println("-------MENU Home BO -------\n");
         System.out.println("Seleziona cosa vuoi gestire:");
         System.out.println("[T]hings [L]abels [E]sci ");
         this.choice = this.getInput();
-        if (this.choice.equals("L")) this.choice = new String("Q");
+        // questo if a che serve?
+        if (this.choice.equals("L")) 
+        	this.choice = new String("Q");
     }
 
     public void submit() {
@@ -47,7 +45,6 @@ public class HomeBOView implements View {
             MainDispatcher.getInstance().callAction("Login", "doControl", request);
         }
     }
-
 
     public String getInput() {
         Scanner scanner = new Scanner(System.in);

@@ -7,9 +7,7 @@ import it.contrader.main.MainDispatcher;
 import it.contrader.model.Things;
 import it.contrader.service.ThingsService;
 
-public class ThingsController implements Controller {
-
-	
+public class ThingsController implements Controller {	
 	private static String sub_package = "things.";
 	private ThingsService thingService;
 	private Request request;

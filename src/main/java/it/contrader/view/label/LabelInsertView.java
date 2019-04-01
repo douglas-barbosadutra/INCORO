@@ -37,7 +37,7 @@ public class LabelInsertView implements View {
 		if (!username.equals("") ) {
 			LabelDTO wLabel = new LabelDTO();
 			wLabel.setIdusers(iduserL);
-			wLabel.setNomeLabel(username);
+			wLabel.setNome(username);
 			labelController.insertLabel(wLabel);
 		}
 	}

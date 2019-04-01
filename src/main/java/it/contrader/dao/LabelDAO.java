@@ -15,18 +15,16 @@ import it.contrader.model.Label;
 public class LabelDAO {
 
 	private final String QUERY_ALL = "SELECT * FROM label";
-	private final String QUERY_INSERT = "INSERT INTO label (name, idusers) VALUES (?,?)";
-	
+	private final String QUERY_INSERT = "INSERT INTO label (name, fktouser) VALUES (?,?)";
 	private final String QUERY_READ = "SELECT * FROM label WHERE idLabel=?";
-	private final String QUERY_WUSER = "SELECT * FROM label WHERE fktouser=?";
-	
+	//private final String QUERY_WUSER = "SELECT * FROM label WHERE fktouser=?";
 	private final String QUERY_UPDATE = "UPDATE label SET name=? WHERE idLabel=?";
 	private final String QUERY_DELETE = "DELETE FROM label WHERE idLabel=?";
 
 	public LabelDAO() {
 
 	}
-	
+	/*
 	public List<Label> getLabelByUser(int idUser) {
 		Connection connection = ConnectionSingleton.getInstance();
 		List<Label> LabelList = new ArrayList<>();
@@ -49,7 +47,7 @@ public class LabelDAO {
 		}
 		return LabelList;
 		}
-	
+	*/
 	public List<Label> getAllLabel() {
 		List<Label> LabelList = new ArrayList<>();
 		Connection connection = ConnectionSingleton.getInstance();
@@ -60,8 +58,11 @@ public class LabelDAO {
 			while (resultSet.next()) {
 				int idLabel = resultSet.getInt("idLabel");
 				String nomeLabel = resultSet.getString("name");
+				int idUser = resultSet.getInt("fktouser");
 				Label = new Label(nomeLabel);
 				Label.setIdlabel(idLabel);
+				Label.setName(nomeLabel);
+				Label.setIdusers(idUser);
 				LabelList.add(Label);
 			}
 		} catch (SQLException e) {
@@ -96,7 +97,6 @@ public class LabelDAO {
 			nomeLabel = resultSet.getString("name");
 			Label Label = new Label(nomeLabel);
 			Label.setIdlabel(resultSet.getInt("idLabel"));
-
 			return Label;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
@@ -135,9 +135,7 @@ public class LabelDAO {
 				return false;
 			}
 		}
-
 		return false;
-		
 	}
 
 	public boolean deletelabel(Integer id) {

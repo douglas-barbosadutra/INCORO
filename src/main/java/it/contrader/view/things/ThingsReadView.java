@@ -32,10 +32,10 @@ public class ThingsReadView implements View {
 
 		try {
 			thingsIdToRead = Integer.parseInt(getInput());
-			thingsDTO thingsDB = thingsController.readThings(thingsIdToRead);
+			thingsDTO thingsDTO = thingsController.readThings(thingsIdToRead);
 
-			System.out.println("Id: " + thingsDB.getIdthing());
-			System.out.println("Nome: " + thingsDB.getNome());
+			System.out.println("Id: " + thingsDTO.getIdthing());
+			System.out.println("Nome: " + thingsDTO.getNome());
 			
 			//Wait user to show
 			System.out.println("Premi un tasto per continuare");
@@ -64,5 +64,4 @@ public class ThingsReadView implements View {
 		request.put("choice", "");
 		MainDispatcher.getInstance().callAction("Things", "doControl", request);
 	}
-
 }

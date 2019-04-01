@@ -16,14 +16,16 @@ public class HomeController implements Controller {
             String nomeUtente = request.get("nomeUtente").toString();
             String password = request.get("password").toString();
             
-            //Change view according userType
-            Integer userType= loginService.login(nomeUtente, password);
+            // cambia vista in base al tipo 
+            Integer userType = loginService.login(nomeUtente, password);
             if(userType==null)
                 MainDispatcher.getInstance().callAction("Login", "doControl", request);
             
+            // vista per il Super User
             if (userType.equals(new Integer(0)))
                 MainDispatcher.getInstance().callView("HomeAdmin", request);
             
+            // vista par il BO
             if (userType.equals(new Integer(1))) {
             	Integer idUser = loginService.loginUser(nomeUtente, password);
             	System.out.println("------" + idUser +"------");
@@ -33,6 +35,5 @@ public class HomeController implements Controller {
             }
         }
         else MainDispatcher.getInstance().callView("Login", null);
-
     }
 }

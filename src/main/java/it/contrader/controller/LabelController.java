@@ -9,7 +9,6 @@ import it.contrader.model.Label;
 import it.contrader.service.LabelService;
 
 public class LabelController implements Controller {
-
 	
 	private static String sub_package = "label.";
 	private LabelService labelsService;
@@ -38,9 +37,10 @@ public class LabelController implements Controller {
 	public boolean deleteLabel(Integer LabelsId) {
 		return this.labelsService.deleteLabel(LabelsId);
 	}
+	/*
 	public List<Label> getLabelByUser(int idUser) {
 		return this.labelsService.getLabelByUser(idUser);
-	}
+	}*/
  
 	@Override
 	public void doControl(Request request) {

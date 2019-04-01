@@ -13,9 +13,8 @@ public class ConverterLabel {
 		if (Label != null) {
 			LabelDTO = new LabelDTO();
 			LabelDTO.setIdLabel(Label.getIdlabel());
-			LabelDTO.setNomeLabel(Label.getName());
+			LabelDTO.setNome(Label.getName());
 			LabelDTO.setIdusers(Label.getIdusers());
-
 		}
 		return LabelDTO;
 	}
@@ -24,8 +23,8 @@ public class ConverterLabel {
 		Label Label = null;
 		if (LabelDTO != null) {
 			Label = new Label();
-			Label.setIdlabel(LabelDTO.getIdLabel());
-			Label.setName(LabelDTO.getNomeLabel());
+			Label.setIdlabel(LabelDTO.getIdlabel());
+			Label.setName(LabelDTO.getNome());
 			Label.setIdusers(LabelDTO.getIdusers());
 		}
 		return Label;

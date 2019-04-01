@@ -24,16 +24,13 @@ public class ThingsView implements View {
 
 	@Override
 	public void showOptions() {
-		
-		System.out.println("\n------ Gestione things -------\n");
-		
-		System.out.println("ID\tNome things\tUtente\tLabel");
+		System.out.println("\n------ Gestione THINGS -------\n");
+		System.out.println("ID\t Nome Things\t Utente\t Label");
 		System.out.print("------------------------------------------------------");
 		List<Things> things = thingsController.getAllThings();
 		System.out.println();
 		things.forEach(thing -> System.out.println(thing.toString()));
 		System.out.println();
-		
 		System.out.println("Scegli l'operazione da effettuare:");
 		System.out.println("[L]eggi [I]nserisci [M]odifica [C]ancella [E]sci");
 		try {

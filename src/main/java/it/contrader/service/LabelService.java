@@ -36,8 +36,9 @@ public class LabelService {
 		return this.LabelDAO.deletelabel(labelsId);
 	}
 
+	/*
 	public List<Label> getLabelByUser(int idUser) {
 		// TODO Auto-generated method stub
 		return this.LabelDAO.getLabelByUser(idUser);
-	}
+	}*/
 }

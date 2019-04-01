@@ -25,9 +25,9 @@ public class UserView implements View {
 	@Override
 	public void showOptions() {
 		
-		System.out.println("\n------ Gestione utenti -------\n");
+		System.out.println("\n------ Gestione UTENTI -------\n");
 		
-		System.out.println("ID\tUsername\tPassword\tTipoUtente");
+		System.out.println("ID\t Username\t Password\t TipoUtente");
 		System.out.print("------------------------------------------------------");
 		List<User> users = usersController.getAllUser();
 		System.out.println();

@@ -8,7 +8,6 @@ import it.contrader.controller.LabelController;
 import it.contrader.controller.Request;
 import it.contrader.controller.UserController;
 import it.contrader.dto.LabelDTO;
-import it.contrader.dto.UserDTO;
 import it.contrader.main.MainDispatcher;
 import it.contrader.model.User;
 import it.contrader.view.View;
@@ -28,18 +27,17 @@ public class LabelReadView implements View {
 
 	@Override
 	public void showOptions() {
-		int labeIdToRead;
+		int labelIdToRead;
 
 		System.out.println("Inserisci l'ID della label:");
 
 		try {
-			labeIdToRead = Integer.parseInt(getInput());
-			LabelDTO labelDTO = labelsController.readLabel(labeIdToRead);
+			labelIdToRead = Integer.parseInt(getInput());
+			LabelDTO labelDTO = labelsController.readLabel(labelIdToRead);
 
-			System.out.println("Id: " + labelDTO.getIdLabel());
-			System.out.println("Username: " + labelDTO.getNomeLabel());
+			System.out.println("Id: " + labelDTO.getIdlabel());
+			System.out.println("Username: " + labelDTO.getNome());
 			
-			//Wait user to show
 			System.out.println("Premi un tasto per continuare");
 			try {
 				getInput();
@@ -66,5 +64,4 @@ public class LabelReadView implements View {
 		request.put("choice", "");
 		MainDispatcher.getInstance().callAction("Label", "doControl", request);
 	}
-
 }

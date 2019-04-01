@@ -1,11 +1,6 @@
-/**
- * Manage a Business Owner view
- */
-
 package it.contrader.view;
 
 import java.util.Scanner;
-
 import it.contrader.controller.Request;
 import it.contrader.main.MainDispatcher;
 
@@ -16,7 +11,6 @@ public class HomeAdminView implements View {
     public void showResults(Request request) {
     	System.out.println("Benvenuto in INCORO "+request.get("nomeUtente").toString());
     }
-
 
     public void showOptions() {
         System.out.println("-------MENU-------\n");
@@ -30,7 +24,7 @@ public class HomeAdminView implements View {
         	MainDispatcher.getInstance().callView("User", null);
         }
         
-        if (choice.equalsIgnoreCase("L"))
+        if (choice.equalsIgnoreCase("E"))
             MainDispatcher.getInstance().callAction("Login", "doControl", null);
         else {
             Request request = new Request();
@@ -38,7 +32,6 @@ public class HomeAdminView implements View {
             MainDispatcher.getInstance().callAction("Login", "doControl", request);
         }
     }
-
 
     public String getInput() {
         Scanner scanner = new Scanner(System.in);
