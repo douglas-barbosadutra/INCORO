@@ -31,9 +31,8 @@ public class ThingsServiceDTO {
 		return listDTO;
 	}
 	
-	public ThingsDTO getThingByname(String name) {
-		return ThingsConverter.toDTO(ThingsDAO.login(name));
-	}
+	
+	
 
 	public boolean updateThings (ThingsDTO ThingsDTO) {
 		return this.ThingsDAO.updateThings(ThingsConverter.toEntity(ThingsDTO));
