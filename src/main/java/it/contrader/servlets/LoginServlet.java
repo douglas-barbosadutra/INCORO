@@ -39,8 +39,7 @@ public class LoginServlet extends HttpServlet {
 			
 			case 1:
 				getServletContext().getRequestDispatcher("/homeBO.jsp").forward(request, response);
-				break;
-			
+				break;			
 			
 			default:
 				getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
@@ -48,5 +47,4 @@ public class LoginServlet extends HttpServlet {
 			}
 		}
 	}
-
 }

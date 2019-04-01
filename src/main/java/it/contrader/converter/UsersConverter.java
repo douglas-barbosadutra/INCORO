@@ -38,6 +38,4 @@ public class UsersConverter {
 
 		return usersDTO;
 	}
-	
-
 }
