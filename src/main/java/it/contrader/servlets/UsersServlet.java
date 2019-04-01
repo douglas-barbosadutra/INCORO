@@ -27,7 +27,7 @@ public class UsersServlet extends HttpServlet {
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		final String scelta = request.getParameter("richiesta");
+		final String scelta = request.getParameter("action");
 		final HttpSession session = request.getSession(true); //sto impostando una serie di pulsanti
 
 		switch (scelta) {

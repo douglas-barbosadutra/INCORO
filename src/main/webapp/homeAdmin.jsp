@@ -1,93 +1,84 @@
+<%@ page import="java.util.*"%>
+<%@ page import="it.contrader.dto.*" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
 <html>
 <head>
-<title>Menu Principale</title>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
 </head>
 <body>
-	<h1>Benvenuto: ${utente.getUsername()}</h1>
-	
 
-	
+		<% String mode = session.getAttribute("allUsers").toString(); %>
 
 		<ul>
-
 			<li>
-
 		  		<div class="dropdown">
-
 					<a href="UsersServlet?action=insert" class="dropbtn">Inserisci utente</a>				
-
 				</div>
-
 	  		</li>
-
-	  		
-
 	  		<li>
-
 		  		<div class="dropdown">
-
-					<a href="UsersServlet?action=delete" class="dropbtn">Elimina utente</a>				
-
+					<a href="UsersServlet?action=deletet" class="dropbtn">Elimina utente</a>				
 				</div>
-
 	  		</li>
-
-	  		
-
+	 		<li>
+		  		<div class="dropdown">
+					<a href="UsersServlet?action=UsersManager" class="dropbtn">Lista utenti</a>				
+				</div>
+	  		</li>
 	  		<li>
-
 		  		<div class="dropdown">
-
-					<a href="UsersServlet?action=UsersManagement" class="dropbtn">Lista utenti</a>				
-
+					<a href="UserServlet?action=homeLogs" class="dropbtn">Logout</a>				
 				</div>
-
 	  		</li>
-
-	  		
-
-	  		<li>
-
-		  		<div class="dropdown">
-
-					<a href="UsersServlet?action=logout" class="dropbtn">Logout</a>				
-
-				</div>
-
-	  		</li>
-
 		</ul>
-	
-	<!-- 
-	<h2>------- MENU PRINCIPALE -------</h2>
 
-	<h3>1. Esempio</h3>
-	<form action="MenuServlet" method="post">
-		<button type="submit" value="esempioManager" name="richiesta">
-			bottone esempio</button>
-	</form>
-	 
-     <h3>2. Badges</h3>
-     <form action="BadgeServlet" method="post">
-     <button type="submit" value="badgesManagement" name="richiesta"> Management badge</button>
-     </form>
-     
-     <h3>3. Assegnazione Badges</h3>
-     <form action="AssegnazioneServlet" method="post">
-     <button type="submit" value="assegnazioneManagement" name="richiesta"> Management Assegnazione</button>
-     </form>
-     
-     <h3>4. Indietro</h3>
-     <form action="CustomersServlet" method="post">
-     <input type="submit" value="indietro" name="richiesta">
-     </form>
-     
-       <h3>5.logout<h3>
-     <form action="LogoutServlet" method="post">
-     <input type="submit" value="Logout" name="Logout">
-     </form>
--->
+		<div class="main">
+			<h1 class="title">Lista utenti</h1>
+			<div style="padding-left:10%; padding-right:10%">
+				<table class="table table-striped">
+				    <thead>
+				      <tr>
+				        <th>ID</th>
+				        <th>Nome</th>
+				        <th>Cognome</th>
+				        <th>Email</th>
+				        <th>Telefono</th>
+				        <% if(mode.equals("delete")){
+				        	%><th>Opzioni</th><%
+				        }%>
+				      </tr>
+				    </thead>
+				    <tbody>
+				    	<%
+							List<UsersDTO> users = (List<UsersDTO>)session.getAttribute("users_list");
+							for(int i = 0; i < users.size(); i++)
+							{
+						%>
 
+								<tr>
 
+									<th><%out.println(users.get(i).getId()); %></th>
+
+									<th><%out.println(users.get(i).getUsername()); %></th>
+									
+									<th><%out.println(users.get(i).getPassword()); %></th>
+									
+									<%if(mode.equals("delete")){
+
+										%><th><a style="text-decoration:none; text-align:center;" class="btn btn-primary" href="UserServlet?action=deleteUser&id=<%=users.get(i).getId()%>">elimina</a></th><%
+
+									} %>
+								</tr><%
+
+							}
+
+						%>
+				    </tbody>
+			  </table>
+			</div>
+		</div>
 </body>
 </html>
