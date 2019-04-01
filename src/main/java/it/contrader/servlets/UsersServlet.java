@@ -14,7 +14,6 @@ import it.contrader.converter.UsersConverter;
 import it.contrader.dto.UsersDTO;
 import it.contrader.service.UsersServiceDTO;
 
-
 /**
  * La servlet si occupa di parlare con la JSP e utilizza i servizi opportuni.
  * Per chi farà User dovrà anche occuparsi del Login che abbiamo lasciato come struttura e va modificata in modo opportuno
@@ -54,16 +53,13 @@ public class UsersServlet extends HttpServlet {
 			System.out.println("username: "+request.getParameter("username"));
 			System.out.println("password: "+request.getParameter("password"));
 			System.out.println("ruolo: "+request.getParameter("ruolo"));
-
 		     	
 			final Integer idUpdate = Integer.parseInt(request.getParameter("id"));
 			final String usernameUpdate = request.getParameter("username");
 			final String passwordUpdate = request.getParameter("password");
 			final Integer ruoloUpdate = Integer.parseInt(request.getParameter("ruolo"));
 			final UsersDTO user = new UsersDTO(idUpdate, usernameUpdate,passwordUpdate, ruoloUpdate);
-					
-				
-					
+										
 			usersServiceDTO.updateUsers(user);
 			showAllUsers(request, response);
 			break;
@@ -85,13 +81,8 @@ public class UsersServlet extends HttpServlet {
 			break;
 
 				}
-
 			}
-
-		
-
 	
-
 private void showAllUsers(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
 	allUsers = this.usersServiceDTO.getAllUsers();
