@@ -15,7 +15,7 @@ public class UserDAO {
 	private final String QUERY_INSERT = "INSERT INTO user (username, password, type) VALUES (?,?,?)";
 	private final String QUERY_READ = "SELECT * FROM user WHERE idUser=?";
 
-	private final String QUERY_UPDATE = "UPDATE user SET username=?, password=?, typo=? WHERE idUser=?";
+	private final String QUERY_UPDATE = "UPDATE user SET username=?, password=?, type=? WHERE idUser=?";
 	private final String QUERY_DELETE = "DELETE FROM user WHERE idUser=?";
 
 	public UserDAO() {
