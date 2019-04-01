@@ -53,7 +53,7 @@
 				    </thead>
 				    <tbody>
 				    	<%
-							List<UserDTO> users = (List<UserDTO>)session.getAttribute("users_list");
+							List<UsersDTO> users = (List<UsersDTO>)session.getAttribute("users_list");
 							for(int i = 0; i < users.size(); i++)
 							{
 						%>
