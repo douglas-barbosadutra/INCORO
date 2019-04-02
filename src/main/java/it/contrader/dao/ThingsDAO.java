@@ -24,7 +24,7 @@ public class ThingsDAO {
 	 * per l'inserimento, un nome identificativo potrebbe essere INSERT_ESEMPIO
 	 */
 	private final String GET_ALL = "select * from things";
-	private final String QUERY_INSERT = "INSERT INTO things (idThing, name, fktouser, fktolabel) values (?,?,?,?)";
+	private final String QUERY_INSERT = "INSERT INTO things (name, fktouser, fktolabel) values (?,?,?)";
 	private final String QUERY_DELETE = "DELETE FROM things WHERE idThing = (?)";
 	private final String QUERY_UPDATE = "UPDATE things SET name WHERE idThings = (?)";
 	//private final String QUERY_LOGIN = "select * from things where username=(?) and password=(?)";
@@ -60,10 +60,11 @@ public class ThingsDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setInt(1, things.getId());
-			preparedStatement.setString(2, things.getName());
-			preparedStatement.setInt(3, things.getFktouser());
-			preparedStatement.setInt(4, things.getFktolabel());
+			//preparedStatement.setInt(1, things.getId());
+			preparedStatement.setString(1, things.getName());
+			preparedStatement.setInt(2, things.getFktouser());
+			preparedStatement.setInt(3, things.getFktolabel());
+			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
