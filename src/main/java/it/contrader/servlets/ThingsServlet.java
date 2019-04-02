@@ -14,7 +14,6 @@ import it.contrader.dto.ThingsDTO;
 import it.contrader.dto.UsersDTO;
 import it.contrader.service.ThingsServiceDTO;
 
-
 	public class ThingsServlet extends HttpServlet {
 
 		private final ThingsServiceDTO thingsServiceDTO = new ThingsServiceDTO();
@@ -51,7 +50,7 @@ import it.contrader.service.ThingsServiceDTO;
 				break;
 			}
 		}
-		
+
 	private void showAllThings(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		allThings = this.thingsServiceDTO.getAllThings();

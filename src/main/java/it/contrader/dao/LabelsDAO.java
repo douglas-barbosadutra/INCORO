@@ -23,10 +23,11 @@ public class LabelsDAO {
 	 * intendiamo recuperare tutte le tuple dal db. Se volessimo creare una query
 	 * per l'inserimento, un nome identificativo potrebbe essere INSERT_ESEMPIO
 	 */
-	private final String GET_ALL = "select * from labels";
-	private final String QUERY_INSERT = "INSERT INTO labels (idLabel, name, fktouser) values (?,?,?)";
-	private final String QUERY_DELETE = "DELETE FROM labels WHERE idLabel = (?)";
-	private final String QUERY_UPDATE = "UPDATE labels SET name WHERE idLabel = (?)";
+	private final String GET_ALL = "select * from label";
+	//private final String QUERY_INSERT = "INSERT INTO label (idLabel, name, fktouser) values (?,?,?)";
+	private final String QUERY_INSERT = "INSERT INTO label (name, fktouser) values (?,?)";
+	private final String QUERY_DELETE = "DELETE FROM label WHERE idLabel = (?)";
+	private final String QUERY_UPDATE = "UPDATE label SET name WHERE idLabel = (?)";
 	//private final String QUERY_LOGIN = "select * from things where username=(?) and password=(?)";
 
 	/**
@@ -43,7 +44,7 @@ public class LabelsDAO {
 			final Statement statement = connection.createStatement();
 			final ResultSet resultSet = statement.executeQuery(GET_ALL);
 			while (resultSet.next()) {
-				final Integer id = resultSet.getInt("id");
+				final Integer id = resultSet.getInt("idLabel");
 				final String name = resultSet.getString("name");
 				final int fktouser = resultSet.getInt("fktouser");
 				label.add(new Labels(id, name, fktouser));
@@ -59,9 +60,10 @@ public class LabelsDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setInt(1, labels.getId());
-			preparedStatement.setString(2, labels.getName());
-			preparedStatement.setInt(3, labels.getFktouser());
+			//preparedStatement.setInt(1, labels.getId());
+			preparedStatement.setString(1, labels.getName());
+			preparedStatement.setInt(2, labels.getFktouser());
+			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);

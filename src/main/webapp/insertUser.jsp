@@ -20,17 +20,11 @@
      	<h4>Username: <input type = "text" id = "user" name ="username" placeholder = "inserisci username"></h4>
      	
      	<h4>Password: <input type = "password" id = "user" name ="password" placeholder = "inserisci la password"></h4>
-     	
-    
-     	
+     	     	
      	<h4>Type: <input type = "text" id = "user" name ="type" placeholder = "inserisci ruolo"></h4>
 
-     	
      	<input type="submit" value="Inserisci Utente" name="action">
      	
      </form>
-
-     
-
 </body>
 </html>
