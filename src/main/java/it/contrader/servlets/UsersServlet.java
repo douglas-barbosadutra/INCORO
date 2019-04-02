@@ -40,7 +40,11 @@ public class UsersServlet extends HttpServlet {
 			response.sendRedirect("insertUser.jsp");
 		} break;
 		
+		
 		case "openUpdate":{
+			final Integer id = Integer.parseInt(request.getParameter("id"));
+			//int id = Integer.parseInt(request.getParameter("id"));
+			session.setAttribute("id", id);
 			response.sendRedirect("updateUser.jsp");
 		} break;
 		
@@ -55,12 +59,12 @@ public class UsersServlet extends HttpServlet {
 			break;
 					
 		case "update":
-			System.out.println("id: "+Integer.parseInt(request.getParameter("idUser")));
-			System.out.println("username: "+ request.getParameter("username"));
-			System.out.println("password: "+ request.getParameter("password"));
-			System.out.println("ruolo: "+ request.getParameter("type"));
+			//System.out.println("id: "+Integer.parseInt(request.getParameter("idUser")));
+			//System.out.println("username: "+ request.getParameter("username"));
+			//System.out.println("password: "+ request.getParameter("password"));
+			//System.out.println("ruolo: "+ request.getParameter("type"));
 		     	
-			final Integer idUpdate = Integer.parseInt(request.getParameter("idUser"));
+			final Integer idUpdate = Integer.parseInt(request.getParameter("id"));
 			final String usernameUpdate = request.getParameter("username");
 			final String passwordUpdate = request.getParameter("password");
 			final Integer ruoloUpdate = Integer.parseInt(request.getParameter("type"));
@@ -77,13 +81,23 @@ public class UsersServlet extends HttpServlet {
 			usersServiceDTO.deleteUsers(use);
 			showAllUsers(request, response);
 			break;
+			
+		case "update2":
+			final Integer idUpdate2 = Integer.parseInt(request.getParameter("id"));
+			
+			final UsersDTO userUpdate2 = new UsersDTO(idUpdate2,"" ,"", 1);
+			usersServiceDTO.updateUsers(userUpdate2);
+			showAllUsers(request, response);
+			break;
 
+			
+			
 		case "Indietro":
 			response.sendRedirect("homeAdmin.jsp");
 			break;
 
 		case "LogsMenu":
-			response.sendRedirect("homeLogs.jsp");
+			response.sendRedirect("index.jsp");
 			break;
 
 				}

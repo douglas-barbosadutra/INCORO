@@ -6,13 +6,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title></title>
 </head>
 <body>
 
+<h1>Benvenuto su INCORO!</h1>
 
 
-	<ul>
+
+	
+	<!--
 			<li>
 		  		<div class="dropdown">
 					<a href="UsersServlet?action=openInsert" class="dropbtn">Inserisci utente</a>				
@@ -52,7 +55,7 @@
 	  		</li>
 		</ul>
 	
-	<!-- 
+	 
 	<h2>------- MENU PRINCIPALE -------</h2>
 
 	<h3>1. Esempio</h3>
@@ -80,7 +83,7 @@
      <form action="LogoutServlet" method="post">
      <input type="submit" value="Logout" name="Logout">
      </form>
--->
+
 
 		<div class="main">
 			<h1 class="title">Lista utenti</h1>
@@ -88,6 +91,23 @@
 
 			</div>
 		</div>
+		
+		-->
+		<ul>
+			 		<li>
+		  		<div class="dropdown">
+					<a href="UsersServlet?action=UsersManager" class="dropbtn">Gestione Utenti</a>				
+				</div>
+	  		</li>
+
+	  		
+
+	  		<li>
+		  		<div class="dropdown">
+					<a href="UserServlet?action=homeLogs" class="dropbtn">Logout</a>				
+				</div>
+	  		</li>
+		</ul>
 		
 </body>
 </html>
