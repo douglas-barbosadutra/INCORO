@@ -33,7 +33,6 @@ public class UsersServiceDTO {
 		for (Users users : list) {
 			listDTO.add(UsersConverter.toDTO(users));
 		}
-
 		return listDTO;
 	}
 	
@@ -55,7 +54,4 @@ public class UsersServiceDTO {
 		return this.usersDAO.insertUsers(UsersConverter.toEntity(usersDTO));
 	
 }
-		
-	
-	
 }

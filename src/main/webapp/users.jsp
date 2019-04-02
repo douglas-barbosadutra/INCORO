@@ -15,22 +15,27 @@
 		<ul>
 			<li>
 		  		<div class="dropdown">
-					<a href="UsersServlet?action=insert" class="dropbtn">Inserisci utente</a>				
+					<a href="UsersServlet?action=insert" class="dropbtn"> Inserisci utente</a>				
 				</div>
 	  		</li>
 	  		<li>
 		  		<div class="dropdown">
-					<a href="UsersServlet?action=deletet" class="dropbtn">Elimina utente</a>				
+					<a href="UsersServlet?action=delete" class="dropbtn"> Elimina utente</a>				
 				</div>
 	  		</li>
 	 		<li>
 		  		<div class="dropdown">
-					<a href="UsersServlet?action=UsersManager" class="dropbtn">Lista utenti</a>				
+					<a href="UsersServlet?action=UsersManager" class="dropbtn"> Lista utenti</a>				
 				</div>
 	  		</li>
 	  		<li>
 		  		<div class="dropdown">
-					<a href="UserServlet?action=homeLogs" class="dropbtn">Logout</a>				
+					<a href="UsersServlet?action=update" class="dropbtn"> Aggiorna utenti</a>				
+				</div>
+	  		</li>
+	  		<li>
+		  		<div class="dropdown">
+					<a href="UserServlet?action=LogsMenu" class="dropbtn">Logout</a>				
 				</div>
 	  		</li>
 		</ul>
