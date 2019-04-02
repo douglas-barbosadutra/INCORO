@@ -10,8 +10,6 @@
 </head>
 <body>
 
-		<% String mode = session.getAttribute("allUsers").toString(); %>
-
 		<ul>
 			<li>
 		  		<div class="dropdown">
@@ -47,13 +45,10 @@
 				    <thead>
 				      <tr>
 				        <th>ID</th>
-				        <th>Nome</th>
-				        <th>Cognome</th>
-				        <th>Email</th>
-				        <th>Telefono</th>
-				        <% if(mode.equals("delete")){
-				        	%><th>Opzioni</th><%
-				        }%>
+				        <th>Username</th>
+				        <th>Password</th>
+				        <th>Type</th>
+				        <th>Options</th>
 				      </tr>
 				    </thead>
 				    <tbody>
@@ -71,11 +66,10 @@
 									
 									<th><%out.println(users.get(i).getPassword()); %></th>
 									
-									<%if(mode.equals("delete")){
-
-										%><th><a style="text-decoration:none; text-align:center;" class="btn btn-primary" href="UserServlet?action=deleteUser&id=<%=users.get(i).getId()%>">elimina</a></th><%
-
-									} %>
+									<th><%out.println(users.get(i).getType()); %></th>
+									
+									<th><a href="UsersServlet?action=delete&id=<%out.println(users.get(i).getId());%>">Elimina</a></th>
+									
 								</tr><%
 
 							}

@@ -24,7 +24,7 @@ public class UsersDAO {
 	 * per l'inserimento, un nome identificativo potrebbe essere INSERT_ESEMPIO
 	 */
 	private final String GET_ALL = "select * from user";
-	private final String QUERY_INSERT = "INSERT INTO user (idUser, username, password, type) values (?,?,?,?)";
+	private final String QUERY_INSERT = "INSERT INTO user (username, password, type) values (?,?,?)";
 	private final String QUERY_DELETE = "DELETE FROM user WHERE idUser = (?)";
 	private final String QUERY_UPDATE = "UPDATE user SET username, password, type =(?,?,?) WHERE idUser = (?)";
 	private final String QUERY_LOGIN = "select * from user where username=(?) and password=(?)";
@@ -68,17 +68,19 @@ public class UsersDAO {
 			final Statement statement = connection.createStatement();
 			final ResultSet resultSet = statement.executeQuery(GET_ALL);
 			while (resultSet.next()) {
-				final Integer id = resultSet.getInt("id");
+				final Integer id = resultSet.getInt("idUser");
 				final String username = resultSet.getString("username");
 				final String password = resultSet.getString("password");
-				final Integer ruolo = resultSet.getInt("ruolo");
+				final Integer type = resultSet.getInt("type");
 
-				users.add(new Users(id, username, password, ruolo));
+				users.add(new Users(id, username, password, type));
 			}
+			return users;
 		} catch (final SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return users;
+		
 	}
 	// Inserimento
 
@@ -86,10 +88,10 @@ public class UsersDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT);
-			preparedStatement.setInt(1, users.getId());
-			preparedStatement.setString(2, users.getUsername());
-			preparedStatement.setString(3, users.getPassword());
-			preparedStatement.setInt(4, users.getType());
+			preparedStatement.setString(1, users.getUsername());
+			preparedStatement.setString(2, users.getPassword());
+			preparedStatement.setInt(3, users.getType());
+			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);

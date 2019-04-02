@@ -33,17 +33,18 @@ public class UsersServlet extends HttpServlet {
 		switch (scelta) {
 
 		case "UsersManager":
-			allUsers = this.usersServiceDTO.getAllUsers();
-			request.setAttribute("allUsers", allUsers);
-			getServletContext().getRequestDispatcher("/users.jsp").forward(request, response);
-			break;			
+			showAllUsers(request,response);
+			break;		
+			
+		case "openInsert":{
+			response.sendRedirect("insertUser.jsp");
+		} break;
 
 		case "insert":
-			final Integer id = Integer.parseInt(request.getParameter("idUser"));
 			final String username = request.getParameter("username");
 			final String password = request.getParameter("password");
 			final Integer ruolo = Integer.parseInt(request.getParameter("type"));
-			final UsersDTO users = new UsersDTO(id,username, password, ruolo);
+			final UsersDTO users = new UsersDTO(0,username, password, ruolo);
 			usersServiceDTO.insertUsers(users);
 			showAllUsers(request, response);
 			break;
@@ -65,9 +66,9 @@ public class UsersServlet extends HttpServlet {
 			break;
 
 		case "delete":
-			final Integer idUpdat = Integer.parseInt(request.getParameter("id"));
+			final Integer idDelete = Integer.parseInt(request.getParameter("id"));
 			
-			final UsersDTO use = new UsersDTO(idUpdat,"" ,"", 1);
+			final UsersDTO use = new UsersDTO(idDelete,"" ,"", 1);
 			usersServiceDTO.deleteUsers(use);
 			showAllUsers(request, response);
 			break;
@@ -85,8 +86,10 @@ public class UsersServlet extends HttpServlet {
 	
 private void showAllUsers(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-		allUsers = this.usersServiceDTO.getAllUsers();
-		request.setAttribute("allUsers", allUsers);
-		getServletContext().getRequestDispatcher("/users.jsp").forward(request, response);
-	}
+
+	allUsers = this.usersServiceDTO.getAllUsers();
+	request.getSession().setAttribute("users_list", allUsers);
+	getServletContext().getRequestDispatcher("/users.jsp").forward(request, response);
+}
+
 }
