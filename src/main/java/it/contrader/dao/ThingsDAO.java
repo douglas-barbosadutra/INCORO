@@ -43,7 +43,7 @@ public class ThingsDAO {
 			final Statement statement = connection.createStatement();
 			final ResultSet resultSet = statement.executeQuery(GET_ALL);
 			while (resultSet.next()) {
-				final Integer id = resultSet.getInt("id");
+				final Integer id = resultSet.getInt("idThing");
 				final String name = resultSet.getString("name");
 				final int fktouser = resultSet.getInt("fktouser");
 				final int fktolabel = resultSet.getInt("fktolabel");
