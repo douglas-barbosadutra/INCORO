@@ -25,12 +25,6 @@
 				</div>
 	  		</li>
 
-	  		<li>
-		  		<div class="dropdown">
-
-					<a href="UsersServlet?action=UsersManager" class="dropbtn">Lista utenti prova</a>				
-	 			</div>
-	 		</li>
 	 		<li>
 		  		<div class="dropdown">
 					<a href="UsersServlet?action=UsersManager" class="dropbtn">Lista utenti</a>				

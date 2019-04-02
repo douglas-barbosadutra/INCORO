@@ -6,9 +6,13 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-		<servlet>
+	<servlet>
 		<servlet-name>ThingsServlet</servlet-name>
 		<servlet-class>it.contrader.servlets.ThingsServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>LabelsServlet</servlet-name>
+		<servlet-class>it.contrader.servlets.LabelsServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
@@ -38,9 +42,14 @@
 		<servlet-name>LogoutServlet</servlet-name>
 		<url-pattern>/LogoutServlet</url-pattern>
 	</servlet-mapping>
-		<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>ThingsServlet</servlet-name>
 		<url-pattern>/ThingsServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>LabelsServlet</servlet-name>
+		<url-pattern>/LabelsServlet</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>NodesServlet</servlet-name>

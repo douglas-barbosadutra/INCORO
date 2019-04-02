@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import it.contrader.dto.ThingsDTO;
 import it.contrader.service.ThingsServiceDTO;
 
-
 	public class ThingsServlet extends HttpServlet {
 
 		private final ThingsServiceDTO thingsServiceDTO = new ThingsServiceDTO();
@@ -43,9 +42,9 @@ import it.contrader.service.ThingsServiceDTO;
 		
 	private void showAllThings(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		allThings = this.thingsServiceDTO.getAllThings();
-		request.setAttribute("allThings", allThings);
-		getServletContext().getRequestDispatcher("/showThings.jsp").forward(request, response);
+			allThings = this.thingsServiceDTO.getAllThings();
+			request.getSession().setAttribute("allThings", allThings);
+			getServletContext().getRequestDispatcher("/showThings.jsp").forward(request, response);
 	}
 
 }

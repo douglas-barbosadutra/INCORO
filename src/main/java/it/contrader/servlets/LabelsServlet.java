@@ -12,21 +12,40 @@ import javax.servlet.http.HttpSession;
 import it.contrader.dto.LabelsDTO;
 import it.contrader.service.LabelsServiceDTO;
 
-
-
 public class LabelsServlet extends HttpServlet {
 
-	
 	private final LabelsServiceDTO labelsServiceDTO = new LabelsServiceDTO();
-	private List<LabelsDTO> allLabels= new ArrayList<>();
+	private List<LabelsDTO> allLabels = new ArrayList<>();
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		final String scelta = request.getParameter("richiesta");
+		final String scelta = request.getParameter("action");
 		final HttpSession session = request.getSession(true); //sto impostando una serie di pulsanti
 
 		switch (scelta) {
-
+		case "openInsert":
+			response.sendRedirect("insertLabel.jsp");
+			break;
+		
+		case "insert":
+			//final Integer id = Integer.parseInt(request.getParameter("idLabel"));
+			final String name = request.getParameter("name");
+			final Integer fktouser = Integer.parseInt(request.getParameter("fktouser"));
+			final LabelsDTO label = new LabelsDTO(name, fktouser);
+			labelsServiceDTO.insertLabels(label);
+			showAllLabels(request, response);
+			break;
+			
+		case "openDelete":
+			response.sendRedirect("deleteLabels.jsp");
+			break;
+		case "openUpdate":
+			response.sendRedirect("updateLabels.jsp");
+			break;
+		case "openList":
+			showAllLabels(request,response);
+			break;
+		/*
 		case "UsersManager":
 			allLabels = this.labelsServiceDTO.getAllLabels();
 			request.setAttribute("allLabels", allLabels);
@@ -74,15 +93,14 @@ public class LabelsServlet extends HttpServlet {
 		case "LogsMenu":
 			response.sendRedirect("homeLogs.jsp");
 			break;
-
+			*/
 				}
 			}
 	
 private void showAllLabels(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-	allLabels = this.labelsServiceDTO.getAllLabels();
-	request.setAttribute("allLabels", allLabels);
-	getServletContext().getRequestDispatcher("/Labels.jsp").forward(request, response);
-}
-
+		allLabels = this.labelsServiceDTO.getAllLabels();
+		request.getSession().setAttribute("allLabels", allLabels);
+		getServletContext().getRequestDispatcher("/showLabels.jsp").forward(request, response);
+	}
 }
