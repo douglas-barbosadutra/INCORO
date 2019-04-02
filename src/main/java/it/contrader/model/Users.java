@@ -11,7 +11,7 @@ public class Users {
 	 * <br>
 	 * Possiamo avere n colonne
 	 */
-	private Integer idUser;
+	private int idUser;
 	private String username;
 	private String password;
 	private int type;
@@ -19,7 +19,7 @@ public class Users {
 	/**
 	 * Costruttore con parametri
 	 */
-	public Users(Integer id, String username, String password, int ruolo) {
+	public Users(int id, String username, String password, int ruolo) {
 		super();
 		this.idUser = id;
 		this.username = username;
@@ -35,7 +35,7 @@ public class Users {
 		return idUser;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.idUser = id;
 	}
 

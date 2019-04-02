@@ -13,7 +13,7 @@
 		<ul>
 			<li>
 		  		<div class="dropdown">
-					<a href="UsersServlet?action=insert" class="dropbtn"> Inserisci utente</a>				
+					<a href="UsersServlet?action=openInsert" class="dropbtn"> Inserisci utente</a>				
 				</div>
 	  		</li>
 	  		<li>
@@ -28,7 +28,7 @@
 	  		</li>
 	  		<li>
 		  		<div class="dropdown">
-					<a href="UsersServlet?action=update" class="dropbtn"> Aggiorna utenti</a>				
+					<a href="UsersServlet?action=openUpdate" class="dropbtn"> Aggiorna utenti</a>				
 				</div>
 	  		</li>
 	  		<li>
@@ -69,6 +69,10 @@
 									<th><%out.println(users.get(i).getType()); %></th>
 									
 									<th><a href="UsersServlet?action=delete&id=<%out.println(users.get(i).getId());%>">Elimina</a></th>
+									
+									
+									
+									
 									
 								</tr><%
 
