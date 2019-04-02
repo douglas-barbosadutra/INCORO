@@ -45,13 +45,6 @@ public class LabelsServiceDTO {
 }
 	
 	public boolean insertLabels (LabelsDTO LabelsDTO) {
-		return this.LabelsDAO.insertLabel(LabelsConverter.toEntity(LabelsDTO));
-	
+		return this.LabelsDAO.insertLabel(LabelsConverter.toEntity(LabelsDTO));	
+}	
 }
-		
-	
-	
-}
-
-
-

@@ -9,8 +9,12 @@ public class LabelsDTO {
 	public LabelsDTO(int id, String name, int fktouser) {
 		super();
 		this.idLabel = id;
+		this.name = name;	
+		this.fktouser = fktouser;
+	}
+
+	public LabelsDTO(String name, Integer fktouser) {	
 		this.name = name;
-		
 		this.fktouser = fktouser;
 	}
 

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.contrader.dto.ThingsDTO;
+import it.contrader.dto.UsersDTO;
 import it.contrader.service.ThingsServiceDTO;
-
 
 	public class ThingsServlet extends HttpServlet {
 
@@ -26,6 +26,16 @@ import it.contrader.service.ThingsServiceDTO;
 			final HttpSession session = request.getSession(true); //sto impostando una serie di pulsanti
 
 			switch (scelta) {
+			case "insert":
+				final String name = request.getParameter("name");
+				final Integer fkUser = Integer.parseInt(request.getParameter("fkUser"));
+				final Integer fkLabel = Integer.parseInt(request.getParameter("fkLabel"));
+				final ThingsDTO thing = new ThingsDTO(0,name,fkUser,fkLabel);
+				request.getSession().setAttribute("tTest", thing);
+				thingsServiceDTO.insertThings(thing);
+				getServletContext().getRequestDispatcher("/thingsTest.jsp").forward(request, response);
+				//showAllThings(request, response);
+				break;
 			case "openInsert":
 				response.sendRedirect("insertThings.jsp");
 				break;
@@ -40,11 +50,11 @@ import it.contrader.service.ThingsServiceDTO;
 				break;
 			}
 		}
-		
+
 	private void showAllThings(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		allThings = this.thingsServiceDTO.getAllThings();
-		request.setAttribute("allThings", allThings);
+		request.getSession().setAttribute("allThings", allThings);
 		getServletContext().getRequestDispatcher("/showThings.jsp").forward(request, response);
 	}
 

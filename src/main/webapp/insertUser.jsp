@@ -5,7 +5,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-</head>
+</head> 
+
 <body>
 
 <h2><center>------- INSERT USER -------</center></h2>
@@ -19,6 +20,7 @@
      	<h4>Username: <input type = "text" id = "user" name ="username" placeholder = "inserisci username"></h4>
      	
      	<h4>Password: <input type = "password" id = "user" name ="password" placeholder = "inserisci la password"></h4>
+
      	
     
      	
@@ -29,12 +31,9 @@
   </select>
   <br><br></h4>
 
-     	
+
      	<input type="submit" value="Inserisci Utente" name="action">
      	
      </form>
-
-     
-
 </body>
 </html>
