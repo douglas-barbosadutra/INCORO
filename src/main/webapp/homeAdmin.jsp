@@ -40,7 +40,7 @@
 			
 			<li>
 		  		<div class="dropdown">
-					<a href="UsersServlet?action=update" class="dropbtn">Aggiorna utenti</a>				
+					<a href="UsersServlet?action=openUpdate" class="dropbtn">Aggiorna utenti</a>				
 				</div>
 	  		</li>
 	  		

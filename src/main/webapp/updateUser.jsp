@@ -8,13 +8,15 @@
 </head>
 <body>
 
-<h2><center>------- INSERT USER -------</center></h2>
+<h2><center>------- UPDATE USER -------</center></h2>
 <form action="LoginServlet?action=Indietro" method="post">
 	<input type="submit" value="HOME" name="richiesta">
 </form>
 
      <h3>Inserisci i dati dell'utente</h3>
-     <form action="UsersServlet?action=insert" method="post">
+     <form action="UsersServlet?action=update" method="post">
+     
+     <h4>IdUser: <input type = "text" id = "user" name ="idUser" placeholder = "inserisci nuovo ID"></h4>
      	
      	<h4>Username: <input type = "text" id = "user" name ="username" placeholder = "inserisci username"></h4>
      	
@@ -25,7 +27,7 @@
      	<h4>Type: <input type = "text" id = "user" name ="type" placeholder = "inserisci ruolo"></h4>
 
      	
-     	<input type="submit" value="Inserisci Utente" name="action">
+     	<input type="submit" value="Aggiorna Utente" name="action">
      	
      </form>
 

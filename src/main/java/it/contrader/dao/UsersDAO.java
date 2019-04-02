@@ -26,7 +26,7 @@ public class UsersDAO {
 	private final String GET_ALL = "select * from user";
 	private final String QUERY_INSERT = "INSERT INTO user (username, password, type) values (?,?,?)";
 	private final String QUERY_DELETE = "DELETE FROM user WHERE idUser = (?)";
-	private final String QUERY_UPDATE = "UPDATE user SET username, password, type =(?,?,?) WHERE idUser = (?)";
+	private final String QUERY_UPDATE = "UPDATE user SET username=?, password=?, type=? WHERE idUser=?";
 	private final String QUERY_LOGIN = "select * from user where username=(?) and password=(?)";
 
 	/**
@@ -122,6 +122,7 @@ public class UsersDAO {
 			preparedStatement.setString(1, users.getUsername());
 			preparedStatement.setString(2, users.getPassword());
 			preparedStatement.setInt(3, users.getType());
+			preparedStatement.setInt(4, users.getId());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {

@@ -39,6 +39,11 @@ public class UsersServlet extends HttpServlet {
 		case "openInsert":{
 			response.sendRedirect("insertUser.jsp");
 		} break;
+		
+		case "openUpdate":{
+			response.sendRedirect("updateUser.jsp");
+		} break;
+		
 
 		case "insert":
 			final String username = request.getParameter("username");
@@ -50,15 +55,15 @@ public class UsersServlet extends HttpServlet {
 			break;
 					
 		case "update":
-			System.out.println("id: "+Integer.parseInt(request.getParameter("id")));
+			System.out.println("id: "+Integer.parseInt(request.getParameter("idUser")));
 			System.out.println("username: "+ request.getParameter("username"));
 			System.out.println("password: "+ request.getParameter("password"));
-			System.out.println("ruolo: "+ request.getParameter("ruolo"));
+			System.out.println("ruolo: "+ request.getParameter("type"));
 		     	
-			final Integer idUpdate = Integer.parseInt(request.getParameter("id"));
+			final Integer idUpdate = Integer.parseInt(request.getParameter("idUser"));
 			final String usernameUpdate = request.getParameter("username");
 			final String passwordUpdate = request.getParameter("password");
-			final Integer ruoloUpdate = Integer.parseInt(request.getParameter("ruolo"));
+			final Integer ruoloUpdate = Integer.parseInt(request.getParameter("type"));
 			final UsersDTO user = new UsersDTO(idUpdate, usernameUpdate,passwordUpdate, ruoloUpdate);
 										
 			usersServiceDTO.updateUsers(user);
