@@ -23,12 +23,14 @@ public class UsersServlet extends HttpServlet {
 
 	private final UsersServiceDTO usersServiceDTO = new UsersServiceDTO();
 	private List<UsersDTO> allUsers= new ArrayList<>();
+	private int idUser;
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		final String scelta = request.getParameter("action");
 		final HttpSession session = request.getSession(true); //sto impostando una serie di pulsanti
+		
 
 		switch (scelta) {
 
@@ -42,9 +44,8 @@ public class UsersServlet extends HttpServlet {
 		
 		
 		case "openUpdate":{
-			final Integer id = Integer.parseInt(request.getParameter("id"));
+			idUser = Integer.parseInt(request.getParameter("id"));
 			//int id = Integer.parseInt(request.getParameter("id"));
-			session.setAttribute("id", id);
 			response.sendRedirect("updateUser.jsp");
 		} break;
 		
@@ -59,16 +60,12 @@ public class UsersServlet extends HttpServlet {
 			break;
 					
 		case "update":
-			//System.out.println("id: "+Integer.parseInt(request.getParameter("idUser")));
-			//System.out.println("username: "+ request.getParameter("username"));
-			//System.out.println("password: "+ request.getParameter("password"));
-			//System.out.println("ruolo: "+ request.getParameter("type"));
 		     	
-			final Integer idUpdate = Integer.parseInt(request.getParameter("id"));
 			final String usernameUpdate = request.getParameter("username");
 			final String passwordUpdate = request.getParameter("password");
-			final Integer ruoloUpdate = Integer.parseInt(request.getParameter("type"));
-			final UsersDTO user = new UsersDTO(idUpdate, usernameUpdate,passwordUpdate, ruoloUpdate);
+			final Integer tipoUpdate = Integer.parseInt(request.getParameter("type"));
+			final UsersDTO user = new UsersDTO(idUser, usernameUpdate,passwordUpdate, tipoUpdate);
+			System.out.println(user);
 										
 			usersServiceDTO.updateUsers(user);
 			showAllUsers(request, response);
