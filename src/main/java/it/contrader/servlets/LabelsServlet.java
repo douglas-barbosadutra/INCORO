@@ -17,6 +17,8 @@ public class LabelsServlet extends HttpServlet {
 
 	private final LabelsServiceDTO labelsServiceDTO = new LabelsServiceDTO();
 	private List<LabelsDTO> allLabels = new ArrayList<>();
+	private int idLabel;
+	
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -48,19 +50,21 @@ public class LabelsServlet extends HttpServlet {
 			showAllLabels(request, response);
 			break;
 		
-		case "openUpdate":
+		case "openUpdate":{
+			idLabel = Integer.parseInt(request.getParameter("id"));
+			//int id = Integer.parseInt(request.getParameter("id"));
 			response.sendRedirect("updateLabels.jsp");
-			break;
+		} break;
 		
 		case "update":
 			/*
 			System.out.println("id: "+Integer.parseInt(request.getParameter("idLabel")));
 			System.out.println("name: "+request.getParameter("name"));
 			System.out.println("fktouser: "+Integer.parseInt(request.getParameter("fktouser")));*/
-			final Integer idUpdate = Integer.parseInt(request.getParameter("idLabel"));
+			//final Integer idUpdate = Integer.parseInt(request.getParameter("id"));
 			final String nameUpdate = request.getParameter("name");
 			final Integer fktouserUpdate = Integer.parseInt(request.getParameter("fktouser"));
-			final LabelsDTO label2 = new LabelsDTO(idUpdate,nameUpdate,fktouserUpdate);					
+			final LabelsDTO label2 = new LabelsDTO(idLabel,nameUpdate,fktouserUpdate);					
 			labelsServiceDTO.updateLabels(label2);
 			showAllLabels(request, response);
 			break;		

@@ -27,7 +27,8 @@ public class LabelsDAO {
 	//private final String QUERY_INSERT = "INSERT INTO label (idLabel, name, fktouser) values (?,?,?)";
 	private final String QUERY_INSERT = "INSERT INTO label (name, fktouser) values (?,?)";
 	private final String QUERY_DELETE = "DELETE FROM label WHERE idLabel = (?)";
-	private final String QUERY_UPDATE = "UPDATE label SET name WHERE idLabel = (?)";
+	//private final String QUERY_UPDATE = "UPDATE label SET name WHERE idLabel = (?)";
+	private final String QUERY_UPDATE = "UPDATE label SET name=?, fktouser=? WHERE idLabel=?";
 	//private final String QUERY_LOGIN = "select * from things where username=(?) and password=(?)";
 
 	/**
@@ -90,6 +91,8 @@ public class LabelsDAO {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_UPDATE);
 			preparedStatement.setString(1, labels.getName());			
+			preparedStatement.setInt(2, labels.getFktouser());		
+			preparedStatement.setInt(3, labels.getId());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
