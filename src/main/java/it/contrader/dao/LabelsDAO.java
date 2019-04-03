@@ -89,7 +89,7 @@ public class LabelsDAO {
 		Connection connection = ConnectionSingleton.getInstance();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_UPDATE);
-			preparedStatement.setString(1, labels.getName());
+			preparedStatement.setString(1, labels.getName());			
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {

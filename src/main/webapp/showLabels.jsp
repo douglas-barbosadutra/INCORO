@@ -1,7 +1,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="it.contrader.dto.*" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +26,6 @@
 								for(int i = 0; i < labels.size(); i++)
 								{
 						%>
-
 								<tr>
 
 									<th><%out.println(labels.get(i).getId()); %></th>
@@ -35,7 +33,9 @@
 									<th><%out.println(labels.get(i).getName()); %></th>
 									
 									<th><%out.println(labels.get(i).getFktouser()); %></th>
-														
+									
+									<th><a href="LabelsServlet?action=openUpdate&id=<%out.println(labels.get(i).getId());%>"> Modifica</a></th>
+									<th><a href="LabelsServlet?action=delete&id=<%out.println(labels.get(i).getId());%>"> Elimina</a></th>
 								</tr><%
 
 								}
