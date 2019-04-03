@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.contrader.dto.LabelsDTO;
+import it.contrader.dto.UsersDTO;
 import it.contrader.service.LabelsServiceDTO;
 
 public class LabelsServlet extends HttpServlet {
@@ -35,13 +36,35 @@ public class LabelsServlet extends HttpServlet {
 			labelsServiceDTO.insertLabels(label);
 			showAllLabels(request, response);
 			break;
-			
+					
 		case "openDelete":
 			response.sendRedirect("deleteLabels.jsp");
 			break;
+			
+		case "delete":
+			final Integer idDelete = Integer.parseInt(request.getParameter("id"));
+			final LabelsDTO use = new LabelsDTO(idDelete,"", 1);
+			labelsServiceDTO.deleteLabels(use);
+			showAllLabels(request, response);
+			break;
+		
 		case "openUpdate":
 			response.sendRedirect("updateLabels.jsp");
 			break;
+		
+		case "update":
+			/*
+			System.out.println("id: "+Integer.parseInt(request.getParameter("idLabel")));
+			System.out.println("name: "+request.getParameter("name"));
+			System.out.println("fktouser: "+Integer.parseInt(request.getParameter("fktouser")));*/
+			final Integer idUpdate = Integer.parseInt(request.getParameter("idLabel"));
+			final String nameUpdate = request.getParameter("name");
+			final Integer fktouserUpdate = Integer.parseInt(request.getParameter("fktouser"));
+			final LabelsDTO label2 = new LabelsDTO(idUpdate,nameUpdate,fktouserUpdate);					
+			labelsServiceDTO.updateLabels(label2);
+			showAllLabels(request, response);
+			break;		
+		
 		case "openList":
 			showAllLabels(request,response);
 			break;
@@ -61,26 +84,21 @@ public class LabelsServlet extends HttpServlet {
 			labelsServiceDTO.insertLabels(thing);
 			showAllLabels(request, response);
 			break;
-					
+		
 		case "update":
 			System.out.println("id: "+Integer.parseInt(request.getParameter("id")));
 			System.out.println("name: "+request.getParameter("name"));
 			System.out.println("fktouser: "+Integer.parseInt(request.getParameter("fktouser")));
-			
-		     	
 			final Integer idUpdate = Integer.parseInt(request.getParameter("id"));
 			final String nameUpdate = request.getParameter("name");
 			final Integer fktouserUpdate = Integer.parseInt(request.getParameter("fktouser"));
-	
-			final LabelsDTO label = new LabelsDTO(idUpdate,nameUpdate,fktouserUpdate);
-										
-			labelsServiceDTO.updateLabels(label);
+			final LabelsDTO label2 = new LabelsDTO(idUpdate,nameUpdate,fktouserUpdate);					
+			labelsServiceDTO.updateLabels(label2);
 			showAllLabels(request, response);
-			break;
-
+			break;		
+				
 		case "delete":
 			final Integer idUpdat = Integer.parseInt(request.getParameter("id"));
-			
 			final LabelsDTO use = new LabelsDTO(idUpdat,"" ,new Integer(0));
 			labelsServiceDTO.deleteLabels(use);
 			showAllLabels(request, response);
@@ -102,5 +120,12 @@ private void showAllLabels(HttpServletRequest request, HttpServletResponse respo
 		allLabels = this.labelsServiceDTO.getAllLabels();
 		request.getSession().setAttribute("allLabels", allLabels);
 		getServletContext().getRequestDispatcher("/showLabels.jsp").forward(request, response);
+	}
+
+private void showAllLabels2(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+		allLabels = this.labelsServiceDTO.getAllLabels();
+		request.getSession().setAttribute("allLabels", allLabels);
+		getServletContext().getRequestDispatcher("/updateLabels.jsp").forward(request, response);
 	}
 }

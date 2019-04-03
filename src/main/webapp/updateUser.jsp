@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% 
-            int id = (int) session.getAttribute("id"); %>
 
 <h2><center>------- UPDATE USER -------</center></h2>
 <form action="LoginServlet?action=Indietro" method="post">
@@ -18,7 +16,7 @@
      <h3>Inserisci i dati dell'utente</h3>
      <form action="UsersServlet?action=update" method="post">
      
-     <h4>IdUser: <input type = "text" id = "user" name ="id" value="<%out.println(id);%>" disabled></h4>
+     
      	
      	<h4>Username: <input type = "text" id = "user" name ="username" placeholder = "inserisci username"></h4>
      	
@@ -27,14 +25,14 @@
     
      	
      	     	<h4>Type: 
-  <select name="type">
+  <select id = "user" name="type">
     <option value="0" >0</option>
     <option value="1" >1</option>
   </select>
   <br><br></h4>
 
      	
-     	<input type="submit" value="Aggiorna Utente" name="action">
+     	<button type="submit" value="update" name="action">Aggiorna</button>
      	
      </form>
 
