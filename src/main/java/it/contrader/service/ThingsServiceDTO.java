@@ -48,6 +48,11 @@ public class ThingsServiceDTO {
 		return this.ThingsDAO.insertThings(ThingsConverter.toEntity(ThingsDTO));
 	
 }
+
+	public boolean deleteThingsById(Integer idLabel) {
+		// TODO Auto-generated method stub
+		return this.ThingsDAO.deleteThingsById(idLabel);
+	}
 		
 	
 	
