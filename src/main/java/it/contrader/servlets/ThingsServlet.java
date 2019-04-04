@@ -28,18 +28,30 @@ import it.contrader.service.ThingsServiceDTO;
 
 			final String scelta = request.getParameter("action");
 			final HttpSession session = request.getSession(true); //sto impostando una serie di pulsanti
-
-			switch (scelta) {
 			
+			switch (scelta) {
+
+			case "update":
+				final Integer idthing = Integer.parseInt(request.getParameter("idThing"));
+				final String uname = request.getParameter("name");
+				final Integer fklabel = Integer.parseInt(request.getParameter("idLabel"));
+				break;
+			
+			case "delete":
+				final Integer idLabel = Integer.parseInt(request.getParameter("id"));
+				thingsServiceDTO.deleteThingsById(idLabel);
+				showAllThings(request, response);
+
+				break;
+
 			case "insert":
 				final String name = request.getParameter("name");
 				final Integer fkUser = Integer.parseInt(request.getParameter("fkUser"));
 				final Integer fkLabel = Integer.parseInt(request.getParameter("fkLabel"));
 				final ThingsDTO thing = new ThingsDTO(0,name,fkUser,fkLabel);
-				request.getSession().setAttribute("tTest", thing);
+				//request.getSession().setAttribute("tTest", thing);
 				thingsServiceDTO.insertThings(thing);
-				getServletContext().getRequestDispatcher("/thingsTest.jsp").forward(request, response);
-				//showAllThings(request, response);
+				showAllThings(request, response);
 				break;
 	
 			case "openInsert":

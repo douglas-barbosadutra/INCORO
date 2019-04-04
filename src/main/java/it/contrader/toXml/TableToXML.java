@@ -26,24 +26,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 public class TableToXML {
-	public static final String xmlFilePath = "C:\\Users\\Gabri\\Documents\\work_github\\INCORO\\xmlfile.xml";
+	public static final String xmlFilePath = "C:\\Program Files\\xmlfile.xml";
 
-	public static void main(String arg[]) {
-
-
-//Table data to XML 
-		Document doc = null;
-		try {
-			doc = TableToXML.generateXML();
-		} catch (TransformerException | ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-
-
-
-	}
+	
 
 	
 	public static Document generateXML() throws TransformerException,
