@@ -17,5 +17,8 @@
 			<br> <a href="register.jsp"> Registrati </a>
 		</form>
 	</div>
+	<div class="dropdown">
+					<a href="ImageServlet?action=openInsert" class="dropbtn">Inserisci Immagine</a>				
+				</div>
 </body>
 </html>
