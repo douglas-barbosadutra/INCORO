@@ -22,7 +22,6 @@
      	
      	<h4>Password: <input type = "password" id = "user" name ="password" placeholder = "inserisci la password"></h4>
      	
-    
      	
      	     	<h4>Type: 
   <select id = "user" name="type">
@@ -35,8 +34,6 @@
      	<button type="submit" value="update" name="action">Aggiorna</button>
      	
      </form>
-
-     
 
 </body>
 </html>

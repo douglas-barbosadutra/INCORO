@@ -11,8 +11,6 @@ import it.contrader.model.Users;
  *
  */
 public class UsersConverter {
-
-
 	/**
 	 * Converte un NodesDTO in Nodes
 	 */
@@ -22,7 +20,6 @@ public class UsersConverter {
 		if (usersDTO != null) {
 			users = new Users(usersDTO.getId(), usersDTO.getUsername(), usersDTO.getPassword(), usersDTO.getType());
 		}
-
 		return users;
 	}
 
@@ -35,7 +32,6 @@ public class UsersConverter {
 		if (users != null) {
 			usersDTO = new UsersDTO(users.getId(), users.getUsername(), users.getPassword(), users.getType());
 		}
-
 		return usersDTO;
 	}
 }

@@ -1,9 +1,6 @@
 package it.contrader.model;
 
 public class Labels {
-	
-	
-	
 	/**
 	 * I campi che sono attributi di una certa tabella che vogliamo rappresentare
 	 * <br>
@@ -20,10 +17,7 @@ public class Labels {
 		super();
 		this.idLabel = id;
 		this.name = name;
-		this.fktouser = fktouser;
-		
-
-		
+		this.fktouser = fktouser;		
 	}
 
 	/**
@@ -53,9 +47,4 @@ public class Labels {
 	public void setFktouser(int fktouser) {
 		this.fktouser = fktouser;
 	}
-	
-	
-	
-	
-
 }

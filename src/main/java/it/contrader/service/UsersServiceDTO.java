@@ -26,7 +26,6 @@ public class UsersServiceDTO {
 	 * Invito chi fa i converter a fare un metodo per convertire direttamente la lista senza farli uno ad uno perchè è sporco e poco efficiente
 	 */
 	public List<UsersDTO> getAllUsers() {
-
 		List<Users> list = usersDAO.getAllUsers();
 		List<UsersDTO> listDTO = new ArrayList<>();
 
@@ -41,17 +40,14 @@ public class UsersServiceDTO {
 	}
 
 	public boolean updateUsers (UsersDTO usersDTO) {
-		return this.usersDAO.updateUsers(UsersConverter.toEntity(usersDTO));
-		
-}
+		return this.usersDAO.updateUsers(UsersConverter.toEntity(usersDTO));		
+	}	
 	
 	public boolean deleteUsers (UsersDTO usersDTO) {
 		return this.usersDAO.deleteUsers(UsersConverter.toEntity(usersDTO));
-		
-}
+	}
 	
 	public boolean insertUsers (UsersDTO usersDTO) {
 		return this.usersDAO.insertUsers(UsersConverter.toEntity(usersDTO));
-	
-}
+	}
 }

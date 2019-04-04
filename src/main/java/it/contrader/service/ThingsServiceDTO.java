@@ -7,7 +7,6 @@ import it.contrader.dao.ThingsDAO;
 import it.contrader.dto.ThingsDTO;
 import it.contrader.model.Things;
 
-
 public class ThingsServiceDTO {
 	private final ThingsDAO ThingsDAO;
 
@@ -27,29 +26,22 @@ public class ThingsServiceDTO {
 		for (Things Things : list) {
 			listDTO.add(ThingsConverter.toDTO(Things));
 		}
-
 		return listDTO;
 	}
 	
-	
-	
-
 	public boolean updateThings (ThingsDTO ThingsDTO) {
-		return this.ThingsDAO.updateThings(ThingsConverter.toEntity(ThingsDTO));
-		
-}
+		return this.ThingsDAO.updateThings(ThingsConverter.toEntity(ThingsDTO));	
+	}
 	
 	public boolean deleteThings (ThingsDTO ThingsDTO) {
-		return this.ThingsDAO.deleteThings(ThingsConverter.toEntity(ThingsDTO));
-		
-}
+		return this.ThingsDAO.deleteThings(ThingsConverter.toEntity(ThingsDTO));	
+	}
 	
 	public boolean insertThings (ThingsDTO ThingsDTO) {
-		return this.ThingsDAO.insertThings(ThingsConverter.toEntity(ThingsDTO));
-	
-}
-		
-	
-	
+		return this.ThingsDAO.insertThings(ThingsConverter.toEntity(ThingsDTO));	
+	}
 
+	public boolean insertCode (ThingsDTO ThingsDTO) {
+		return this.ThingsDAO.insertCode(ThingsConverter.toEntityCode(ThingsDTO));	
+	}
 }

@@ -37,10 +37,8 @@ public class LabelsDAO {
 	 */
 
 	public List<Labels> getAllLabels() {
-
 		final List<Labels> label = new ArrayList<>();
 		final Connection connection = ConnectionSingleton.getInstance();
-
 		try {
 			final Statement statement = connection.createStatement();
 			final ResultSet resultSet = statement.executeQuery(GET_ALL);
@@ -53,7 +51,7 @@ public class LabelsDAO {
 		} catch (final SQLException e) {
 			e.printStackTrace();
 		}
-		return label;
+			return label;
 	}
 	// Inserimento
 
@@ -100,6 +98,5 @@ public class LabelsDAO {
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return false;
 		}
-
 	}
 }

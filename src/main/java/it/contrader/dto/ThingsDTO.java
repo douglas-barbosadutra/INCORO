@@ -5,6 +5,7 @@ public class ThingsDTO {
 	private String name;
 	private int fktouser;
 	private int fktolabel;
+	private String code;
 	
 	public ThingsDTO(int id, String name, int fktouser, int fktolabel) {
 		super();
@@ -14,6 +15,12 @@ public class ThingsDTO {
 		this.fktolabel = fktolabel;
 	}
 
+	public ThingsDTO(int id,  String code) {
+		super();
+		this.idThing = id;
+		this.code = code;
+	}
+	
 	public int getId() {
 		return idThing;
 	}
@@ -40,11 +47,12 @@ public class ThingsDTO {
 	public int getFktolabel() {
 		return fktolabel;
 	}
-
+	
 	public void setFktolabel(int fktolabel) {
 		this.fktolabel = fktolabel;
 	}
-
+	
+	public String getCode() {
+		return code;
+	}	
 }
-
-

@@ -30,7 +30,6 @@ public class UsersServlet extends HttpServlet {
 
 		final String scelta = request.getParameter("action");
 		final HttpSession session = request.getSession(true); //sto impostando una serie di pulsanti
-		
 
 		switch (scelta) {
 
@@ -41,7 +40,6 @@ public class UsersServlet extends HttpServlet {
 		case "openInsert":{
 			response.sendRedirect("insertUser.jsp");
 		} break;
-		
 		
 		case "openUpdate":{
 			idUser = Integer.parseInt(request.getParameter("id"));
@@ -60,34 +58,28 @@ public class UsersServlet extends HttpServlet {
 			break;
 					
 		case "update":
-		     	
 			final String usernameUpdate = request.getParameter("username");
 			final String passwordUpdate = request.getParameter("password");
 			final Integer tipoUpdate = Integer.parseInt(request.getParameter("type"));
 			final UsersDTO user = new UsersDTO(idUser, usernameUpdate,passwordUpdate, tipoUpdate);
 			System.out.println(user);
-										
 			usersServiceDTO.updateUsers(user);
 			showAllUsers(request, response);
 			break;
 
 		case "delete":
 			final Integer idDelete = Integer.parseInt(request.getParameter("id"));
-			
 			final UsersDTO use = new UsersDTO(idDelete,"" ,"", 1);
 			usersServiceDTO.deleteUsers(use);
 			showAllUsers(request, response);
 			break;
 			
 		case "update2":
-			final Integer idUpdate2 = Integer.parseInt(request.getParameter("id"));
-			
+			final Integer idUpdate2 = Integer.parseInt(request.getParameter("id"));			
 			final UsersDTO userUpdate2 = new UsersDTO(idUpdate2,"" ,"", 1);
 			usersServiceDTO.updateUsers(userUpdate2);
 			showAllUsers(request, response);
 			break;
-
-			
 			
 		case "Indietro":
 			response.sendRedirect("homeAdmin.jsp");
@@ -97,15 +89,13 @@ public class UsersServlet extends HttpServlet {
 			response.sendRedirect("index.jsp");
 			break;
 
-				}
-			}
+		}
+	}
 	
 private void showAllUsers(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-
-	allUsers = this.usersServiceDTO.getAllUsers();
-	request.getSession().setAttribute("users_list", allUsers);
-	getServletContext().getRequestDispatcher("/users.jsp").forward(request, response);
-}
-
+		allUsers = this.usersServiceDTO.getAllUsers();
+		request.getSession().setAttribute("users_list", allUsers);
+		getServletContext().getRequestDispatcher("/users.jsp").forward(request, response);
+	}
 }

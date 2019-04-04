@@ -11,7 +11,7 @@ public class Things {
 	private String name;
 	private int fktouser;
 	private int fktolabel;
-
+	private String code;
 	/**
 	 * Costruttore con parametri
 	 */
@@ -21,7 +21,13 @@ public class Things {
 		this.name = name;
 		this.fktouser = fktouser;
 		this.fktolabel = fktolabel;
-
+		
+	}
+	
+	public Things(Integer id, String code) {
+		super();
+		this.idThing = id;
+		this.code = code;
 		
 	}
 
@@ -58,4 +64,12 @@ public class Things {
 	public void setFktolabel(int fktolabel) {
 		this.fktolabel = fktolabel;
 	}	
+	
+	public String getCode() {
+		return this.code;
+	}
+	
+	public void setCode(String code) {
+		this.code = code;
+	}
 }

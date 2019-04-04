@@ -33,7 +33,6 @@ public class LabelsDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	
 	public int getFktouser() {
 		return fktouser;
@@ -42,5 +41,4 @@ public class LabelsDTO {
 	public void setFktouser(int fktouser) {
 		this.fktouser = fktouser;
 	}
-
 }

@@ -72,6 +72,11 @@ public class LabelsServlet extends HttpServlet {
 		case "openList":
 			showAllLabels(request,response);
 			break;
+		
+		case "Indietro":
+			response.sendRedirect("homeBO.jsp");
+			break;
+			
 		/*
 		case "UsersManager":
 			allLabels = this.labelsServiceDTO.getAllLabels();
@@ -111,7 +116,7 @@ public class LabelsServlet extends HttpServlet {
 		case "Indietro":
 			response.sendRedirect("homeAdmin.jsp");
 			break;
-
+		
 		case "LogsMenu":
 			response.sendRedirect("homeLogs.jsp");
 			break;
@@ -119,17 +124,17 @@ public class LabelsServlet extends HttpServlet {
 				}
 			}
 	
-private void showAllLabels(HttpServletRequest request, HttpServletResponse response)
-		throws ServletException, IOException {
-		allLabels = this.labelsServiceDTO.getAllLabels();
-		request.getSession().setAttribute("allLabels", allLabels);
-		getServletContext().getRequestDispatcher("/showLabels.jsp").forward(request, response);
-	}
+	private void showAllLabels(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+			allLabels = this.labelsServiceDTO.getAllLabels();
+			request.getSession().setAttribute("allLabels", allLabels);
+			getServletContext().getRequestDispatcher("/showLabels.jsp").forward(request, response);
+		}
 
-private void showAllLabels2(HttpServletRequest request, HttpServletResponse response)
-		throws ServletException, IOException {
-		allLabels = this.labelsServiceDTO.getAllLabels();
-		request.getSession().setAttribute("allLabels", allLabels);
-		getServletContext().getRequestDispatcher("/updateLabels.jsp").forward(request, response);
-	}
+	private void showAllLabels2(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+			allLabels = this.labelsServiceDTO.getAllLabels();
+			request.getSession().setAttribute("allLabels", allLabels);
+			getServletContext().getRequestDispatcher("/updateLabels.jsp").forward(request, response);
+		}
 }

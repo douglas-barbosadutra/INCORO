@@ -16,26 +16,27 @@ import it.contrader.utils.GestoreEccezioni;
 
 public class ThingsDAO {
 
-	/**
+	/*
 	 * Qui possiamo se vogliamo dichiarare delle stringhe rappresentanti le query
 	 * che verranno utilizzate dai service, Non è obbligatorio ma è consigliato
 	 * usare un ordine e dei nomi significativi per tutte le query. Con GET_ALL
 	 * intendiamo recuperare tutte le tuple dal db. Se volessimo creare una query
 	 * per l'inserimento, un nome identificativo potrebbe essere INSERT_ESEMPIO
 	 */
+	
 	private final String GET_ALL = "select * from things";
 	private final String QUERY_INSERT = "INSERT INTO things (name, fktouser, fktolabel) values (?,?,?)";
 	private final String QUERY_DELETE = "DELETE FROM things WHERE idThing = (?)";
 	private final String QUERY_UPDATE = "UPDATE things SET name WHERE idThings = (?)";
+	private final String QUERY_INSERT_CODE = "UPDATE  things set code = ? where idThing = ?";
 	//private final String QUERY_LOGIN = "select * from things where username=(?) and password=(?)";
 
-	/**
+	/*
 	 * Il suddetto metodo si occupa interagire con il database e restituire tutte le
 	 * tuple al servizio che ha chiamato questo metodo
 	 */
 
 	public List<Things> getAllThings() {
-
 		final List<Things> things = new ArrayList<>();
 		final Connection connection = ConnectionSingleton.getInstance();
 
@@ -94,10 +95,23 @@ public class ThingsDAO {
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {
-
 			GestoreEccezioni.getInstance().gestisciEccezione(e);
 			return false;
 		}
-
+	}
+	
+	public boolean insertCode(Things things) {
+		//System.out.println("DAO: "+things.getId()+" "+things.getCode());
+		Connection connection = ConnectionSingleton.getInstance();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_INSERT_CODE);
+			preparedStatement.setString(1, things.getCode());
+			preparedStatement.setInt(2,things.getId());
+			preparedStatement.execute();
+			return true;
+		} catch (SQLException e) {
+			GestoreEccezioni.getInstance().gestisciEccezione(e);
+			return false;
+		}
 	}
 }

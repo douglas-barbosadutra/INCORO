@@ -40,12 +40,16 @@
 									
 									<th><%out.println(things.get(i).getFktolabel()); %></th>
 														
+									<th><a href="ThingsServlet?action=openInsertCode&id=<%out.println(things.get(i).getId());%>"> Inserisci Codice</a></th>
+											
 								</tr><%
 
 								}
 							}
 						%>
+					 
 				    </tbody>
+				    
 			  </table>
 			</div>
 		</div>
