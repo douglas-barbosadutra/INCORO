@@ -17,5 +17,8 @@
 			<br> <a href="register.jsp"> Registrati </a>
 		</form>
 	</div>
+	<div>
+		<a href="sessionServlet?action=s1"> prova sessione </a>
+	</div>
 </body>
 </html>

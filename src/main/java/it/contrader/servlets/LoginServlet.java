@@ -18,7 +18,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		final HttpSession session = request.getSession();
+		final HttpSession session = request.getSession(true);
 		session.setAttribute("utente", null);
 
 		if (request != null) {
