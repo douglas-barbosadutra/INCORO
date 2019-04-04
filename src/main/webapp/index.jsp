@@ -20,5 +20,9 @@
 	<div class="dropdown">
 					<a href="ImageServlet?action=openInsert" class="dropbtn">Inserisci Immagine</a>				
 				</div>
+	<div>
+		<a href="sessionServlet?action=s1"> prova sessione </a>
+	</div>
+
 </body>
 </html>
