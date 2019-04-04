@@ -100,4 +100,24 @@ public class ThingsDAO {
 		}
 
 	}
+
+	public boolean deleteThingsById(Integer idLabel) {
+		Connection connection = ConnectionSingleton.getInstance();
+		try {
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_DELETE);
+			preparedStatement.setInt(1, idLabel);
+			preparedStatement.execute();
+			return true;
+		} catch (SQLException e) {
+
+			GestoreEccezioni.getInstance().gestisciEccezione(e);
+			return false;
+		}
+	}
+
+	public Things getThing() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

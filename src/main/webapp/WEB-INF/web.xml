@@ -4,6 +4,11 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
+
+  	<servlet-name>sessionServlet</servlet-name>
+  	<servlet-class>it.contrader.servlets.sessionServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>ThingsServlet</servlet-name>
     <servlet-class>it.contrader.servlets.ThingsServlet</servlet-class>
   </servlet>
@@ -27,6 +32,11 @@
     <servlet-name>NodesServlet</servlet-name>
     <servlet-class>it.contrader.servlets.NodesServlet</servlet-class>
   </servlet>
+  <servlet-mapping>
+
+    <servlet-name>sessionServlet</servlet-name>
+    <url-pattern>/sessionServlet</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
@@ -56,6 +66,7 @@
   </session-config>
   <servlet>
     <description></description>
+
     <display-name>XMLServlet</display-name>
     <servlet-name>XMLServlet</servlet-name>
     <servlet-class>it.contrader.servlets.XMLServlet</servlet-class>
@@ -64,4 +75,27 @@
     <servlet-name>XMLServlet</servlet-name>
     <url-pattern>/XMLServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <display-name>ImageServlet</display-name>
+    <servlet-name>ImageServlet</servlet-name>
+    <servlet-class>it.contrader.servlets.ImageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImageServlet</servlet-name>
+    <url-pattern>/ImageServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+<context-param> 
+   <description>Location to store uploaded file</description> 
+   <param-name>file-upload</param-name> 
+   <param-value>
+      c:\webdata\
+   </param-value> 
+</context-param>
+
+
 </web-app>
+
+

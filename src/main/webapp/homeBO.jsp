@@ -1,3 +1,5 @@
+<%@ page import="java.util.*"%>
+<%@ page import="it.contrader.dto.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -8,6 +10,11 @@
 </head>
 <body>
 	<h1>Benvenuto BO</h1>
+	<h2>
+	<% UsersDTO utente = (UsersDTO) session.getAttribute("utente");
+	out.println(utente.getUsername());
+	%>
+	</h2>
 	<h2>MENU</h2>
 	<ul>
 			<li>
