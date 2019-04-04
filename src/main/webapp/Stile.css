@@ -1,0 +1,226 @@
+
+@charset "ISO-8859-1";
+
+body{
+	background-color: #ededed;
+}
+
+.table {
+  width: 100%; 			/* ampiezza delle colonne */ 
+  max-width: 100%;		/* ampiezza massima (se la stringa è più piccola si adatta alla stringa) */
+  margin-bottom: 1rem;	/* quanti spazi vi sono sotto al margine della tabella */
+  background-color: transparent;	
+}
+
+.table th,     /* Header cells - contains header information (created with the <th> element) */
+.table td {		/*Standard cells - contains data (created with the <td> element) */
+  padding: 7px;  		/* ampiezza dei campi tabella (verticale) */
+  vertical-align: top;   
+  border-top: 1px solid #000000;
+}
+										/*The text in <td> elements are regular and left-aligned by default.*/
+.table thead th { 						/*The text in <th> elements are bold and centered by default.*/
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dee2e6;
+}
+
+.table .table {
+  background-color: #fff;
+}
+
+.table-striped tbody tr:nth-of-type(odd){
+	background-color: rgba(0, 0, 0, 0.05);	
+}
+
+.table-dark.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.form-check {
+  position: relative;
+  display: block;
+  padding-left: 1.25rem;
+}
+
+.form-check-input {
+  position: absolute;
+  margin-top: 0.3rem;
+  margin-left: -1.25rem;
+}
+
+.form-check-input:disabled ~ .form-check-label {
+  color: #6c757d;
+}
+
+.form-check-label {
+  margin-bottom: 0;
+}
+
+.form-check-inline .form-check-input {
+  position: static;
+  margin-top: 0;
+  margin-right: 0.3125rem;
+  margin-left: 0;
+}
+
+.form-inline{
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  display: inline-block;
+  width: auto;
+  vertical-align: middle;
+}
+
+
+.form-group{
+	margin-bottom: 1rem;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	-ms-flex-flow: row wrap;
+	 flex-flow: row wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.col-form-label {
+  padding-top: calc(0.375rem + 1px);
+  padding-bottom: calc(0.375rem + 1px);
+  margin-bottom: 0;
+  font-size: inherit;
+  line-height: 1.5;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn{
+	
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 4px 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn:hover, .btn:focus {
+  text-decoration: none;
+}
+
+.btn:focus, .btn.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.title{
+	text-align: center;
+	color: #8000ff;
+}
+
+.dropbtn {
+    background-color: #4CAF50;;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    width: 150px;
+}
+
+.dropdown{
+    width: 150px;
+}
+ 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: lightblue;
+    width: 125px;
+    z-index: 1;
+}
+ 
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+ 
+.dropdown-content a:hover {background-color: white;}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {background-color: #8000ff;}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #4CAF50;;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}

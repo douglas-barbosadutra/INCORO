@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href = "Stile.css" rel = "stylesheet" media = "screen">
 <title>Insert title here</title>
 </head>
 <body>
@@ -42,7 +43,8 @@
 						<th>Username</th>
 						<th>Password</th>
 						<th>Type</th>
-						<th>Options</th>
+						<th>Elimina</th>
+						<th>Modifica</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -79,10 +81,6 @@
 
 						<th><a href="UsersServlet?action=delete&id=<%out.println(users.get(i).getId());%>">Elimina</a></th>
 							
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
 
 
 						<th><a href="UsersServlet?action=openUpdate&id=<%out.println(users.get(i).getId());%>">Modifica</a></th>
@@ -97,6 +95,8 @@
 					%>
 				</tbody>
 			</table>
+			
+			<a href="XMLServlet" class="btn btn-info" role="button">Esporta XML</a>
 		</div>
 	</div>
 </body>
