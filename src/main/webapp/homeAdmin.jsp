@@ -94,7 +94,7 @@
 
 	  		<li>
 		  		<div class="dropdown">
-					<a href="UserServlet?action=homeLogs" class="dropbtn">Logout</a>				
+					<a href="UsersServlet?action=LogsMenu" class="dropbtn">Logout</a>				
 				</div>
 	  		</li>
 		</ul>

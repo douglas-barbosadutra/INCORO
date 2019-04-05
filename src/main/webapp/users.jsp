@@ -96,7 +96,7 @@
 				</tbody>
 			</table>
 			
-			<a href="XMLServlet" class="btn btn-info" role="button">Esporta XML</a>
+			<a href="XMLServlet"  onclick="return confirm('File esportato con successo!')" class="btn btn-info" role="button">Esporta XML</a>
 		</div>
 	</div>
 </body>
