@@ -3,6 +3,8 @@
 <title>Login Trader</title>
 </head>
 <body>
+
+
 	<div>
 		<form action="LoginServlet" method="post">
 			<h3>
@@ -14,7 +16,7 @@
 					placeholder="inserisci password">
 			</h3>
 			<button type="submit" value="Login" name="pulsante">Login</button>
-			<br> <a href="register.jsp"> Registrati </a>
+			<!--  <br> <a href="register.jsp"> Registrati </a> -->
 		</form>
 	</div>
 	<div class="dropdown">

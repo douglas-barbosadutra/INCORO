@@ -27,7 +27,8 @@ public class ThingsDAO {
 	private final String GET_ALL = "select * from things";
 	private final String QUERY_INSERT = "INSERT INTO things (name, fktouser, fktolabel) values (?,?,?)";
 	private final String QUERY_DELETE = "DELETE FROM things WHERE idThing = (?)";
-	private final String QUERY_UPDATE = "UPDATE things SET name WHERE idThings = (?)";
+	//private final String QUERY_UPDATE = "UPDATE things SET name WHERE idThings = (?)";
+	private final String QUERY_UPDATE = "UPDATE things SET name=?, fktouser=?, fktolabel=? WHERE idThing=?";
 	private final String QUERY_INSERT_CODE = "UPDATE  things set code = ? where idThing = ?";
 	//private final String QUERY_LOGIN = "select * from things where username=(?) and password=(?)";
 
@@ -92,6 +93,9 @@ public class ThingsDAO {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(QUERY_UPDATE);
 			preparedStatement.setString(1, things.getName());
+			preparedStatement.setInt(2, things.getFktouser());
+			preparedStatement.setInt(3, things.getFktolabel());
+			preparedStatement.setInt(4, things.getId());
 			preparedStatement.execute();
 			return true;
 		} catch (SQLException e) {

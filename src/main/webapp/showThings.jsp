@@ -39,8 +39,10 @@
 									<th><%out.println(things.get(i).getFktouser()); %></th>
 									
 									<th><%out.println(things.get(i).getFktolabel()); %></th>
-														
-									<th><a href="ThingsServlet?action=openInsertCode&id=<%out.println(things.get(i).getId());%>"> Inserisci Codice</a></th>
+										
+									<th><a href="ThingsServlet?action=openUpdate&id=<%out.println(things.get(i).getId());%>"> Modifica</a></th>
+									<th><a href=ThingsServlet?action=delete&id=<%out.println(things.get(i).getId());%>"> Elimina</a></th>			
+									<th><a href="ThingsServlet?action=openInsertCode&id=<%out.println(things.get(i).getId());%>"> Inserisci Codice </a></th>
 											
 								</tr><%
 
@@ -53,5 +55,7 @@
 			  </table>
 			</div>
 		</div>
+		<form action="LabelsServlet?action=Indietro" method="post">
+		<input type="submit" value="HOME BO" name="richiesta">
 </body>
 </html>

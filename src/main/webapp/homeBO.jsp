@@ -30,13 +30,13 @@ pageEncoding="ISO-8859-1" import="java.io.*, java.net.*"%>
 					<a href="LabelsServlet?action=openInsert" class="dropbtn">Inserisci Labels</a>				
 				</div>
 	  		</li>
+	  		<!-- 
 			<li>
 		  		<div class="dropdown">
 					<a href="ThingsServlet?action=openDelete" class="dropbtn"> Elimina things</a>				
 				</div>
 	  		</li>
-	  		
-	  		<!-- 
+	  		 
 	  		<li>
 		  		<div class="dropdown">
 					<a href="LabelsServlet?action=openDelete" class="dropbtn"> Elimina labels</a>				
@@ -53,14 +53,13 @@ pageEncoding="ISO-8859-1" import="java.io.*, java.net.*"%>
 					<a href="LabelsServlet?action=openList" class="dropbtn">Lista labels</a>				
 				</div>
 	  		</li>
-	  					
-			<li>
+	
+	  		<!--
+	  		<li>
 		  		<div class="dropdown">
 					<a href="ThingsServlet?action=openUpdate" class="dropbtn">Aggiorna things</a>				
 				</div>
-	  		</li>
-	  		
-	  		<!-- 
+	  		</li> 
 	  		<li>
 		  		<div class="dropdown">
 					<a href="LabelsServlet?action=openUpdate" class="dropbtn">Aggiorna lables</a>				

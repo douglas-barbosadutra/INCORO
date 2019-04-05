@@ -17,7 +17,7 @@
      	<form action="LabelsServlet?action=insert" method="post">
      	
      		<h4> Nome: <input type = "text" id = "nomelabel" name ="name" placeholder = "inserisci nome label"></h4>     		
-     		<h4> Fk to User <input type = "text" id = "fk to user" name ="fktouser" placeholder = "fk to user"> </h4>
+     		<h4> ID Proprietario <input type = "text" id = "fk to user" name ="fktouser" placeholder = "fk to user"> </h4>
      	
      	<input type="submit" value="Inserisci Label" name="action">  	 	
      </form>

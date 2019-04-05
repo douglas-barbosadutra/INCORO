@@ -20,8 +20,5 @@
      	<input type="submit" value="Elimina thing" name="action">
      	
      </form>
-
-     
- 
 </body>
 </html>
