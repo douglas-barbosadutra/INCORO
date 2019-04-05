@@ -4,7 +4,6 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-
   	<servlet-name>sessionServlet</servlet-name>
   	<servlet-class>it.contrader.servlets.sessionServlet</servlet-class>
   </servlet>
@@ -95,7 +94,15 @@
    </param-value> 
 </context-param>
 
+<servlet>
+	<description></description>
+	<display-name>Download</display-name>
+	<servlet-name>Download</servlet-name>
+	<servlet-class>it.contrader.servlet.Download</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>Download</servlet-name>
+	<url-pattern>/Download</url-pattern>
+	</servlet-mapping>
 
 </web-app>
-
-

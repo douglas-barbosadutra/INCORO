@@ -13,10 +13,6 @@
 <body>
 
 <h1>Benvenuto su INCORO!</h1>
-
-
-
-	
 	<!--
 			<li>
 		  		<div class="dropdown">
@@ -95,8 +91,6 @@
 					<a href="UsersServlet?action=UsersManager" class="dropbtn">Gestione Utenti</a>				
 				</div>
 	  		</li>
-
-	  		
 
 	  		<li>
 		  		<div class="dropdown">

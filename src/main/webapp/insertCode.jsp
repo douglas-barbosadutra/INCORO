@@ -15,5 +15,8 @@
         <BR>
         <INPUT TYPE="SUBMIT" VALUE="Inserisci testo">
        	</FORM>
+       	
+       	<form action="LabelsServlet?action=Indietro" method="post">
+		<!-- <input type="submit" value="" name="richiesta">-->
 </body>
 </html>

@@ -1,9 +1,0 @@
-<!DOCTYPE things [
-<!ELEMENT things(idThing, name, fktouser, fktolabel)+>
-<!ELEMENT idThing EMPTY>
-<!ATTLIST idThing id INT #REQUIRED>
-<!ELEMENT name (#PCDATA)>
-<!ELEMENT fktouser (#PCDATA)>
-<!ATTLIST fktouser idrefs INT #REQUIRED>
-<!ELEMENT fktolabel (#PCDATA)>
-<!ATTLIST fktolabel idrefs INT #REQUIRED>

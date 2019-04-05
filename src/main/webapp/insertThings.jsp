@@ -19,9 +19,9 @@
      	
      	<h4>name: <input type = "text" id = "user" name ="name" placeholder = "nome thing"></h4>
      	
-     	<h4>foreign key idUtente: <input type = "password" id = "user" name ="fkUser" placeholder = "inserisci id Proprietario"></h4>
+     	<h4>ID Proprietario: <input type = "password" id = "user" name ="fkUser" placeholder = "inserisci id Proprietario"></h4>
      	
-     	<h4>foreign key idLabel: <input type = "text" id = "user" name ="fkLabel" placeholder = "inserisci id Label"></h4>
+     	<h4>ID Label: <input type = "text" id = "user" name ="fkLabel" placeholder = "inserisci id Label"></h4>
 
      	<input type="submit" value="Inserisci thing" name="action">
      	
