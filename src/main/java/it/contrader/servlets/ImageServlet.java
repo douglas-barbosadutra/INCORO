@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -161,8 +162,13 @@ private String getFileName(final Part part) {
     LOGGER.log(Level.INFO, "Part Header = {0}", partHeader);
     for (String content : part.getHeader("content-disposition").split(";")) {
         if (content.trim().startsWith("filename")) {
-            return content.substring(
+        	String fn = content.substring(
                     content.indexOf('=') + 1).trim().replace("\"", "");
+        	int slashPos = fn.lastIndexOf( '\\' );
+            if ( slashPos == -1 )
+              slashPos = fn.lastIndexOf( '/' );
+            return fn.substring( slashPos > 0 ? slashPos + 1 : 0 );
+            //Paths.get(content).getFileName();
         }
     }
     return null;
