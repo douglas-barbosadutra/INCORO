@@ -28,7 +28,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import it.contrader.toXml.TableToDTD;
-import it.contrader.toXml.TableToXML;
+//import it.contrader.toXml.TableToXML;
 
 /**
  * Servlet implementation class XMLServlet
@@ -56,6 +56,9 @@ public class XMLServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		
 		
 		getServletContext().getRequestDispatcher("/users.jsp").forward(request, response);
 	}

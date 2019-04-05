@@ -13,10 +13,6 @@
 <body>
 
 <h1>Benvenuto su INCORO!</h1>
-
-
-
-	
 	<!--
 			<li>
 		  		<div class="dropdown">
@@ -96,11 +92,9 @@
 				</div>
 	  		</li>
 
-	  		
-
 	  		<li>
 		  		<div class="dropdown">
-					<a href="UserServlet?action=homeLogs" class="dropbtn">Logout</a>				
+					<a href="UsersServlet?action=LogsMenu" class="dropbtn">Logout</a>				
 				</div>
 	  		</li>
 		</ul>

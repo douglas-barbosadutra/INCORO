@@ -26,7 +26,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 public class TableToXML {
-	public static final String xmlFilePath = "C:\\Program Files\\xmlfile.xml";
+	public static final String xmlFilePath = "C:\\webdata\\things.xml";
 
 	
 

@@ -47,7 +47,7 @@
 			</div>
 		</div>
 		<form action="LabelsServlet?action=Indietro" method="post">
-	<input type="submit" value="HOME BO" name="richiesta">
+	    <input type="submit" value="HOME BO" name="richiesta">
 	</form>
 </body>
 </html>

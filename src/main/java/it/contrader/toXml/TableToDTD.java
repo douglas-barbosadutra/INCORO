@@ -66,7 +66,7 @@ public class TableToDTD {
 
 	public static void writeUsingFiles(String data) {
 		try {
-			Files.write(Paths.get("C:\\Program Files\\things.dtd"), data.getBytes());
+			Files.write(Paths.get("C:\\webdata\\things.dtd"), data.getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

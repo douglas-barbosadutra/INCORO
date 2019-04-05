@@ -22,6 +22,7 @@ import it.contrader.service.ThingsServiceDTO;
 		private List<ThingsDTO> allThings= new ArrayList<>();
 		private StringBuffer textArea;
 		private int idThingCode;
+		private int idThings;
 		
 		@Override
 		public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,20 +31,10 @@ import it.contrader.service.ThingsServiceDTO;
 			final HttpSession session = request.getSession(true); //sto impostando una serie di pulsanti
 			
 			switch (scelta) {
-
-			case "update":
-				final Integer idthing = Integer.parseInt(request.getParameter("idThing"));
-				final String uname = request.getParameter("name");
-				final Integer fklabel = Integer.parseInt(request.getParameter("idLabel"));
+			case "openInsert":
+				response.sendRedirect("insertThings.jsp");
 				break;
-			
-			case "delete":
-				final Integer idLabel = Integer.parseInt(request.getParameter("id"));
-				thingsServiceDTO.deleteThingsById(idLabel);
-				showAllThings(request, response);
-
-				break;
-
+				
 			case "insert":
 				final String name = request.getParameter("name");
 				final Integer fkUser = Integer.parseInt(request.getParameter("fkUser"));
@@ -53,17 +44,31 @@ import it.contrader.service.ThingsServiceDTO;
 				thingsServiceDTO.insertThings(thing);
 				showAllThings(request, response);
 				break;
-	
-			case "openInsert":
-				response.sendRedirect("insertThings.jsp");
-				break;
 			
 			case "openDelete":
 				response.sendRedirect("deleteThings.jsp");
 				break;
 			
+			case "delete":
+				final Integer idDelete = Integer.parseInt(request.getParameter("id"));
+				final ThingsDTO use = new ThingsDTO(idDelete,"",1, 1);
+				thingsServiceDTO.deleteThings(use);
+				showAllThings(request, response);
+				break;
+			
 			case "openUpdate":
+				idThings = Integer.parseInt(request.getParameter("id"));
 				response.sendRedirect("updateThings.jsp");
+				break;
+				
+			case "update":
+				//final Integer idthing = Integer.parseInt(request.getParameter("idThing"));
+				final String nameUpdate = request.getParameter("name");
+				final Integer fktouserUpdate = Integer.parseInt(request.getParameter("fktouser"));
+				final Integer fklabelUpdate = Integer.parseInt(request.getParameter("fktolabel"));
+				final ThingsDTO things2 = new ThingsDTO(idThings,nameUpdate,fktouserUpdate,fklabelUpdate);					
+				thingsServiceDTO.updateThings(things2);
+				showAllThings(request, response);
 				break;
 			
 			case "openInsertCode":
@@ -77,6 +82,12 @@ import it.contrader.service.ThingsServiceDTO;
 				
 			case "insertFile":
 				String text = request.getParameter("textarea1");
+				final ThingsDTO label2 = new ThingsDTO(idThingCode, text);					
+				thingsServiceDTO.insertCode(label2);
+				//showAllThings(request, response);
+				response.sendRedirect("homeBO.jsp");
+				break;
+				
 				//System.out.println("text: "+text);
 				
 				/*
@@ -89,17 +100,13 @@ import it.contrader.service.ThingsServiceDTO;
 					textArea = text;  
 				//final String code = request.getParameter("textrea1");
 				*/
-				
-				final ThingsDTO label2 = new ThingsDTO(idThingCode, text);					
-				thingsServiceDTO.insertCode(label2);
-				break;
 			}
 		}
 
 	private void showAllThings(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			allThings = this.thingsServiceDTO.getAllThings();
-			request.getSession().setAttribute("allThings", allThings);
-			getServletContext().getRequestDispatcher("/showThings.jsp").forward(request, response);
+				allThings = this.thingsServiceDTO.getAllThings();
+				request.getSession().setAttribute("allThings", allThings);
+				getServletContext().getRequestDispatcher("/showThings.jsp").forward(request, response);
 		}
 }

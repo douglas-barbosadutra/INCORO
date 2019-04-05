@@ -7,13 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<form action="ImageServlet?action=asd" method="post" enctype="multipart/form-data">
-<input type="file" name=" corinne"/>
-<input type="submit" value="Inserisci immagine" name="corinne"/>
-</form>
-
-
-
-</body>
+		<form action="ImageServlet?action=asd" method="post" enctype="multipart/form-data">
+		<input type="file" name=" corinne"/>
+		<input type="submit" value="Inserisci immagine" name="corinne"/>
+		</form>
+	</body>
 </html>
