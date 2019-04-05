@@ -57,6 +57,9 @@ public class XMLServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		
+		
+		
 		getServletContext().getRequestDispatcher("/users.jsp").forward(request, response);
 	}
 	
