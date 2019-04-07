@@ -22,31 +22,45 @@ public class LoginServlet extends HttpServlet {
 		session.setAttribute("utente", null);
 
 		if (request != null) {
-			final String nomeUtente = request.getParameter("username").toString();
-			final String password = request.getParameter("password").toString();
-			// recuperiamo l'utente
-			final UsersDTO usersDTO = usersServiceDTO.getUserByUsernameAndPasword(nomeUtente, password);
+			//if (!request.getParameter("action").equals("Indietro")) {
+				final String nomeUtente = request.getParameter("username").toString();
+				final String password = request.getParameter("password").toString();
+				// recuperiamo l'utente
+				final UsersDTO usersDTO = usersServiceDTO.getUserByUsernameAndPasword(nomeUtente, password);
 
-			// verifichiamo che tipo di ruolo ha all'interno dell'applicazione e lo reindirizziamo nella jsp opportuna
-			if(usersDTO != null) {
-				session.setAttribute("utente", usersDTO);
-				
-				switch (usersDTO.getType()) {
+				// verifichiamo che tipo di ruolo ha all'interno dell'applicazione e lo
+				// reindirizziamo nella jsp opportuna
+				if (usersDTO != null) {
+					session.setAttribute("utente", usersDTO);
+
+					switch (usersDTO.getType()) {
+					case 0:
+						getServletContext().getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
+						break;
+
+					case 1:
+						getServletContext().getRequestDispatcher("/homeBO.jsp").forward(request, response);
+						break;
+
+					default:
+						getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+						break;
+					}
+				} else
+					getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+			/*} else {
+				UsersDTO wUsr = (UsersDTO) session.getAttribute("utente");
+				switch (wUsr.getType()) {
 				case 0:
 					getServletContext().getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
 					break;
-				
+
 				case 1:
 					getServletContext().getRequestDispatcher("/homeBO.jsp").forward(request, response);
-					break;			
-				
-				default:
-					getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 					break;
+
 				}
-			}
-			else
-				getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+			}*/
 		}
 	}
 }

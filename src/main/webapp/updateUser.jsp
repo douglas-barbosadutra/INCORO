@@ -10,7 +10,7 @@
 <body>
 
 <h2><center>------- UPDATE USER -------</center></h2>
-<form action="LoginServlet?action=Indietro" method="post">
+<form action="UsersServlet?action=Indietro" method="post">
 	<input type="submit" value="HOME" name="richiesta">
 </form>
 
