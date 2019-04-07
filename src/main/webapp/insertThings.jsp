@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href = "Stile.css" rel = "stylesheet" media = "screen">
 <title>Insert title here</title>
 </head>
 <body>
@@ -17,11 +19,18 @@
      <h3>Inserisci i dati della thing</h3>
      <form action="ThingsServlet?action=insert" method="post">
      	
-     	<h4>name: <input type = "text" id = "user" name ="name" placeholder = "nome thing"></h4>
+     	<h4>name: <input type = "text" id = "user" name ="nameThing" placeholder = "nome thing"></h4>
      	
-     	<h4>ID Proprietario: <input type = "password" id = "user" name ="fkUser" placeholder = "inserisci id Proprietario"></h4>
-     	
-     	<h4>ID Label: <input type = "text" id = "user" name ="fkLabel" placeholder = "inserisci id Label"></h4>
+     	<h4>Label: <select  id = "user" name ="fkLabel" placeholder = "inserisci Label">
+     		<%
+     			List<String> names = (List<String>)session.getAttribute("names");
+     			
+     			for(int i=0; i<names.size(); i++){
+     				%><option><%out.println(names.get(i));%></option><%
+     			}
+     		%>
+     			</select>
+		</h4>
 
      	<input type="submit" value="Inserisci thing" name="action">
      	

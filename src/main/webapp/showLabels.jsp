@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href = "Stile.css" rel = "stylesheet" media = "screen">
 <title>Insert title here</title>
 </head>
 <body>

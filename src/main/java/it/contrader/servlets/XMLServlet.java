@@ -29,6 +29,7 @@ import org.w3c.dom.Element;
 
 import it.contrader.toXml.TableToDTD;
 //import it.contrader.toXml.TableToXML;
+import it.contrader.toXml.TableToXML;
 
 /**
  * Servlet implementation class XMLServlet

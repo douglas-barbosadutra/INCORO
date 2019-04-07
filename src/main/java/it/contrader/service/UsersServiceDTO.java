@@ -16,6 +16,7 @@ import it.contrader.model.Users;
 public class UsersServiceDTO {
 
 	private final UsersDAO usersDAO;
+	private static UsersDTO userLogged;
 
 	public UsersServiceDTO() {
 		this.usersDAO = new UsersDAO();
@@ -35,8 +36,17 @@ public class UsersServiceDTO {
 		return listDTO;
 	}
 	
+	public static void setUserLogged(UsersDTO user) {
+		userLogged = user;
+	}
+	
+	public static UsersDTO getUserLogged() {
+		return userLogged;
+	}
+	
 	public UsersDTO getUserByUsernameAndPasword(String username, String password) {
-		return UsersConverter.toDTO(usersDAO.login(username, password));
+		UsersDTO user = usersDAO.login(username, password);
+		return user;
 	}
 
 	public boolean updateUsers (UsersDTO usersDTO) {

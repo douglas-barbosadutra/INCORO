@@ -14,11 +14,14 @@ import javax.servlet.http.HttpSession;
 import it.contrader.dto.LabelsDTO;
 import it.contrader.dto.ThingsDTO;
 import it.contrader.dto.UsersDTO;
+import it.contrader.service.LabelsServiceDTO;
 import it.contrader.service.ThingsServiceDTO;
+import it.contrader.service.UsersServiceDTO;
 
 	public class ThingsServlet extends HttpServlet {
 
 		private final ThingsServiceDTO thingsServiceDTO = new ThingsServiceDTO();
+		private final LabelsServiceDTO labelsServiceDTO = new LabelsServiceDTO();
 		private List<ThingsDTO> allThings= new ArrayList<>();
 		private StringBuffer textArea;
 		private int idThingCode;
@@ -32,15 +35,18 @@ import it.contrader.service.ThingsServiceDTO;
 			
 			switch (scelta) {
 			case "openInsert":
+				List<String> names = labelsServiceDTO.getAllNames();
+				session.setAttribute("names", names);
 				response.sendRedirect("insertThings.jsp");
 				break;
 				
 			case "insert":
-				final String name = request.getParameter("name");
-				final Integer fkUser = Integer.parseInt(request.getParameter("fkUser"));
-				final Integer fkLabel = Integer.parseInt(request.getParameter("fkLabel"));
-				final ThingsDTO thing = new ThingsDTO(0,name,fkUser,fkLabel);
-				//request.getSession().setAttribute("tTest", thing);
+				final String name = request.getParameter("nameThing");
+				UsersDTO usersDTO = UsersServiceDTO.getUserLogged();
+				final String nameLabel = request.getParameter("fkLabel").toString();
+				final int idLabel = labelsServiceDTO.getIdByName(nameLabel);
+				final ThingsDTO thing = new ThingsDTO(0,name,usersDTO.getId(),idLabel);
+				request.getSession().setAttribute("tTest", thing);
 				thingsServiceDTO.insertThings(thing);
 				showAllThings(request, response);
 				break;

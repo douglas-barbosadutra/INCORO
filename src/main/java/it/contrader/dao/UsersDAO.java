@@ -10,7 +10,9 @@ import java.util.List;
 
 import com.mysql.fabric.xmlrpc.base.Array;
 
+import it.contrader.dto.UsersDTO;
 import it.contrader.model.Users;
+import it.contrader.service.UsersServiceDTO;
 import it.contrader.utils.ConnectionSingleton;
 import it.contrader.utils.GestoreEccezioni;
 
@@ -34,10 +36,10 @@ public class UsersDAO {
 	 * tuple al servizio che ha chiamato questo metodo
 	 */
 
-	public Users login(String username, String password) {
+	public UsersDTO login(String username, String password) {
 
 		Connection connection = ConnectionSingleton.getInstance();
-		Users utente = null;
+		UsersDTO utente = null;
 		try {
 			PreparedStatement statement = connection.prepareStatement(QUERY_LOGIN);
 			statement.setString(1, username);
@@ -45,18 +47,23 @@ public class UsersDAO {
 			statement.execute();
 			ResultSet resultSet = statement.getResultSet();
 
-			while (resultSet.next()) {
+			if (resultSet.next()) {
 				String name = resultSet.getString("username");
 				String pass = resultSet.getString("password");
 				Integer idUser = resultSet.getInt("idUser");
 				Integer type = resultSet.getInt("type");
-				utente = new Users(idUser, name, pass, type);
+				utente = new UsersDTO(idUser, name, pass, type);
+				UsersServiceDTO.setUserLogged(utente);
+				return utente;
 			}
+			else
+				return null;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return utente;
+		
 	}
 
 	public List<Users> getAllUsers() {

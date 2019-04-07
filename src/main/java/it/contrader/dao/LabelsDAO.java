@@ -30,11 +30,52 @@ public class LabelsDAO {
 	//private final String QUERY_UPDATE = "UPDATE label SET name WHERE idLabel = (?)";
 	private final String QUERY_UPDATE = "UPDATE label SET name=?, fktouser=? WHERE idLabel=?";
 	//private final String QUERY_LOGIN = "select * from things where username=(?) and password=(?)";
+	private final String QUERY_SELECT_NAME = "select name from label";
+	private final String QUERY_SELECT_ID = "select idLabel from label where name = ?";
 
 	/**
 	 * Il suddetto metodo si occupa interagire con il database e restituire tutte le
 	 * tuple al servizio che ha chiamato questo metodo
 	 */
+	
+	public int getIdLabelByName(String name) {
+		
+		final Connection connection = ConnectionSingleton.getInstance();
+		try {
+			final PreparedStatement statement = connection.prepareStatement(QUERY_SELECT_ID);
+			statement.setString(1, name);
+			final ResultSet resultSet = statement.executeQuery();
+			if(resultSet.next()) {
+				final int id = resultSet.getInt("idLabel");
+				return id;
+			}
+			else
+				return 0;
+		} catch (final SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+			
+	}
+	
+	public List<String> getAllName(){
+		
+		final List<String> names = new ArrayList<>();
+		final Connection connection = ConnectionSingleton.getInstance();
+		try {
+			final Statement statement = connection.createStatement();
+			final ResultSet resultSet = statement.executeQuery(QUERY_SELECT_NAME);
+			while (resultSet.next()) {
+				final String name = resultSet.getString("name");
+				names.add(name);
+			}
+			return names;
+		} catch (final SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+			
+	}
 
 	public List<Labels> getAllLabels() {
 		final List<Labels> label = new ArrayList<>();

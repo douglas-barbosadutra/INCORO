@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href = "Stile.css" rel = "stylesheet" media = "screen">
 <title>Insert title here</title>
+
 </head>
 
 <body>
@@ -24,8 +26,7 @@
      	
      	<h4>Name: <input type = "text" id = "label" name ="name" placeholder = "inserisci nome"></h4>
      	
-     	<h4>ID Proprietario: <input type = "text" id = "label" name ="fktouser" placeholder = "inserisci la fk to user"></h4>
-     	 	
+     	
     	<!-- <input type="submit" value="Aggirna Label" name="action">-->
      	<button type="submit" value="update" name="action">Aggiorna Label</button>
      </form>

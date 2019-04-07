@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href = "Stile.css" rel = "stylesheet" media = "screen">
 <title>Insert title here</title>
 </head>
 <body>
@@ -43,6 +44,7 @@
 									<th><a href="ThingsServlet?action=openUpdate&id=<%out.println(things.get(i).getId());%>"> Modifica</a></th>
 									<th><a href=ThingsServlet?action=delete&id=<%out.println(things.get(i).getId());%>"> Elimina</a></th>			
 									<th><a href="ThingsServlet?action=openInsertCode&id=<%out.println(things.get(i).getId());%>"> Inserisci Codice </a></th>
+									<th><a href="ImageServlet?action=openInsert&id=<%out.println(things.get(i).getId()); %>" class="dropbtn">Inserisci Immagine</a></th>
 											
 								</tr><%
 

@@ -9,6 +9,7 @@ pageEncoding="ISO-8859-1" import="java.io.*, java.net.*"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link href = "Stile.css" rel = "stylesheet" media = "screen">
 <title>Business Owner view</title>
 </head>
 <body>

@@ -6,6 +6,7 @@ public class ThingsDTO {
 	private int fktouser;
 	private int fktolabel;
 	private String code;
+	private String image;
 	
 	public ThingsDTO(int id, String name, int fktouser, int fktolabel) {
 		super();
@@ -13,6 +14,8 @@ public class ThingsDTO {
 		this.name = name;
 		this.fktouser = fktouser;
 		this.fktolabel = fktolabel;
+		
+		
 	}
 
 	public ThingsDTO(int id,  String code) {

@@ -44,6 +44,7 @@ public class ImageServlet extends HttpServlet {
 	private static final String DATA_DIRECTORY = null;
 	private static final long MAX_REQUEST_SIZE = 0;
 	private final static Logger LOGGER = Logger.getLogger(ImageServlet.class.getCanonicalName());
+	private int idThing;
   
     /**
      * @see HttpServlet#HttpServlet()
@@ -78,6 +79,7 @@ public class ImageServlet extends HttpServlet {
 		
 		switch (scelta) {
 		case "openInsert" : 
+			idThing = Integer.parseInt(request.getParameter("id"));
 			response.sendRedirect("Image.jsp");
 			break;
 		case "process":

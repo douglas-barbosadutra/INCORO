@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import it.contrader.dto.LabelsDTO;
 import it.contrader.dto.UsersDTO;
 import it.contrader.service.LabelsServiceDTO;
+import it.contrader.service.UsersServiceDTO;
 
 public class LabelsServlet extends HttpServlet {
 
@@ -33,8 +34,7 @@ public class LabelsServlet extends HttpServlet {
 		case "insert":
 			//final Integer id = Integer.parseInt(request.getParameter("idLabel"));
 			final String name = request.getParameter("name");
-			final Integer fktouser = Integer.parseInt(request.getParameter("fktouser"));
-			final LabelsDTO label = new LabelsDTO(name, fktouser);
+			final LabelsDTO label = new LabelsDTO(name, UsersServiceDTO.getUserLogged().getId());
 			labelsServiceDTO.insertLabels(label);
 			showAllLabels(request, response);
 			break;
@@ -63,8 +63,7 @@ public class LabelsServlet extends HttpServlet {
 			System.out.println("fktouser: "+Integer.parseInt(request.getParameter("fktouser")));*/
 			//final Integer idUpdate = Integer.parseInt(request.getParameter("id"));
 			final String nameUpdate = request.getParameter("name");
-			final Integer fktouserUpdate = Integer.parseInt(request.getParameter("fktouser"));
-			final LabelsDTO label2 = new LabelsDTO(idLabel,nameUpdate,fktouserUpdate);					
+			final LabelsDTO label2 = new LabelsDTO(idLabel,nameUpdate,UsersServiceDTO.getUserLogged().getId());					
 			labelsServiceDTO.updateLabels(label2);
 			showAllLabels(request, response);
 			break;		
