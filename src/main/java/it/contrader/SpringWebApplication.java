@@ -11,6 +11,7 @@ public class SpringWebApplication {
 
 	static UserService userService;
 
+	
 	@Autowired
 	public SpringWebApplication(UserService userService) {
 		this.userService = userService;
