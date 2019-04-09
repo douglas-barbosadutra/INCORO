@@ -26,7 +26,6 @@ public class HomeController {
 	@RequestMapping(value = "/chatManagement", method = RequestMethod.GET)
 	public String chatManagement(HttpServletRequest request) {
 		return "homeChatbot";
-
 	}
 
 	@RequestMapping(value = "/userManagement", method = RequestMethod.GET)
@@ -34,17 +33,15 @@ public class HomeController {
 		List<UserDTO> allUser = this.userService.getListaUserDTO();
 		request.setAttribute("allUserDTO", allUser);
 		return "homeUser";
-
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpServletRequest request) {
 		return "index";
-
 	}
+	
 	@RequestMapping(value = "/indietro", method = RequestMethod.GET)
 	public String indietro(HttpServletRequest request) {
 		return "home";
-
 	}
 }
