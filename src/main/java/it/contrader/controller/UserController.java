@@ -45,7 +45,6 @@ public class UserController {
 		this.userService.deleteUserById(id);
 		visualUser(request);
 		return "homeUser";
-		
 	}
 	
 	@RequestMapping(value = "/crea", method = RequestMethod.GET)
@@ -53,31 +52,24 @@ public class UserController {
 		visualUser(request);
 		request.setAttribute("option", "insert");
 		return "creaUser";
-		
 	}
 	
 	@RequestMapping(value = "/cercaUser", method = RequestMethod.GET)
 	public String cercaUser(HttpServletRequest request) {
-
 		final String content = request.getParameter("search");
-
 		List<UserDTO> allUser = this.userService.findUserDTOByUsername(content);
 		request.setAttribute("allUserDTO", allUser);
-
 		return "homeUser";
-
 	}
 	
 	@RequestMapping(value = "/creaUser", method = RequestMethod.POST)
 	public String insertUser(HttpServletRequest request) {
 		String username = request.getParameter("username").toString();
 		String password = request.getParameter("password").toString();
-		String ruolo = request.getParameter("ruolo").toString();
-
-		UserDTO userObj = new UserDTO(0, username, password, ruolo,"");
-		
+		String type = request.getParameter("type").toString();
+		UserDTO userObj = new UserDTO(0, username, password, type);
+		//UserDTO userObj = new UserDTO(0, username, password, type,"");
 		userService.insertUser(userObj);
-
 		visualUser(request);
 		return "homeUser";
 	}
@@ -89,7 +81,7 @@ public class UserController {
 		final String username = request.getParameter("username");
 		final String password = request.getParameter("password");
 		final UserDTO userDTO = userService.getByUsernameAndPassword(username, password);
-		final String ruolo = userDTO.getRuolo();
+		final String ruolo = userDTO.getType();
 		if (!StringUtils.isEmpty(ruolo)) {
 			session.setAttribute("utenteCollegato", userDTO);
 			if (ruolo.equals("ADMIN")) {

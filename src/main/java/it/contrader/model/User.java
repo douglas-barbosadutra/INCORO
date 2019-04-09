@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.lang.Nullable;
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name="users")
 public class User {
 
 	@Id
@@ -33,11 +35,15 @@ public class User {
 	private String password;
 
 	@NotNull
-	@Column(name = "ruolo")
-	private String ruolo;
+	@Column(name = "type")
+	private String type;
 
-	@Nullable
-	@Column(name = "email")
-	private String email;
+	
+	@OneToMany(mappedBy="user")
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	private List<Things> things;
 
+	@OneToMany(mappedBy="user")
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	private List<Label> label;
 }

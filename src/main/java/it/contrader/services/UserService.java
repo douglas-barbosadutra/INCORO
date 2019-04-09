@@ -30,9 +30,7 @@ public class UserService {
 	}
 
 	public UserDTO getByUsernameAndPassword(String username, String password) {
-
 		final User user = userRepository.findUserByUsernameAndPassword(username, password);
-
 		return ConverterUser.toDTO(user);
 	}
 
@@ -53,8 +51,6 @@ public class UserService {
 		final List<User> list = userRepository.findAllByUsername(username);
 		final List<UserDTO> userDTOs = new ArrayList<>();
 		list.forEach(i -> userDTOs.add(ConverterUser.toDTO(i)));
-		return userDTOs;
-		
-	
+		return userDTOs;	
 	}
 }
