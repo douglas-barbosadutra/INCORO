@@ -8,7 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
 import org.springframework.lang.Nullable;
 
 import lombok.AllArgsConstructor;
@@ -29,7 +28,6 @@ public class Thing {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idThing;
 	
-	
 	@Column(name = "name")
 	@NotNull
 	private String name;
@@ -38,7 +36,6 @@ public class Thing {
 	@JoinColumn(name = "idUser")
 	private User user;
 	
-
 	@ManyToOne
 	@JoinColumn(name = "idLabel")
 	private Label label;
@@ -54,8 +51,4 @@ public class Thing {
 	@Column(name = "xml")
 	@NotNull
 	private String xml;
-	
-
-
-
 }

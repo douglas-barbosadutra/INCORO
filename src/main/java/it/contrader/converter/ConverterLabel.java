@@ -2,13 +2,10 @@ package it.contrader.converter;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import it.contrader.dto.LabelDTO;
-import it.contrader.dto.UserDTO;
+//import it.contrader.dto.UserDTO;
 import it.contrader.model.Label;
 import it.contrader.model.User;
-
-
 
 public class ConverterLabel {
 	
@@ -19,14 +16,10 @@ public class ConverterLabel {
 			label.setIdLabel(labeldto.getIdLabel());
 			label.setName(labeldto.getName());
 			User user = new User();
-			user.setIdUser(labeldto.getFktouser());    //dai al nuovo utente come chiave primaria quella che è chiave esterna su label
-			
-			
-			
+			user.setIdUser(labeldto.getFktouser());    //dai al nuovo utente come chiave primaria quella che è chiave esterna su label			
 			label.setUser(user);
 		}
 		return label;
-
 	}
 
 	public static LabelDTO convertToDto(Label label) {
@@ -34,8 +27,7 @@ public class ConverterLabel {
 		if(label != null) {
 			labeldto = new LabelDTO();
 			labeldto.setIdLabel(label.getIdLabel());
-			labeldto.setName(label.getName());
-			
+			labeldto.setName(label.getName());	
 		}
 		return labeldto;		
 	}
@@ -49,5 +41,4 @@ public class ConverterLabel {
 		}
 		return listLabelDTO;
 	}
-
 }

@@ -43,7 +43,6 @@ public class User {
 	@Column(name = "type")
 	private String type;
 
-	
 	@OneToMany(mappedBy="user")
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<Thing> thing;
