@@ -41,7 +41,7 @@ public class User {
 
 	@NotNull
 	@Column(name = "type")
-	private String type;
+	private int type;
 
 	@OneToMany(mappedBy="user")
 	@OnDelete(action=OnDeleteAction.CASCADE)

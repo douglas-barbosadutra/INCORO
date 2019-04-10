@@ -66,7 +66,7 @@ public class UserController {
 	public String insertUser(HttpServletRequest request) {
 		String username = request.getParameter("username").toString();
 		String password = request.getParameter("password").toString();
-		String type = request.getParameter("type").toString();
+		int type = Integer.parseInt(request.getParameter("type"));
 		UserDTO userObj = new UserDTO(0, username, password, type);
 		//UserDTO userObj = new UserDTO(0, username, password, type,"");
 		userService.insertUser(userObj);
@@ -81,13 +81,13 @@ public class UserController {
 		final String username = request.getParameter("username");
 		final String password = request.getParameter("password");
 		final UserDTO userDTO = userService.getByUsernameAndPassword(username, password);
-		final String ruolo = userDTO.getType();
-		if (!StringUtils.isEmpty(ruolo)) {
+		final int type = userDTO.getType();
+		if (userDTO != null) {
 			session.setAttribute("utenteCollegato", userDTO);
-			if (ruolo.equals("ADMIN")) {
-				return "home";
-			} else if (ruolo.equals("CHATMASTER")) {
-				return "home";
+			if (type == 0) {
+				return "homeAdmin";
+			} else if (type ==1) {
+				return "homeBO";
 			}
 		}
 		return "index";

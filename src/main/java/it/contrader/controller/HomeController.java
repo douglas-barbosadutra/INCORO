@@ -32,7 +32,7 @@ public class HomeController {
 	public String userManagement(HttpServletRequest request) {
 		List<UserDTO> allUser = this.userService.getListaUserDTO();
 		request.setAttribute("allUserDTO", allUser);
-		return "homeUser";
+		return "homeAdmin";
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
