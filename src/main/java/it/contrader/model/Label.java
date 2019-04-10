@@ -45,7 +45,6 @@ public class Label {
 
 	@ManyToOne
 	@JoinColumn(name="idUser")
-
 	private User user;
 	
 }
