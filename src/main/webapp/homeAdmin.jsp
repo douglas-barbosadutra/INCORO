@@ -10,7 +10,7 @@
 <meta name="author" content="">
 
 <title>Home</title>
-<h1>Benvenuto </h1>
+<h1> Benvenuto </h1>
 <!-- Bootstrap core CSS -->
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 

@@ -76,7 +76,6 @@ public class UserController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginControl(HttpServletRequest request) {
-
 		session = request.getSession();
 		final String username = request.getParameter("username");
 		final String password = request.getParameter("password");
