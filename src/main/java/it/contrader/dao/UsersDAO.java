@@ -6,6 +6,6 @@ import it.contrader.model.User;
 	
 	public interface UsersDAO extends CrudRepository<User, Integer>{
 		public User findUserByUsernameAndPassword(String username, String password);
-		public User findUserById(int id);
+		//public User findUserById(int id);
 		public List<User> findAll();
 }

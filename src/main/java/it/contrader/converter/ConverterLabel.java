@@ -19,7 +19,9 @@ public class ConverterLabel {
 			label.setIdLabel(labeldto.getIdLabel());
 			label.setName(labeldto.getName());
 			User user = new User();
-			User.setIdLabel(labeldto.getFktouser());
+			user.setIdUser(labeldto.getFktouser());    //dai al nuovo utente come chiave primaria quella che è chiave esterna su label
+			
+			
 			
 			label.setUser(user);
 		}
