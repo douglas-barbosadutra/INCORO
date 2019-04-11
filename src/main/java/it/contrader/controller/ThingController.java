@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.contrader.dto.ThingDTO;
+import it.contrader.dto.UserDTO;
 //import it.contrader.dto.UserDTO;
 import it.contrader.services.ThingService;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/Label")
+@RequestMapping("/Thing")
 public class ThingController {
 	
 	private final ThingService thingService;
@@ -29,13 +30,14 @@ public class ThingController {
 	
 	private void visualThing(HttpServletRequest request){
 		List<ThingDTO> allThing = this.thingService.getListThingDTO();
-		request.setAttribute("allThingDTO", allThing);
+		System.out.println("lista things: "+allThing);
+		request.getSession().setAttribute("allThing", allThing);
 	}
 	
-	@RequestMapping(value = "/thingManagement", method = RequestMethod.GET)
+	@RequestMapping(value ="/thingManagement", method = RequestMethod.GET)
 	public String thingManagement(HttpServletRequest request) {
 		visualThing(request);
-		return "homeThing";		
+		return "showThing";		
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)

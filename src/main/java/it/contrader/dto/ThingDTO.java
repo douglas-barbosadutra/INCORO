@@ -9,8 +9,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-
-
 public class ThingDTO {
 	private Integer id;
 	private String code;
@@ -19,8 +17,4 @@ public class ThingDTO {
 	private String xml;
 	private Integer idUser;
 	private Integer idLabel;
-	
-	
-
-
 }

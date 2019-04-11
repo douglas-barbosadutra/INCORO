@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 import it.contrader.converter.ConverterThing;
 import it.contrader.dao.ThingRepository;
@@ -24,7 +24,7 @@ public class ThingService {
 	}
 
 	public List<ThingDTO> getListThingDTO() {
-		return ConverterThing.toListDTO((List<Thing>) thingRepository.findAll());
+		return ConverterThing.toListDTO ((List<Thing>)thingRepository.findAll());
 	}
 
 	public ThingDTO getThingDTOById(Integer id) {

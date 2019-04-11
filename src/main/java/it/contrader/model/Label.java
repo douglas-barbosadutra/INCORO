@@ -34,17 +34,12 @@ public class Label {
 	@Column(name = "name")
 	@NotNull
 	private String name;
-	
-
 
 	@OneToMany(mappedBy="label")
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<Thing> thing;
 	
-	
-
 	@ManyToOne
 	@JoinColumn(name="idUser")
 	private User user;
-	
 }

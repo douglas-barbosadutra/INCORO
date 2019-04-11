@@ -19,34 +19,13 @@ pageEncoding="ISO-8859-1" import="java.io.*, java.net.*"%>
 	</h2>
 	<h2>MENU</h2>
 	<ul>
-			<li>
-		  		<div class="dropdown">
-					<a href="ThingsServlet?action=openInsert" class="dropbtn">Inserisci Things</a>				
-				</div>
-	  		</li>
-			<li>
-		  		<div class="dropdown">
-					<a href="LabelsServlet?action=openInsert" class="dropbtn">Inserisci Labels</a>				
-				</div>
-	  		</li>
-	   		
-	 		<li>
-		  		<div class="dropdown">
-					<a href="ThingsController?action=visualThing" class="dropbtn">Lista things</a>				
-				</div>
-	  		</li>
-	  		<li>
-		  		<div class="dropdown">
-					<a href="LabelsServlet?action=openList" class="dropbtn">Lista labels</a>				
-				</div>
-	  		</li>
 	
-	  		<li>
+			<li>
 		  		<div class="dropdown">
-					<a href="UserServlet?action=homeLogs" class="dropbtn">Logout</a>				
+					<a href="/Thing/thingManagement" class="dropbtn"> Lista Thing </a>				
 				</div>
 	  		</li>
+
 		</ul>
-	</form>
 </body>
 </html>	
