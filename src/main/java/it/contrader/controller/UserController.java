@@ -21,6 +21,7 @@ public class UserController {
 
 	private final UserService userService;
 	private HttpSession session;
+	private int idUser;
 	
 	@Autowired
 	public UserController(UserService userService) {
@@ -29,23 +30,53 @@ public class UserController {
 
 	private void visualUser(HttpServletRequest request){
 		List<UserDTO> allUser = this.userService.getListaUserDTO();
-		request.setAttribute("allUserDTO", allUser);
+		request.getSession().setAttribute("allUserDTO", allUser);
+		
 	}
 	
 	@RequestMapping(value = "/userManagement", method = RequestMethod.GET)
 	public String userManagement(HttpServletRequest request) {
 		visualUser(request);
-		return "homeUser";		
+		return "homeAdmin";		
 	}
+	
+	@RequestMapping(value = "/reindirizzaCrea", method = RequestMethod.GET)
+	public String reindirizzaCrea (HttpServletRequest request) {
+		visualUser(request);
+		return "creaUser";		
+	}
+	
+	@RequestMapping(value = "/reindirizzaModifica", method = RequestMethod.GET)
+	public String reindirizzaModifica (HttpServletRequest request) {
+		idUser=Integer.parseInt(request.getParameter("id"));
+		visualUser(request);
+		return "modificaUser";		
+	}
+	
+	@RequestMapping(value = "/modifica", method = RequestMethod.GET)
+	public String modifica(HttpServletRequest request) {
+		//int id = Integer.parseInt(request.getParameter("id"));
+		String username = request.getParameter("username").toString();
+		String password = request.getParameter("password").toString();
+		int type = Integer.parseInt(request.getParameter("type"));
+		UserDTO userObj = new UserDTO(idUser, username, password, type);
+		//UserDTO userObj = new UserDTO(0, username, password, type,"");
+		userService.updateUser(userObj);
+		visualUser(request);
+		return "homeAdmin";
+	}
+	
+	
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("id"));
-		request.setAttribute("id", id);
+		//request.setAttribute("id", id);
 		this.userService.deleteUserById(id);
 		visualUser(request);
-		return "homeUser";
+		return "homeAdmin";
 	}
+	
 	
 	@RequestMapping(value = "/crea", method = RequestMethod.GET)
 	public String insert(HttpServletRequest request) {
@@ -71,24 +102,34 @@ public class UserController {
 		//UserDTO userObj = new UserDTO(0, username, password, type,"");
 		userService.insertUser(userObj);
 		visualUser(request);
-		return "homeUser";
+		return "homeAdmin";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginControl(HttpServletRequest request) {
+
 		session = request.getSession();
 		final String username = request.getParameter("username");
 		final String password = request.getParameter("password");
+		try {
+			
+		
 		final UserDTO userDTO = userService.getByUsernameAndPassword(username, password);
 		final int type = userDTO.getType();
 		if (userDTO != null) {
 			session.setAttribute("utenteCollegato", userDTO);
 			if (type == 0) {
+				visualUser(request);
 				return "homeAdmin";
 			} else if (type ==1) {
 				return "homeBO";
 			}
 		}
-		return "index";
-	}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "loginError";
+
+}
 }

@@ -18,14 +18,11 @@ public class ConverterThing {
 			thingDTO.setImage(thing.getImage());		
 			thingDTO.setName(thing.getName());
 			thingDTO.setXml(thing.getXml());
-			// ultima modifica
 			thingDTO.setIdUser(thing.getUser().getIdUser());
 			thingDTO.setIdLabel(thing.getLabel().getIdLabel());
 		}
 		return thingDTO;
 	}
-	
-	
 	
 	public static Thing toEntity(ThingDTO thingDTO) {
 		Thing thing = null;
@@ -36,12 +33,14 @@ public class ConverterThing {
 			thing.setImage(thingDTO.getImage());
 			thing.setName(thingDTO.getName());
 			thing.setXml(thingDTO.getXml());
-			// ultima modifica
+			
 			User user = new User();
 			user.setIdUser(thingDTO.getIdUser());
 			Label label = new Label();
 			label.setIdLabel(thingDTO.getIdLabel());
 			
+			thing.setUser(user);
+			thing.setLabel(label);
 		}
 		return thing;
 	}

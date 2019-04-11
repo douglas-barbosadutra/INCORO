@@ -11,15 +11,7 @@ import lombok.ToString;
 @ToString
 
 public class LabelDTO {
-	
 	private Integer idLabel;
-
 	private String name;
-	
-	private Integer fktouser;
-	
-	
-	
-	
-	
+	private Integer idUser;
 }

@@ -16,7 +16,6 @@ public class ConverterUser {
 			userDTO.setUsername(user.getUsername());
 			userDTO.setPassword(user.getPassword());
 			userDTO.setType(user.getType());
-			//userDTO.setEmail(user.get());
 		}
 		return userDTO;
 	}
@@ -29,8 +28,6 @@ public class ConverterUser {
 			user.setUsername(userDTO.getUsername());
 			user.setPassword(userDTO.getPassword());
 			user.setType(userDTO.getType());
-			//user.setEmail(userDTO.getEmail());
-			//user.setRuolo(userDTO.getRuolo());
 		}
 		return user;
 	}

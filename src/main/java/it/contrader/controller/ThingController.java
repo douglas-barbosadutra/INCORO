@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.contrader.dto.ThingDTO;
 import it.contrader.dto.UserDTO;
-//import it.contrader.dto.UserDTO;
 import it.contrader.services.ThingService;
 
 import java.util.List;
@@ -22,6 +21,7 @@ public class ThingController {
 	
 	private final ThingService thingService;
 	private HttpSession session;
+	private int idThing;
 	
 	@Autowired 
 	public ThingController(ThingService thingService) {
@@ -30,10 +30,10 @@ public class ThingController {
 	
 	private void visualThing(HttpServletRequest request){
 		List<ThingDTO> allThing = this.thingService.getListThingDTO();
-		System.out.println("lista things: "+allThing);
+		//System.out.println("lista things: " + allThing);
 		request.getSession().setAttribute("allThing", allThing);
 	}
-	
+		
 	@RequestMapping(value ="/thingManagement", method = RequestMethod.GET)
 	public String thingManagement(HttpServletRequest request) {
 		visualThing(request);
@@ -43,17 +43,51 @@ public class ThingController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("id"));
-		request.setAttribute("id", id);
+		request.getSession().setAttribute("id", id);
 		this.thingService.deleteThingById(id);
 		visualThing(request);
-		return "homeThing";
+		return "showThing";
 	}
 	
 	@RequestMapping(value = "/crea", method = RequestMethod.GET)
 	public String insert(HttpServletRequest request) {
-		visualThing(request);
-		request.setAttribute("option", "insert");
+		//visualThing(request);
+		//request.setAttribute("option", "insert");
 		return "creaThing";
+	}
+
+	@RequestMapping(value = "/creaThing", method = RequestMethod.POST)
+	public String insertThing(HttpServletRequest request) {
+		String code = request.getParameter("code").toString();
+		String image = request.getParameter("image").toString();
+		String name = request.getParameter("name").toString();
+		String xml = request.getParameter("xml").toString();
+		Integer idLabel = Integer.parseInt(request.getParameter("idLabel"));
+		Integer idUser = Integer.parseInt(request.getParameter("idUser"));
+		ThingDTO thingObj = new ThingDTO(0, code, image, name, xml, idLabel, idUser);
+		thingService.insertThing(thingObj);
+		//visualThing(request);
+		return "homeBO";
+	}
+	
+	@RequestMapping(value="/openUpdateThing")
+	public String openUpdateThing(HttpServletRequest request) {
+		idThing = Integer.parseInt(request.getParameter("id"));
+		System.out.println("id: "+idThing);
+		return "thingUpdate";
+	}
+	
+	@RequestMapping(value="/updateThing", method= RequestMethod.POST)
+	public String updateThing(HttpServletRequest request) {
+		String code = request.getParameter("code");
+		String image = request.getParameter("image");
+		String name = request.getParameter("name");
+		String xml = request.getParameter("xml");
+		Integer idLabel = Integer.parseInt(request.getParameter("idLabel"));
+		Integer idUser = Integer.parseInt(request.getParameter("idUser"));
+		ThingDTO thingDTO = new ThingDTO(idThing, code, image, name, xml, idLabel, idUser);
+		thingService.insertThing(thingDTO);
+		return "homeBO";
 	}
 	
 	@RequestMapping(value = "/cercaThing", method = RequestMethod.GET)
@@ -61,21 +95,6 @@ public class ThingController {
 		final String content = request.getParameter("search");
 		List<ThingDTO> allThing = this.thingService.findThingDTOByName(content);
 		request.setAttribute("allThingDTO", allThing);
-		return "homeThing";
-	}
-	
-	@RequestMapping(value = "/creaThing", method = RequestMethod.POST)
-	public String insertThing(HttpServletRequest request) {
-		String code = request.getParameter("code").toString();
-		String image = request.getParameter("image").toString();
-		String name = request.getParameter("name").toString();
-		String xml = request.getParameter("xml").toString();
-		Integer idLabel = Integer.parseInt(request.getParameter("idLabel").toString());
-		Integer idUser = Integer.parseInt(request.getParameter("idUser").toString());
-		ThingDTO thingObj = new ThingDTO(0, code, image, name, xml, idLabel, idUser);
-		//UserDTO userObj = new UserDTO(0, username, password, type,"");
-		thingService.insertThing(thingObj);
-		visualThing(request);
 		return "homeThing";
 	}
 }

@@ -4,31 +4,25 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<% out.println(" prova di funzionamento");%>
-	<br>
-	<br>
+	<% out.println("LISTA THING");%>
 	
 	<table>
-		
-
 	      <tr>
-				        <th> ID thing</th>
-				        <th> code </th>
-				        <th> image </th>
-				        <th> name</th>
-				        <th> xml </th>
-				        <th> id label</th>
-				        <th> id user</th>
-      	</tr>
-	
-	<tbody>
+			<th> ID thing </th>
+			<th> Code </th>
+			<th> Image </th>
+			<th> Name </th>
+			<th> Xml </th>
+			<th> ID Label </th>
+			<th> ID User </th>
+      	 </tr>
+		<tbody>
 				    	<%
 							List<ThingDTO> things = (List<ThingDTO>) session.getAttribute("allThing");
 							if ( things != null ){
 								for(int i = 0; i < things.size(); i++)
 								{
 						%>
-
 								<tr>
 
 									<th><%out.println(things.get(i).getId()); %></th>
@@ -45,13 +39,17 @@
 									
 									<th><%out.println(things.get(i).getIdUser()); %></th>
 									
+									<th> <a href="/Thing/openUpdateThing?id=<%=things.get(i).getId()%>"> Modifica </a> </th>
 									
+									<th> <a href="/Thing/delete?id=<%=things.get(i).getId()%>"> Elimina  </a> </th>
+									
+															
 								</tr> <%
 
 								}
 							}
 						%>	 
-	</tbody>
+		</tbody>
 	</table>
 </body>
 </html>

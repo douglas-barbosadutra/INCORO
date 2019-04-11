@@ -18,14 +18,27 @@ pageEncoding="ISO-8859-1" import="java.io.*, java.net.*"%>
 	
 	</h2>
 	<h2>MENU</h2>
-	<ul>
-	
+	<ul>	
+			<li>
+		  		<div class="dropdown">
+					<a href="/Thing/crea" class="dropbtn"> Inserisci Thing </a>				
+				</div>
+	  		</li> 
 			<li>
 		  		<div class="dropdown">
 					<a href="/Thing/thingManagement" class="dropbtn"> Lista Thing </a>				
 				</div>
 	  		</li>
-
+	  		 <li>
+		  		<div class="dropdown">
+					<a href="/Label/labelManagement" class="dropbtn"> Lista Label </a>				
+				</div>
+	  		</li>
+	  		<li>
+		  		<div class="dropdown">
+					<a href="/Label/crea" class="dropbtn"> Inserisci Label </a>				
+				</div>
+	  		</li>
 		</ul>
 </body>
 </html>	

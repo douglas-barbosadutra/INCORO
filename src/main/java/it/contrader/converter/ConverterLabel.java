@@ -16,7 +16,8 @@ public class ConverterLabel {
 			label.setIdLabel(labeldto.getIdLabel());
 			label.setName(labeldto.getName());
 			User user = new User();
-			user.setIdUser(labeldto.getFktouser());    //dai al nuovo utente come chiave primaria quella che è chiave esterna su label			
+			user.setIdUser(labeldto.getIdUser());   
+			//dai al nuovo utente come chiave primaria quella che è chiave esterna su label			
 			label.setUser(user);
 		}
 		return label;
@@ -28,6 +29,7 @@ public class ConverterLabel {
 			labeldto = new LabelDTO();
 			labeldto.setIdLabel(label.getIdLabel());
 			labeldto.setName(label.getName());	
+			labeldto.setIdUser(label.getUser().getIdUser());
 		}
 		return labeldto;		
 	}
@@ -40,5 +42,15 @@ public class ConverterLabel {
 			}
 		}
 		return listLabelDTO;
+	}
+	
+	public static List<Label> toListEntity(List<LabelDTO> listLabelDTO){
+		List<Label> listLabel = new ArrayList<>();
+		if (!listLabelDTO.isEmpty()) {
+			for(LabelDTO labelDTO : listLabelDTO) {
+				listLabel.add(ConverterLabel.convertToEntity(labelDTO));
+			}
+		}
+		return listLabel;
 	}
 }

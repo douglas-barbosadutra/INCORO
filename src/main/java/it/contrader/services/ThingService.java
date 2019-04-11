@@ -30,9 +30,9 @@ public class ThingService {
 	public ThingDTO getThingDTOById(Integer id) {
 		return ConverterThing.toDTO(thingRepository.findById(id).get());
 	}
-	
 
 	public boolean insertThing(ThingDTO thingDTO) {
+		
 		return thingRepository.save(ConverterThing.toEntity(thingDTO)) != null;
 	}
 
@@ -45,7 +45,6 @@ public class ThingService {
 	}
 	
 	public List<ThingDTO> findThingDTOByName(String name) {
-		
 		final List<Thing> list = thingRepository.findAllByName(name);
 		final List<ThingDTO> thingDTOs = new ArrayList<>();
 		list.forEach(i -> thingDTOs.add(ConverterThing.toDTO(i)));
