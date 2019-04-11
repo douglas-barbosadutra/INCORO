@@ -16,7 +16,7 @@ public class LabelDTO {
 
 	private String name;
 	
-	private Integer fktouser;
+	private Integer idUser;
 	
 	
 	
