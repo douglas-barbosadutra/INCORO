@@ -9,12 +9,12 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>LOGIN PAGE</title>
+<title>HOME ADMIN</title>
 
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <!-- Custom styles for this template -->
-<link href="prova.css" rel="stylesheet" type="text/css">
+<link href="/prova.css" rel="stylesheet" type="text/css">
 </head>
 
 <body class="text-center">
@@ -60,8 +60,9 @@
 				</div>
       </div>
 			<p class="link-row">
-        <a href="#" class="btn btn-primary my-2">Main call to action</a>
-        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        <a href="#" class="btn btn-primary my-2 t-action">Main call to action</a>
+        <a href="#" class="btn btn-secondary my-2 t-action">Secondary action</a>
+        <a href="#" class="btn btn-primary my-2 t-action">Terza action</a>
       </p>
     </div>
 		<div class="col-md-8 themed-grid-col data-header" >
