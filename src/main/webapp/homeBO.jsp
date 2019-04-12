@@ -38,6 +38,8 @@ pageEncoding="ISO-8859-1" import="java.io.*, java.net.*"%>
 					<li class="btMenu">
 						<a href="/Label/crea?idUser=<%=userDTO.getIdUser() %>" class="btn btn-primary t-action" >Inserisci Label</a>
 					</li>
+					
+					
 
 					<li class="btMenu">
 						<a href="/Home/logout" class="btn btn-primary t-action" >Logout</a>

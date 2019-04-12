@@ -26,13 +26,13 @@ public class TableToDTD {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/incorojava2", "root", "root");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/incorospring", "root", "root");
 		} catch (Exception e) {
 			System.out.println(e);
 			System.exit(0);
 		}
 
-		pstmt = con.prepareStatement("select * from things");
+		pstmt = con.prepareStatement("select * from thing");
 
 		rs = pstmt.executeQuery();
 
