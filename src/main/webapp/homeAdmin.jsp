@@ -37,6 +37,13 @@
 				<button class="btn btn-lg btn-primary btn-block" type="submit" >Insert
 						User</button>
 						</form>
+						
+						<form action ="/XML/export">
+			<button class="btn btn-lg btn-primary btn-block" type="submit"
+			 onclick="return confirm('File esportato con successo!')"> Esporta File in XML
+		
+			</button>
+		</form>
 
 					<form action="/Home/logout"> 
 				<button class="btn btn-lg btn-primary btn-block" type="submit" >Logout

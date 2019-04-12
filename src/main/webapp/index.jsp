@@ -25,8 +25,8 @@
   </div>
   <div class="column content" id="visualizzazione">
     <h1>PROJECT NAME</h1>
-    <p>we actually don't know what to insert in this space xD</p>
-    <img class="doge" src="doge.jpg" width="300" height="300">
+    <p>ROMAAAAAAAA</p>
+    <img class="doge" src="immagineINCORO.jpg" width="450" height="300">
   </div>
   <div class="column menu" id="menu-destra">
     <form class="form-signin" action="/User/login" method="post">
