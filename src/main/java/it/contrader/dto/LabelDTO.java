@@ -14,4 +14,5 @@ public class LabelDTO {
 	private Integer idLabel;
 	private String name;
 	private Integer idUser;
+	
 }

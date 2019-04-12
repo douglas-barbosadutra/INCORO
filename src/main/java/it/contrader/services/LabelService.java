@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.contrader.converter.ConverterLabel;
+
 import it.contrader.converter.ConverterUser;
 import it.contrader.dao.LabelRepository;
 import it.contrader.dto.LabelDTO;
 import it.contrader.dto.UserDTO;
+
 import it.contrader.model.Label;
 
 @Service
@@ -57,6 +59,7 @@ public class LabelService {
 		return listLabelDTO;
 	}
 	
+
 	public List<LabelDTO> findLabelbyUser (int idUser){
 		UserDTO userDTO = new UserDTO();
 		userDTO.setIdUser(idUser);
@@ -68,5 +71,6 @@ public class LabelService {
 		return listLabelDTO;
 	}
 	
+
 
 }
