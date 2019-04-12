@@ -20,6 +20,11 @@
           <button class="btn btn-lg btn-primary btn-block" type="submit"> Inserisci Thing </button>
         </li>
       </ul>-->
+      
+      <form action="/Thing/indietro" method="get">
+	    <input type="submit" value="HOME BO" name="/Thing/indietro">
+	</form>
+	
 	<form action="/Thing/creaThing" method="post">
 			
 					

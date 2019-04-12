@@ -54,7 +54,7 @@ pageEncoding="ISO-8859-1" import="java.io.*, java.net.*"%>
 	      </ul>
 	  </div>
 		<div class="column content" id="visualizzazione">
-			
+
 		</div>
 	</div>
 </body>
