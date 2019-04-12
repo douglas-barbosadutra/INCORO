@@ -42,7 +42,7 @@ pageEncoding="ISO-8859-1" import="java.io.*, java.net.*"%>
 	  		</li>
 	  		<li>
 		  		<div class="dropdown">
-					<a href="/Label/logout" class="dropbtn"> Logout </a>				
+					<a href="/Home/logout" class="dropbtn"> Logout </a>				
 				</div>
 	  		</li>
 		</ul>

@@ -8,6 +8,10 @@
 <title>JSP  pagina per l'aggiornamento delle thing</title>
 </head>
 <body>
+
+<form action="/Thing/indietro" method="get">
+	    <input type="submit" value="HOME BO" name="/Thing/indietro">
+	</form>
 	
 	<form action="/Thing/updateThing" method="post">
 			

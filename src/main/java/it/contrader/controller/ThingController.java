@@ -40,6 +40,15 @@ public class ThingController {
 		List<ThingDTO> allThing = this.thingService.getListThingDTO();
 		//System.out.println("lista things: " + allThing);
 		request.getSession().setAttribute("allThing", allThing);
+		
+		
+	}
+	
+	@RequestMapping(value = "/indietro", method = RequestMethod.GET)
+	public String indietro(HttpServletRequest request) {
+		
+		visualThing(request);
+		return "homeBO";
 	}
 		
 	@RequestMapping(value ="/thingManagement", method = RequestMethod.GET)

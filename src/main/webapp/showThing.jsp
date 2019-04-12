@@ -17,6 +17,10 @@
 			<th> ID User </th>
       	 </tr>
 		<tbody>
+		
+		<form action="/Thing/indietro" method="get">
+	    <input type="submit" value="HOME BO" name="/Thing/indietro">
+	</form>
 				    	<%
 							List<ThingDTO> things = (List<ThingDTO>) session.getAttribute("allThing");
 							if ( things != null ){
