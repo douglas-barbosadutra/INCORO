@@ -150,17 +150,16 @@ public class ThingController {
 	
 	private String createXmlFromDataThings(Integer i,String code, String string, Integer idUser2, Integer rIdLabel,String name) {
 		// TODO Auto-generated method stub
-		String result = new String();
+		String result = new String("<Thing>\n");
 		String pt = new String("c:\\webdata\\"+name+".xml");
-		result.concat("<Thing>\n");
-		result.concat("<id_thing>" + i.toString() + "</id_thing>\n");
-		result.concat("<code>"+ code +"</code>\n");
-		result.concat("<image>"+ string +"</image>\n");
-		result.concat("<name>"+name+"</name>\n");
-		result.concat("<xml>"+pt+"</xml>\n");
-		result.concat("<id_label>"+ rIdLabel.toString()+"</id_label>\n");
-		result.concat("<id_user>" + idUser2.toString()+"</id_user>\n");
-		result.concat("</Thing>\n");
+		result = result.concat("<id_thing>" + i.toString() + "</id_thing>\n");
+		result =result.concat("<code>"+ code +"</code>\n");
+		result =result.concat("<image>"+ string +"</image>\n");
+		result =result.concat("<name>"+name+"</name>\n");
+		result =result.concat("<xml>"+pt+"</xml>\n");
+		result =result.concat("<id_label>"+ rIdLabel.toString()+"</id_label>\n");
+		result =result.concat("<id_user>" + idUser2.toString()+"</id_user>\n");
+		result =result.concat("</Thing>\n");
 		try {
 			Files.write(Paths.get(pt), result.getBytes());
 		} catch (IOException e) {
