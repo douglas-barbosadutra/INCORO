@@ -9,9 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import it.contrader.dao.LabelRepository;
 import it.contrader.dto.ThingDTO;
+import it.contrader.dto.LabelDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.services.ThingService;
+import it.contrader.services.LabelService;
 
 import java.util.List;
 
@@ -20,13 +23,18 @@ import java.util.List;
 public class ThingController {
 	
 	private final ThingService thingService;
+	private final LabelService ls;
 	private HttpSession session;
 	private int idThing;
+	private int idUser;
 	
 	@Autowired 
-	public ThingController(ThingService thingService) {
+	public ThingController(ThingService thingService, LabelService ls) {
 		this.thingService = thingService;
+		this.ls=ls;
 	}
+	
+	
 	
 	private void visualThing(HttpServletRequest request){
 		List<ThingDTO> allThing = this.thingService.getListThingDTO();
@@ -51,6 +59,11 @@ public class ThingController {
 	
 	@RequestMapping(value = "/crea", method = RequestMethod.GET)
 	public String insert(HttpServletRequest request) {
+		idUser = Integer.parseInt(request.getParameter("idUser"));
+		
+		List<LabelDTO> labelDTO = ls.findLabelbyUser(idUser);
+		request.getSession().setAttribute("list", labelDTO);
+	
 		//visualThing(request);
 		//request.setAttribute("option", "insert");
 		return "creaThing";
@@ -62,9 +75,12 @@ public class ThingController {
 		String image = request.getParameter("image").toString();
 		String name = request.getParameter("name").toString();
 		String xml = request.getParameter("xml").toString();
-		Integer idLabel = Integer.parseInt(request.getParameter("idLabel"));
-		Integer idUser = Integer.parseInt(request.getParameter("idUser"));
-		ThingDTO thingObj = new ThingDTO(0, code, image, name, xml, idLabel, idUser);
+		String nameLabelR = request.getParameter("idLabel");
+		String nameLabel = nameLabelR.replaceAll("\\s+","");
+		Integer idLabel = Integer.parseInt(nameLabel);
+		//Integer idLabel = Integer.parseInt(request.getParameter("idLabel").toString());
+		//Integer idUser = Integer.parseInt(request.getParameter("idUser"));
+		ThingDTO thingObj = new ThingDTO(0, code, image, name, xml, idUser, idLabel);
 		thingService.insertThing(thingObj);
 		//visualThing(request);
 		return "homeBO";
@@ -73,6 +89,8 @@ public class ThingController {
 	@RequestMapping(value="/openUpdateThing")
 	public String openUpdateThing(HttpServletRequest request) {
 		idThing = Integer.parseInt(request.getParameter("id"));
+		List<LabelDTO> labelDTO = ls.findLabelbyUser(idUser);
+		request.getSession().setAttribute("list", labelDTO);
 		System.out.println("id: "+idThing);
 		return "thingUpdate";
 	}
@@ -83,9 +101,11 @@ public class ThingController {
 		String image = request.getParameter("image");
 		String name = request.getParameter("name");
 		String xml = request.getParameter("xml");
-		Integer idLabel = Integer.parseInt(request.getParameter("idLabel"));
-		Integer idUser = Integer.parseInt(request.getParameter("idUser"));
-		ThingDTO thingDTO = new ThingDTO(idThing, code, image, name, xml, idLabel, idUser);
+		String nameLabelR = request.getParameter("idLabel");
+		String nameLabel = nameLabelR.replaceAll("\\s+","");
+		Integer idLabel = Integer.parseInt(nameLabel);
+		
+		ThingDTO thingDTO = new ThingDTO(idThing, code, image, name, xml, idUser,idLabel);
 		thingService.insertThing(thingDTO);
 		return "homeBO";
 	}

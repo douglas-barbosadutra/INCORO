@@ -37,7 +37,10 @@
 				<button class="btn btn-lg btn-primary btn-block" type="submit" >Insert
 						User</button>
 						</form>
-					
+					<form action="/Home/logout"> 
+				<button class="btn btn-lg btn-primary btn-block" type="submit" >Logout
+						</button>
+						</form>
 				</li>
 			</ul>
 		</div>

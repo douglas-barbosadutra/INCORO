@@ -13,7 +13,8 @@ pageEncoding="ISO-8859-1" import="java.io.*, java.net.*"%>
 <title>Business Owner view</title>
 </head>
 <body>
-	<h1>Benvenuto BO</h1>
+	<h1>Benvenuto <% UserDTO userDTO = (UserDTO)session.getAttribute("utenteCollegato");
+	out.println(userDTO.getUsername());%></h1>
 	<h2>
 	
 	</h2>
@@ -21,7 +22,7 @@ pageEncoding="ISO-8859-1" import="java.io.*, java.net.*"%>
 	<ul>	
 			<li>
 		  		<div class="dropdown">
-					<a href="/Thing/crea" class="dropbtn"> Inserisci Thing </a>				
+					<a href="/Thing/crea?idUser=<%=userDTO.getIdUser() %>" class="dropbtn"> Inserisci Thing </a>				
 				</div>
 	  		</li> 
 			<li>
@@ -31,12 +32,17 @@ pageEncoding="ISO-8859-1" import="java.io.*, java.net.*"%>
 	  		</li>
 	  		 <li>
 		  		<div class="dropdown">
-					<a href="/Label/labelManagement" class="dropbtn"> Lista Label </a>				
+					<a href="/Label/labelManagement?idUser=<%=userDTO.getIdUser() %>" class="dropbtn"> Lista Label </a>				
 				</div>
 	  		</li>
 	  		<li>
 		  		<div class="dropdown">
-					<a href="/Label/crea" class="dropbtn"> Inserisci Label </a>				
+					<a href="/Label/crea?idUser=<%=userDTO.getIdUser() %>" class="dropbtn"> Inserisci Label </a>				
+				</div>
+	  		</li>
+	  		<li>
+		  		<div class="dropdown">
+					<a href="/Label/logout" class="dropbtn"> Logout </a>				
 				</div>
 	  		</li>
 		</ul>
