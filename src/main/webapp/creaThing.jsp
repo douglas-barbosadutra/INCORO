@@ -25,7 +25,7 @@
 	    <input type="submit" value="HOME BO" name="/Thing/indietro">
 	</form>
 	
-	<form action="/Thing/creaThing" method="post">
+	<form action="/Thing/creaThing" method="post" enctype="multipart/form-data">
 			
 					
 					<div class="form-group">
@@ -36,7 +36,7 @@
 					
 					<div class="form-group">
 						<label class="col-form-label"> Image </label>
-						<input type="text" class="form-control" name="image">				
+						<input type="file" class="form-control" name="image">				
 						
 					</div>
 					

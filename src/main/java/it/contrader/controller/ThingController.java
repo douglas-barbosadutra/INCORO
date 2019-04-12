@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 //import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.contrader.dao.LabelRepository;
 import it.contrader.dto.ThingDTO;
@@ -16,6 +18,8 @@ import it.contrader.dto.UserDTO;
 import it.contrader.services.ThingService;
 import it.contrader.services.LabelService;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 @Controller
@@ -77,8 +81,49 @@ public class ThingController {
 		//request.setAttribute("option", "insert");
 		return "creaThing";
 	}
-
+	
 	@RequestMapping(value = "/creaThing", method = RequestMethod.POST)
+	public String insertThing(
+			@RequestParam MultipartFile image,
+			@RequestParam String name,
+			@RequestParam String code,
+			@RequestParam String xml,
+			@RequestParam String nameLbl) throws IOException {
+		/* 
+		 * Replace escape character & transformation in integer
+		 */
+		String nLblNoEsc = nameLbl.replaceAll("\\s+","");
+		Integer idLabel = Integer.parseInt(nLblNoEsc);
+		/*
+		 * idLabel come integer
+		 * -----
+		 * recupero filename dal file in input
+		 */
+		String imagePath = image.getOriginalFilename();
+		final String fileName = getFileName(imagePath);
+		final String path = new String ("c:\\webdata\\");
+		/*
+		 * salvo il nuovo file sul server
+		 */
+		OutputStream out = null;
+        byte barr[]= image.getBytes();
+
+		return null;
+		
+	}
+	
+	private String getFileName(String imagePath) {
+	        
+	        	String fn = imagePath.substring(0).trim().replace("\"", "");
+	        	int slashPos = fn.lastIndexOf( '\\' );
+	            if ( slashPos == -1 )
+	              slashPos = fn.lastIndexOf( '/' );
+	            return fn.substring( slashPos > 0 ? slashPos + 1 : 0 );
+	            //Paths.get(content).getFileName();
+	}
+	
+	/*
+	@  RequestMapping(value = "/creaThing", method = RequestMethod.POST)
 	public String insertThing(HttpServletRequest request) {
 		String code = request.getParameter("code").toString();
 		String image = request.getParameter("image").toString();
@@ -94,7 +139,7 @@ public class ThingController {
 		//visualThing(request);
 		return "homeBO";
 	}
-	
+	*/
 	@RequestMapping(value="/openUpdateThing")
 	public String openUpdateThing(HttpServletRequest request) {
 		idThing = Integer.parseInt(request.getParameter("id"));
