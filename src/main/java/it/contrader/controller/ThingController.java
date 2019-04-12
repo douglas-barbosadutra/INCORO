@@ -18,8 +18,14 @@ import it.contrader.dto.UserDTO;
 import it.contrader.services.ThingService;
 import it.contrader.services.LabelService;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.ResultSet;
 import java.util.List;
 
 @Controller
@@ -88,12 +94,12 @@ public class ThingController {
 			@RequestParam String name,
 			@RequestParam String code,
 			@RequestParam String xml,
-			@RequestParam String nameLbl) throws IOException {
+			@RequestParam String idLabel) throws IOException {
 		/* 
 		 * Replace escape character & transformation in integer
 		 */
-		String nLblNoEsc = nameLbl.replaceAll("\\s+","");
-		Integer idLabel = Integer.parseInt(nLblNoEsc);
+		String nLblNoEsc = idLabel.replaceAll("\\s+","");
+		Integer rIdLabel = Integer.parseInt(nLblNoEsc);
 		/*
 		 * idLabel come integer
 		 * -----
@@ -107,11 +113,65 @@ public class ThingController {
 		 */
 		OutputStream out = null;
         byte barr[]= image.getBytes();
-
-		return null;
+        int read = 0;
+       // final byte[] bytes = new byte[1024];
+        try {
+	        out = new FileOutputStream(new File(path + File.separator + fileName));
+	            out.write(barr, 0, barr.length);
+	    } catch (FileNotFoundException fne) {
+	        
+	    } finally {
+	        if (out != null) {
+	            out.close();
+	        }
+	    }
+        /*
+         * file creato e salvato
+         */
+        /*
+         * creazione xml
+         */
+        List<ThingDTO> work = thingService.getListThingDTO();
+        int i = 0;
+        for(ThingDTO x:work) {
+        	i++;
+        }
+        String modXml = createXmlFromDataThings(i,code,path+fileName,idUser,rIdLabel,name);
+        
+        
+        ThingDTO thingObj = new ThingDTO(0, code, path+fileName, name, modXml, idUser, rIdLabel);
+		thingService.insertThing(thingObj);
+		//visualThing(request);
+		
+		return "homeBO"; 
+		
 		
 	}
 	
+	private String createXmlFromDataThings(Integer i,String code, String string, Integer idUser2, Integer rIdLabel,String name) {
+		// TODO Auto-generated method stub
+		String result = new String();
+		String pt = new String("c:\\webdata\\"+name+".xml");
+		result.concat("<Thing>\n");
+		result.concat("<id_thing>" + i.toString() + "</id_thing>\n");
+		result.concat("<code>"+ code +"</code>\n");
+		result.concat("<image>"+ string +"</image>\n");
+		result.concat("<name>"+name+"</name>\n");
+		result.concat("<xml>"+pt+"</xml>\n");
+		result.concat("<id_label>"+ rIdLabel.toString()+"</id_label>\n");
+		result.concat("<id_user>" + idUser2.toString()+"</id_user>\n");
+		result.concat("</Thing>\n");
+		try {
+			Files.write(Paths.get(pt), result.getBytes());
+		} catch (IOException e) {
+			
+		}
+		
+		return pt;
+	}
+
+
+
 	private String getFileName(String imagePath) {
 	        
 	        	String fn = imagePath.substring(0).trim().replace("\"", "");
