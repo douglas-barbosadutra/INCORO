@@ -29,10 +29,6 @@
       </ul>-->
       
       </div>
-  <div class="column menu" id="menu-destra">
-    <form class="form-signin" action="/User/login" method="post">
-      <ul style="list-style: none;">
-        <li>
         
       
       
@@ -41,7 +37,7 @@
 	
       <form action="/Thing/indietro" method="get">
 	    <input type="submit" value="HOME BO" name="/Thing/indietro" href="/HomeBO" class="btn btn-primary t-action">
-					
+					</form>
 	
 	<form action="/Thing/creaThing" method="post" enctype="multipart/form-data">
 			
