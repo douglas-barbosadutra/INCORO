@@ -47,7 +47,7 @@ pageEncoding="ISO-8859-1" import="java.io.*, java.net.*"%>
 		<div class="column content" id="visualizzazione">
 			<h1>Benvenuto</h1>
 			<p><%	out.println(userDTO.getUsername());%></p>
-			<p>Probably we ill show some User statistics in this page, but actually we dont have such data</p>
+			<p>Probably we'll show some User statistics in this page, but actually we dont have such data</p>
 		</div>
 	</div>
 </body>
