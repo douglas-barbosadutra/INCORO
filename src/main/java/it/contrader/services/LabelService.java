@@ -14,6 +14,7 @@ import it.contrader.dto.LabelDTO;
 import it.contrader.dto.UserDTO;
 
 import it.contrader.model.Label;
+import it.contrader.model.User;
 
 @Service
 public class LabelService {
@@ -41,6 +42,14 @@ public class LabelService {
 		List<LabelDTO> listLabelDTO = ConverterLabel.toListDTO(listLabel);
 		return listLabelDTO;
 
+	}
+	
+	public List<LabelDTO> getLabelDTOByIdUser(int idUser){
+		User u = new User();
+		u.setIdUser(idUser);
+		List<Label> listLabel = (List<Label>) labelRepository.findAllByUser(u);
+		List<LabelDTO> listLabelDTO = ConverterLabel.toListDTO(listLabel);
+		return listLabelDTO;
 	}
 	
 	public LabelDTO getLabelDTOById(int id) {

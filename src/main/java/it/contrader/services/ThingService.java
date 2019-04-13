@@ -6,13 +6,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.contrader.converter.ConverterLabel;
+
 //import java.util.ArrayList;
 //import java.util.List;
 
 import it.contrader.converter.ConverterThing;
 import it.contrader.dao.ThingRepository;
+import it.contrader.dto.LabelDTO;
 import it.contrader.dto.ThingDTO;
+import it.contrader.model.Label;
 import it.contrader.model.Thing;
+import it.contrader.model.User;
 
 @Service
 public class ThingService {
@@ -42,6 +47,14 @@ public class ThingService {
 	
 	public void deleteThingById(Integer id) {
 		thingRepository.deleteById(id);
+	}
+	
+	public List<ThingDTO> getThingDTOByIdUser(int idUser){
+		User u = new User();
+		u.setIdUser(idUser);
+		List<Thing> listThing = (List<Thing>) thingRepository.findAllByUser(u);
+		List<ThingDTO> listThingDTO = ConverterThing.toListDTO(listThing);
+		return listThingDTO;
 	}
 	
 	public List<ThingDTO> findThingDTOByName(String name) {

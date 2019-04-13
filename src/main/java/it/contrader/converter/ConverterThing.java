@@ -18,8 +18,8 @@ public class ConverterThing {
 			thingDTO.setImage(thing.getImage());		
 			thingDTO.setName(thing.getName());
 			thingDTO.setXml(thing.getXml());
-			thingDTO.setIdUser(thing.getUser().getIdUser());
 			thingDTO.setIdLabel(thing.getLabel().getIdLabel());
+			thingDTO.setIdUser(thing.getUser().getIdUser());
 		}
 		return thingDTO;
 	}

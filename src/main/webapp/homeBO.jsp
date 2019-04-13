@@ -30,7 +30,7 @@ pageEncoding="ISO-8859-1" import="java.io.*, java.net.*"%>
 						<a href="/Thing/crea?idUser=<%=userDTO.getIdUser() %>" class="btn btn-primary t-action" >Inserisci Thing</a>
 	        </li>
 					<li class="btMenu">
-						<a href="/Thing/thingManagement" class="btn btn-primary t-action" >Lista Things </a>
+						<a href="/Thing/thingManagement?idUser=<%=userDTO.getIdUser() %>" class="btn btn-primary t-action" >Lista Things </a>
 					</li>
 					<li class="btMenu">
 						<a href="/Label/labelManagement?idUser=<%=userDTO.getIdUser() %>" class="btn btn-primary t-action" >Lista Label</a>

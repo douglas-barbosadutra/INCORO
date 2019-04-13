@@ -25,7 +25,11 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -47,7 +51,7 @@ public class ThingController {
 	
 	
 	private void visualThing(HttpServletRequest request){
-		List<ThingDTO> allThing = this.thingService.getListThingDTO();
+		List<ThingDTO> allThing = this.thingService.getThingDTOByIdUser(idUser);
 		//System.out.println("lista things: " + allThing);
 		request.getSession().setAttribute("allThing", allThing);
 		
@@ -63,7 +67,10 @@ public class ThingController {
 		
 	@RequestMapping(value ="/thingManagement", method = RequestMethod.GET)
 	public String thingManagement(HttpServletRequest request) {
-		visualThing(request);
+		idUser = Integer.parseInt(request.getParameter("idUser"));
+		List<ThingDTO> allThing = this.thingService.getThingDTOByIdUser(idUser);
+		//System.out.println("lista things: " + allThing);
+		request.getSession().setAttribute("allThing", allThing);
 		return "showThing";		
 	}
 	
@@ -199,6 +206,7 @@ public class ThingController {
 	*/
 	@RequestMapping(value="/openUpdateThing")
 	public String openUpdateThing(HttpServletRequest request) {
+		//idUser = Integer.parseInt(request.getParameter("idUser"));
 		idThing = Integer.parseInt(request.getParameter("id"));
 		List<LabelDTO> labelDTO = ls.findLabelbyUser(idUser);
 		request.getSession().setAttribute("list", labelDTO);
@@ -206,7 +214,142 @@ public class ThingController {
 		return "thingUpdate";
 	}
 	
-	@RequestMapping(value="/updateThing", method= RequestMethod.POST)
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/updateThing", method = RequestMethod.POST)
+	public String updateThing(
+			@RequestParam MultipartFile image,
+			@RequestParam String name,
+			@RequestParam String code,
+			@RequestParam String idLabel) throws IOException, SQLException {
+		/* 
+		 * Replace escape character & transformation in integer
+		 */
+		String nLblNoEsc = idLabel.replaceAll("\\s+","");
+		Integer rIdLabel = Integer.parseInt(nLblNoEsc);
+		/*
+		 * idLabel come integer
+		 * -----
+		 * recupero filename dal file in input
+		 */
+		String imagePath = image.getOriginalFilename();
+		final String fileName = getFileName(imagePath);
+		final String path = new String ("c:\\webdata\\");
+		/*
+		 * salvo il nuovo file sul server
+		 */
+		OutputStream out = null;
+        byte barr[]= image.getBytes();
+        int read = 0;
+       // final byte[] bytes = new byte[1024];
+        try {
+	        out = new FileOutputStream(new File(path + File.separator + fileName));
+	            out.write(barr, 0, barr.length);
+	    } catch (FileNotFoundException fne) {
+	        
+	    } finally {
+	        if (out != null) {
+	            out.close();
+	        }
+	    }
+        /*
+         * file creato e salvato
+         */
+        /*
+         * creazione xml
+         */
+        
+        
+        
+        //ThingDTO thingObj = new ThingDTO(0, code, path+fileName, name, "", idUser, rIdLabel);
+		//thingService.insertThing(thingObj);
+		
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/incorospring", "root", "root");
+		} catch (Exception e) {
+			System.out.println(e);
+			System.exit(0);
+		}
+
+
+		/*List<ThingDTO> work = thingService.getListThingDTO();
+        int i = 0;
+        for(ThingDTO x:work) {
+        	i++;
+        }
+        */
+        String modXml = updateXmlFromDataThings(idThing,code,path+fileName,idUser,rIdLabel,name);
+        
+        ThingDTO thing = new ThingDTO(idThing, code, path+fileName, name, modXml, idUser, rIdLabel);
+        
+        thingService.updateThing(thing);
+		
+		
+		
+		//visualThing(request);
+		
+		return "homeBO"; 
+		
+		
+	}
+	
+	private String updateXmlFromDataThings(Integer i,String code, String string, Integer idUser2, Integer rIdLabel,String name) {
+		// TODO Auto-generated method stub
+		i=idThing;
+		String result = new String("<Thing>\n");
+		String pt = new String("c:\\webdata\\"+name+".xml");
+		result = result.concat("<id_thing>" + i.toString() + "</id_thing>\n");
+		result =result.concat("<code>"+ code +"</code>\n");
+		result =result.concat("<image>"+ string +"</image>\n");
+		result =result.concat("<name>"+name+"</name>\n");
+		result =result.concat("<xml>"+pt+"</xml>\n");
+		result =result.concat("<id_label>"+ rIdLabel.toString()+"</id_label>\n");
+		result =result.concat("<id_user>" + idUser2.toString()+"</id_user>\n");
+		result =result.concat("</Thing>\n");
+		try {
+			Files.write(Paths.get(pt), result.getBytes());
+		} catch (IOException e) {
+			
+		}
+		
+		return pt;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*@RequestMapping(value="/updateThing", method= RequestMethod.POST)
 	public String updateThing(HttpServletRequest request) {
 		String code = request.getParameter("code");
 		String image = request.getParameter("image");
@@ -220,7 +363,7 @@ public class ThingController {
 		thingService.insertThing(thingDTO);
 		return "homeBO";
 	}
-	
+	*/
 	@RequestMapping(value = "/cercaThing", method = RequestMethod.GET)
 	public String cercaThing(HttpServletRequest request) {
 		final String content = request.getParameter("search");

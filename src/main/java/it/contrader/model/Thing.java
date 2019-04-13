@@ -40,8 +40,9 @@ public class Thing {
 	@JoinColumn(name = "idLabel")
 	private Label label;
 	
-	@Column(name = "code")
+	@Column(name = "code", columnDefinition = "LONGTEXT")
 	@NotNull
+	
 	private String code;
 	
 	@Column(name = "image")

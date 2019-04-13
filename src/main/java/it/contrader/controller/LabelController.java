@@ -30,7 +30,7 @@ public class LabelController {
 	}
 	
 	private void visualLabel(HttpServletRequest request) {
-		List<LabelDTO> allLabel = this.labelService.getListLabelDTO();
+		List<LabelDTO> allLabel = this.labelService.findLabelbyUser(idUser);
 		request.getSession().setAttribute("allLabel", allLabel);
 	}
 	
