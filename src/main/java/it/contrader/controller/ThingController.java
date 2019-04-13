@@ -93,7 +93,6 @@ public class ThingController {
 			@RequestParam MultipartFile image,
 			@RequestParam String name,
 			@RequestParam String code,
-			@RequestParam String xml,
 			@RequestParam String idLabel) throws IOException {
 		/* 
 		 * Replace escape character & transformation in integer
@@ -113,7 +112,6 @@ public class ThingController {
 		 */
 		OutputStream out = null;
         byte barr[]= image.getBytes();
-        int read = 0;
        // final byte[] bytes = new byte[1024];
         try {
 	        out = new FileOutputStream(new File(path + File.separator + fileName));
