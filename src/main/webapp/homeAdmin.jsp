@@ -20,6 +20,7 @@
 </head>
 
 <body class="text-center">
+<% UserDTO userDTO = (UserDTO)session.getAttribute("utenteCollegato"); %>
 	<div class="clearfix" id="corpo">
 		<div class="header" id="intestazione">
 			<h1>INCORO</h1>
@@ -27,8 +28,8 @@
 
 		<div class="column menu intero" id="menu-destra">
 			<ul style="list-style: none;">
-				<li><label>Benvenuto</label></li>
-				<li><label>ADMIN X</label></li>
+				<li><label>Benvenuto <%	out.println(userDTO.getUsername());%></label></li>
+				
 				<li></li>
 				<li></li>
 				<li><label>MENU</label></li>

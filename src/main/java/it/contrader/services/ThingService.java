@@ -32,8 +32,8 @@ public class ThingService {
 		return ConverterThing.toListDTO ((List<Thing>)thingRepository.findAll());
 	}
 
-	public ThingDTO getThingDTOById(Integer id) {
-		return ConverterThing.toDTO(thingRepository.findById(id).get());
+	public ThingDTO getThingDTOById(int id) {
+		return ConverterThing.toDTO(thingRepository.findThingByIdThing(id));
 	}
 
 	public boolean insertThing(ThingDTO thingDTO) {

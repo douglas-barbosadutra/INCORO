@@ -39,7 +39,7 @@
   </div>
   <div class="column content" id="visualizzazione">
 		<div class="col-md-8 themed-grid-col data-header" >
-      <form action="/User/erroreUser" method="get">
+      <form action="/User/erroreUserModifica" method="get">
 
       <h1>Username già esistente</h1>
 

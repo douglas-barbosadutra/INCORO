@@ -101,25 +101,13 @@ public class ThingController {
 			@RequestParam String name,
 			@RequestParam String code,
 			@RequestParam String idLabel) throws IOException {
-		/* 
-		 * Replace escape character & transformation in integer
-		 */
 		String nLblNoEsc = idLabel.replaceAll("\\s+","");
 		Integer rIdLabel = Integer.parseInt(nLblNoEsc);
-		/*
-		 * idLabel come integer
-		 * -----
-		 * recupero filename dal file in input
-		 */
 		String imagePath = image.getOriginalFilename();
 		final String fileName = getFileName(imagePath);
-		final String path = new String ("c:\\webdata\\");
-		/*
-		 * salvo il nuovo file sul server
-		 */
+		final String path = new String ("c:\\webdata\\images\\");
 		OutputStream out = null;
         byte barr[]= image.getBytes();
-       // final byte[] bytes = new byte[1024];
         try {
 	        out = new FileOutputStream(new File(path + File.separator + fileName));
 	            out.write(barr, 0, barr.length);
@@ -130,12 +118,7 @@ public class ThingController {
 	            out.close();
 	        }
 	    }
-        /*
-         * file creato e salvato
-         */
-        /*
-         * creazione xml
-         */
+
         List<ThingDTO> work = thingService.getListThingDTO();
         int i = 0;
         for(ThingDTO x:work) {
@@ -148,15 +131,14 @@ public class ThingController {
 		thingService.insertThing(thingObj);
 		//visualThing(request);
 		
-		return "homeBO"; 
-		
-		
+		return "homeBO"; 		
 	}
+	
 	
 	private String createXmlFromDataThings(Integer i,String code, String string, Integer idUser2, Integer rIdLabel,String name) {
 		// TODO Auto-generated method stub
 		String result = new String("<Thing>\n");
-		String pt = new String("c:\\webdata\\"+name+".xml");
+		String pt = new String("c:\\webdata\\xml\\"+name+".xml");
 		result = result.concat("<id_thing>" + i.toString() + "</id_thing>\n");
 		result =result.concat("<code>"+ code +"</code>\n");
 		result =result.concat("<image>"+ string +"</image>\n");
@@ -175,7 +157,6 @@ public class ThingController {
 	}
 
 
-
 	private String getFileName(String imagePath) {
 	        
 	        	String fn = imagePath.substring(0).trim().replace("\"", "");
@@ -183,7 +164,6 @@ public class ThingController {
 	            if ( slashPos == -1 )
 	              slashPos = fn.lastIndexOf( '/' );
 	            return fn.substring( slashPos > 0 ? slashPos + 1 : 0 );
-	            //Paths.get(content).getFileName();
 	}
 	
 	/*
@@ -204,19 +184,29 @@ public class ThingController {
 		return "homeBO";
 	}
 	*/
+	
+	
+	
+	
 	@RequestMapping(value="/openUpdateThing")
 	public String openUpdateThing(HttpServletRequest request) {
 		//idUser = Integer.parseInt(request.getParameter("idUser"));
 		idThing = Integer.parseInt(request.getParameter("id"));
 		List<LabelDTO> labelDTO = ls.findLabelbyUser(idUser);
 		request.getSession().setAttribute("list", labelDTO);
-		System.out.println("id: "+idThing);
+		
+		if (idThing != 0) {
+		ThingDTO thingDTO = thingService.getThingDTOById(idThing);
+		String nome = thingDTO.getName();
+		String code = thingDTO.getCode();
+		String image= thingDTO.getImage();
+		request.getSession().setAttribute("nome", nome);
+		request.getSession().setAttribute("code", code);
+		request.getSession().setAttribute("image", image);
+	
+		}
 		return "thingUpdate";
 	}
-	
-	
-	
-	
 	
 	
 	
@@ -228,26 +218,14 @@ public class ThingController {
 			@RequestParam String name,
 			@RequestParam String code,
 			@RequestParam String idLabel) throws IOException, SQLException {
-		/* 
-		 * Replace escape character & transformation in integer
-		 */
 		String nLblNoEsc = idLabel.replaceAll("\\s+","");
 		Integer rIdLabel = Integer.parseInt(nLblNoEsc);
-		/*
-		 * idLabel come integer
-		 * -----
-		 * recupero filename dal file in input
-		 */
 		String imagePath = image.getOriginalFilename();
 		final String fileName = getFileName(imagePath);
-		final String path = new String ("c:\\webdata\\");
-		/*
-		 * salvo il nuovo file sul server
-		 */
+		final String path = new String ("c:\\webdata\\images\\");
 		OutputStream out = null;
         byte barr[]= image.getBytes();
         int read = 0;
-       // final byte[] bytes = new byte[1024];
         try {
 	        out = new FileOutputStream(new File(path + File.separator + fileName));
 	            out.write(barr, 0, barr.length);
@@ -258,19 +236,7 @@ public class ThingController {
 	            out.close();
 	        }
 	    }
-        /*
-         * file creato e salvato
-         */
-        /*
-         * creazione xml
-         */
-        
-        
-        
-        //ThingDTO thingObj = new ThingDTO(0, code, path+fileName, name, "", idUser, rIdLabel);
-		//thingService.insertThing(thingObj);
-		
-		
+				
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -284,32 +250,18 @@ public class ThingController {
 		}
 
 
-		/*List<ThingDTO> work = thingService.getListThingDTO();
-        int i = 0;
-        for(ThingDTO x:work) {
-        	i++;
-        }
-        */
-        String modXml = updateXmlFromDataThings(idThing,code,path+fileName,idUser,rIdLabel,name);
-        
-        ThingDTO thing = new ThingDTO(idThing, code, path+fileName, name, modXml, idUser, rIdLabel);
-        
-        thingService.updateThing(thing);
-		
-		
-		
-		//visualThing(request);
-		
-		return "homeBO"; 
-		
-		
+        String modXml = updateXmlFromDataThings(idThing,code,path+fileName,idUser,rIdLabel,name);     
+        ThingDTO thing = new ThingDTO(idThing, code, path+fileName, name, modXml, idUser, rIdLabel);       
+        thingService.updateThing(thing);	
+		return "homeBO"; 	
 	}
+	
 	
 	private String updateXmlFromDataThings(Integer i,String code, String string, Integer idUser2, Integer rIdLabel,String name) {
 		// TODO Auto-generated method stub
 		i=idThing;
 		String result = new String("<Thing>\n");
-		String pt = new String("c:\\webdata\\"+name+".xml");
+		String pt = new String("c:\\webdata\\xml\\"+name+".xml");
 		result = result.concat("<id_thing>" + i.toString() + "</id_thing>\n");
 		result =result.concat("<code>"+ code +"</code>\n");
 		result =result.concat("<image>"+ string +"</image>\n");
@@ -326,24 +278,6 @@ public class ThingController {
 		
 		return pt;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

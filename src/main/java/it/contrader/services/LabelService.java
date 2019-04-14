@@ -29,6 +29,8 @@ public class LabelService {
 		return labelRepository.save(ConverterLabel.convertToEntity(labelDTO)) != null;
 	}
 	
+
+	
 	public boolean updateLabel(LabelDTO labelDTO) {
 		return labelRepository.save(ConverterLabel.convertToEntity(labelDTO)) != null;
 	}
@@ -53,7 +55,7 @@ public class LabelService {
 	}
 	
 	public LabelDTO getLabelDTOById(int id) {
-		Label label = labelRepository.findById(id).get();
+		Label label = labelRepository.findLabelByIdLabel(id);
 		LabelDTO labelDTO = ConverterLabel.convertToDto(label);
 		return labelDTO;
 	}

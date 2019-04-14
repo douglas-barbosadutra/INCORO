@@ -7,7 +7,7 @@ import it.contrader.model.User;
 import java.util.List;
 
 public interface ThingRepository extends CrudRepository <Thing, Integer> {
-	//public Thing findThingById(Integer id);
+	public Thing findThingByIdThing(int idThing);
 	public List<Thing> findAllByName(String name);
 	public List<Thing> findAllByUser(User u);
 }

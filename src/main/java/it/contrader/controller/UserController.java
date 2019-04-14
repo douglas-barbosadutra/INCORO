@@ -52,17 +52,32 @@ public class UserController {
 		return "modificaUser";
 	}
 
-	@RequestMapping(value = "/modifica", method = RequestMethod.GET)
+	@RequestMapping(value = "/modifica", method = RequestMethod.POST)
 	public String modifica(HttpServletRequest request) {
+		UserDTO userOldDTO = new UserDTO();
+		userOldDTO = userService.getUserDTOById(idUser);
 		// int id = Integer.parseInt(request.getParameter("id"));
 		String username = request.getParameter("username").toString();
+		if (userService.getByUsername(username) == null || userService.getByUsername(username).equals(userOldDTO)) {
 		String password = request.getParameter("password").toString();
-		int type = Integer.parseInt(request.getParameter("type"));
-		UserDTO userObj = new UserDTO(idUser, username, password, type);
+		int type = Integer.parseInt(request.getParameter("role"));
+		if ((username == null || username == "" ) || (password == null || password == "")) {
+		//UserDTO userObj = new UserDTO(idUser, username, password, type);
+		
 		// UserDTO userObj = new UserDTO(0, username, password, type,"");
-		userService.updateUser(userObj);
+		userService.updateUser(userOldDTO);
+		}
+		else {
+			UserDTO userObj = new UserDTO(idUser, username, password, type);
+			userService.updateUser(userObj);
+		}
+	
 		visualUser(request);
 		return "homeAdmin";
+	}
+		else {
+			return "userErrorModifica";
+		}
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
@@ -93,6 +108,13 @@ public class UserController {
 		return "creaUser";
 	}
 
+	
+	@RequestMapping(value = "/erroreUserModifica", method = RequestMethod.GET)
+	public String logoutUpdate(HttpServletRequest request) {
+		return "modificaUser";
+	}
+		
+		
 	@RequestMapping(value = "/creaUser", method = RequestMethod.POST)
 	public String insertUser(HttpServletRequest request) {
 
@@ -100,7 +122,7 @@ public class UserController {
 		if (userService.getByUsername(username) == null) {
 
 			String password = request.getParameter("password").toString();
-			int type = Integer.parseInt(request.getParameter("type"));
+			int type = Integer.parseInt(request.getParameter("role"));
 			UserDTO userObj = new UserDTO(0, username, password, type);
 			// UserDTO userObj = new UserDTO(0, username, password, type,"");
 			userService.insertUser(userObj);

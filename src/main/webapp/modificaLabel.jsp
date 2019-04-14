@@ -1,3 +1,4 @@
+<%@page import="it.contrader.services.LabelService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -18,6 +19,11 @@
 <link href="/prova.css" rel="stylesheet" type="text/css">
 </head>
 <body class="text-center">
+
+<% 
+String nome= (String) session.getAttribute("nome");
+
+%>
 	<div class="clearfix" id="corpo">
 		<div class="header" id="intestazione">
 			<h1>INCORO</h1>
@@ -37,7 +43,7 @@
      
         <!--    <% //Integer id = (Integer) session.getAttribute("id"); %> -->
      	
-     	<h4>Name: <input type = "text" id = "label" name ="name" placeholder = "inserisci name"></h4>
+     	<h4>Name: <input type = "text" id = "label" name ="name" value ="<%=nome%>" ></h4>
      	
      
      	

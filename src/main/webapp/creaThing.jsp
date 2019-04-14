@@ -38,7 +38,7 @@
                 <label>Benvenuto</label>
               </li>
               <li>
-                <label>ADMIN X</label>
+                
               </li>
               <li>
               </li>

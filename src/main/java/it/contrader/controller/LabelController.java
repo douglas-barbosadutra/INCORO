@@ -79,7 +79,14 @@ public class LabelController {
 	@RequestMapping(value = "/openUpdate", method = RequestMethod.GET)
 	public String openUpdate (HttpServletRequest request) {
 		idLabel=Integer.parseInt(request.getParameter("idLabel"));
-		visualLabel(request);
+		String nome = "";
+		if(idLabel != 0){
+            LabelDTO labelDTO = new LabelDTO();
+            labelDTO = labelService.getLabelDTOById(idLabel);
+            nome = labelDTO.getName();
+		request.getSession().setAttribute("nome", nome);}
+		
+		//visualLabel(request);
 		return "modificaLabel";	
 }
 	@RequestMapping(value = "/modifica", method = RequestMethod.GET)

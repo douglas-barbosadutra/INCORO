@@ -25,7 +25,7 @@
   </div>
   <div class="column content" id="visualizzazione">
     <h1>PROJECT NAME</h1>
-    <p>ROMAAAAAAAA</p>
+    <p>	BENVENUTI	</p>
     <img class="doge" src="immagineINCORO.jpg" width="450" height="300">
   </div>
   <div class="column menu" id="menu-destra">
@@ -45,9 +45,6 @@
         </li>
         <li>
           <button class="btn btn-lg btn-primary btn-block" type="submit">Signin</button>
-        </li>
-        <li>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
         </li>
       </ul>
     </form>

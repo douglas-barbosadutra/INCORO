@@ -15,6 +15,13 @@
 <title>JSP per la creazione delle thing</title>
 </head>
 <body>
+
+<% String nome = (String) session.getAttribute("nome");
+		String image = (String) session.getAttribute("image");
+		String code = (String) session.getAttribute("code");
+		String xml = (String) session.getAttribute("xml");
+		
+		%>
 	<!--
 	 <form class="" action="/Thing/creaThing" method="post">
       <ul style="list-style: none;">
@@ -38,7 +45,7 @@
                 <label>Benvenuto</label>
               </li>
               <li>
-                <label>ADMIN X</label>
+                
               </li>
               <li>
               </li>
@@ -61,7 +68,7 @@
   		          <div class="form-group">
                   <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
         						<label class="col-form-label"> Code </label>
-        						<textarea class="form-control" rows="6" name="code" placeholder="Code" required autofocus>
+        						<textarea class="form-control" rows="6" name="code" value="<%= code %>" required autofocus>
                     </textarea>
                   </p>
       					</div>
@@ -74,7 +81,7 @@
       					<div class="form-group">
                   <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
         						<label class="col-form-label"> Nome </label>
-        						<input type="text" class="form-control" name="name" placeholder="Nome" required autofocus>
+        						<input type="text" class="form-control" name="name" value="<%=nome %>" required autofocus>
                   </p>
       					</div>
                   <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
