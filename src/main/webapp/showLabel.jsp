@@ -1,9 +1,8 @@
-<%@ page import="java.util.List" %>
-<%@ page import="it.contrader.dto.LabelDTO" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page import="java.util.*"%>
+<%@ page import="it.contrader.dto.*"%>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport"
@@ -20,47 +19,88 @@
 <link href="/prova.css" rel="stylesheet" type="text/css">
 </head>
 <body class="text-center">
-	<div class="clearfix" id="corpo">
-		<div class="header" id="intestazione">
-			<h1>INCORO</h1>
-		</div>
-	<% out.println("LISTA LABEL");%>
-	
-	<table>
-	      <tr>
-			<th> ID label </th>
-			<th> Name </th>
-			<th> ID User </th>
-      	 </tr>
-		<tbody>
-				    	<%
-							List<LabelDTO> labels = (List<LabelDTO>) session.getAttribute("allLabel");
-							if ( labels != null ){
-								for(int i = 0; i < labels.size(); i++)
-								{
+	<%
+		UserDTO userDTO = (UserDTO) session.getAttribute("utenteCollegato");
+	%>
+	<div class="header" id="intestazione">
+		<h1>INCORO</h1>
+	</div>
+	<div class="column menu intero" id="menu-destra">
+		<ul style="list-style: none;">
+			<li style="text-align: center"><label>MENU</label></li>
+			<li class="btMenu"><a
+				href="/Thing/crea?idUser=<%=userDTO.getIdUser()%>"
+				class="btn btn-primary t-action">Inserisci Thing</a></li>
+			<li class="btMenu"><a
+				href="/Thing/thingManagement?idUser=<%=userDTO.getIdUser()%>"
+				class="btn btn-primary t-action">Lista Things </a></li>
+			<li class="btMenu"><a
+				href="/Label/labelManagement?idUser=<%=userDTO.getIdUser()%>"
+				class="btn btn-primary t-action">Lista Label</a></li>
+			<li class="btMenu"><a
+				href="/Label/crea?idUser=<%=userDTO.getIdUser()%>"
+				class="btn btn-primary t-action">Inserisci Label</a></li>
+			<li class="btMenu"><a href="/Home/logout"
+				class="btn btn-primary t-action">Logout</a></li>
+		</ul>
+	</div>
+	<div class="column content" id="visualizzazione">
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%
+					List<LabelDTO> labels = (List<LabelDTO>) session.getAttribute("allLabel");
+					if (labels != null) {
+						for (int i = 0; i < labels.size(); i++) {
+				%>
+				<tr>
+					<th scope="row">
+						<%
+							out.println(labels.get(i).getIdLabel());
 						%>
-								<tr>
+					</th>
+					<td>
+						<%
+							out.println(labels.get(i).getName());
+						%>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">Option</th>
+					<td>
+						<p class="link-row">
+							<a class="btn btn-primary my-2 t-action"
+								href="/Label/openUpdate?idLabel=<%=labels.get(i).getIdLabel()%>">
+								Modifica </a>
+						</p>
+					<td><a class="btn btn-secondary my-2 t-action"
+						href="/Label/delete?idLabel=<%=labels.get(i).getIdLabel()%>">
+							Elimina </a>
+					<td></td>
+				</tr>
+				<%
+					}
+					} else {
+				%>
+				<tr>
+					<th scope="row">!!!</th>
+					<td>nessun oggetto rilevato per l utente attivo
+					<td>
+				</tr>
 
-									<th><%out.println(labels.get(i).getIdLabel()); %></th>
-									
-									<th><%out.println(labels.get(i).getName()); %></th>
-									
-									<th><%out.println(labels.get(i).getIdUser()); %></th>
-									
-									<th> <a href="/Label/openUpdate?idLabel=<%=labels.get(i).getIdLabel()%>"> Modifica </a> </th>
-									
-									<th> <a href="/Label/delete?idLabel=<%=labels.get(i).getIdLabel()%>"> Elimina  </a> </th>
-									
-															
-								</tr> <%
+				<%
+					}
+				%>
+			</tbody>
+		</table>
 
-								}
-							}
-						%>	 
-		</tbody>
-	</table>
-	<form action="/Label/indietro" method="get">
-	    <input type="submit" value="HOME BO" name="/Label/indietro">
-	</form>
+	</div>
+
 </body>
 </html>

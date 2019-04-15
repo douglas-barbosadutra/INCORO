@@ -97,3 +97,10 @@
   margin-top: 1px;
   margin-bottom: 1px;
 }
+
+.tdCentered{
+	vertical-align: middle;
+}
+.optionTD{
+	padding: 1px;
+}

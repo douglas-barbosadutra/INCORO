@@ -20,7 +20,9 @@
 </head>
 
 <body class="text-center">
-<% UserDTO userDTO = (UserDTO)session.getAttribute("utenteCollegato"); %>
+	<%
+		UserDTO userDTO = (UserDTO) session.getAttribute("utenteCollegato");
+	%>
 	<div class="clearfix" id="corpo">
 		<div class="header" id="intestazione">
 			<h1>INCORO</h1>
@@ -28,40 +30,41 @@
 
 		<div class="column menu intero" id="menu-destra">
 			<ul style="list-style: none;">
-				<li><label>Benvenuto <%	out.println(userDTO.getUsername());%></label></li>
-				
+				<li><label>Benvenuto <%
+					out.println(userDTO.getUsername());
+				%></label></li>
+
 				<li></li>
 				<li></li>
 				<li><label>MENU</label></li>
 				<li>
-				<form action="/User/reindirizzaCrea"> 
-				<button class="btn btn-lg btn-primary btn-block" type="submit" >Insert
-						User</button>
-						</form>
-						
-						<form action ="/XML/export">
-			<button class="btn btn-lg btn-primary btn-block" type="submit"
-			 onclick="return confirm('File esportato con successo!')"> Esporta File in XML
-		
-			</button>
-		</form>
+					<form action="/User/reindirizzaCrea">
+						<button class="btn btn-lg btn-primary btn-block" type="submit">Insert
+							User</button>
+					</form>
 
-					<form action="/Home/logout"> 
-				<button class="btn btn-lg btn-primary btn-block" type="submit" >Logout
+					<form action="/XML/export">
+						<button class="btn btn-lg btn-primary btn-block" type="submit"
+							onclick="return confirm('File esportato con successo!')">
+							Esporta File in XML</button>
+					</form>
+
+					<form action="/Home/logout">
+						<button class="btn btn-lg btn-primary btn-block" type="submit">Logout
 						</button>
-						</form>
+					</form>
 
 				</li>
 			</ul>
 		</div>
-		
+
 		<div class="column content" id="visualizzazione">
 
-<%
-			List<UserDTO> users = (List<UserDTO>) session.getAttribute("allUserDTO");
-		if (!(users == null)){
-			for (int i = 0; i < users.size(); i++) {
-		%>
+			<%
+				List<UserDTO> users = (List<UserDTO>) session.getAttribute("allUserDTO");
+				if (!(users == null)) {
+					for (int i = 0; i < users.size(); i++) {
+			%>
 			<div class="col-md-8 themed-grid-col data-header">
 				<div class="pb-3">
 
@@ -92,18 +95,18 @@
 					</div>
 				</div>
 				<p class="link-row">
-					<a href="/User/delete?id=<% out.println(users.get(i).getIdUser()); %>" class="btn btn-primary my-2 t-action">
-					Elimina</a> 
-					<a href="/User/reindirizzaModifica?id=<% out.println(users.get(i).getIdUser()); %>" class="btn btn-secondary my-2 t-action">
-					Modifica</a> 
-					<a href="#" class="btn btn-primary my-2 t-action">Terza
-						action</a>
+					<a
+						href="/User/delete?id=<%out.println(users.get(i).getIdUser());%>"
+						class="btn btn-primary my-2 t-action"> Elimina</a> <a
+						href="/User/reindirizzaModifica?id=<%out.println(users.get(i).getIdUser());%>"
+						class="btn btn-secondary my-2 t-action"> Modifica</a> <a href="#"
+						class="btn btn-primary my-2 t-action">Terza action</a>
 				</p>
 			</div>
 
 			<%
 				}
-		}
+				}
 			%>
 
 		</div>
