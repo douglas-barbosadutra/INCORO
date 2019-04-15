@@ -64,6 +64,22 @@ public class ThingController {
 		visualThing(request);
 		return "homeBO";
 	}
+	
+	@RequestMapping(value = "/codeThing", method = RequestMethod.GET)
+	public String code(HttpServletRequest request) {
+		
+		visualThing(request);
+		return "homeBO";
+	}
+	
+	@RequestMapping(value = "/showCode", method = RequestMethod.GET)
+	public String codice(HttpServletRequest request) {
+		ThingDTO thingById;
+		thingById = this.thingService.getThingDTOById(Integer.parseInt(request.getParameter("id")));
+		request.getSession().setAttribute("codice",thingById.getCode());
+		
+		return "readCode";
+	}
 		
 	@RequestMapping(value ="/thingManagement", method = RequestMethod.GET)
 	public String thingManagement(HttpServletRequest request) {

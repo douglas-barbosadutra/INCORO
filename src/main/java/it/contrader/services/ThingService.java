@@ -63,4 +63,6 @@ public class ThingService {
 		list.forEach(i -> thingDTOs.add(ConverterThing.toDTO(i)));
 		return thingDTOs;	
 	}
+
+
 }

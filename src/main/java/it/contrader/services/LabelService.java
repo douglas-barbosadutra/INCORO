@@ -60,6 +60,14 @@ public class LabelService {
 		return labelDTO;
 	}
 	
+	public LabelDTO getLabelDTOByNameAndUser(String name, User user) {
+		Label label = labelRepository.findLabelByNameAndUser(name,user);
+		LabelDTO labelDTO = ConverterLabel.convertToDto(label);
+		return labelDTO;
+	}
+	
+	
+	
 	
 	public List<LabelDTO> findLabelDTOByName (String name){
 		List<Label> listLabel = labelRepository.findAllByName(name);

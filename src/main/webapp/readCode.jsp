@@ -12,12 +12,14 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <!-- Custom styles for this template -->
 
-<title>update label</title>
+<title>JSP per la creazione delle thing</title>
 </head>
 <body>
 
 <% String nome = (String) session.getAttribute("nome");
-		
+		String image = (String) session.getAttribute("image");
+		String code = (String) session.getAttribute("code");
+		String xml = (String) session.getAttribute("xml");
 		
 		%>
 	<!--
@@ -53,8 +55,8 @@
                 <label>MENU</label>
               </li>
               <li>
-                <form action="/Label/indietro" method="get">
-          	    <input type="submit" value="HOME BO" name="/Label/indietro" href="/HomeBO" class="btn btn-primary t-action">
+                <form action="/Thing/indietro" method="get">
+          	    <input type="submit" value="HOME BO" name="/Thing/indietro" href="/HomeBO" class="btn btn-primary t-action">
           			</form>
               </li>
             </ul>
@@ -62,19 +64,19 @@
 
         <div class="column content" id="visualizzazione">
           <div class="col-md-8 themed-grid-col data-header" >
-	           <form action="/Label/modifica" method="get" enctype="multipart/form-data">
-  		         
-      					
-      					<div class="form-group">
+	           <form action="/Thing/codeThing" method="get">
+  		          <div class="form-group">
                   <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-        						<label class="col-form-label"> Nome </label>
-        						<input type="text" class="form-control" name="name" value="<%=nome %>" required autofocus>
+        						<label class="col-form-label"> Code </label>
+        						<textarea class="form-control" rows="6" name="code" value="<%= code %>" required autofocus>
+                   	<% String codice  = (String) session.getAttribute("codice"); 
+                   	out.println(codice); %>
+                    </textarea>
                   </p>
       					</div>
-                
-               			
+      					
                   <p class="woocomerce-FormRow form-row">
-  					         <button type="submit" class="btn btn-lg btn-primary btn-block" name="action" value="modifica" >Aggiorna</button>
+  					         <button type="submit" class="btn btn-lg btn-primary btn-block" name="action"  >Indietro</button>
                  </p>
       </form>
 </body>

@@ -14,4 +14,5 @@ public interface LabelRepository extends CrudRepository<Label, Integer> {
     public Label findByThing(Thing s);
     public List<Label> findAllByName (String name);
     public Label findLabelByIdLabel(int idLabel);
+    public Label findLabelByNameAndUser(String nome, User user);
 }

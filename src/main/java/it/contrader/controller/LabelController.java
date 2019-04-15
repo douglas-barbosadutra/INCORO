@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import it.contrader.converter.ConverterUser;
 import it.contrader.dto.LabelDTO;
 import it.contrader.dto.UserDTO;
+import it.contrader.model.User;
 import it.contrader.services.LabelService;
 import it.contrader.services.UserService;
 
@@ -20,13 +22,15 @@ import java.util.List;
 public class LabelController {
 	
 	private final LabelService labelService;
+	private final UserService userService;
 	private HttpSession session;
 	private int idLabel;
 	private int idUser;
 	
 	@Autowired
-	public LabelController(LabelService labelService) {
+	public LabelController(LabelService labelService, UserService userService) {
 		this.labelService = labelService;
+		this.userService = userService;
 	}
 	
 	private void visualLabel(HttpServletRequest request) {
@@ -67,13 +71,26 @@ public class LabelController {
 	
 	@RequestMapping(value="/creaLabel", method = RequestMethod.POST)
 	private String insertLabel(HttpServletRequest request) {
+		UserDTO userDTO = new UserDTO();
+		userDTO = userService.getUserDTOById(idUser);
+		
+		
 		String name = request.getParameter("name").toString();
 		//Integer idUser = Integer.parseInt(request.getParameter("idUser"));
 		//int idUser = UserService.getUserLogged().getIdUser();
+		if (labelService.getLabelDTOByNameAndUser(name, ConverterUser.toEntity(userDTO)) == null) {
 		LabelDTO labelObj = new LabelDTO(0, name, idUser);
 		labelService.insertLabel(labelObj);
 		visualLabel(request);
-		return "homeBO";
+		return "showLabel";
+		} else {
+			return "labelError";
+		}
+	}
+	
+	@RequestMapping(value = "/erroreLabel", method = RequestMethod.GET)
+	public String logoutt(HttpServletRequest request) {
+		return "creaLabel";
 	}
 	
 	@RequestMapping(value = "/openUpdate", method = RequestMethod.GET)
@@ -89,16 +106,38 @@ public class LabelController {
 		//visualLabel(request);
 		return "modificaLabel";	
 }
+	
+	
 	@RequestMapping(value = "/modifica", method = RequestMethod.GET)
 	public String modifica(HttpServletRequest request) {
 		//int id = Integer.parseInt(request.getParameter("id"));
+		LabelDTO labelOldDTO =new LabelDTO();
+		UserDTO userDTO = new UserDTO();
+		userDTO = userService.getUserDTOById(idUser); 
+		labelOldDTO = labelService.getLabelDTOById(idLabel);
 		String name = request.getParameter("name").toString();
+		if (labelService.getLabelDTOByNameAndUser(name, ConverterUser.toEntity(userDTO)) == null || 
+				labelService.getLabelDTOByNameAndUser(name,ConverterUser.toEntity(userDTO)).equals(labelOldDTO)) {
+			
+	
 		LabelDTO labelObj = new LabelDTO(idLabel, name, idUser);
 		//UserDTO userObj = new UserDTO(0, username, password, type,"");
 		labelService.updateLabel(labelObj);
 		visualLabel(request);
-		return "homeBO";
+		return "showLabel";
+		}
+		else {
+			return "erroreLabelModifica";
+		}
 	}
+	
+	
+	
+	@RequestMapping(value = "/erroreLabelModifica", method = RequestMethod.GET)
+	public String logoutUpdate(HttpServletRequest request) {
+		return "modificaLabel";
+	}
+	
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout (HttpServletRequest request) {
