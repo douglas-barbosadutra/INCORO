@@ -26,7 +26,7 @@
   <div class="column content" id="visualizzazione">
     <h1>PROJECT NAME</h1>
     <p>	BENVENUTI	</p>
-    <img class="doge" src="immagineINCORO.jpg" width="450" height="300">
+    <img class="doge" src="/immagineINCORO.jpg" width="450" height="300">
   </div>
   <div class="column menu" id="menu-destra">
     <form class="form-signin" action="/User/login" method="post">

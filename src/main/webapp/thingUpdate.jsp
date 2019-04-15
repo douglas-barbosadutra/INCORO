@@ -61,6 +61,7 @@
               </li>
             </ul>
         </div>
+        
 
         <div class="column content" id="visualizzazione">
           <div class="col-md-8 themed-grid-col data-header" >
@@ -68,7 +69,8 @@
   		          <div class="form-group">
                   <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
         						<label class="col-form-label"> Code </label>
-        						<textarea class="form-control" rows="6" name="code" value="<%= code %>" required autofocus>
+        						<textarea class="form-control" rows="6" name="code" required autofocus>
+        						<%= code %>
                     </textarea>
                   </p>
       					</div>
