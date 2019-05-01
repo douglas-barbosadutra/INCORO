@@ -24,11 +24,11 @@ public class HardwareService {
 		this.hardwareRepository = hardwareRepository;
 	}
 
-	public List<HardwareDTO> getLisWorksDTO() {
+	public List<HardwareDTO> getAllHardware() {
 		return ConverterHardware.toListDTO((List<Hardware>)hardwareRepository.findAll());
 	}
 
-	public HardwareDTO getWorkDTOById(int id) {
+	public HardwareDTO getHardwareById(int id) {
 		return ConverterHardware.toDTO(hardwareRepository.findHardwareByIdHardware(id));
 	}
 
@@ -36,11 +36,11 @@ public class HardwareService {
 		return hardwareRepository.save(ConverterHardware.toEntity(hardwareDTO)) != null;
 	}
 
-	public boolean updateWorks(HardwareDTO hardwareDTO) {
+	public boolean updateHardware(HardwareDTO hardwareDTO) {
 		return hardwareRepository.save(ConverterHardware.toEntity(hardwareDTO)) != null;
 	}
 	
-	public void deleteWorksById(Integer id) {
+	public void deleteHardwareById(Integer id) {
 		hardwareRepository.deleteById(id);
 	}
 

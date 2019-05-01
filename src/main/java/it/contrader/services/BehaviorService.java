@@ -27,7 +27,7 @@ public class BehaviorService {
 		this.behaviorRepository = behaviorRepository;
 	}
 
-	public List<BehaviorDTO> getLisBehaviorDTO() {
+	public List<BehaviorDTO> getListBehaviorDTO() {
 		return ConverterBehavior.toListDTO((List<Behavior>)behaviorRepository.findAll());
 	}
 
