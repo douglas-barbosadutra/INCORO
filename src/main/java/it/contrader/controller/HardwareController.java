@@ -36,18 +36,14 @@ public class HardwareController {
 		return hardwareService.updateHardware(hardwareDTO);
 	}
 	
-	
 	@RequestMapping(value="/delete" , method= RequestMethod.DELETE)
 	public void delete(@RequestParam(value="idHardware") HardwareDTO hardwareDTO) {		
 		hardwareService.deleteHardwareById(hardwareDTO.getIdHardware());
 	}
 
-
-	
 	@RequestMapping(value="/showHardwares", method= RequestMethod.GET)
 	public List<HardwareDTO> showHardwares(){
 		return hardwareService.getAllHardware();
 	}
-	
 
 }

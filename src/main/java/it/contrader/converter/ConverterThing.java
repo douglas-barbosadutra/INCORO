@@ -15,7 +15,7 @@ public class ConverterThing {
 		ThingDTO thingDTO = null;
 		if (thing != null) {
 			thingDTO = new ThingDTO();
-			thingDTO.setId(thing.getIdThing());
+			thingDTO.setIdThing(thing.getIdThing());
 			thingDTO.setCode(thing.getCode());
 			thingDTO.setImage(thing.getImage());		
 			thingDTO.setName(thing.getName());
@@ -36,7 +36,7 @@ public class ConverterThing {
 		Thing thing = null;
 		if (thingDTO != null) {
 			thing = new Thing();
-			thing.setIdThing(thingDTO.getId());
+			thing.setIdThing(thingDTO.getIdThing());
 			thing.setCode(thingDTO.getCode());
 			thing.setImage(thingDTO.getImage());
 			thing.setName(thingDTO.getName());

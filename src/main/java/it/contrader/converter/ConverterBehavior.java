@@ -6,9 +6,7 @@ import java.util.List;
 import it.contrader.dto.ThingDTO;
 import it.contrader.dto.BehaviorDTO;
 import it.contrader.model.Behavior;
-
 import it.contrader.model.Thing;
-
 
 public class ConverterBehavior {
 	public static BehaviorDTO toDTO(Behavior behavior) {
@@ -57,5 +55,4 @@ public class ConverterBehavior {
 		}
 		return list;
 	}
-	
 }

@@ -36,18 +36,13 @@ public class BehaviorController {
 		return BehaviorService.updateBehavior(BehaviorDTO);
 	}
 	
-	
 	@RequestMapping(value="/delete" , method= RequestMethod.DELETE)
 	public void delete(@RequestParam(value="idBehavior") BehaviorDTO BehaviorDTO) {		
 		BehaviorService.deleteBehaviorById(BehaviorDTO.getIdBehavior());
 	}
 
-
-	
 	@RequestMapping(value="/showBehaviors", method= RequestMethod.GET)
 	public List<BehaviorDTO> showBehaviors(){
 		return BehaviorService.getListBehaviorDTO();
 	}
-	
-
 }

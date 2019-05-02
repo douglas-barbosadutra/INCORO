@@ -36,18 +36,13 @@ public class CodeController {
 		return CodeService.updateCode(CodeDTO);
 	}
 	
-	
 	@RequestMapping(value="/delete" , method= RequestMethod.DELETE)
 	public void delete(@RequestParam(value="idCode") CodeDTO CodeDTO) {		
 		CodeService.deleteCodeById(CodeDTO.getIdCode());
 	}
-
-
 	
 	@RequestMapping(value="/showCodes", method= RequestMethod.GET)
 	public List<CodeDTO> showCodes(){
 		return CodeService.getLisCodeDTO();
 	}
-	
-
 }

@@ -10,7 +10,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class ThingDTO {
-	private Integer id;
+	private Integer idThing;
 	private String code;
 	private String image;
 	private String name;

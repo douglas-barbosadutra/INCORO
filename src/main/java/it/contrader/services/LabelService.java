@@ -12,7 +12,6 @@ import it.contrader.converter.ConverterUser;
 import it.contrader.dao.LabelRepository;
 import it.contrader.dto.LabelDTO;
 import it.contrader.dto.UserDTO;
-
 import it.contrader.model.Label;
 import it.contrader.model.User;
 

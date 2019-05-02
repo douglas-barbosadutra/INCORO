@@ -19,6 +19,7 @@ public class ConverterHardware {
 			
 			ThingDTO thing = new ThingDTO();
 			thing = ConverterThing.toDTO(hardware.getThing());
+			
 			hardwareDTO.setThing(thing);
 		}	
 		return hardwareDTO; 

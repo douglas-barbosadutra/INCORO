@@ -38,16 +38,48 @@ public class UserService {
 		return ConverterUser.toDTO(user);
 	}
 
+	/*
 	public boolean insertUser(UserDTO userDTO) {
 		return userRepository.save(ConverterUser.toEntity(userDTO)) != null;
-	}
+	}*/
 
+	// metodo di rest controller 
+	public UserDTO insertUser(UserDTO userDTO) {
+		User user = ConverterUser.toEntity(userDTO);
+		// userDAO.saveAndFlush(user);
+		userRepository.save(user); 
+		return ConverterUser.toDTO(user);
+	}
+	
 	public boolean updateUser(UserDTO userDTO) {
 		return userRepository.save(ConverterUser.toEntity(userDTO)) != null;
 	}
 	
+	// METODO USATO PER REST CONTROLLER
+	public UserDTO login(String username, String password) {
+        return ConverterUser.toDTO(this.userRepository.findUserByUsernameAndPassword(username, password));
+    }
+	
+	// metodo di controller
+	/*
 	public void deleteUserById(Integer id) {
 		userRepository.deleteById(id);
+	}*/
+	
+	// METODO DI REST CONTROLLER
+	public boolean deleteUser(int id) {
+		this.userRepository.deleteById(id);
+		return true;
+	}
+	
+	// METODO DI REST CONTROLLER
+	public List<UserDTO> getAllUsers(){
+		return ConverterUser.toListDTO((List<User>) userRepository.findAll());
+	}
+	
+	// METODO DI REST CONTROLLER
+	public UserDTO findUserById(int id) {
+		return ConverterUser.toDTO(userRepository.findUserByIdUser(id));
 	}
 	
 	public List<UserDTO> findUserDTOByUsername(String username) {

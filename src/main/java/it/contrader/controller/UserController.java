@@ -4,18 +4,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+//import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 //import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+import it.contrader.dto.LoginDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.services.UserService;
 
 import java.util.List;
 
-@Controller
+
+@RestController
 @RequestMapping("/User")
+@CrossOrigin(value="*")
 public class UserController {
 
 	private final UserService userService;
@@ -27,6 +34,63 @@ public class UserController {
 		this.userService = userService;
 	}
 
+	// METODI DI REST CONTROLLER
+
+	@RequestMapping(value="/insertUser", method= RequestMethod.POST)
+	public UserDTO insertUser(@RequestBody UserDTO user) {
+		return userService.insertUser(user);
+	}
+
+	@RequestMapping(value="/deleteUser" , method= RequestMethod.DELETE)
+	public boolean deleteUser( @RequestBody UserDTO user) {		
+		return userService.deleteUser(user.getIdUser());
+	}
+	
+	@RequestMapping(value="/showUser" , method= RequestMethod.GET)
+	public List<UserDTO> showUser() {		
+		return userService.getAllUsers();
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public UserDTO login( @RequestBody LoginDTO user) {
+		return(userService.login(user.getUsername() , user.getPassword()));
+	}
+	
+	@RequestMapping(value="/updateUser" , method= RequestMethod.PUT)
+	public UserDTO showUser(@RequestBody UserDTO user) {		
+		return userService.insertUser(user);
+	}
+	
+	@RequestMapping(value="/findUser" , method= RequestMethod.GET)
+	public UserDTO findUser( @RequestBody UserDTO user) {		
+		return userService.findUserById(user.getIdUser());
+	}
+	
+	// METODI UTILIZZATO CON CONTROLLER
+	/*
+	@RequestMapping(value = "/creaUser", method = RequestMethod.POST)
+	public String insertUser(HttpServletRequest request) {
+		String username = request.getParameter("username").toString();
+		if (userService.getByUsername(username) == null) {
+			String password = request.getParameter("password").toString();
+			int type = Integer.parseInt(request.getParameter("role"));
+			UserDTO userObj = new UserDTO(0, username, password, type);
+			userService.insertUser(userObj);
+			visualUser(request);
+			return "homeAdmin";
+		} else {
+			return "userError";
+		}
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		this.userService.deleteUserById(id);
+		visualUser(request);
+		return "homeAdmin";
+	}
+	
 	private void visualUser(HttpServletRequest request) {
 		List<UserDTO> allUser = this.userService.getListaUserDTO();
 		request.getSession().setAttribute("allUserDTO", allUser);
@@ -38,6 +102,7 @@ public class UserController {
 		return "homeAdmin";
 	}
 
+	
 	@RequestMapping(value = "/reindirizzaCrea", method = RequestMethod.GET)
 	public String reindirizzaCrea(HttpServletRequest request) {
 		visualUser(request);
@@ -74,14 +139,6 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(HttpServletRequest request) {
-		int id = Integer.parseInt(request.getParameter("id"));
-		this.userService.deleteUserById(id);
-		visualUser(request);
-		return "homeAdmin";
-	}
-
 	@RequestMapping(value = "/crea", method = RequestMethod.GET)
 	public String insert(HttpServletRequest request) {
 		visualUser(request);
@@ -107,21 +164,6 @@ public class UserController {
 		return "modificaUser";
 	}
 		
-	@RequestMapping(value = "/creaUser", method = RequestMethod.POST)
-	public String insertUser(HttpServletRequest request) {
-		String username = request.getParameter("username").toString();
-		if (userService.getByUsername(username) == null) {
-			String password = request.getParameter("password").toString();
-			int type = Integer.parseInt(request.getParameter("role"));
-			UserDTO userObj = new UserDTO(0, username, password, type);
-			userService.insertUser(userObj);
-			visualUser(request);
-			return "homeAdmin";
-		} else {
-			return "userError";
-		}
-	}
-
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginControl(HttpServletRequest request) {
 		session = request.getSession();
@@ -144,5 +186,5 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return "loginError";
-	}
+	}*/
 }
