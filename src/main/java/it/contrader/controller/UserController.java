@@ -26,8 +26,7 @@ import java.util.List;
 public class UserController {
 
 	private final UserService userService;
-	private HttpSession session;
-	private int idUser;
+
 
 	@Autowired
 	public UserController(UserService userService) {

@@ -5,8 +5,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import it.contrader.converter.ConverterUser;
 import it.contrader.dto.LabelDTO;
@@ -16,7 +19,8 @@ import it.contrader.services.UserService;
 
 import java.util.List;
 
-@Controller
+@CrossOrigin(value="*")
+@RestController
 @RequestMapping("/Label")
 public class LabelController {
 	
@@ -38,45 +42,27 @@ public class LabelController {
 	}
 	
 	@RequestMapping(value = "/labelManagement", method = RequestMethod.GET)
-	public String labelManagement(HttpServletRequest request) {
-		idUser = Integer.parseInt(request.getParameter("idUser"));
-		visualLabel(request);
-		return "showLabel";
+	public List<LabelDTO> labelManagement(@RequestBody UserDTO userDto) {
+		idUser = userDto.getIdUser();
+		return this.labelService.findLabelbyUser(idUser);
 	}
 	
-	@RequestMapping(value = "/indietro", method = RequestMethod.GET)
-	public String indietro(HttpServletRequest request) {	
-		visualLabel(request);
-		return "homeBO";
-	}
-
-	@RequestMapping(value ="/delete", method = RequestMethod.GET)
-	public String delete(HttpServletRequest request) {
-		int id = Integer.parseInt(request.getParameter("idLabel"));
+	@RequestMapping(value ="/deleteLabel", method = RequestMethod.DELETE)
+	public boolean delete(@RequestBody LabelDTO labelDto) {
+		int id = labelDto.getIdLabel();
 		this.labelService.deleteLabelById(id);
-		visualLabel(request);
-		return "showLabel";
+		return true;
 	}
 	
-	@RequestMapping(value = "/crea", method = RequestMethod.GET)
-	public String insert(HttpServletRequest request) {
-		idUser = Integer.parseInt(request.getParameter("idUser"));
-		visualLabel(request);
-		return "creaLabel";
-	}
-	
-	@RequestMapping(value="/creaLabel", method = RequestMethod.POST)
-	private String insertLabel(HttpServletRequest request) {
-		UserDTO userDTO = new UserDTO();
-		userDTO = userService.getUserDTOById(idUser); // ok questa è interna
-		String name = request.getParameter("name").toString();
-		if (labelService.getLabelDTOByNameAndUser(name, ConverterUser.toEntity(userDTO)) == null) {
-			LabelDTO labelObj = new LabelDTO(0, name, userDTO);
+	@RequestMapping(value="/insertLabel", method = RequestMethod.PUT)
+	private boolean insertLabel(@RequestBody LabelDTO labelDto) {
+		String name = labelDto.getName();
+		if (labelService.getLabelDTOByNameAndUser(name, ConverterUser.toEntity(labelDto.getUser())) == null) {
+			LabelDTO labelObj = new LabelDTO(0, name, labelDto.getUser());
 			labelService.insertLabel(labelObj);
-			visualLabel(request);
-			return "showLabel";
+			return true;
 		} else {
-			return "labelError";
+			return false;
 		}
 	}
 	
