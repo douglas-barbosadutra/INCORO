@@ -15,9 +15,9 @@ import { HardwareListComponent} from './components/hardware/hardware-list/hardwa
 import { HardwareUpdateComponent} from './components/hardware/hardware-update/hardware-update.component';
 //import dei component relativi alle homepage degli admin e degli utenti
 import { HomeAdminComponent} from './components/home/home-admin/home-admin.component';
-import {HomeBoComponent} from './componets/home/home-bo/home-bo.component';
+import { HomeBoComponent } from './components/home/home-bo/home-bo.component';
 //import dei component di label
-import { LabelInsertComponent} from './components/label/label-insert/label-insert.component';
+import { LabelInsertComponent} from './components/label/label-insert/label-insert/label-insert.component';
 import { LabelListComponent} from './components/label/label-list/label-list.component';
 import { LabelUpdateComponent} from './components/label/label-update/label-update.component';
 // import dei component dei vari menu
@@ -29,42 +29,43 @@ import { ThingListComponent} from './components/thing/thing-list/thing-list.comp
 import { ThingUpdateComponent} from './components/thing/thing-update/thing-update.component';
 //import dei componet di user
 import { UserInsertComponent} from './components/user/user-insert/user-insert.component';
-import { UserListComponent} from './components/user/user-list/user-list.component';
+import { UserShowComponent} from './components/user/user-show/user-show.component';
 import { UserUpdateComponent} from './components/user/user-update/user-update.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   //behavior
   {path: 'insertBehavior', component: BehaviorInsertComponent},
-  {path: 'listBehavior', component: BehaviorListComponent};
-  {path: 'updateBehavior', component: BehaviorUpdateComponent};
+  {path: 'listBehavior', component: BehaviorListComponent},
+  {path: 'updateBehavior', component: BehaviorUpdateComponent},
   //Code
   {path: 'insertCode', component: CodeInsertComponent},
-  {path: 'listCode', component: CodeListComponent};
-  {path: 'updateCode', component: CodeUpdateComponent};
+  {path: 'listCode', component: CodeListComponent},
+  {path: 'updateCode', component: CodeUpdateComponent},
   //hardware
   {path: 'insertHardware', component: HardwareInsertComponent},
-  {path: 'listHardware', component: HardwareListComponent};
-  {path: 'updateHardware', component: HardwareUpdateComponent};
+  {path: 'listHardware', component: HardwareListComponent},
+  {path: 'updateHardware', component: HardwareUpdateComponent},
   //label
   {path: 'insertLabel', component: LabelInsertComponent},
-  {path: 'listLabel', component: LabelListComponent};
-  {path: 'updateLabel', component: LabelUpdateComponent};
+  {path: 'listLabel', component: LabelListComponent},
+  {path: 'updateLabel', component: LabelUpdateComponent},
   //thing
   {path: 'insertThing', component: ThingInsertComponent},
-  {path: 'listThing', component: ThingListComponent};
-  {path: 'updateThing', component: ThingUpdateComponent};
+  {path: 'listThing', component: ThingListComponent},
+  {path: 'updateThing', component: ThingUpdateComponent},
   //user
   {path: 'insertUser', component: UserInsertComponent},
-  {path: 'listUser', component: UserListComponent};
-  {path: 'updateUser', component: UserUpdateComponent};
+  {path: 'listUser', component: UserShowComponent},
+  {path: 'updateUser', component: UserUpdateComponent},
   //home
   {path: 'homeAdmin', component: HomeAdminComponent},
-  {path: 'homeBo', component: HomeBoComponent};
+  {path: 'homeBo', component: HomeBoComponent},
   //menu
   {path: 'menuAdmin', component: MenuAdminComponent},
-  {path: 'menuBo', component: MenuBoComponent};
+  {path: 'menuBo', component: MenuBoComponent},
 ];
 
 @NgModule({
