@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login(f:NgForm): void{
+  login(): void{
     console.log(this.loginDTO);
     this.loginService.login(this.loginDTO).subscribe((response: any) => {
 
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
     else if(response.type == 0)
       this.router.navigateByUrl("/homeAdmin");
-            
+
     }
     else{
     alert("user o pass errati");
