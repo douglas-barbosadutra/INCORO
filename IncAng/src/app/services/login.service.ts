@@ -22,8 +22,8 @@ export class LoginService {
   }
 
   login(loginDTO: LoginDTO): Observable<UserDTO> {
-    const params = new HttpParams().set('username', loginDTO.username).set('password', loginDTO.password);
-    return this.http.post<UserDTO>('http://localhost:8080/User/login', params).pipe(tap((response) => 
+    //const params = new HttpParams().set('username', loginDTO).set('password', loginDTO.password);
+    return this.http.post<UserDTO>('http://localhost:8080/User/login', loginDTO).pipe(tap((response) => 
     console.log(loginDTO.username), catchError(this.handleError("login error", {}))));
   }
 }

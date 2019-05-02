@@ -16,7 +16,6 @@ body{
 .image{
 	margin-bottom: 1rem;
 	display: -ms-flexbox;
-	display: flex;
 	-ms-flex: 0 0 auto;
 	flex: 0 0 auto;
 	-ms-flex-flow: row wrap;
@@ -27,6 +26,9 @@ body{
 	max-width: 250px;
 	text-align: center;
 	display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 .form-check {

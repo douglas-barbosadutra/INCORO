@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login(f:NgForm): void{
+  login(): void{
     console.log(this.loginDTO);
     this.loginService.login(this.loginDTO).subscribe((response: any) => {
 
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem("idUser", JSON.stringify(this.idUtenteLocale));
 
     if(response.type == 1)
-    this.router.navigateByUrl("/homeUser");
+    this.router.navigateByUrl("/homeBo");
 
     else if(response.type == 0)
       this.router.navigateByUrl("/homeAdmin");
