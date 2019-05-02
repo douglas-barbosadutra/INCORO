@@ -1,0 +1,34 @@
+<body class="body">
+  <h1 class="title">Lista Hardware</h1>
+  
+        <div id="container">
+  
+          <table class="table table-striped">
+            <thead>
+  
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Descrizione</th>
+                  <th>IdThing</th>
+                  <th></th>
+                </tr>
+  
+            </thead>
+  
+            <tbody>
+  
+                <tr *ngFor="let hardwareList of hardwareList">
+                  <td>{{hardwareList.idHardware}} </td>
+                  <td>{{hardwareList.Nome}} </td>
+                  <td>{{hardwreList.descrizione}}</td>
+                  <td>{{hardwareList.idThings}}</td>
+                  <td><button class="btn btn-primary" 
+                    (click)="deleteHardware(hardwareList.idHardware)">Elimina</button></td>
+                </tr>
+  
+            </tbody>
+          </table>
+        </div>
+  </body>
+  
