@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
     else if(response.type == 0)
       this.router.navigateByUrl("/homeAdmin");
-            
+
     }
     else{
     alert("user o pass errati");
