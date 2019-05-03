@@ -41,8 +41,9 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/deleteUser" , method= RequestMethod.DELETE)
-	public boolean deleteUser( @RequestBody UserDTO user) {		
-		return userService.deleteUser(user.getIdUser());
+	public boolean deleteUser(@RequestParam(value="id") Integer id) {		
+		userService.deleteUser(id);
+		return true;
 	}
 	
 	@RequestMapping(value="/showUser" , method= RequestMethod.GET)
