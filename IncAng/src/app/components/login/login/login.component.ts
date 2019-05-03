@@ -37,23 +37,25 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void{
+    
     console.log(this.loginDTO);
-    this.loginService.login(this.loginDTO).subscribe((response: any) => {
+      this.loginService.login(this.loginDTO).subscribe((response: any) => {
 
+    
     if(response != null){
-     this.idUtenteLocale = response.idUser;
+    this.idUtenteLocale = response.idUser;
     console.log(this.idUtenteLocale);
     sessionStorage.setItem("idUser", JSON.stringify(this.idUtenteLocale));
-
+    
     if(response.type == 1)
     this.router.navigateByUrl("/homeBo");
 
     else if(response.type == 0)
-      this.router.navigateByUrl("/homeAdmin");
+    this.router.navigateByUrl("/homeAdmin");
 
     }
     else{
-    alert("user o pass errati");
+    alert("username o password errati");
     }
     });
   }

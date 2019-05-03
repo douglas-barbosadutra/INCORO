@@ -1,3 +1,47 @@
-<p>
-  home-admin works!
-</p>
+
+<head>
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<!-- Custom styles for this template -->
+</head>
+
+<body class="text-center">
+	<div class="clearfix" id="corpo">
+		<div class="header" id="intestazione">
+			<h1>INCORO</h1>
+		</div>
+
+		<div class="column menu intero" id="menu-destra">
+			<ul style="list-style: none;">
+				<li><label>Benvenuto </label></li>
+
+				<li></li>
+				<li></li>
+				<li><label>MENU</label></li>
+				<li>
+					<form action="/User/reindirizzaCrea">
+						<button class="btn btn-lg btn-primary btn-block" type="submit">Insert
+							User</button>
+					</form>
+
+					<form action="/XML/export">
+						<button class="btn btn-lg btn-primary btn-block" type="submit"
+							onclick="return confirm('File esportato con successo!')">
+							Esporta File in XML</button>
+					</form>
+
+					<form action="/Home/logout">
+						<button class="btn btn-lg btn-primary btn-block" type="submit">Logout
+						</button>
+					</form>
+
+				</li>
+			</ul>
+		</div>
+
+		<body class="body">
+        <app-user-show></app-user-show>    
+    </body>

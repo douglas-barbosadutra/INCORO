@@ -1,3 +1,26 @@
-<p>
-  thing-list works!
-</p>
+<body class="body">
+<h1 class="title" >Lista Thing</h1>
+
+			<div id="container">
+				<table class="table table-striped">
+				  <thead>
+				      <tr>
+				        <th>ID</th>
+				        <th>Nome</th>
+				        <th>ID Proprietario </th>
+				        <th>ID Label</th>
+				      </tr>
+				  </thead>
+
+				  <tbody>
+							<tr *ngFor="let thingDTO of thingList">
+                <td>{{thingDTO.idThing}} </td>
+                <td>{{thingDTO.name}} </td>
+                <td>{{thingDTO.user.username}}</td>
+                <td>{{thingDTO.label.idLabel}}</td>
+                <td><button class="btn btn-primary" (click)="deleteUser(thingList.id)">Elimina</button></td>
+              </tr>
+          </tbody>
+			  </table>
+      </div>
+</body>

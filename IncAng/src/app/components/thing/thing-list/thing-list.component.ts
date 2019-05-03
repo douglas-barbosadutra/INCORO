@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ThingDTO } from 'src/dto/ThingDTO';
-import { ThingService } from 'src/app/services/thing.service';
+import { ThingDTO } from '../../../../dto/ThingDTO';
+import { ThingService } from '../../../services/thing.service';
 import { Router } from '@angular/router';
+import { UserDTO } from '../../../../dto/UserDTO';
+import { LabelDTO } from '../../../../dto/LabelDTO';
+import { UserService } from '../../../services/user.service';
+
 
 @Component({
   selector: 'app-thing-list',
@@ -11,16 +15,18 @@ import { Router } from '@angular/router';
 export class ThingListComponent implements OnInit {
   private thingList: Array<ThingDTO>;
   private thingDTO: ThingDTO;
+  private userDTO: UserDTO;
+  private labelDTO: LabelDTO;
 
-  constructor(private thingService: ThingService, private router: Router) { }
+  constructor(private thingService: ThingService, private router: Router, private userService: UserService) { }
 
   ngOnInit() {
     this.thingService.showThing().subscribe((data: any) =>{
 
       if(data != null){
+        console.log(data);
         this.thingList = data;
       }
     })
   }
-
 }
