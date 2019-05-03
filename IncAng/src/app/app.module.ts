@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider} from "angularx-social-login";
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +39,16 @@ import { HomeAdminComponent } from './components/home/home-admin/home-admin.comp
 import { MenuBoComponent } from './components/menu/menu-bo/menu-bo.component';
 import { MenuAdminComponent } from './components/menu/menu-admin/menu-admin.component';
 
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('474801575817-6drnjk6m228rs723vct1tllkss2f9v10.apps.googleusercontent.com')
+  }
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -66,16 +79,21 @@ import { MenuAdminComponent } from './components/menu/menu-admin/menu-admin.comp
     HomeAdminComponent,
     MenuBoComponent,
     MenuAdminComponent,
-  
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SocialLoginModule
   ],
-  providers: [UserService, ThingService, HardwareService, LoginService],
+  providers: [UserService, ThingService, HardwareService, LoginService,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
