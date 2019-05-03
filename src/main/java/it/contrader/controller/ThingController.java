@@ -3,8 +3,10 @@ package it.contrader.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,8 +32,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-@Controller
+@CrossOrigin(value="*")
+@RestController
 @RequestMapping("/Thing")
+
 public class ThingController {
 	
 	private final ThingService ts;
@@ -48,11 +52,39 @@ public class ThingController {
 		this.us = us;
 	}
 	
+	// METODO DI REST CONTROLLER
+	@RequestMapping(value="/insertThing", method= RequestMethod.POST)
+	public ThingDTO insertThing(@RequestBody ThingDTO thing) {
+		return ts.insertThing(thing);
+	}
+	
+	@RequestMapping(value="/deleteThing" , method= RequestMethod.DELETE)
+	public boolean deleteThing(@RequestBody ThingDTO thing) {		
+		return ts.deleteThing(thing.getIdThing());
+	}
+	
+	@RequestMapping(value="/showThing" , method= RequestMethod.GET)
+	public List<ThingDTO> showThings() {		
+		return ts.getAllThings();
+	}
+	
+	@RequestMapping(value="/updateThing" , method= RequestMethod.PUT)
+	public ThingDTO showThing(@RequestBody ThingDTO thing) {		
+		return ts.insertThing(thing);
+	}
+	
+	@RequestMapping(value="/findThing" , method= RequestMethod.GET)
+	public ThingDTO findUser( @RequestBody ThingDTO thing) {		
+		return ts.findThingById(thing.getIdThing());
+	}
+	
+	/*
 	private void visualThing(HttpServletRequest request){
 		// il passaggio dell'utente avviene nel service
 		List<ThingDTO> allThing = this.ts.getThingDTOByIdUser(idUser);
 		request.getSession().setAttribute("allThing", allThing);
 	}
+	
 	
 	@RequestMapping(value = "/indietro", method = RequestMethod.GET)
 	public String indietro(HttpServletRequest request) {
@@ -64,7 +96,7 @@ public class ThingController {
 	public String code(HttpServletRequest request) {	
 		visualThing(request);
 		return "homeBO";
-	}
+	}*/
 	
 	@RequestMapping(value = "/showCode", method = RequestMethod.GET)
 	public String codice(HttpServletRequest request) {
@@ -82,6 +114,7 @@ public class ThingController {
 		return "showThing";		
 	}
 	
+	/* METODO DI CONTROLLER	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -89,7 +122,7 @@ public class ThingController {
 		this.ts.deleteThingById(id);
 		visualThing(request);
 		return "showThing";
-	}
+	}*/
 	
 	@RequestMapping(value = "/crea", method = RequestMethod.GET)
 	public String insert(HttpServletRequest request) {
@@ -167,7 +200,8 @@ public class ThingController {
 	              slashPos = fn.lastIndexOf( '/' );
 	            return fn.substring( slashPos > 0 ? slashPos + 1 : 0 );
 	}
-
+	
+	/*
 	@RequestMapping(value="/openUpdateThing")
 	public String openUpdateThing(HttpServletRequest request) {
 		idThing = Integer.parseInt(request.getParameter("id"));
@@ -184,7 +218,7 @@ public class ThingController {
 			request.getSession().setAttribute("image", image);
 		}
 		return "thingUpdate";
-	}
+	}*/
 	
 	@RequestMapping(value = "/updateThing", method = RequestMethod.POST)
 	public String updateThing(
@@ -254,12 +288,13 @@ public class ThingController {
 		}
 		return pt;
 	}
-
+	
+	/*
 	@RequestMapping(value = "/cercaThing", method = RequestMethod.GET)
 	public String cercaThing(HttpServletRequest request) {
 		final String content = request.getParameter("search");
 		List<ThingDTO> allThing = this.ts.findThingDTOByName(content);
 		request.setAttribute("allThingDTO", allThing);
 		return "homeThing";
-	}
+	}*/
 }

@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 //import java.util.List;
 
 import it.contrader.converter.ConverterThing;
+import it.contrader.converter.ConverterUser;
 import it.contrader.dao.ThingRepository;
 import it.contrader.dto.ThingDTO;
+import it.contrader.dto.UserDTO;
 import it.contrader.model.Thing;
 import it.contrader.model.User;
 
@@ -32,17 +34,41 @@ public class ThingService {
 		return ConverterThing.toDTO(thingRepository.findThingByIdThing(id));
 	}
 
+	/*
 	public boolean insertThing(ThingDTO thingDTO) {
-		
 		return thingRepository.save(ConverterThing.toEntity(thingDTO)) != null;
+	}*/
+	
+	// METODO DI REST CONTROLLER
+	public ThingDTO insertThing(ThingDTO thingDTO) {
+		Thing thing = ConverterThing.toEntity(thingDTO);
+		// userDAO.saveAndFlush(user);
+		thingRepository.save(thing); 
+		return ConverterThing.toDTO(thing);
 	}
 
 	public boolean updateThing(ThingDTO thingDTO) {
 		return thingRepository.save(ConverterThing.toEntity(thingDTO)) != null;
 	}
 	
+	/*
 	public void deleteThingById(Integer id) {
 		thingRepository.deleteById(id);
+	}*/
+	
+	// METODO DI REST CONTROLLER
+	public boolean deleteThing(int id) {
+		this.thingRepository.deleteById(id);
+		return true;
+	}
+	
+	// METODO DI REST CONTROLLER
+	public ThingDTO findThingById(int id) {
+		return ConverterThing.toDTO(thingRepository.findThingByIdThing(id));
+	}
+	
+	public List<ThingDTO> getAllThings(){
+		return ConverterThing.toListDTO((List<Thing>) thingRepository.findAll());
 	}
 	
 	public List<ThingDTO> getThingDTOByIdUser(int idUser){
