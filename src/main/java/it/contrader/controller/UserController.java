@@ -66,6 +66,21 @@ public class UserController {
 		return userService.findUserById(user.getIdUser());
 	}
 	
+	@RequestMapping(value="/loginGoogle", method = RequestMethod.POST)
+	public UserDTO glgLogin(@RequestBody LoginDTO user) {
+		UserDTO glg = userService.getByUsernameAndPassword(user.getUsername(), user.getPassword());
+		if(glg != null) {
+			return glg;
+		} else {
+			UserDTO insGlg = new UserDTO();
+			insGlg.setUsername(user.getUsername());
+			insGlg.setPassword(user.getPassword());
+			insGlg.setType(1);
+			this.userService.insertUser(insGlg);
+			return insGlg;
+		}
+	}
+	
 	// METODI UTILIZZATO CON CONTROLLER
 	/*
 	@RequestMapping(value = "/creaUser", method = RequestMethod.POST)
