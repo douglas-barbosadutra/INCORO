@@ -24,29 +24,48 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(){
     this.loginDTO = new LoginDTO(null,null);
-    this.authService.authState.subscribe((user) => {
+    /*this.authService.authState.subscribe((user) => {
       this.user = user;
       console.log(user.name);
-    });
+    });*/
 
   }
 
   signInWithGoogle(): void {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      console.log(user.name);
+      if (user != null){
+        console.log(user.name);
+        sessionStorage.setItem("googleUser",user.name); //controllare cosa fa questo metodo
+        //doppio login in quanto una volta effettuato il login con google e quindi aver recurperato i dati di accesso
+        //eseguo una seconda verifica sul db in cui devo a sua volta decidere se registrare o accedere
+        // questo a seconda del fatto che l'account esista o meno
+        this.loginService.googleLogin(this.user).subscribe((responseDb:any) => {
+          if (responseDb.type == 1) {
+              this.router.navigateByUrl("/homeBo");
+            } else if (responseDb.type == 0){
+              this.router.navigateByUrl("/homeAdmin");
+            }
+          }
+        );
+      }
+    });
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     console.log('eccolo');
   }
 
   login(): void{
-    
+
     console.log(this.loginDTO);
       this.loginService.login(this.loginDTO).subscribe((response: any) => {
 
-    
+
     if(response != null){
     this.idUtenteLocale = response.idUser;
     console.log(this.idUtenteLocale);
     sessionStorage.setItem("idUser", JSON.stringify(this.idUtenteLocale));
-    
+
     if(response.type == 1)
     this.router.navigateByUrl("/homeBo");
 
