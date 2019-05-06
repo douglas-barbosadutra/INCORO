@@ -1,16 +1,13 @@
 package it.contrader.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 //import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import it.contrader.dto.LoginDTO;
@@ -27,22 +24,20 @@ public class UserController {
 
 	private final UserService userService;
 
-
 	@Autowired
 	public UserController(UserService userService) {
 		this.userService = userService;
 	}
 
 	// METODI DI REST CONTROLLER
-
 	@RequestMapping(value="/insertUser", method= RequestMethod.POST)
 	public UserDTO insertUser(@RequestBody UserDTO user) {
 		return userService.insertUser(user);
 	}
 
 	@RequestMapping(value="/deleteUser" , method= RequestMethod.DELETE)
-	public boolean deleteUser( @RequestBody UserDTO user) {		
-		return userService.deleteUser(user.getIdUser());
+	public boolean deleteUser(@RequestParam(value="id") Integer id) {		
+		return userService.deleteUser(id);
 	}
 	
 	@RequestMapping(value="/showUser" , method= RequestMethod.GET)

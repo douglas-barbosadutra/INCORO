@@ -17,9 +17,11 @@ public class ConverterThing {
 			thingDTO = new ThingDTO();
 			thingDTO.setIdThing(thing.getIdThing());
 			thingDTO.setCode(thing.getCode());
+			thingDTO.setDescription(thing.getDescription());
 			thingDTO.setImage(thing.getImage());		
 			thingDTO.setName(thing.getName());
 			thingDTO.setXml(thing.getXml());
+			thingDTO.setProtocol(thing.getProtocol());
 			
 			UserDTO user = new UserDTO();
 			user = ConverterUser.toDTO(thing.getUser());
@@ -38,10 +40,11 @@ public class ConverterThing {
 			thing = new Thing();
 			thing.setIdThing(thingDTO.getIdThing());
 			thing.setCode(thingDTO.getCode());
+			thing.setDescription(thingDTO.getDescription());
 			thing.setImage(thingDTO.getImage());
 			thing.setName(thingDTO.getName());
 			thing.setXml(thingDTO.getXml());
-			
+			thing.setProtocol(thingDTO.getProtocol());
 			User user = new User();
 			user = ConverterUser.toEntity(thingDTO.getUser());
 			

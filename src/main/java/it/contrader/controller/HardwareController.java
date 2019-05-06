@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.contrader.dto.HardwareDTO;
 import it.contrader.services.HardwareService;
 
-
 @CrossOrigin(value="*")
 @RestController
 @RequestMapping("/Hardware")
@@ -45,5 +44,4 @@ public class HardwareController {
 	public List<HardwareDTO> showHardwares(){
 		return hardwareService.getAllHardware();
 	}
-
 }

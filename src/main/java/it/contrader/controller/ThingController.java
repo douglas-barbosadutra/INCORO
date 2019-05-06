@@ -52,15 +52,25 @@ public class ThingController {
 		this.us = us;
 	}
 	
-	// METODO DI REST CONTROLLER
+	// METODI DI REST CONTROLLER
 	@RequestMapping(value="/insertThing", method= RequestMethod.POST)
 	public ThingDTO insertThing(@RequestBody ThingDTO thing) {
-		return ts.insertThing(thing);
+		ThingDTO asd = new ThingDTO();
+		if(thing.getLabel()!= null) {
+			System.out.println("label diverso da null");
+			System.out.println(thing.getLabel().getIdLabel());
+		}
+		//
+		//asd.setLabel(ls.getLabelDTOById(thing.getLabel().getIdLabel()));
+		
+		//thing.setLabel( ls.findLabelById(thing.getLabel().getIdLabel()));
+		//return ts.insertThing(thing);
+		return asd;
 	}
 	
 	@RequestMapping(value="/deleteThing" , method= RequestMethod.DELETE)
-	public boolean deleteThing(@RequestBody ThingDTO thing) {		
-		return ts.deleteThing(thing.getIdThing());
+	public boolean deleteThing(@RequestParam(value="id") Integer id) {		
+		return ts.deleteThing(id);
 	}
 	
 	@RequestMapping(value="/showThing" , method= RequestMethod.GET)
@@ -77,14 +87,13 @@ public class ThingController {
 	public ThingDTO findUser( @RequestBody ThingDTO thing) {		
 		return ts.findThingById(thing.getIdThing());
 	}
-	
+
 	/*
 	private void visualThing(HttpServletRequest request){
 		// il passaggio dell'utente avviene nel service
 		List<ThingDTO> allThing = this.ts.getThingDTOByIdUser(idUser);
 		request.getSession().setAttribute("allThing", allThing);
 	}
-	
 	
 	@RequestMapping(value = "/indietro", method = RequestMethod.GET)
 	public String indietro(HttpServletRequest request) {
@@ -97,14 +106,6 @@ public class ThingController {
 		visualThing(request);
 		return "homeBO";
 	}*/
-	
-	@RequestMapping(value = "/showCode", method = RequestMethod.GET)
-	public String codice(HttpServletRequest request) {
-		ThingDTO thingById;
-		thingById = this.ts.getThingDTOById(Integer.parseInt(request.getParameter("id")));
-		request.getSession().setAttribute("codice",thingById.getCode());
-		return "readCode";
-	}
 		
 	@RequestMapping(value ="/thingManagement", method = RequestMethod.GET)
 	public String thingManagement(HttpServletRequest request) {
@@ -132,6 +133,7 @@ public class ThingController {
 		return "creaThing";
 	}
 	
+	/*
 	@RequestMapping(value = "/creaThing", method = RequestMethod.POST)
 	public String insertThing(
 			@RequestParam MultipartFile image,
@@ -173,6 +175,14 @@ public class ThingController {
         ThingDTO thingObj = new ThingDTO(0, code, path+fileName, name, modXml, user, label);
 		ts.insertThing(thingObj);
 		return "homeBO"; 		
+	}*/
+	
+	@RequestMapping(value = "/showCode", method = RequestMethod.GET)
+	public String codice(HttpServletRequest request) {
+		ThingDTO thingById;
+		thingById = this.ts.getThingDTOById(Integer.parseInt(request.getParameter("id")));
+		request.getSession().setAttribute("codice",thingById.getCode());
+		return "readCode";
 	}
 	
 	private String createXmlFromDataThings(Integer i,String code, String string, Integer idUser2, Integer rIdLabel, String name) {
@@ -219,7 +229,7 @@ public class ThingController {
 		}
 		return "thingUpdate";
 	}*/
-	
+	/*
 	@RequestMapping(value = "/updateThing", method = RequestMethod.POST)
 	public String updateThing(
 			@RequestParam MultipartFile image,
@@ -267,7 +277,7 @@ public class ThingController {
         ThingDTO thing = new ThingDTO(idThing, code, path+fileName, name, modXml, user, label);       
         ts.updateThing(thing);	
 		return "homeBO"; 	
-	}
+	}*/
 	
 	private String updateXmlFromDataThings(Integer i,String code, String string, Integer idUser2, Integer rIdLabel,String name) {
 		i=idThing;

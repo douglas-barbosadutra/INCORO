@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.contrader.converter.ConverterUser;
 import it.contrader.dto.LabelDTO;
+import it.contrader.dto.ThingDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.services.LabelService;
 import it.contrader.services.UserService;
@@ -34,6 +34,10 @@ public class LabelController {
 	public LabelController(LabelService labelService, UserService userService) {
 		this.labelService = labelService;
 		this.userService = userService;
+	}
+	@RequestMapping(value="/showLabel" , method= RequestMethod.GET)
+	public List<LabelDTO> showLabel() {		
+		return labelService.getAllLabel();
 	}
 	
 	private void visualLabel(HttpServletRequest request) {
@@ -71,20 +75,6 @@ public class LabelController {
 		return "creaLabel";
 	}
 	
-	@RequestMapping(value = "/openUpdate", method = RequestMethod.GET)
-	public String openUpdate (HttpServletRequest request) {
-		idLabel=Integer.parseInt(request.getParameter("idLabel"));
-		String nome = "";
-		if(idLabel != 0){
-            LabelDTO labelDTO = new LabelDTO();
-            labelDTO = labelService.getLabelDTOById(idLabel);
-            nome = labelDTO.getName();
-            request.getSession().setAttribute("nome", nome);
-        }
-		//visualLabel(request);
-		return "modificaLabel";	
-	}
-	
 	@RequestMapping(value = "/modifica", method = RequestMethod.GET)
 	public String modifica(HttpServletRequest request) {
 		LabelDTO labelOldDTO =new LabelDTO();
@@ -101,11 +91,6 @@ public class LabelController {
 		else {
 			return "erroreLabelModifica";
 		}
-	}
-	
-	@RequestMapping(value = "/erroreLabelModifica", method = RequestMethod.GET)
-	public String logoutUpdate(HttpServletRequest request) {
-		return "modificaLabel";
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

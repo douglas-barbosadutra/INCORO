@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.contrader.dto.BehaviorDTO;
 import it.contrader.services.BehaviorService;
 
-
 @CrossOrigin(value="*")
 @RestController
 @RequestMapping("/Behavior")

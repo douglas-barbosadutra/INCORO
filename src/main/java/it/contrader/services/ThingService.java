@@ -6,14 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-//import java.util.ArrayList;
-//import java.util.List;
-
 import it.contrader.converter.ConverterThing;
-import it.contrader.converter.ConverterUser;
 import it.contrader.dao.ThingRepository;
 import it.contrader.dto.ThingDTO;
-import it.contrader.dto.UserDTO;
 import it.contrader.model.Thing;
 import it.contrader.model.User;
 

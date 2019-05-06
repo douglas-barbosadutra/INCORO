@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.contrader.converter.ConverterLabel;
-
+import it.contrader.converter.ConverterThing;
 import it.contrader.converter.ConverterUser;
 import it.contrader.dao.LabelRepository;
 import it.contrader.dto.LabelDTO;
+import it.contrader.dto.ThingDTO;
 import it.contrader.dto.UserDTO;
 import it.contrader.model.Label;
+import it.contrader.model.Thing;
 import it.contrader.model.User;
 
 @Service
@@ -34,6 +36,10 @@ public class LabelService {
 	
 	public void deleteLabelById(int id) {
 		labelRepository.deleteById(id);
+	}
+	
+	public List<LabelDTO> getAllLabel(){
+		return ConverterLabel.toListDTO((List<Label>) labelRepository.findAll());
 	}
 	
 	public List<LabelDTO> getListLabelDTO(){

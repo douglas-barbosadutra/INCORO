@@ -10,10 +10,7 @@ import lombok.NoArgsConstructor;
 public class UserDTO {
 	
 	private Integer idUser;
-	
 	private String username;
-	
 	private String password;
-	
 	private int type;
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.contrader.dto.CodeDTO;
 import it.contrader.services.CodeService;
 
-
 @CrossOrigin(value="*")
 @RestController
 @RequestMapping("/Code")
