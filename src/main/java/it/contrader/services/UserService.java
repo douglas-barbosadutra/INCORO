@@ -67,9 +67,9 @@ public class UserService {
 	}*/
 	
 	// METODO DI REST CONTROLLER
-	public boolean deleteUser(int id) {
+	public void deleteUser(int id) {
 		this.userRepository.deleteById(id);
-		return true;
+		
 	}
 	
 	// METODO DI REST CONTROLLER

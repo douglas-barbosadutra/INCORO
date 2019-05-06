@@ -37,7 +37,10 @@ public class UserController {
 
 	@RequestMapping(value="/deleteUser" , method= RequestMethod.DELETE)
 	public boolean deleteUser(@RequestParam(value="id") Integer id) {		
-		return userService.deleteUser(id);
+
+		userService.deleteUser(id);
+		return true;
+
 	}
 	
 	@RequestMapping(value="/showUser" , method= RequestMethod.GET)
@@ -58,6 +61,21 @@ public class UserController {
 	@RequestMapping(value="/findUser" , method= RequestMethod.GET)
 	public UserDTO findUser( @RequestBody UserDTO user) {		
 		return userService.findUserById(user.getIdUser());
+	}
+	
+	@RequestMapping(value="/loginGoogle", method = RequestMethod.POST)
+	public UserDTO glgLogin(@RequestBody LoginDTO user) {
+		UserDTO glg = userService.getByUsernameAndPassword(user.getUsername(), user.getPassword());
+		if(glg != null) {
+			return glg;
+		} else {
+			UserDTO insGlg = new UserDTO();
+			insGlg.setUsername(user.getUsername());
+			insGlg.setPassword(user.getPassword());
+			insGlg.setType(1);
+			this.userService.insertUser(insGlg);
+			return insGlg;
+		}
 	}
 	
 	// METODI UTILIZZATO CON CONTROLLER
