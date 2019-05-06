@@ -22,6 +22,11 @@ export class UserShowComponent implements OnInit {
       }
     })
   }
+
+  chooseUser(idUser: number){
+    sessionStorage.setItem("idUser", JSON.stringify(idUser));
+    this.router.navigateByUrl("/updateUser");
+  } 
   deleteUser(userDTO: UserDTO){
 
     this.userService.deleteUser(userDTO).subscribe((data: any) =>{
