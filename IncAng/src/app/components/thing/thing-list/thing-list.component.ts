@@ -29,4 +29,21 @@ export class ThingListComponent implements OnInit {
       }
     })
   }
+
+  deleteThing(thingDTO: ThingDTO){
+
+    this.thingService.deleteThing(thingDTO).subscribe((data: any) =>{
+
+      if(data){
+        alert("Cancellazione effettuata");
+        location.reload(true);
+      }
+        
+      else
+        alert("Cancellazione fallita");
+
+      this.router.navigateByUrl("homeAdmin");
+    })
+  }
+
 }

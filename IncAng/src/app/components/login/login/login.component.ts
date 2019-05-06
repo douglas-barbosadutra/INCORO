@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/services/login.service';
+import { LoginService } from '../../../../../src/app/services/login.service';
 import { NgForm } from '@angular/forms';
-import { LoginDTO } from 'src/dto/LoginDTO';
+import { LoginDTO } from '../../../../../src/dto/LoginDTO';
 import { AuthService } from "angularx-social-login";
 import {  GoogleLoginProvider } from "angularx-social-login";
 import { SocialUser } from 'angularx-social-login';
-
 
 
 @Component({
@@ -46,6 +45,7 @@ export class LoginComponent implements OnInit {
     this.idUtenteLocale = response.idUser;
     console.log(this.idUtenteLocale);
     sessionStorage.setItem("idUser", JSON.stringify(this.idUtenteLocale));
+    sessionStorage.setItem("User", JSON.stringify(response));
     
     if(response.type == 1)
     this.router.navigateByUrl("/homeBo");

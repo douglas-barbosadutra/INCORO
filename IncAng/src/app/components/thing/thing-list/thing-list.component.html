@@ -1,3 +1,4 @@
+<app-menu-bo></app-menu-bo>
 <body class="body">
 <h1 class="title" >Lista Thing</h1>
 
@@ -18,7 +19,7 @@
                 <td>{{thingDTO.name}} </td>
                 <td>{{thingDTO.user.username}}</td>
                 <td>{{thingDTO.label.idLabel}}</td>
-                <td><button class="btn btn-primary" (click)="deleteUser(thingList.id)">Elimina</button></td>
+                <td><button class="btn btn-primary" (click)="deleteThing(thingDTO)">Elimina</button></td>
               </tr>
           </tbody>
 			  </table>
