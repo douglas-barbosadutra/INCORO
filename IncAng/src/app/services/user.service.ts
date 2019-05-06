@@ -12,7 +12,8 @@ export class UserService {
   constructor(private http: HttpClient) { }
   
   insertUser(userDTO: UserDTO){
-    return this.http.post('http://localhost8080/User/insertUser', userDTO);
+    console.log(userDTO)
+    return this.http.post('http://localhost:8080/User/insertUser', userDTO);
   }
 
   showUser(){
@@ -22,6 +23,10 @@ export class UserService {
   deleteUser(userDTO: UserDTO){
     console.log(userDTO);
     return this.http.delete('http://localhost:8080/User/deleteUser?id='+userDTO.idUser);
+  }
+  
+  updateUser(userDTO: UserDTO) {
+    return this.http.put( 'http://localhost:8080/User/updateUser', userDTO);
   }
 
 }

@@ -9,7 +9,7 @@ export class MenuAdminComponent implements OnInit {
   
 
   constructor() {
-    alert("chiamata a admin componet");
+    
    }
 
   ngOnInit() {

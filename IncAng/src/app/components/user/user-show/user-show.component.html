@@ -1,3 +1,4 @@
+
 <h1 class="title">Lista utenti</h1>
         
 <div class="column content" id="visualizzazione" *ngFor="let userDTO of userList">
@@ -30,8 +31,9 @@
       <p class="link-row">
           <a
           (click)="deleteUser(userDTO)"
-          class="btn btn-primary my-2 t-action"> Elimina</a> <a
-          href="/User/reindirizzaModifica?id=<%out.println(users.get(i).getIdUser());%>"
+          class="btn btn-primary my-2 t-action"> Elimina</a> 
+          <a
+          (click)="chooseUser(userDTO.idUser)"
           class="btn btn-secondary my-2 t-action"> Modifica</a> <a href="#"
           class="btn btn-primary my-2 t-action">Terza action</a>
           
