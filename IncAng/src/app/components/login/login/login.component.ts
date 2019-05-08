@@ -6,7 +6,8 @@ import { LoginDTO } from '../../../../../src/dto/LoginDTO';
 import { AuthService } from "angularx-social-login";
 import {  GoogleLoginProvider } from "angularx-social-login";
 import { SocialUser } from 'angularx-social-login';
-
+import { UserDTO } from '../../../../dto/UserDTO';
+import { UserService } from '../../../../app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -14,15 +15,17 @@ import { SocialUser } from 'angularx-social-login';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   private idUtenteLocale: number;
   public loginDTO: LoginDTO;
+  public userDTO: UserDTO;
   public user: SocialUser;
-
-  constructor(private loginService: LoginService, private router:  Router ,private authService: AuthService) { }
+  
+  constructor(private loginService: LoginService, private router:  Router ,private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(){
     this.loginDTO = new LoginDTO(null,null);
+    
+    this.userDTO = new UserDTO(0,null,null,0);
     /*this.authService.authState.subscribe((user) => {
       this.user = user;
       console.log(user.name);
@@ -41,6 +44,7 @@ export class LoginComponent implements OnInit {
         //eseguo una seconda verifica sul db in cui devo a sua volta decidere se registrare o accedere
         // questo a seconda del fatto che l'account esista o meno
         this.loginService.googleLogin(this.user).subscribe((responseDb:any) => {
+          
           if (responseDb.type == 1) {
               this.router.navigateByUrl("/homeBo");
             } else if (responseDb.type == 0){
@@ -58,17 +62,26 @@ export class LoginComponent implements OnInit {
 
     console.log(this.loginDTO);
       this.loginService.login(this.loginDTO).subscribe((response: any) => {
-
-
+        
     if(response != null){
-    this.idUtenteLocale = response.idUser;
-    console.log(this.idUtenteLocale);
-    sessionStorage.setItem("idUser", JSON.stringify(this.idUtenteLocale));
-    if(response.type == 1)
-    this.router.navigateByUrl("/homeBo");
+    
+      this.userDTO.idUser = response.idUser;
+      this.userDTO.username = response.password;
+      this.userDTO.password = response.username;
+      this.userDTO.type = response.type;
+      sessionStorage.setItem("idUser", JSON.stringify(response.idUser));
+      sessionStorage.setItem("username", JSON.stringify(response.username));
+      sessionStorage.setItem("password", JSON.stringify(response.password));
+      sessionStorage.setItem("type", JSON.stringify(response.type));
 
+    this.idUtenteLocale = response.idUser;
+      console.log(this.idUtenteLocale);
+      sessionStorage.setItem("idUser", JSON.stringify(this.idUtenteLocale));
+    if(response.type == 1){
+      this.router.navigateByUrl("/homeBo");
+    }
     else if(response.type == 0)
-    this.router.navigateByUrl("/homeAdmin");
+      this.router.navigateByUrl("/homeAdmin");
 
     }
     else{

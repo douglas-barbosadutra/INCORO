@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ThingDTO } from '../../../../dto/ThingDTO';
 import { ThingService } from '../../../services/thing.service';
 import { Router } from '@angular/router';
@@ -22,12 +22,16 @@ export class ThingListComponent implements OnInit {
 
   ngOnInit() {
     this.thingService.showThing().subscribe((data: any) =>{
-
       if(data != null){
         console.log(data);
         this.thingList = data;
       }
     })
+  }
+
+  chooseThing(idThing: number){
+    sessionStorage.setItem("idThing", JSON.stringify(idThing));
+    this.router.navigateByUrl("/updateThing");
   }
 
   deleteThing(thingDTO: ThingDTO){
@@ -45,5 +49,4 @@ export class ThingListComponent implements OnInit {
       this.router.navigateByUrl("homeAdmin");
     })
   }
-
 }

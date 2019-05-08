@@ -14,6 +14,11 @@ export class ThingService {
     return this.http.post('http://localhost:8080/Thing/insertThing', thingDTO);
   }
 
+  updateThing(thingDTO: ThingDTO){
+    console.log(thingDTO);
+    return this.http.put('http://localhost:8080/Thing/updateThing', thingDTO);
+  }
+
   showThing(){
     return this.http.get('http://localhost:8080/Thing/showThing');
   }
