@@ -7,6 +7,7 @@ import it.contrader.dto.UserDTO;
 import it.contrader.model.Label;
 import it.contrader.model.User;
 
+
 public class ConverterLabel {
 	
 	public static LabelDTO convertToDto(Label label) {
@@ -14,10 +15,12 @@ public class ConverterLabel {
 		if(label != null) {
 			labelDTO = new LabelDTO();
 			labelDTO.setIdLabel(label.getIdLabel());
-			labelDTO.setName(label.getName());	
+			labelDTO.setName(label.getName());
+			
 			UserDTO user = new UserDTO();
 			user = ConverterUser.toDTO(label.getUser());
 			labelDTO.setUser(user);
+			
 		}
 		return labelDTO;		
 	}
@@ -28,9 +31,11 @@ public class ConverterLabel {
 			label = new Label();
 			label.setIdLabel(labelDTO.getIdLabel());
 			label.setName(labelDTO.getName());
+			
 			User user = new User();
-			user = ConverterUser.toEntity(labelDTO.getUser());   
+			user = ConverterUser.toEntity(labelDTO.getUser());
 			label.setUser(user);
+			
 		}
 		return label;
 	}

@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import it.contrader.dto.ThingDTO;
 import it.contrader.dto.UserDTO;
+import it.contrader.dto.KeywordDTO;
 import it.contrader.dto.LabelDTO;
 import it.contrader.model.Thing;
 import it.contrader.model.User;
+import it.contrader.model.Keyword;
 import it.contrader.model.Label;
 
 public class ConverterThing {
@@ -30,6 +32,14 @@ public class ConverterThing {
 			LabelDTO label = new LabelDTO();
 			label = ConverterLabel.convertToDto(thing.getLabel());
 			thingDTO.setLabel(label);
+		
+			
+			List<KeywordDTO> listKeywordsDTO = new ArrayList();
+			for (Keyword keyword : thing.getKeyword()) {
+				listKeywordsDTO.add(ConverterKeyword.toDTO(keyword));
+			}
+			
+			thingDTO.setKeyword(listKeywordsDTO);
 		}
 		return thingDTO;
 	}
@@ -50,9 +60,17 @@ public class ConverterThing {
 			
 			Label label = new Label();
 			label = ConverterLabel.convertToEntity(thingDTO.getLabel());
+			//label.getUser().getIdUser();
 			
 			thing.setUser(user);
 			thing.setLabel(label);
+			
+			List<Keyword> listKeywords = new ArrayList();
+			for (KeywordDTO keywordDTO : thingDTO.getKeyword()) {
+				listKeywords.add(ConverterKeyword.toEntity(keywordDTO));
+			}
+			
+			thing.setKeyword(listKeywords);
 		}
 		return thing;
 	}

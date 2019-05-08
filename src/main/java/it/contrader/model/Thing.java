@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -73,4 +75,17 @@ public class Thing {
 	@OneToMany(mappedBy = "thing")
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<Behavior> behavior;
+	
+	/*
+	@ManyToMany(mappedBy="thing")
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	private List<Keyword> keyword;
+	
+	*/
+	
+	@OneToMany
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	@JoinTable(
+		       name = "keyword_thing")
+	private List<Keyword> keyword;
 }

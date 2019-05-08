@@ -45,8 +45,10 @@ public class User {
 	@OneToMany(mappedBy="user")
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<Thing> thing;
-
+	
 	@OneToMany(mappedBy="user")
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<Label> label;
+
+	
 }

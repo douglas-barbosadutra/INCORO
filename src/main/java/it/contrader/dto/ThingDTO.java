@@ -1,5 +1,7 @@
 package it.contrader.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,8 @@ public class ThingDTO {
 	private String xml;
 	private String protocol;
 
-	private UserDTO user = new UserDTO();
-	private LabelDTO label = new LabelDTO();
+	private UserDTO user;
+	private LabelDTO label;
+	private List<KeywordDTO> keyword;
+	
 }
