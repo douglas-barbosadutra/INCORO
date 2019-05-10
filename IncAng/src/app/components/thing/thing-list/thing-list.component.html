@@ -20,7 +20,7 @@
                 <td>{{thingDTO.user.username}}</td>
                 <td>{{thingDTO.label.idLabel}}</td>
 								<td><button class="btn btn-primary" (click)="deleteThing(thingDTO)">Elimina</button></td>
-								<td><button class="btn btn-primary"(click)= "chooseThing(thingDTO.idThing)" >Aggiorna</button>  </td>
+								<td><button class="btn btn-primary"(click)= "chooseThing(thingDTO.idThing)" (click)="setDTO(thingDTO)" >Aggiorna</button>  </td>
               </tr>
           </tbody>
 			  </table>

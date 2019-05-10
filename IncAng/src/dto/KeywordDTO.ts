@@ -1,5 +1,3 @@
-import {ThingDTO} from './ThingDTO';
-
 export class KeywordDTO {
     idKeyword: number;
     name: String;

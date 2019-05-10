@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { HardwareDTO } from 'src/dto/HardwareDTO';
-import { ThingDTO } from 'src/dto/ThingDTO';
+import { HardwareDTO } from '../../../../../src/dto/HardwareDTO';
+import { ThingDTO } from '../../../../../src/dto/ThingDTO';
 import { NgForm } from '@angular/forms';
-import { HardwareService } from 'src/app/services/hardware.service';
+import { HardwareService } from '../../../../../src/app/services/hardware.service';
 
 @Component({
   selector: 'app-hardware-update',
@@ -19,11 +19,12 @@ export class HardwareUpdateComponent implements OnInit {
 
 
   ngOnInit() {
+    /*
     if(sessionStorage.getItem("idThing") == null){
       this.router.navigateByUrl("thingShow");
       alert("Devi prima selezionare una Thing");
     }
-    this.hardwareDTO = new HardwareDTO(0,"", "", parseInt(sessionStorage.getItem("idThing")));
+    this.hardwareDTO = new HardwareDTO(0,"", "", parseInt(sessionStorage.getItem("idThing")));*/
   }
 
   updateHardware(f: NgForm){

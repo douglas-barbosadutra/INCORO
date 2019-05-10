@@ -21,10 +21,12 @@ export class ThingUpdateComponent implements OnInit {
 
 
   ngOnInit() {
-    this.labelDTO = new LabelDTO(0,"",this.userDTO);
-    this.userDTO = new UserDTO(0,"","",0);
-    this.thingDTO = new ThingDTO(parseInt(sessionStorage.getItem("idThing")),"","","","","","", this.userDTO, this.labelDTO);
+    //this.userDTO = new UserDTO(0,"","",0); 
+    //this.thingDTO = new ThingDTO(parseInt(sessionStorage.getItem("idThing")),"","","","","","", this.userDTO, this.labelDTO);
 
+    this.labelDTO = new LabelDTO(0,"",this.userDTO);
+    this.thingDTO = JSON.parse(sessionStorage.getItem("DTOpassato")) as ThingDTO;
+   
     this.labelService.showLabel().subscribe((data: any) =>{
       if(data != null){
         console.log(data);

@@ -18,7 +18,7 @@
                 <td>{{labelDTO.name}} </td>
                 <td>{{labelDTO.user.username}}</td>
 								<td><button class="btn btn-primary" (click)="deleteLabel(labelDTO)">Elimina</button></td>
-								<td><button class="btn btn-primary"(click)= "chooseLabel(labelDTO.idLabel)" >Aggiorna</button>  </td>
+								<td><button class="btn btn-primary"(click)= "chooseLabel(labelDTO.idLabel)" (click)="setLabel(labelDTO)">Aggiorna</button>  </td>
               </tr>
           </tbody>
 			  </table>

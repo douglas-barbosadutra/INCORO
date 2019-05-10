@@ -19,7 +19,8 @@ export class LabelUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.userDTO = new UserDTO(0,"","",0);
-    this.labelDTO = new LabelDTO(parseInt(sessionStorage.getItem("idLabel")),"",this.userDTO);
+    this.labelDTO = JSON.parse(sessionStorage.getItem("LabelDTOpassato")) as LabelDTO;
+    //this.labelDTO = new LabelDTO(parseInt(sessionStorage.getItem("idLabel")),"",this.userDTO);
     
   }
 

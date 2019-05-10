@@ -5,6 +5,12 @@ import { LoginComponent } from './components/login/login/login.component';
 import { BehaviorInsertComponent} from './components/behavior/behavior-insert/behavior-insert.component';
 import { BehaviorListComponent} from './components/behavior/behavior-list/behavior-list.component';
 import { BehaviorUpdateComponent} from './components/behavior/behavior-update/behavior-update.component';
+// import dei component di linkTK
+import { LinkTKInsertComponent} from './components/linkTK/link-tk-insert/link-tk-insert.component';
+// import dei component di keyword
+import {KeywordInsertComponent} from './components/keyword/keyword-insert/keyword-insert.component';
+import {KeywordListComponent} from './components/keyword/keyword-list/keyword-list.component';
+import {KeywordUpdateComponent} from './components/keyword/keyword-update/keyword-update.component';
 // import dei component di code
 import { CodeInsertComponent} from './components/code/code-insert/code-insert.component';
 import { CodeListComponent} from './components/code/code-list/code-list.component';
@@ -44,6 +50,12 @@ const routes: Routes = [
   {path: 'insertCode', component: CodeInsertComponent},
   {path: 'listCode', component: CodeListComponent},
   {path: 'updateCode', component: CodeUpdateComponent},
+  //keyword
+  {path: 'insertKeyword', component: KeywordInsertComponent},
+  {path: 'listKeyword', component: KeywordListComponent},
+  {path: 'updateKeyword',component:KeywordUpdateComponent},
+  // link
+  {path: 'insertLinkTK', component: LinkTKInsertComponent},
   //hardware
   {path: 'insertHardware', component: HardwareInsertComponent},
   {path: 'listHardware', component: HardwareListComponent},

@@ -33,6 +33,11 @@ export class LabelListComponent implements OnInit {
     this.router.navigateByUrl("/updateLabel");
   }
 
+  setLabel(label: LabelDTO){
+    sessionStorage.setItem("LabelDTOpassato", JSON.stringify(label))
+    this.router.navigateByUrl("/updateLabel");
+  }
+
   deleteLabel(labelDTO: LabelDTO){
 
     this.labelService.deleteLabel(labelDTO).subscribe((data: any) =>{

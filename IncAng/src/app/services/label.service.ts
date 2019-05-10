@@ -11,7 +11,6 @@ export class LabelService {
   
   insertLabel(labelDTO: LabelDTO){
     console.log("prova" + labelDTO.user.idUser);
-    
     return this.http.post('http://localhost:8080/Label/insertLabel', labelDTO);
   }
 
@@ -25,9 +24,8 @@ export class LabelService {
   }
   
   updateLabel(labelDTO: LabelDTO) {
-    console.log("IDLABEL: " + labelDTO.idLabel);
     console.log(labelDTO);
-    return this.http.put('http://localhost:8080/Label/updateLabel', labelDTO);
+    return this.http.put('http://localhost:8080/Label/updateLabel?id', labelDTO.idLabel);
   }
 
 }

@@ -31,7 +31,7 @@ export class KeywordInsertComponent implements OnInit {
     //this.thingDTO = new ThingDTO(0,"","","","","","", this.userDTO, this.labelDTO);
     this.keywordDTO = new KeywordDTO(0,"");
     
-    this.thingService.getAllThing().subscribe((data: any) => {
+    this.thingService.showThing().subscribe((data: any) => {
         if(data != null) {
           console.log(data);
           this.thingList = data;

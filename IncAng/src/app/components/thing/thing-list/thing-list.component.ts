@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ThingDTO } from '../../../../dto/ThingDTO';
 import { ThingService } from '../../../services/thing.service';
 import { Router } from '@angular/router';
@@ -31,6 +31,11 @@ export class ThingListComponent implements OnInit {
 
   chooseThing(idThing: number){
     sessionStorage.setItem("idThing", JSON.stringify(idThing));
+    this.router.navigateByUrl("/updateThing");
+  }
+
+  setDTO(thing: ThingDTO){
+    sessionStorage.setItem("DTOpassato", JSON.stringify(thing));
     this.router.navigateByUrl("/updateThing");
   }
 

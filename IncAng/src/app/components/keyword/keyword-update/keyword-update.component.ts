@@ -15,7 +15,8 @@ export class KeywordUpdateComponent implements OnInit {
   constructor(private keywordService: KeywordService, private router: Router,) { }
 
   ngOnInit() {
-    this.keywordDTO = new KeywordDTO(0,"");
+    this.keywordDTO = JSON.parse(sessionStorage.getItem("KeywordDTOpassato")) as KeywordDTO;
+    //this.keywordDTO = new KeywordDTO(0,"");
 
     this.keywordService.showKeyword().subscribe((data: any) =>{
       if(data != null){
