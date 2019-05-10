@@ -35,7 +35,7 @@ public class BehaviorController {
 		return BehaviorService.updateBehavior(BehaviorDTO);
 	}
 	
-	@RequestMapping(value="/delete" , method= RequestMethod.DELETE)
+	@RequestMapping(value="/deleteBeahavior" , method= RequestMethod.DELETE)
 	public void delete(@RequestParam(value="idBehavior") BehaviorDTO BehaviorDTO) {		
 		BehaviorService.deleteBehaviorById(BehaviorDTO.getIdBehavior());
 	}

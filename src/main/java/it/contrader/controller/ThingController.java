@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import it.contrader.dto.ThingDTO;
 import it.contrader.dto.LabelDTO;
-import it.contrader.dto.UserDTO;
 import it.contrader.services.ThingService;
 import it.contrader.services.LabelService;
 import it.contrader.services.UserService;
@@ -55,17 +54,11 @@ public class ThingController {
 	// METODI DI REST CONTROLLER
 	@RequestMapping(value="/insertThing", method= RequestMethod.POST)
 	public ThingDTO insertThing(@RequestBody ThingDTO thing) {
+		/*
 		ThingDTO asd = new ThingDTO();
 		if(thing.getLabel()!= null) {
-			System.out.println("label diverso da null");
-			System.out.println(thing.getLabel().getIdLabel());
-		}
-		//
-		//asd.setLabel(ls.getLabelDTOById(thing.getLabel().getIdLabel()));
-		
-		//thing.setLabel( ls.findLabelById(thing.getLabel().getIdLabel()));
-		//return ts.insertThing(thing);
-		return asd;
+		}*/
+		return ts.insertThing(thing);
 	}
 	
 	@RequestMapping(value="/deleteThing" , method= RequestMethod.DELETE)
@@ -87,7 +80,11 @@ public class ThingController {
 	public ThingDTO findUser( @RequestBody ThingDTO thing) {		
 		return ts.findThingById(thing.getIdThing());
 	}
-
+	
+	@RequestMapping(value="/getAllThing", method= RequestMethod.GET)
+	public List<ThingDTO> getAllThing(){
+		return ts.getAllThings();
+	}
 	/*
 	private void visualThing(HttpServletRequest request){
 		// il passaggio dell'utente avviene nel service

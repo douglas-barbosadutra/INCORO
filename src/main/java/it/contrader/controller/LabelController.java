@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.contrader.converter.ConverterUser;
@@ -51,13 +52,20 @@ public class LabelController {
 		return this.labelService.findLabelbyUser(idUser);
 	}
 	
+	/*
 	@RequestMapping(value ="/deleteLabel", method = RequestMethod.DELETE)
 	public boolean delete(@RequestBody LabelDTO labelDto) {
 		int id = labelDto.getIdLabel();
 		this.labelService.deleteLabelById(id);
 		return true;
+	}*/
+	
+	@RequestMapping(value="/deleteLabel" , method= RequestMethod.DELETE)
+	public boolean deleteLabel(@RequestParam(value="id") Integer id) {		
+		return labelService.deleteLabel(id);
 	}
 	
+	/*
 	@RequestMapping(value="/insertLabel", method = RequestMethod.PUT)
 	private boolean insertLabel(@RequestBody LabelDTO labelDto) {
 		String name = labelDto.getName();
@@ -68,6 +76,11 @@ public class LabelController {
 		} else {
 			return false;
 		}
+	}*/
+	
+	@RequestMapping(value="/insertLabel", method= RequestMethod.POST)
+	public LabelDTO insertLabel(@RequestBody LabelDTO label) {
+		return labelService.insertLabel(label);
 	}
 	
 	@RequestMapping(value = "/erroreLabel", method = RequestMethod.GET)

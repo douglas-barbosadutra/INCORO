@@ -26,16 +26,25 @@ public class LabelService {
 		this.labelRepository = labelRepository;
 	}
 	
+	/*
 	public boolean insertLabel(LabelDTO labelDTO) {
 		return labelRepository.save(ConverterLabel.convertToEntity(labelDTO)) != null;
-	}
+	}*/
 	
+	// METODO DI REST CONTROLLER
+	public LabelDTO insertLabel(LabelDTO labelDTO) {
+		Label label = ConverterLabel.toEntity(labelDTO);
+		labelRepository.save(label); 
+		return ConverterLabel.toDto(label);
+	}
+		
 	public boolean updateLabel(LabelDTO labelDTO) {
-		return labelRepository.save(ConverterLabel.convertToEntity(labelDTO)) != null;
+		return labelRepository.save(ConverterLabel.toEntity(labelDTO)) != null;
 	}
 	
-	public void deleteLabelById(int id) {
+	public boolean deleteLabel(int id) {
 		labelRepository.deleteById(id);
+		return true;
 	}
 	
 	public List<LabelDTO> getAllLabel(){
@@ -58,13 +67,13 @@ public class LabelService {
 	
 	public LabelDTO getLabelDTOById(int id) {
 		Label label = labelRepository.findLabelByIdLabel(id);
-		LabelDTO labelDTO = ConverterLabel.convertToDto(label);
+		LabelDTO labelDTO = ConverterLabel.toDto(label);
 		return labelDTO;
 	}
 	
 	public LabelDTO getLabelDTOByNameAndUser(String name, User user) {
 		Label label = labelRepository.findLabelByNameAndUser(name,user);
-		LabelDTO labelDTO = ConverterLabel.convertToDto(label);
+		LabelDTO labelDTO = ConverterLabel.toDto(label);
 		return labelDTO;
 	}
 	
@@ -72,13 +81,13 @@ public class LabelService {
 		List<Label> listLabel = labelRepository.findAllByName(name);
 		List<LabelDTO> listLabelDTO = new ArrayList<>();
 		for(Label label : listLabel) {
-			listLabelDTO.add(ConverterLabel.convertToDto(label));
+			listLabelDTO.add(ConverterLabel.toDto(label));
 		}
 		return listLabelDTO;
 	}
 	
 	public LabelDTO findLabelById(int idLabel) {
-		LabelDTO labelDTO = ConverterLabel.convertToDto(labelRepository.findLabelByIdLabel(idLabel));
+		LabelDTO labelDTO = ConverterLabel.toDto(labelRepository.findLabelByIdLabel(idLabel));
 		return labelDTO;
 	}
 	
@@ -88,7 +97,7 @@ public class LabelService {
 		List<LabelDTO> listLabelDTO = new ArrayList<>();
 		List<Label> list = labelRepository.findAllByUser(ConverterUser.toEntity(userDTO));
 		for(Label label : list) {
-			listLabelDTO.add(ConverterLabel.convertToDto(label));
+			listLabelDTO.add(ConverterLabel.toDto(label));
 		}
 		return listLabelDTO;
 	}

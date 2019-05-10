@@ -11,18 +11,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.contrader.dto.KeywordDTO;
+import it.contrader.dto.ThingDTO;
+import it.contrader.model.Keyword;
 import it.contrader.services.KeywordService;
+import it.contrader.services.LinkTKService;
+import it.contrader.dto.LinkTKDTO;
 
 @CrossOrigin(value="*")
 @RestController
 @RequestMapping("/Keyword")
 
 public class KeywordController {
-	private KeywordService keywordService;
+	private final KeywordService keywordService;
+	private final LinkTKService linkTKService;
 	
 	@Autowired
-	public KeywordController(KeywordService ks) {
-		keywordService = ks;
+	public KeywordController(KeywordService ks, LinkTKService ltks) {
+		this.keywordService = ks;
+		this.linkTKService = ltks;
 	}
 	
 	@RequestMapping(value="/insertKeyword", method= RequestMethod.POST)
@@ -35,14 +41,22 @@ public class KeywordController {
 		return keywordService.updateKeyword(KeywordDTO);
 	}
 	
-	@RequestMapping(value="/delete" , method= RequestMethod.DELETE)
-	public void delete(@RequestParam(value="idKeyword") KeywordDTO KeywordDTO) {		
-		keywordService.deleteKeywordById(KeywordDTO.getIdKeyword());
+	@RequestMapping(value="/deleteKeyword", method= RequestMethod.DELETE)
+	public boolean deleteKeyword(@RequestParam(value="id") Integer id) {		
+		return keywordService.deleteKeyword(id);
 	}
 
-	@RequestMapping(value="/showKeywords", method= RequestMethod.GET)
+	@RequestMapping (value="/showKeywords", method= RequestMethod.GET)
 	public List<KeywordDTO> showKeywords(){
 		return keywordService.getAllKeyword();
 	}
-
+	
+	
+	@RequestMapping (value="/showThingOfKey", method = RequestMethod.GET)
+	public List<LinkTKDTO> showThingOfKey(@RequestParam(value="id") Integer id){
+		KeywordDTO key = new KeywordDTO();
+		key = keywordService.getKeywordById(id);
+		return linkTKService.getAllByKeyword(key);
+	}
 }
+;

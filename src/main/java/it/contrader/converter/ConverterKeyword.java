@@ -9,6 +9,7 @@ import it.contrader.model.Keyword;
 import it.contrader.model.Thing;
 
 public class ConverterKeyword {
+	
 	public static KeywordDTO toDTO (Keyword keyword) {
 		KeywordDTO keywordDTO = null;
 		if(keyword != null) {
@@ -16,12 +17,13 @@ public class ConverterKeyword {
 			keywordDTO.setIdKeyword(keyword.getIdKeyword());
 			keywordDTO.setName(keyword.getName());
 			
+			/*
 			List<ThingDTO> listThingsDTO = new ArrayList();
 			for (Thing thing : keyword.getThing()) {
 				listThingsDTO.add(ConverterThing.toDTO(thing));
 			}
 			
-			keywordDTO.setThing(listThingsDTO);
+			keywordDTO.setThing(listThingsDTO);*/
 		}	
 		return keywordDTO; 
 	}
@@ -33,12 +35,13 @@ public class ConverterKeyword {
 			keyword.setIdKeyword(keywordDTO.getIdKeyword());
 			keyword.setName(keywordDTO.getName());
 			
-			List<Thing> listThings = new ArrayList<>();
+			/*
+			List<Thing> listThings = new ArrayList();
 			for(ThingDTO thingDTO : keywordDTO.getThing()) {
 				listThings.add(ConverterThing.toEntity(thingDTO));
 			}
 				
-			keyword.setThing(listThings);
+			keyword.setThing(listThings);*/
 		}
 		return keyword;
 	}

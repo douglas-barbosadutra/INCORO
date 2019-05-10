@@ -22,6 +22,4 @@ public class ThingDTO {
 
 	private UserDTO user;
 	private LabelDTO label;
-	private List<KeywordDTO> keyword;
-	
 }

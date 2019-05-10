@@ -37,7 +37,6 @@ public class ThingService {
 	// METODO DI REST CONTROLLER
 	public ThingDTO insertThing(ThingDTO thingDTO) {
 		Thing thing = ConverterThing.toEntity(thingDTO);
-		// userDAO.saveAndFlush(user);
 		thingRepository.save(thing); 
 		return ConverterThing.toDTO(thing);
 	}

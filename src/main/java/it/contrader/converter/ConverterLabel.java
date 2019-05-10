@@ -10,7 +10,7 @@ import it.contrader.model.User;
 
 public class ConverterLabel {
 	
-	public static LabelDTO convertToDto(Label label) {
+	public static LabelDTO toDto(Label label) {
 		LabelDTO labelDTO = null;
 		if(label != null) {
 			labelDTO = new LabelDTO();
@@ -25,7 +25,7 @@ public class ConverterLabel {
 		return labelDTO;		
 	}
 	
-	public static Label convertToEntity(LabelDTO labelDTO) {
+	public static Label toEntity(LabelDTO labelDTO) {
 		Label label = null;
 		if(labelDTO != null) {
 			label = new Label();
@@ -44,7 +44,7 @@ public class ConverterLabel {
 		List<LabelDTO> listLabelDTO = new ArrayList<>();
 		if (!list.isEmpty()) {
 			for(Label label : list) {
-				listLabelDTO.add(ConverterLabel.convertToDto(label));
+				listLabelDTO.add(ConverterLabel.toDto(label));
 			}
 		}
 		return listLabelDTO;
@@ -54,7 +54,7 @@ public class ConverterLabel {
 		List<Label> listLabel = new ArrayList<>();
 		if (!listLabelDTO.isEmpty()) {
 			for(LabelDTO labelDTO : listLabelDTO) {
-				listLabel.add(ConverterLabel.convertToEntity(labelDTO));
+				listLabel.add(ConverterLabel.toEntity(labelDTO));
 			}
 		}
 		return listLabel;

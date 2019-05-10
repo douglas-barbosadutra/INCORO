@@ -35,13 +35,13 @@ public class HardwareController {
 		return hardwareService.updateHardware(hardwareDTO);
 	}
 	
-	@RequestMapping(value="/delete" , method= RequestMethod.DELETE)
-	public void delete(@RequestParam(value="idHardware") HardwareDTO hardwareDTO) {		
-		hardwareService.deleteHardwareById(hardwareDTO.getIdHardware());
+	@RequestMapping(value="/deleteHardware" , method= RequestMethod.DELETE)
+	public boolean deleteHardware(@RequestParam(value="id") Integer id) {		
+	 	return hardwareService.deleteHardware(id);
 	}
 
-	@RequestMapping(value="/showHardwares", method= RequestMethod.GET)
-	public List<HardwareDTO> showHardwares(){
+	@RequestMapping(value="/showHardware", method= RequestMethod.GET)
+	public List<HardwareDTO> showHardware(){
 		return hardwareService.getAllHardware();
 	}
 }

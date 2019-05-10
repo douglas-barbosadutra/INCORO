@@ -40,10 +40,16 @@ public class HardwareService {
 		return hardwareRepository.save(ConverterHardware.toEntity(hardwareDTO)) != null;
 	}
 	
+	/*
 	public void deleteHardwareById(Integer id) {
 		hardwareRepository.deleteById(id);
-	}
+	}*/
 
+	public boolean deleteHardware(int id) {
+		this.hardwareRepository.deleteById(id);
+		return true;
+	}
+	
 	public List<HardwareDTO> findHardwareDTOByName(String name) {
 		final List<Hardware> list = hardwareRepository.findAllByName(name);
 		final List<HardwareDTO> hardwareDTOs = new ArrayList<>();

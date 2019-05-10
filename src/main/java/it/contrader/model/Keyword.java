@@ -2,15 +2,12 @@ package it.contrader.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -39,27 +36,26 @@ public class Keyword {
 	@NotNull
 	private String name;
 	
-/*
-	@ManyToMany(cascade = { CascadeType.ALL })
-	   @JoinTable(
-	       name = "keyword_thing", 
-	       joinColumns = { @JoinColumn(name = "idKeyword") }, 
-	       inverseJoinColumns = { @JoinColumn(name = "idThing") }
-	   )
-	   private List<Thing> thing;
-	*/
-
-	@OneToMany
+	@OneToMany(mappedBy = "keyword")
 	@OnDelete(action=OnDeleteAction.CASCADE)
-	@JoinTable(
-		       name = "keyword_thing"
-		       
-		       
-		       )
-	private List<Thing> thing;
-	
-		
-	
-	
+	private List<LinkTK> linktk;
 
 }
+
+
+
+/*
+@ManyToMany(cascade = { CascadeType.ALL })
+   @JoinTable(
+       name = "keyword_thing", 
+       joinColumns = { @JoinColumn(name = "idKeyword") }, 
+       inverseJoinColumns = { @JoinColumn(name = "idThing") }
+   )
+   private List<Thing> thing;
+*/
+
+/*
+@OneToMany
+@JoinTable(name = "keyword_thing")
+private List<Thing> thing;
+*/
