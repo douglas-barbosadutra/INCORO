@@ -37,10 +37,12 @@ export class KeywordListComponent implements OnInit {
   }
 
   showTK(keywordDTO: KeywordDTO){
-    this.linkTKService.showThingOfKey(keywordDTO).subscribe((data: any) => {
+    this.linkTKService.showThingOfKey(keywordDTO).subscribe((data: Array<ThingDTO>) => {
       if(data){
-        alert(" ris " + data);
         this.List2 = data;
+        
+        console.log("list: ",this.List2);
+        
         //alert("ThingDTO " + this.List2 );
         //sessionStorage.setItem("list2", JSON.stringify(this.List2));
       } 

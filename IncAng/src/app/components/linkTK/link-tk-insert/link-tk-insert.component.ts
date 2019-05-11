@@ -58,7 +58,7 @@ export class LinkTKInsertComponent implements OnInit {
       else
         alert("Inserimento fallito");
   
-        this.router.navigateByUrl("/homeBO");
+        this.router.navigateByUrl("/homeBo");
     })
 
 
