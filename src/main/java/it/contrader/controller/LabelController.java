@@ -111,4 +111,23 @@ public class LabelController {
 		session.invalidate();
 		return "index";	
 	}
+	@RequestMapping(value="/updateLabel" , method= RequestMethod.PUT)
+	public LabelDTO showLabel(@RequestBody LabelDTO labelDTO) {	
+		//return labelService.insertLabel(labelDTO);
+		System.out.println("nome nuovo" + labelDTO.getName());
+		LabelDTO labelOldDTO =new LabelDTO();
+		UserDTO userDTO = new UserDTO();
+		userDTO = userService.getUserDTOById(labelDTO.getUser().getIdUser()); 
+		labelOldDTO = labelService.getLabelDTOById(labelDTO.getIdLabel());
+		System.out.println("nome vecchio" + labelOldDTO.getName());
+		String name = labelDTO.getName();
+		
+		if (labelService.getLabelDTOByNameAndUser(name, ConverterUser.toEntity(userDTO)) == null || labelService.getLabelDTOByNameAndUser(name, ConverterUser.toEntity(userDTO)).equals(labelOldDTO)) {
+				LabelDTO labelObj = new LabelDTO(labelDTO.getIdLabel(), name, userDTO);
+			return labelService.insertLabel(labelDTO);
+		}
+		else {
+			return null;
+		}
+	}
 }

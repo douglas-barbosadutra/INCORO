@@ -8,17 +8,21 @@ import org.springframework.stereotype.Service;
 
 import ch.qos.logback.core.pattern.Converter;
 import it.contrader.converter.ConverterKeyword;
+import it.contrader.converter.ConverterLabel;
 import it.contrader.converter.ConverterLinkTK;
 import it.contrader.converter.ConverterThing;
 import it.contrader.dao.LinkTKRepository;
 
 import it.contrader.dto.ThingDTO;
 import it.contrader.dto.KeywordDTO;
+import it.contrader.dto.LabelDTO;
 import it.contrader.dto.LinkTKDTO;
 
 import it.contrader.model.LinkTK;
 import it.contrader.model.Keyword;
+import it.contrader.model.Label;
 import it.contrader.model.Thing;
+import it.contrader.model.User;
 
 
 @Service
@@ -56,6 +60,14 @@ public class LinkTKService {
 	
 	public List<LinkTKDTO> getAllByThing(Thing thing){
 		return ConverterLinkTK.toListDTO((List<LinkTK>) linkTKRepository.findAllByThing(thing));
+	}
+	
+	public LinkTKDTO getLinkTKDTOByThingAndKeyword(ThingDTO thingDTO, KeywordDTO keywordDTO) {
+		Thing thing = ConverterThing.toEntity(thingDTO);
+		Keyword keyword = ConverterKeyword.toEntity(keywordDTO);
+		LinkTK linkTK = linkTKRepository.findLinkTKByThingAndKeyword(thing, keyword);
+		LinkTKDTO linkTKDTO = ConverterLinkTK.toDTO(linkTK);
+		return linkTKDTO;
 	}
 	
 	

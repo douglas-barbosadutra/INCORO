@@ -16,4 +16,5 @@ public interface LinkTKRepository extends CrudRepository <LinkTK, Integer> {
 
 		public List<LinkTK> findAllByKeyword(Keyword key);
 		public List<LinkTK> findAllByThing(Thing thing);
+		public LinkTK findLinkTKByThingAndKeyword(Thing thing, Keyword keyword);
 }
