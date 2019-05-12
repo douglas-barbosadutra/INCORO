@@ -41,6 +41,9 @@ import { KeywordInsertComponent} from'./components/keyword/keyword-insert/keywor
 import {KeywordListComponent} from './components/keyword/keyword-list/keyword-list.component';
 import {KeywordUpdateComponent} from './components/keyword/keyword-update/keyword-update.component';
 import { LinkTKInsertComponent } from './components/linkTK/link-tk-insert/link-tk-insert.component';
+import { LinkTkListComponent } from './components/linkTK/link-tk-list/link-tk-list/link-tk-list.component';
+import { LinkTkDeleteComponent } from './components/linkTK/link-tk-delete/link-tk-delete/link-tk-delete.component';
+import { LinkTkUpdateComponent } from './components/linkTK/link-tk-update/link-tk-update/link-tk-update.component';
 
 let config = new AuthServiceConfig([
   {
@@ -86,6 +89,9 @@ export function provideConfig() {
     KeywordUpdateComponent,
     KeywordListComponent,
     LinkTKInsertComponent,
+    LinkTkListComponent,
+    LinkTkDeleteComponent,
+    LinkTkUpdateComponent,
 
   ],
   imports: [

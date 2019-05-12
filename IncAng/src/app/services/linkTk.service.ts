@@ -19,4 +19,12 @@ export class LinkTKService {
     showThingOfKey(keywordDTO: KeywordDTO){
       return this.http.get('http://localhost:8080/Keyword/showThingOfKey?id='+ keywordDTO.idKeyword);
     }
+
+    showLinkTK(){
+      return this.http.get('http://localhost:8080/LinkTK/showLinkTK');
+    }
+    deleteLinkTK(linkTKDTO: LinkTKDTO){
+      console.log(linkTKDTO.idLinkTK);
+      return this.http.delete('http://localhost:8080/LinkTK/deleteLinkTK?id='+ linkTKDTO.idLinkTK);
+    }
 }

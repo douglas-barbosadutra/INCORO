@@ -25,7 +25,7 @@ export class LabelService {
   
   updateLabel(labelDTO: LabelDTO) {
     console.log(labelDTO);
-    return this.http.put('http://localhost:8080/Label/updateLabel?id', labelDTO.idLabel);
+    return this.http.put('http://localhost:8080/Label/updateLabel', labelDTO);
   }
 
 }

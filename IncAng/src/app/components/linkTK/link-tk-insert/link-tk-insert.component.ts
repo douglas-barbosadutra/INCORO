@@ -56,7 +56,7 @@ export class LinkTKInsertComponent implements OnInit {
       if(data != null)
         alert("Inserimento effettuato");
       else
-        alert("Inserimento fallito");
+        alert("Collegamento già esistente");
   
         this.router.navigateByUrl("/homeBo");
     })

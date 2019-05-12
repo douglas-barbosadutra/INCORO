@@ -26,13 +26,14 @@ export class LabelUpdateComponent implements OnInit {
 
   updateLabel(){
     this.labelDTO.user.idUser = parseInt(sessionStorage.getItem("idUser"));
-    this.labelService.updateLabel(this.labelDTO).subscribe((data: any) => {
+    this.labelService.updateLabel(this.labelDTO).subscribe((data: LabelDTO) => {
       
       if(data != null)
-        alert("Inserimento effettuato");
+        alert("Aggiornamento effettuato");
       else
-        alert("Inserimento fallito");
-        this.router.navigateByUrl("/homeBo");
+        alert("Label già esistente");
+
+      this.router.navigateByUrl("/homeBo");
     })
   }
 

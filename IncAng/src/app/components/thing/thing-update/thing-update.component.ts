@@ -43,7 +43,7 @@ export class ThingUpdateComponent implements OnInit {
       alert("Inserimento effettuato");
     else
       alert("Inserimento fallito");
-      this.router.navigateByUrl("/homeBO");
+      this.router.navigateByUrl("/homeBo");
   })
 }
 }

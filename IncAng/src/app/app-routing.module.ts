@@ -7,6 +7,7 @@ import { BehaviorListComponent} from './components/behavior/behavior-list/behavi
 import { BehaviorUpdateComponent} from './components/behavior/behavior-update/behavior-update.component';
 // import dei component di linkTK
 import { LinkTKInsertComponent} from './components/linkTK/link-tk-insert/link-tk-insert.component';
+import { LinkTkListComponent } from './components/linkTK/link-tk-list/link-tk-list/link-tk-list.component';
 // import dei component di keyword
 import {KeywordInsertComponent} from './components/keyword/keyword-insert/keyword-insert.component';
 import {KeywordListComponent} from './components/keyword/keyword-list/keyword-list.component';
@@ -39,6 +40,7 @@ import { UserShowComponent} from './components/user/user-show/user-show.componen
 import { UserUpdateComponent} from './components/user/user-update/user-update.component';
 
 
+
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
@@ -56,6 +58,7 @@ const routes: Routes = [
   {path: 'updateKeyword',component:KeywordUpdateComponent},
   // link
   {path: 'insertLinkTK', component: LinkTKInsertComponent},
+  {path: 'listLinkTK', component: LinkTkListComponent},
   //hardware
   {path: 'insertHardware', component: HardwareInsertComponent},
   {path: 'listHardware', component: HardwareListComponent},

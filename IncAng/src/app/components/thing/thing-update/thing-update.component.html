@@ -1,18 +1,19 @@
 <app-menu-bo></app-menu-bo>
 
 <form>
-      <p class="dropbtn" >
-            <label> Code </label>
-            <input type="text" class="dropbtn" name="code" [(ngModel)]="thingDTO.code"placeholder="Code">
-      </p>
+            <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                        <label class="col-form-label"> Code </label>
+                        <textarea class="form-control"  name="code" placeholder="Code" [(ngModel)]="thingDTO.code">
+            </textarea>
+                  </p>
       <p class="dropbtn">
             <label> Description </label>
             <input type="text" class="dropbtn " name="description" [(ngModel)]="thingDTO.description" placeholder="description">
       </p>
-      <p class="image">
-            <label> Image </label>
-            <input type="text" class="dropbtn " name="image"[(ngModel)]="thingDTO.image"placeholder="image">
-      </p>
+      <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                  <label class="col-form-label"> Image </label>
+                  <input type="file" class="form-control" name="image" [(ngModel)]="thingDTO.image" >
+</p>
       <p class="dropbtn">
             <label> Name </label>
             <input type="text" class="dropbtn " name="name" [(ngModel)]="thingDTO.name" placeholder="name">
