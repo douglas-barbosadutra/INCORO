@@ -4,13 +4,15 @@ export class HardwareDTO{
     idHardware: number;
     name: String;
     description: String;
-    thingDTO: ThingDTO;
+    master: boolean;
+    thing: ThingDTO;
 
 
-constructor(id: number, name: String, description: String, idThing: number ){
+constructor(id: number, name: String, description: String, master: boolean, thingDTO: ThingDTO ){
     this.idHardware=id;
     this.name= name;
     this.description=description;
-    idThing=this.thingDTO.idThing;
+    this.master= master;
+    this.thing = thingDTO;
 }
 }

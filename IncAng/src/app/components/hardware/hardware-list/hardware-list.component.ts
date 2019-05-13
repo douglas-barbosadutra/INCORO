@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HardwareDTO } from 'src/dto/HardwareDTO';
+import { HardwareDTO } from '../../../../../src/dto/HardwareDTO';
 import { Router } from '@angular/router';
-import { HardwareService } from 'src/app/services/hardware.service';
+import { HardwareService } from '../../../../../src/app/services/hardware.service';
 
 @Component({
   selector: 'app-hardware-list',
@@ -10,28 +10,27 @@ import { HardwareService } from 'src/app/services/hardware.service';
 })
 export class HardwareListComponent implements OnInit {
   private hardwareList: Array<HardwareDTO>;
-  private hardwareService: HardwareService;
+  private hardwareDTO: HardwareDTO;
 
-  constructor(private hardwareservice: HardwareService, private router: Router) { }
+  constructor(private hardwareService: HardwareService, private router: Router) { }
 
   ngOnInit() {
     this.hardwareService.showHardware().subscribe((data: any) =>{
-
       if(data != null){
+        console.log(data)
         this.hardwareList = data;
       }
     })
   }
-  deleteHardware(idHardware: number){
 
-    this.hardwareService.deleteHardware(idHardware).subscribe((data: any) =>{
-
+  deleteHardware(hardwareDTO: HardwareDTO){
+    this.hardwareService.deleteHardware(hardwareDTO).subscribe((data: any) =>{
       if(data)
         alert("Cancellazione effettuata");
       else
         alert("Cancellazione fallita");
 
-      this.router.navigateByUrl("homeAdmin");
+      this.router.navigateByUrl("homeBO");
     })
   }
 

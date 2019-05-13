@@ -5,7 +5,6 @@ import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider} from "angularx-social-login";
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserService } from './services/user.service';
@@ -38,6 +37,13 @@ import { HomeBoComponent } from './components/home/home-bo/home-bo.component';
 import { HomeAdminComponent } from './components/home/home-admin/home-admin.component';
 import { MenuBoComponent } from './components/menu/menu-bo/menu-bo.component';
 import { MenuAdminComponent } from './components/menu/menu-admin/menu-admin.component';
+import { KeywordInsertComponent} from'./components/keyword/keyword-insert/keyword-insert.component';
+import {KeywordListComponent} from './components/keyword/keyword-list/keyword-list.component';
+import {KeywordUpdateComponent} from './components/keyword/keyword-update/keyword-update.component';
+import { LinkTKInsertComponent } from './components/linkTK/link-tk-insert/link-tk-insert.component';
+import { LinkTkListComponent } from './components/linkTK/link-tk-list/link-tk-list/link-tk-list.component';
+import { LinkTkDeleteComponent } from './components/linkTK/link-tk-delete/link-tk-delete/link-tk-delete.component';
+import { LinkTkUpdateComponent } from './components/linkTK/link-tk-update/link-tk-update/link-tk-update.component';
 
 let config = new AuthServiceConfig([
   {
@@ -79,6 +85,13 @@ export function provideConfig() {
     HomeAdminComponent,
     MenuBoComponent,
     MenuAdminComponent,
+    KeywordInsertComponent,
+    KeywordUpdateComponent,
+    KeywordListComponent,
+    LinkTKInsertComponent,
+    LinkTkListComponent,
+    LinkTkDeleteComponent,
+    LinkTkUpdateComponent,
 
   ],
   imports: [

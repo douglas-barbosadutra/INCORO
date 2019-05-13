@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HardwareDTO } from 'src/dto/HardwareDTO';
+import { HardwareDTO } from '../../../src/dto/HardwareDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +17,11 @@ export class HardwareService {
     return this.http.get('http://localhost:8080/Hardware/showHardware');
   }
 
-  deleteHardware(idHardware: number){
-    return this.http.delete('http://localhost:8080/Hardware/deleteHardware?idHardware=' + idHardware);
+  deleteHardware(hardwareDTO: HardwareDTO){
+    alert(hardwareDTO.idHardware);
+    return this.http.delete('http://localhost:8080/Hardware/deleteHardware?id=' + hardwareDTO.idHardware);
   }
-
-  delete(hardwareDTO: HardwareDTO){
-    return this.http.delete('http://localhost:8080/Hardware/delete?idHardware=' + hardwareDTO.idHardware);
-  }
-
+  
   updateHardware(hardwareDTO: HardwareDTO) {
     return this.http.put( 'http://localhost:8080/Hardware/updateHardware', hardwareDTO);
   }

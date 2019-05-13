@@ -21,10 +21,10 @@ export class ThingInsertComponent implements OnInit {
 
   ngOnInit() {
     this.labelDTO = new LabelDTO(0,"",this.userDTO);
+    this.userDTO = new UserDTO(0,"","",0);
     this.thingDTO = new ThingDTO(0,"","","","","","", this.userDTO, this.labelDTO);
     
     this.labelService.showLabel().subscribe((data: any) =>{
-
       if(data != null){
         console.log(data);
         this.labelList = data;
@@ -33,22 +33,18 @@ export class ThingInsertComponent implements OnInit {
   }
 
   insertThing(){
-    this.thingDTO.user = JSON.parse(sessionStorage.getItem("User")) as UserDTO;
-    //alert(this.labelDTO.idLabel);
+    //this.thingDTO.user = JSON.parse(sessionStorage.getItem("User")) as UserDTO;
+    this.thingDTO.user.idUser = parseInt(sessionStorage.getItem("idUser"));
     this.thingDTO.label.idLabel = this.labelDTO.idLabel;
-    //alert ("asdffsa" + this.thingDTO.labelDTO.idLabel);
-    //this.thingDTO.labelDTO = this.labelDTO;
-    //alert("2 " + this.thingDTO.labelDTO.name);
-
+   
   this.thingService.insertThing(this.thingDTO).subscribe((data: any) => {
-    console.log("arr")
-
+    
     if(data != null)
       alert("Inserimento effettuato");
     else
       alert("Inserimento fallito");
 
-      this.router.navigateByUrl("/homeAdmin");
+      this.router.navigateByUrl("/homeBo");
   })
 }
 }
