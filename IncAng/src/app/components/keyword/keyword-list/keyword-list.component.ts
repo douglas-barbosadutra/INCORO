@@ -13,8 +13,13 @@ import { ThingDTO } from '../../../../dto/ThingDTO';
 })
 export class KeywordListComponent implements OnInit {
   private keywordList: Array<KeywordDTO>;
-  private List2: Array<ThingDTO>
-
+  private arrayThingDTO: Array<ThingDTO>;
+  private arrayLink: Array<LinkTKDTO>;
+  private arrayLinkSession: Array<LinkTKDTO>;
+  private thingDTO: ThingDTO;
+  
+  private nomeKey: String;
+  
   constructor(private keywordService: KeywordService, private router: Router, private linkTKService: LinkTKService) { }
 
   ngOnInit() {
@@ -37,22 +42,38 @@ export class KeywordListComponent implements OnInit {
   }
 
   showTK(keywordDTO: KeywordDTO){
-    this.linkTKService.showThingOfKey(keywordDTO).subscribe((data: Array<ThingDTO>) => {
+    // del seguente metodo ci arriva un array di LinkTKDTO non un array di ThingDTO.
+    this.linkTKService.showThingOfKey(keywordDTO).subscribe((data: Array<LinkTKDTO>) => {
       if(data){
-        this.List2 = data;
+        this.arrayLink = data;
         
-        console.log("list: ",this.List2);
+        sessionStorage.setItem("arrayLink", JSON.stringify(this.arrayLink));
+        this.arrayLinkSession = JSON.parse(sessionStorage.getItem("arrayLink")) as Array<LinkTKDTO>;  
         
-        //alert("ThingDTO " + this.List2 );
-        //sessionStorage.setItem("list2", JSON.stringify(this.List2));
-      } 
-    //
-
-    })
+        //console.log("arrayLinkSession: ", this.arrayLinkSession);
+        
+        for (var i=0; i<this.arrayLinkSession.length; i++) {
+            this.thingDTO = this.arrayLinkSession[i].thing;
+            this.nomeKey = this.arrayLinkSession[i].keyword.name;
+            alert("La Keyword: " + this.nomeKey  + " ha associata la Thing: " + this.thingDTO.name);
+        }
+      }
+      //this.mostra();
+    }
     
-  
+    )
   }
-  
+
+  /*
+  mostra(){
+    this.arrayLinkSession = JSON.parse(sessionStorage.getItem("arrayLink")) as Array<LinkTKDTO>;
+    alert("array di sessione " + this.arrayLinkSession.length);
+    
+    for (var i=0; i<this.arrayLinkSession.length; i++) {
+      this.arrayThingDTO[i] = this.arrayLinkSession[i].thing;
+    }
+  }*/
+
   deleteKeyword(keywordDTO: KeywordDTO){
 
     this.keywordService.deleteKeyword(keywordDTO).subscribe((data: any) =>{

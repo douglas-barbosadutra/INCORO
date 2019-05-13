@@ -27,7 +27,7 @@ export class HardwareInsertComponent implements OnInit {
     this.labelDTO = new LabelDTO(0,"",this.userDTO);
     this.thingDTO = new ThingDTO(0,"","","","","","", this.userDTO, this.labelDTO);
 
-    this.hardwareDTO = new HardwareDTO(0,"","", this.thingDTO);
+    this.hardwareDTO = new HardwareDTO(0,"","", false,this.thingDTO);
     this.thingService.showThing().subscribe((data: any) =>{
       if(data != null){
         console.log(data);
@@ -42,7 +42,7 @@ export class HardwareInsertComponent implements OnInit {
         alert("Inserimento effettuato");
       else
         alert("Inserimento fallito");
-        this.router.navigateByUrl("/homeBO");
+        this.router.navigateByUrl("/homeBo");
     })
   }
 }

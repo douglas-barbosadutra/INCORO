@@ -15,9 +15,9 @@
 							<tr *ngFor="let keywordDTO of keywordList">
                 <td>{{keywordDTO.idKeyword}} </td>
                 <td>{{keywordDTO.name}} </td>
-								<td><button class="btn btn-primary" (click)="deleteKeyword(keywordDTO)">Elimina</button></td>
-								<td><button class="btn btn-primary"(click)= "chooseKeyword(keywordDTO.idKeyword)" (click)="setDTO(keywordDTO)" >Aggiorna</button>  </td>
-								<td><button class="btn btn-primary" (click)="showTK(keywordDTO)">Visualizza Thing associate</button></td>
+								<td><button class="btn btn-primary" (click)="deleteKeyword(keywordDTO)"> Elimina </button></td>
+								<td><button class="btn btn-primary"(click)= "chooseKeyword(keywordDTO.idKeyword)" (click)="setDTO(keywordDTO)" > Aggiorna </button>  </td>
+								<td><button class="btn btn-primary" (click)="showTK(keywordDTO)"> Visualizza Thing associate</button></td>
 							</tr>
           </tbody>
 			  </table>

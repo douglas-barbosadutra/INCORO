@@ -11,6 +11,7 @@
                   <th>ID</th>
                   <th>Nome</th>
                   <th>Descrizione</th>
+                  <th>Master</th>
                   <th>IdThing</th>
                   <th></th>
                 </tr>
@@ -23,6 +24,7 @@
                   <td>{{hardwareDTO.idHardware}} </td>
                   <td>{{hardwareDTO.name}} </td>
                   <td>{{hardwareDTO.description}}</td>
+                  <td>{{hardwareDTO.master}}</td>
                   <td>{{hardwareDTO.thing.idThing}}</td>
                   <td><button class="btn btn-primary" (click)="deleteHardware(hardwareDTO)">Elimina</button></td>
                 </tr>
