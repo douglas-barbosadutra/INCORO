@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       console.log(user.name);
       if (user != null){
         console.log(user.name);
-        sessionStorage.setItem("googleUser",user.name); //controllare cosa fa questo metodo
+        sessionStorage.setItem("googleUser",JSON.stringify(user)); //controllare cosa fa questo metodo
         //doppio login in quanto una volta effettuato il login con google e quindi aver recurperato i dati di accesso
         //eseguo una seconda verifica sul db in cui devo a sua volta decidere se registrare o accedere
         // questo a seconda del fatto che l'account esista o meno
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
     if(response != null){
     this.idUtenteLocale = response.idUser;
     console.log(this.idUtenteLocale);
-    sessionStorage.setItem("idUser", JSON.stringify(this.idUtenteLocale));
+    sessionStorage.setItem("idUser", JSON.stringify(response));
     if(response.type == 1)
     this.router.navigateByUrl("/homeBo");
 
