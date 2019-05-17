@@ -35,6 +35,10 @@ public class Hardware {
 	@Column(name ="description", columnDefinition = "LONGTEXT" )
 	private String description;
 	
+	@Column(name="master") 
+	@NotNull
+	private boolean master;
+	
 	@ManyToOne
 	@JoinColumn(name="idThing")
 	private Thing thing;

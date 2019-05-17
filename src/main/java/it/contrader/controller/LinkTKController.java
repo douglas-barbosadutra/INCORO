@@ -30,13 +30,10 @@ public class LinkTKController {
 		this.lkts = lkts;
 	}
 	
-	
-	
 	@RequestMapping(value="/deleteLinkTK" , method= RequestMethod.DELETE)
 	public boolean deleteLinkTK(@RequestParam(value="id") Integer id) {		
 		return lkts.deleteLinkTK(id);
 	}
-	
 	
 	@RequestMapping(value="/showLinkTK" , method= RequestMethod.GET)
 	public List<LinkTKDTO> showLinkTK() {		
@@ -59,9 +56,6 @@ public class LinkTKController {
 			return null;
 		}
 	}
-	
-	
-	
 	
 	/*
 	@RequestMapping(value="/insertLinkTK", method= RequestMethod.POST)

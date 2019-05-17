@@ -16,6 +16,7 @@ public class ConverterHardware {
 			hardwareDTO.setIdHardware(hardware.getIdHardware());
 			hardwareDTO.setDescription(hardware.getDescription());
 			hardwareDTO.setName(hardware.getName());
+			hardwareDTO.setMaster(hardware.isMaster());
 			
 			ThingDTO thing = new ThingDTO();
 			thing = ConverterThing.toDTO(hardware.getThing());
@@ -32,6 +33,7 @@ public class ConverterHardware {
 			hardware.setIdHardware(hardwareDTO.getIdHardware());
 			hardware.setDescription(hardwareDTO.getDescription());
 			hardware.setName(hardwareDTO.getName());
+			hardware.setMaster(hardwareDTO.isMaster());
 			
 			Thing thing = new Thing();
 			thing = ConverterThing.toEntity(hardwareDTO.getThing());

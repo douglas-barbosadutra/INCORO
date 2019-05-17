@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import it.contrader.dto.ThingDTO;
 import it.contrader.dto.LabelDTO;
@@ -17,18 +16,9 @@ import it.contrader.services.ThingService;
 import it.contrader.services.LabelService;
 import it.contrader.services.UserService;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @CrossOrigin(value="*")
@@ -54,10 +44,6 @@ public class ThingController {
 	// METODI DI REST CONTROLLER
 	@RequestMapping(value="/insertThing", method= RequestMethod.POST)
 	public ThingDTO insertThing(@RequestBody ThingDTO thing) {
-		/*
-		ThingDTO asd = new ThingDTO();
-		if(thing.getLabel()!= null) {
-		}*/
 		return ts.insertThing(thing);
 	}
 	
@@ -85,24 +71,6 @@ public class ThingController {
 	public List<ThingDTO> getAllThing(){
 		return ts.getAllThings();
 	}
-	/*
-	private void visualThing(HttpServletRequest request){
-		// il passaggio dell'utente avviene nel service
-		List<ThingDTO> allThing = this.ts.getThingDTOByIdUser(idUser);
-		request.getSession().setAttribute("allThing", allThing);
-	}
-	
-	@RequestMapping(value = "/indietro", method = RequestMethod.GET)
-	public String indietro(HttpServletRequest request) {
-		visualThing(request);
-		return "homeBO";
-	}
-	
-	@RequestMapping(value = "/codeThing", method = RequestMethod.GET)
-	public String code(HttpServletRequest request) {	
-		visualThing(request);
-		return "homeBO";
-	}*/
 		
 	@RequestMapping(value ="/thingManagement", method = RequestMethod.GET)
 	public String thingManagement(HttpServletRequest request) {
@@ -112,16 +80,6 @@ public class ThingController {
 		return "showThing";		
 	}
 	
-	/* METODO DI CONTROLLER	
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String delete(HttpServletRequest request) {
-		int id = Integer.parseInt(request.getParameter("id"));
-		request.getSession().setAttribute("id", id);
-		this.ts.deleteThingById(id);
-		visualThing(request);
-		return "showThing";
-	}*/
-	
 	@RequestMapping(value = "/crea", method = RequestMethod.GET)
 	public String insert(HttpServletRequest request) {
 		idUser = Integer.parseInt(request.getParameter("idUser"));
@@ -129,50 +87,6 @@ public class ThingController {
 		request.getSession().setAttribute("list", labelDTO);
 		return "creaThing";
 	}
-	
-	/*
-	@RequestMapping(value = "/creaThing", method = RequestMethod.POST)
-	public String insertThing(
-			@RequestParam MultipartFile image,
-			@RequestParam String name,
-			@RequestParam String code,
-			@RequestParam String idLabel) throws IOException {
-		String nLblNoEsc = idLabel.replaceAll("\\s+","");
-		Integer rIdLabel = Integer.parseInt(nLblNoEsc);
-		//questa è una puttanata
-		String imagePath = image.getOriginalFilename(); // secondo me è ridontante con quello di sotto
-		final String fileName = getFileName(imagePath); // method returns the last name of the pathname's name sequence
-		final String path = new String ("c:\\webdata\\images\\");
-		OutputStream out = null;
-        byte barr[]= image.getBytes();
-        try {
-	        out = new FileOutputStream(new File(path + File.separator + fileName));
-	        out.write(barr, 0, barr.length);	
-	    } catch (FileNotFoundException fne) {
-	    } finally {
-	        if (out != null) {
-	            out.close();
-	        }
-	    }
-
-        // poi si crea una lista di thingDTO ma non viene mai usata
-        List<ThingDTO> work = ts.getListThingDTO();
-        int i = 0;
-        	for(ThingDTO x : work) {
-        		i++;
-        	}
-        String modXml = createXmlFromDataThings(i,code,path+fileName,idUser,rIdLabel,name);
-        
-        UserDTO user = new UserDTO();
-		user = us.findUserDTOById(idUser);
-
-		LabelDTO label = new LabelDTO();
-		label =ls.findLabelById(rIdLabel);
-		
-        ThingDTO thingObj = new ThingDTO(0, code, path+fileName, name, modXml, user, label);
-		ts.insertThing(thingObj);
-		return "homeBO"; 		
-	}*/
 	
 	@RequestMapping(value = "/showCode", method = RequestMethod.GET)
 	public String codice(HttpServletRequest request) {
@@ -208,74 +122,6 @@ public class ThingController {
 	            return fn.substring( slashPos > 0 ? slashPos + 1 : 0 );
 	}
 	
-	/*
-	@RequestMapping(value="/openUpdateThing")
-	public String openUpdateThing(HttpServletRequest request) {
-		idThing = Integer.parseInt(request.getParameter("id"));
-		List<LabelDTO> labelDTO = ls.findLabelbyUser(idUser);
-		request.getSession().setAttribute("list", labelDTO);
-		
-		if (idThing != 0) {
-			ThingDTO thingDTO = ts.getThingDTOById(idThing);
-			String nome = thingDTO.getName();
-			String code = thingDTO.getCode();
-			String image= thingDTO.getImage();
-			request.getSession().setAttribute("nome", nome);
-			request.getSession().setAttribute("code", code);
-			request.getSession().setAttribute("image", image);
-		}
-		return "thingUpdate";
-	}*/
-	/*
-	@RequestMapping(value = "/updateThing", method = RequestMethod.POST)
-	public String updateThing(
-			@RequestParam MultipartFile image,
-			@RequestParam String name,
-			@RequestParam String code,
-			@RequestParam String idLabel) throws IOException, SQLException {
-		
-		String nLblNoEsc = idLabel.replaceAll("\\s+","");
-		Integer rIdLabel = Integer.parseInt(nLblNoEsc);
-		
-		String imagePath = image.getOriginalFilename();
-		final String fileName = getFileName(imagePath);
-		final String path = new String ("c:\\webdata\\images\\");
-		OutputStream out = null;
-        byte barr[]= image.getBytes();
-        	try {
-        		out = new FileOutputStream(new File(path + File.separator + fileName));
-        			out.write(barr, 0, barr.length);
-        	} catch (FileNotFoundException fne) {
-        	} finally {
-        		if (out != null) {
-        			out.close();
-        		}
-	    }
-				
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/incorospring", "root", "root");
-		} catch (Exception e) {
-			System.out.println(e);
-			System.exit(0);
-		}
-		
-		UserDTO user = new UserDTO();
-		user = us.findUserDTOById(idUser);
-
-		LabelDTO label = new LabelDTO();
-		label =ls.findLabelById(rIdLabel);
-		
-        String modXml = updateXmlFromDataThings(idThing,code,path+fileName, idUser,rIdLabel,name);     
-        ThingDTO thing = new ThingDTO(idThing, code, path+fileName, name, modXml, user, label);       
-        ts.updateThing(thing);	
-		return "homeBO"; 	
-	}*/
-	
 	private String updateXmlFromDataThings(Integer i,String code, String string, Integer idUser2, Integer rIdLabel,String name) {
 		i=idThing;
 		String result = new String("<Thing>\n");
@@ -296,12 +142,156 @@ public class ThingController {
 		return pt;
 	}
 	
-	/*
-	@RequestMapping(value = "/cercaThing", method = RequestMethod.GET)
-	public String cercaThing(HttpServletRequest request) {
-		final String content = request.getParameter("search");
-		List<ThingDTO> allThing = this.ts.findThingDTOByName(content);
-		request.setAttribute("allThingDTO", allThing);
-		return "homeThing";
-	}*/
 }
+
+
+/*
+@RequestMapping(value = "/cercaThing", method = RequestMethod.GET)
+public String cercaThing(HttpServletRequest request) {
+	final String content = request.getParameter("search");
+	List<ThingDTO> allThing = this.ts.findThingDTOByName(content);
+	request.setAttribute("allThingDTO", allThing);
+	return "homeThing";
+}*/
+
+/*
+private void visualThing(HttpServletRequest request){
+	// il passaggio dell'utente avviene nel service
+	List<ThingDTO> allThing = this.ts.getThingDTOByIdUser(idUser);
+	request.getSession().setAttribute("allThing", allThing);
+}
+
+@RequestMapping(value = "/indietro", method = RequestMethod.GET)
+public String indietro(HttpServletRequest request) {
+	visualThing(request);
+	return "homeBO";
+}
+
+@RequestMapping(value = "/codeThing", method = RequestMethod.GET)
+public String code(HttpServletRequest request) {	
+	visualThing(request);
+	return "homeBO";
+}*/
+
+/* METODO DI CONTROLLER	
+@RequestMapping(value = "/delete", method = RequestMethod.GET)
+public String delete(HttpServletRequest request) {
+	int id = Integer.parseInt(request.getParameter("id"));
+	request.getSession().setAttribute("id", id);
+	this.ts.deleteThingById(id);
+	visualThing(request);
+	return "showThing";
+}*/
+
+/*
+@RequestMapping(value = "/updateThing", method = RequestMethod.POST)
+public String updateThing(
+		@RequestParam MultipartFile image,
+		@RequestParam String name,
+		@RequestParam String code,
+		@RequestParam String idLabel) throws IOException, SQLException {
+	
+	String nLblNoEsc = idLabel.replaceAll("\\s+","");
+	Integer rIdLabel = Integer.parseInt(nLblNoEsc);
+	
+	String imagePath = image.getOriginalFilename();
+	final String fileName = getFileName(imagePath);
+	final String path = new String ("c:\\webdata\\images\\");
+	OutputStream out = null;
+    byte barr[]= image.getBytes();
+    	try {
+    		out = new FileOutputStream(new File(path + File.separator + fileName));
+    			out.write(barr, 0, barr.length);
+    	} catch (FileNotFoundException fne) {
+    	} finally {
+    		if (out != null) {
+    			out.close();
+    		}
+    }
+			
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+		con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/incorospring", "root", "root");
+	} catch (Exception e) {
+		System.out.println(e);
+		System.exit(0);
+	}
+	
+	UserDTO user = new UserDTO();
+	user = us.findUserDTOById(idUser);
+
+	LabelDTO label = new LabelDTO();
+	label =ls.findLabelById(rIdLabel);
+	
+    String modXml = updateXmlFromDataThings(idThing,code,path+fileName, idUser,rIdLabel,name);     
+    ThingDTO thing = new ThingDTO(idThing, code, path+fileName, name, modXml, user, label);       
+    ts.updateThing(thing);	
+	return "homeBO"; 	
+}*/
+
+/*
+@RequestMapping(value="/openUpdateThing")
+public String openUpdateThing(HttpServletRequest request) {
+	idThing = Integer.parseInt(request.getParameter("id"));
+	List<LabelDTO> labelDTO = ls.findLabelbyUser(idUser);
+	request.getSession().setAttribute("list", labelDTO);
+	
+	if (idThing != 0) {
+		ThingDTO thingDTO = ts.getThingDTOById(idThing);
+		String nome = thingDTO.getName();
+		String code = thingDTO.getCode();
+		String image= thingDTO.getImage();
+		request.getSession().setAttribute("nome", nome);
+		request.getSession().setAttribute("code", code);
+		request.getSession().setAttribute("image", image);
+	}
+	return "thingUpdate";
+}*/
+
+/*
+@RequestMapping(value = "/creaThing", method = RequestMethod.POST)
+public String insertThing(
+		@RequestParam MultipartFile image,
+		@RequestParam String name,
+		@RequestParam String code,
+		@RequestParam String idLabel) throws IOException {
+	String nLblNoEsc = idLabel.replaceAll("\\s+","");
+	Integer rIdLabel = Integer.parseInt(nLblNoEsc);
+	//questa è una puttanata
+	String imagePath = image.getOriginalFilename(); // secondo me è ridontante con quello di sotto
+	final String fileName = getFileName(imagePath); // method returns the last name of the pathname's name sequence
+	final String path = new String ("c:\\webdata\\images\\");
+	OutputStream out = null;
+    byte barr[]= image.getBytes();
+    try {
+        out = new FileOutputStream(new File(path + File.separator + fileName));
+        out.write(barr, 0, barr.length);	
+    } catch (FileNotFoundException fne) {
+    } finally {
+        if (out != null) {
+            out.close();
+        }
+    }
+
+    // poi si crea una lista di thingDTO ma non viene mai usata
+    List<ThingDTO> work = ts.getListThingDTO();
+    int i = 0;
+    	for(ThingDTO x : work) {
+    		i++;
+    	}
+    String modXml = createXmlFromDataThings(i,code,path+fileName,idUser,rIdLabel,name);
+    
+    UserDTO user = new UserDTO();
+	user = us.findUserDTOById(idUser);
+
+	LabelDTO label = new LabelDTO();
+	label =ls.findLabelById(rIdLabel);
+	
+    ThingDTO thingObj = new ThingDTO(0, code, path+fileName, name, modXml, user, label);
+	ts.insertThing(thingObj);
+	return "homeBO"; 		
+}*/
