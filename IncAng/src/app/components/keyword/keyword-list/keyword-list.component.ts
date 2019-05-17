@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { KeywordService } from '../../../services/keyword.service';
 import { KeywordDTO } from '../../../../dto/KeywordDTO';
 import {LinkTKDTO} from '../../../../dto/LinkTKDTO'; 
-import { LinkTKService } from '../../../services/linkTK.service';
+import { LinkTKService } from '../../../services/linkTk.service';
 import { ThingDTO } from '../../../../dto/ThingDTO';
 
 @Component({
@@ -11,6 +11,7 @@ import { ThingDTO } from '../../../../dto/ThingDTO';
   templateUrl: './keyword-list.component.html',
   styleUrls: ['./keyword-list.component.css']
 })
+
 export class KeywordListComponent implements OnInit {
   private keywordList: Array<KeywordDTO>;
   private arrayThingDTO: Array<ThingDTO>;
@@ -41,6 +42,12 @@ export class KeywordListComponent implements OnInit {
     this.router.navigateByUrl("/updateKeyword")
   }
 
+  showTK2(keywordDTO: KeywordDTO){
+    sessionStorage.setItem("keySettata", JSON.stringify(keywordDTO));
+    this.router.navigateByUrl("/showLinkThing");
+  }
+  
+  /*
   showTK(keywordDTO: KeywordDTO){
     // del seguente metodo ci arriva un array di LinkTKDTO non un array di ThingDTO.
     this.linkTKService.showThingOfKey(keywordDTO).subscribe((data: Array<LinkTKDTO>) => {
@@ -58,34 +65,19 @@ export class KeywordListComponent implements OnInit {
             alert("La Keyword: " + this.nomeKey  + " ha associata la Thing: " + this.thingDTO.name);
         }
       }
-      //this.mostra();
     }
-    
     )
-  }
-
-  /*
-  mostra(){
-    this.arrayLinkSession = JSON.parse(sessionStorage.getItem("arrayLink")) as Array<LinkTKDTO>;
-    alert("array di sessione " + this.arrayLinkSession.length);
-    
-    for (var i=0; i<this.arrayLinkSession.length; i++) {
-      this.arrayThingDTO[i] = this.arrayLinkSession[i].thing;
-    }
   }*/
 
   deleteKeyword(keywordDTO: KeywordDTO){
 
     this.keywordService.deleteKeyword(keywordDTO).subscribe((data: any) =>{
-
       if(data){
         alert("Cancellazione effettuata");
         location.reload(true);
       }
-        
       else
         alert("Cancellazione fallita");
-
       this.router.navigateByUrl("homeBO");
     })
   }

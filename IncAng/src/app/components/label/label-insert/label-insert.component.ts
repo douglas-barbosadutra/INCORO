@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LabelDTO } from '../../../../../dto/LabelDTO';
-import { UserDTO } from '../../../../../dto/UserDTO';
+import { LabelDTO } from '../../../../dto/LabelDTO';
+import { UserDTO } from '../../../../dto/UserDTO';
 import { Router } from '@angular/router';
-import { LabelService } from '../../../../../app/services/label.service';
+import { LabelService } from '../../../../app/services/label.service';
 
 
 @Component({

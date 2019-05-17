@@ -37,6 +37,7 @@ export class HardwareInsertComponent implements OnInit {
   }
 
     insertHardware(){
+    console.log(this.hardwareDTO.master);
     this.hardwareService.insertHardware(this.hardwareDTO).subscribe((data: any) => {
       if(data != null)
         alert("Inserimento effettuato");

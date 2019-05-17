@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LinkTKDTO } from '../../../../../dto/LinkTkDTO';
+import { LinkTKDTO } from '../../../../dto/LinkTkDTO';
 import { Router } from '@angular/router';
-import { LinkTKService } from '../../../../../app/services/linkTk.service';
+import { LinkTKService } from '../../../../app/services/linkTk.service';
 
 @Component({
   selector: 'app-link-tk-list',
@@ -12,10 +12,8 @@ export class LinkTkListComponent implements OnInit {
   private linkTKList : Array<LinkTKDTO>;
   private linkTKDTO : LinkTKDTO;
 
-
   constructor(private router:Router, private linkTKService: LinkTKService) {
-
-   }
+  }
 
   ngOnInit() {
     this.linkTKService.showLinkTK().subscribe((data: any) =>{
