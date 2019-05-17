@@ -7,7 +7,9 @@ import { BehaviorListComponent} from './components/behavior/behavior-list/behavi
 import { BehaviorUpdateComponent} from './components/behavior/behavior-update/behavior-update.component';
 // import dei component di linkTK
 import { LinkTKInsertComponent} from './components/linkTK/link-tk-insert/link-tk-insert.component';
-import { LinkTkListComponent } from './components/linkTK/link-tk-list/link-tk-list/link-tk-list.component';
+import { LinkTkListComponent } from './components/linkTK/link-tk-list/link-tk-list.component';
+import { LinkTkShowThingComponent } from './components/linkTK/link-tk-show-thing/link-tk-show-thing.component';
+import { LinkTkUpdateComponent } from './components/linkTK/link-tk-update/link-tk-update.component';
 // import dei component di keyword
 import {KeywordInsertComponent} from './components/keyword/keyword-insert/keyword-insert.component';
 import {KeywordListComponent} from './components/keyword/keyword-list/keyword-list.component';
@@ -24,7 +26,7 @@ import { HardwareUpdateComponent} from './components/hardware/hardware-update/ha
 import { HomeAdminComponent} from './components/home/home-admin/home-admin.component';
 import { HomeBoComponent } from './components/home/home-bo/home-bo.component';
 //import dei component di label
-import { LabelInsertComponent} from './components/label/label-insert/label-insert/label-insert.component';
+import { LabelInsertComponent} from './components/label/label-insert/label-insert.component';
 import { LabelListComponent} from './components/label/label-list/label-list.component';
 import { LabelUpdateComponent} from './components/label/label-update/label-update.component';
 // import dei component dei vari menu
@@ -40,6 +42,7 @@ import { UserShowComponent} from './components/user/user-show/user-show.componen
 import { UserUpdateComponent} from './components/user/user-update/user-update.component';
 //
 import { NavbarComponent} from './components/navbar/navbar.component';
+
 
 const routes: Routes = [
   {path: 'navbar', component: NavbarComponent},
@@ -60,6 +63,9 @@ const routes: Routes = [
   // link
   {path: 'insertLinkTK', component: LinkTKInsertComponent},
   {path: 'listLinkTK', component: LinkTkListComponent},
+  {path: 'updateLinkTK', component: LinkTkUpdateComponent},
+  // link show
+  {path: 'showLinkThing', component: LinkTkShowThingComponent},
   //hardware
   {path: 'insertHardware', component: HardwareInsertComponent},
   {path: 'listHardware', component: HardwareListComponent},
@@ -85,7 +91,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule { }

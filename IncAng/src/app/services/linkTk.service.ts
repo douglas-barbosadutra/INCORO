@@ -16,6 +16,11 @@ export class LinkTKService {
       return this.http.post('http://localhost:8080/LinkTK/insertLinkTK', linkTKDTO);
     }
 
+    updateLinkTK(linkTKDTO: LinkTKDTO){
+      console.log(linkTKDTO);
+      return this.http.put('http://localhost:8080/LinkTK/updateLinkTK', linkTKDTO);
+    }
+
     showThingOfKey(keywordDTO: KeywordDTO){
       return this.http.get('http://localhost:8080/Keyword/showThingOfKey?id='+ keywordDTO.idKeyword);
     }
@@ -23,6 +28,7 @@ export class LinkTKService {
     showLinkTK(){
       return this.http.get('http://localhost:8080/LinkTK/showLinkTK');
     }
+
     deleteLinkTK(linkTKDTO: LinkTKDTO){
       console.log(linkTKDTO.idLinkTK);
       return this.http.delete('http://localhost:8080/LinkTK/deleteLinkTK?id='+ linkTKDTO.idLinkTK);

@@ -11,6 +11,7 @@ export class HardwareService {
 
   insertHardware(hardwareDTO: HardwareDTO) {
     return this.http.post( 'http://localhost:8080/Hardware/insertHardware', hardwareDTO);
+    console.log(hardwareDTO.master);
   }
 
   showHardware(){

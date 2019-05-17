@@ -1,5 +1,5 @@
-import { ThingDTO } from './ThingDTO';
-import { KeywordDTO } from './KeywordDTO';
+import { ThingDTO } from '../dto/ThingDTO';
+import { KeywordDTO } from '../dto/KeywordDTO';
 
 export class LinkTKDTO {
     idLinkTK: number;

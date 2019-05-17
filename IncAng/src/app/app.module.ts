@@ -20,7 +20,7 @@ import { ThingService } from './services/thing.service';
 import { HardwareService } from './services/hardware.service';
 import { LoginComponent } from './components/login/login/login.component';
 import { LoginService } from './services/login.service';
-import { LabelInsertComponent } from './components/label/label-insert/label-insert/label-insert.component';
+import { LabelInsertComponent } from './components/label/label-insert/label-insert.component';
 import { LabelUpdateComponent } from './components/label/label-update/label-update.component';
 import { LabelDeleteComponent } from './components/label/label-delete/label-delete.component';
 import { LabelListComponent } from './components/label/label-list/label-list.component';
@@ -41,9 +41,10 @@ import { KeywordInsertComponent} from'./components/keyword/keyword-insert/keywor
 import {KeywordListComponent} from './components/keyword/keyword-list/keyword-list.component';
 import {KeywordUpdateComponent} from './components/keyword/keyword-update/keyword-update.component';
 import { LinkTKInsertComponent } from './components/linkTK/link-tk-insert/link-tk-insert.component';
-import { LinkTkListComponent } from './components/linkTK/link-tk-list/link-tk-list/link-tk-list.component';
-import { LinkTkDeleteComponent } from './components/linkTK/link-tk-delete/link-tk-delete/link-tk-delete.component';
-import { LinkTkUpdateComponent } from './components/linkTK/link-tk-update/link-tk-update/link-tk-update.component';
+import { LinkTkListComponent } from './components/linkTK/link-tk-list/link-tk-list.component';
+import { LinkTkDeleteComponent } from './components/linkTK/link-tk-delete/link-tk-delete.component';
+import { LinkTkUpdateComponent } from './components/linkTK/link-tk-update/link-tk-update.component';
+import { LinkTkShowThingComponent } from './components/linkTK/link-tk-show-thing/link-tk-show-thing.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 let config = new AuthServiceConfig([
@@ -93,7 +94,11 @@ export function provideConfig() {
     LinkTkListComponent,
     LinkTkDeleteComponent,
     LinkTkUpdateComponent,
+<<<<<<< HEAD
     NavbarComponent,
+=======
+    LinkTkShowThingComponent,
+>>>>>>> 32e378768d747794ac6364de7f48964407332396
 
   ],
   imports: [

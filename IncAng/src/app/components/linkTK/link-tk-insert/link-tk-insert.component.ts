@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ThingDTO } from '../../../../dto/ThingDTO';
 import { ThingService } from '../../../../../src/app/services/thing.service';
-import { KeywordDTO } from '../../../../dto/keywordDTO';
+
 import { KeywordService } from '../../../../../src/app/services/keyword.service';
 import { LinkTKService } from '../../../../../src/app/services/linkTK.service';
 import { Router } from '@angular/router';
 import { LabelDTO } from '../../../../dto/LabelDTO';
 import { UserDTO } from '../../../../dto/UserDTO';
 import { LinkTKDTO} from '../../../../dto/LinkTKDTO';
+import { KeywordDTO } from '../../../../dto/KeywordDTO';
 
 @Component({
   selector: 'app-link-tk-insert',

@@ -1,40 +1,27 @@
-<div class="column content" id="visualizzazione">
-  <div class="col-md-8 themed-grid-col data-header" >
-     <form form #f="ngForm">
-  
-        <div class="form-group">
-          <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-            <label class="col-form-label"> Nome </label>
-            <input type="text" class="form-control" name="name" [(ngModel)]="hardwareDTO.name" 
-            required autofocus>
-          </p>
-        </div>
+<app-menu-bo></app-menu-bo>
+<form>
+  <p class="dropbtn" >
+        <label> Descrizione </label>
+        <input type="text" class="dropbtn" name="description" [(ngModel)]="hardwareDTO.description"placeholder="Descrizione">
+  </p>
+  <p class="dropbtn" >
+    <label> Nome </label>
+    <input type="text" class="dropbtn" name="nome" [(ngModel)]="hardwareDTO.name"placeholder="Nome">
+  </p>
 
-        <div class="form-group">
-          <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-            <label class="col-form-label"> Descrizione </label>
-            <textarea class="form-control" rows="6" name="descrizione" [(ngModel)]="hardwareDTO.descrizione"
-            required autofocus>
+  <label> Master </label>
+  <select [(ngModel)]="hardwareDTO.master" name="master"> 
+    <option [value]="false"> false</option> 
+    <option [value]="true">  True</option> 
+  </select>   
+<div>
+  <label> Thing</label>  
+  <select [(ngModel)]="thingDTO.idThing" class="form control" name="thingDTO" id="formThing" >
+        <option *ngFor="let thingDTO of thingList" [value]="thingDTO.idThing">{{thingDTO.name}}</option>
+  </select>
+</div>
 
-            </textarea>
-          </p>
-        </div>
-          
-        <div class="form-group">
-            <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-          <label class="col-form-label">Things</label>
-          <select class="form-control" name="idThings" [(ngModel)]="hardwareDTO.idThings">
-              <option *ngFor="let thingDTO of thingList" [value]="thingDTO.idThings"
-                  [selected]="thingDTO.idThings == hardwareDTO.idThings">
-                  {{thingDTO.Nome}
-              </option>
-
-          </select>
-        </p>
-      </div>
-          <p class="woocomerce-FormRow form-row">
-             <button type="submit" class="btn btn-lg btn-primary btn-block" name="action"  (click)="updateHardware(f)" >Aggiorna</button>
-         </p>
+<p class="tn btn-primary">
+  <button class="tn btn-primary" type="submit" (click)="aggiornaHardware()">Aggiorna</button>
+</p>
 </form>
-</div>
-</div>

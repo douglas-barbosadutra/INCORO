@@ -23,6 +23,11 @@ export class HardwareListComponent implements OnInit {
     })
   }
 
+  chooseHW(hardwareDTO: HardwareDTO){
+    sessionStorage.setItem("DTOpassato", JSON.stringify(hardwareDTO));
+    this.router.navigateByUrl("/updateHardware");
+  }
+
   deleteHardware(hardwareDTO: HardwareDTO){
     this.hardwareService.deleteHardware(hardwareDTO).subscribe((data: any) =>{
       if(data)
@@ -30,7 +35,7 @@ export class HardwareListComponent implements OnInit {
       else
         alert("Cancellazione fallita");
 
-      this.router.navigateByUrl("homeBO");
+      this.router.navigateByUrl("/listHardware");
     })
   }
 

@@ -31,6 +31,7 @@
       </p>
 
       <div>
+            <label>Label</label>
             <select [(ngModel)]="labelDTO.idLabel" class="form control" name="labelDTO" id="formLabel">
                   <option *ngFor="let labelDTO of labelList" [value]="labelDTO.idLabel">{{labelDTO.name}}</option>
             </select>
