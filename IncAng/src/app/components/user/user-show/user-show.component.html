@@ -1,44 +1,50 @@
-
-<h1 class="title">Lista utenti</h1>
-        
-<div class="column content" id="visualizzazione" *ngFor="let userDTO of userList">
-
-    <div class="col-md-8 themed-grid-col data-header">
-      <div class="pb-3">
-
-        <span><b class="tipo-dato">ID</b> <span
-          class="contenuto-dato"> 
-        {{userDTO.idUser}}
-        </span></span>
-      </div>
-      <div class="row">
-        <div class="col-md-6 themed-grid-col data-cels">
-          <span><b>USERNAME:</b> <span class="contenuto-dato">
-              {{userDTO.username}}
-          </span></span>
-        </div>
-        <div class="col-md-6 themed-grid-col data-cels">
-          <span><b>PASSWORD:</b> <span class="contenuto-dato">
-              {{userDTO.password}}
-          </span></span>
-        </div>
-        <div class="col-md-6 themed-grid-col data-cels">
-          <span><b>TIPO:</b> <span class="contenuto-dato"> 
-            {{userDTO.type}}
-          </span></span>
-        </div>
-      </div>
-      <p class="link-row">
-          <a
-          (click)="deleteUser(userDTO)"
-          class="btn btn-primary my-2 t-action"> Elimina</a> 
-          <a
-          (click)="chooseUser(userDTO.idUser)"
-          class="btn btn-secondary my-2 t-action"> Modifica</a> <a href="#"
-          class="btn btn-primary my-2 t-action">Terza action</a>
-          
-      
-      </p>
-    </div>
-
+<div class="row">
+  <!-- COLONNA CHE CONTIENE LA NAVBAR -->
+  <div class="col-sm-12 bg-test1 no-padding">
+  <app-navbar></app-navbar>
   </div>
+  <!-- NAVBARFINITA -->
+  <div class="col-sm-12 bg-test2">
+    <h1 class="title">Lista utenti</h1>
+    <div class="column content" id="visualizzazione" *ngFor="let userDTO of userList">
+
+        <div class="col-md-8 themed-grid-col data-header">
+          <div class="pb-3">
+
+            <span><b class="tipo-dato">ID</b> <span
+              class="contenuto-dato">
+            {{userDTO.idUser}}
+            </span></span>
+          </div>
+          <div class="row">
+            <div class="col-md-6 themed-grid-col data-cels">
+              <span><b>USERNAME:</b> <span class="contenuto-dato">
+                  {{userDTO.username}}
+              </span></span>
+            </div>
+            <div class="col-md-6 themed-grid-col data-cels">
+              <span><b>PASSWORD:</b> <span class="contenuto-dato">
+                  {{userDTO.password}}
+              </span></span>
+            </div>
+            <div class="col-md-6 themed-grid-col data-cels">
+              <span><b>TIPO:</b> <span class="contenuto-dato">
+                {{userDTO.type}}
+              </span></span>
+            </div>
+          </div>
+          <p class="link-row">
+              <a
+              (click)="deleteUser(userDTO)"
+              class="btn btn-primary my-2 t-action"> Elimina</a>
+              <a
+              (click)="chooseUser(userDTO.idUser)"
+              class="btn btn-secondary my-2 t-action"> Modifica</a> <a href="#"
+              class="btn btn-primary my-2 t-action">Terza action</a>
+          </p>
+        </div>
+      </div>
+
+    <!-- tabelle varie -->
+  </div>
+</div>

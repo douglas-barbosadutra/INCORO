@@ -8,7 +8,7 @@ import { KeywordDTO } from '../../dto/KeywordDTO';
 })
 export class LinkTKService {
     private linkTKList: Array<LinkTKDTO>;
-  
+
     constructor(private http: HttpClient) { }
 
     insertLinkTK(linkTKDTO: LinkTKDTO){

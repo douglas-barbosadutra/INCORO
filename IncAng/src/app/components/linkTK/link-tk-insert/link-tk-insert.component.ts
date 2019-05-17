@@ -3,7 +3,7 @@ import { ThingDTO } from '../../../../dto/ThingDTO';
 import { ThingService } from '../../../../../src/app/services/thing.service';
 import { KeywordDTO } from '../../../../dto/keywordDTO';
 import { KeywordService } from '../../../../../src/app/services/keyword.service';
-import { LinkTKService } from '../../../../../src/app/services/linkTk.service';
+import { LinkTKService } from '../../../../../src/app/services/linkTK.service';
 import { Router } from '@angular/router';
 import { LabelDTO } from '../../../../dto/LabelDTO';
 import { UserDTO } from '../../../../dto/UserDTO';
@@ -50,14 +50,14 @@ export class LinkTKInsertComponent implements OnInit {
   insertLinkTK(){
     this.linkTkDTO.thing.idThing = this.thingDTO.idThing;
     this.linkTkDTO.keyword.idKeyword = this.keywordDTO.idKeyword;
-    
+
     this.linkTKService.insertLinkTK(this.linkTkDTO).subscribe((data: any) => {
-    
+
       if(data != null)
         alert("Inserimento effettuato");
       else
         alert("Collegamento già esistente");
-  
+
         this.router.navigateByUrl("/homeBo");
     })
 

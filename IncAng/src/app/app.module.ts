@@ -44,6 +44,7 @@ import { LinkTKInsertComponent } from './components/linkTK/link-tk-insert/link-t
 import { LinkTkListComponent } from './components/linkTK/link-tk-list/link-tk-list/link-tk-list.component';
 import { LinkTkDeleteComponent } from './components/linkTK/link-tk-delete/link-tk-delete/link-tk-delete.component';
 import { LinkTkUpdateComponent } from './components/linkTK/link-tk-update/link-tk-update/link-tk-update.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 let config = new AuthServiceConfig([
   {
@@ -92,6 +93,7 @@ export function provideConfig() {
     LinkTkListComponent,
     LinkTkDeleteComponent,
     LinkTkUpdateComponent,
+    NavbarComponent,
 
   ],
   imports: [

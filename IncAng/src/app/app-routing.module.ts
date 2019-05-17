@@ -38,10 +38,11 @@ import { ThingUpdateComponent} from './components/thing/thing-update/thing-updat
 import { UserInsertComponent} from './components/user/user-insert/user-insert.component';
 import { UserShowComponent} from './components/user/user-show/user-show.component';
 import { UserUpdateComponent} from './components/user/user-update/user-update.component';
-
-
+//
+import { NavbarComponent} from './components/navbar/navbar.component';
 
 const routes: Routes = [
+  {path: 'navbar', component: NavbarComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   //behavior
