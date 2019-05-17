@@ -94,11 +94,9 @@ export function provideConfig() {
     LinkTkListComponent,
     LinkTkDeleteComponent,
     LinkTkUpdateComponent,
-<<<<<<< HEAD
     NavbarComponent,
-=======
+
     LinkTkShowThingComponent,
->>>>>>> 32e378768d747794ac6364de7f48964407332396
 
   ],
   imports: [
