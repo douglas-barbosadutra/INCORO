@@ -42,52 +42,62 @@ import { UserShowComponent} from './components/user/user-show/user-show.componen
 import { UserUpdateComponent} from './components/user/user-update/user-update.component';
 //
 import { NavbarComponent} from './components/navbar/navbar.component';
-
+// import delle 2 dashboard
+import { BoDashboardComponent } from './components/bo-dashboard/bo-dashboard.component';
+import { AdminDashboardComponent} from './components/admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
-  {path: 'navbar', component: NavbarComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   //behavior
-  {path: 'insertBehavior', component: BehaviorInsertComponent},
-  {path: 'listBehavior', component: BehaviorListComponent},
-  {path: 'updateBehavior', component: BehaviorUpdateComponent},
-  //Code
-  {path: 'insertCode', component: CodeInsertComponent},
-  {path: 'listCode', component: CodeListComponent},
-  {path: 'updateCode', component: CodeUpdateComponent},
-  //keyword
-  {path: 'insertKeyword', component: KeywordInsertComponent},
-  {path: 'listKeyword', component: KeywordListComponent},
-  {path: 'updateKeyword',component:KeywordUpdateComponent},
-  // link
-  {path: 'insertLinkTK', component: LinkTKInsertComponent},
-  {path: 'listLinkTK', component: LinkTkListComponent},
-  {path: 'updateLinkTK', component: LinkTkUpdateComponent},
-  // link show
-  {path: 'showLinkThing', component: LinkTkShowThingComponent},
-  //hardware
-  {path: 'insertHardware', component: HardwareInsertComponent},
-  {path: 'listHardware', component: HardwareListComponent},
-  {path: 'updateHardware', component: HardwareUpdateComponent},
-  //label
-  {path: 'insertLabel', component: LabelInsertComponent},
-  {path: 'listLabel', component: LabelListComponent},
-  {path: 'updateLabel', component: LabelUpdateComponent},
-  //thing
-  {path: 'insertThing', component: ThingInsertComponent},
-  {path: 'listThing', component: ThingListComponent},
-  {path: 'updateThing', component: ThingUpdateComponent},
-  //user
-  {path: 'insertUser', component: UserInsertComponent},
-  {path: 'listUser', component: UserShowComponent},
-  {path: 'updateUser', component: UserUpdateComponent},
+
+
+
   //home
-  {path: 'homeAdmin', component: HomeAdminComponent},
-  {path: 'homeBo', component: HomeBoComponent},
+  {path: 'homeAdmin', component: HomeAdminComponent, children :[
+      {path: '',redirectTo: 'dashboard', pathMatch :'full'},
+      {path: 'dashboard', component :AdminDashboardComponent},
+        //user
+      {path: 'insertUser', component: UserInsertComponent},
+      {path: 'listUser', component: UserShowComponent},
+      {path: 'updateUser', component: UserUpdateComponent},
+  ]},
+
+  {path: 'homeBo', component: HomeBoComponent, children: [
+    {path: '',redirectTo: 'dashboard', pathMatch :'full'},
+    {path: 'dashboard', component :BoDashboardComponent},
+    {path: 'insertBehavior', component: BehaviorInsertComponent},
+    {path: 'listBehavior', component: BehaviorListComponent},
+    {path: 'updateBehavior', component: BehaviorUpdateComponent},
+    //Code
+    {path: 'insertCode', component: CodeInsertComponent},
+    {path: 'listCode', component: CodeListComponent},
+    {path: 'updateCode', component: CodeUpdateComponent},
+    //keyword
+    {path: 'insertKeyword', component: KeywordInsertComponent},
+    {path: 'listKeyword', component: KeywordListComponent},
+    {path: 'updateKeyword',component:KeywordUpdateComponent},
+    // link
+    {path: 'insertLinkTK', component: LinkTKInsertComponent},
+    {path: 'listLinkTK', component: LinkTkListComponent},
+    {path: 'updateLinkTK', component: LinkTkUpdateComponent},
+    // link show
+    {path: 'showLinkThing', component: LinkTkShowThingComponent},
+    //hardware
+    {path: 'insertHardware', component: HardwareInsertComponent},
+    {path: 'listHardware', component: HardwareListComponent},
+    {path: 'updateHardware', component: HardwareUpdateComponent},
+    //label
+    {path: 'insertLabel', component: LabelInsertComponent},
+    {path: 'listLabel', component: LabelListComponent},
+    {path: 'updateLabel', component: LabelUpdateComponent},
+    //thing
+    {path: 'insertThing', component: ThingInsertComponent},
+    {path: 'listThing', component: ThingListComponent},
+    {path: 'updateThing', component: ThingUpdateComponent},
+  ]},
   //menu
-  {path: 'menuAdmin', component: MenuAdminComponent},
-  {path: 'menuBo', component: MenuBoComponent},
+
 ];
 
 @NgModule({

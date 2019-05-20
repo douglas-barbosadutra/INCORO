@@ -3,6 +3,14 @@
   <app-menu-admin></app-menu-admin>
 </div>
 <div class="col" id="main">
-  <app-user-show></app-user-show>
+  <div class="row">
+    <!-- COLONNA CHE CONTIENE LA NAVBAR -->
+    <div class="col-sm-12 bg-test1 no-padding">
+      <app-navbar></app-navbar>
+    </div>
+    <div style="width:100%">
+    <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
 </div>

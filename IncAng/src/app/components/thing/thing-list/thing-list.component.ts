@@ -31,7 +31,7 @@ export class ThingListComponent implements OnInit {
 
   chooseThing(idThing: number){
     sessionStorage.setItem("idThing", JSON.stringify(idThing));
-    this.router.navigateByUrl("/updateThing");
+    this.router.navigate(["updateThing"]);
   }
 
   setDTO(thing: ThingDTO){
@@ -47,7 +47,7 @@ export class ThingListComponent implements OnInit {
         alert("Cancellazione effettuata");
         location.reload(true);
       }
-        
+
       else
         alert("Cancellazione fallita");
 

@@ -1,4 +1,4 @@
-<app-menu-bo></app-menu-bo>
+
 <form>
   <p class="dropbtn" >
         <label> Descrizione </label>
@@ -10,12 +10,12 @@
   </p>
 
   <label> Master </label>
-  <select [(ngModel)]="hardwareDTO.master" name="master"> 
-    <option [value]="false"> false</option> 
-    <option [value]="true">  True</option> 
-  </select>   
+  <select [(ngModel)]="hardwareDTO.master" name="master">
+    <option [value]="false"> false</option>
+    <option [value]="true">  True</option>
+  </select>
 <div>
-  <label> Thing</label>  
+  <label> Thing</label>
   <select [(ngModel)]="thingDTO.idThing" class="form control" name="thingDTO" id="formThing" >
         <option *ngFor="let thingDTO of thingList" [value]="thingDTO.idThing">{{thingDTO.name}}</option>
   </select>

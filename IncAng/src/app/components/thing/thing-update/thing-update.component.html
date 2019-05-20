@@ -1,4 +1,4 @@
-<app-menu-bo></app-menu-bo>
+
 
 <form>
             <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
@@ -26,7 +26,7 @@
             <label> Protocol </label>
             <input type="text" class="dropbtn " name="protocol" [(ngModel)]="thingDTO.protocol" placeholder="protocol">
       </p>
-      
+
       <div>
             <label>Label</label>
             <select [(ngModel)]="labelDTO.idLabel" class="form control" name="labelDTO" id="formLabel" >
@@ -36,5 +36,5 @@
       <p class="tn btn-primary">
             <button class="tn btn-primary" type="submit" (click)="updateThing()">Aggiorna</button>
       </p>
-      
+
 </form>

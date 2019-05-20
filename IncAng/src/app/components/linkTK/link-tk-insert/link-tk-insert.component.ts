@@ -3,7 +3,7 @@ import { ThingDTO } from '../../../../dto/ThingDTO';
 import { ThingService } from '../../../../../src/app/services/thing.service';
 
 import { KeywordService } from '../../../../../src/app/services/keyword.service';
-import { LinkTKService } from '../../../../../src/app/services/linkTK.service';
+import { LinkTKService } from '../../../../../src/app/services/linkTk.service';
 import { Router } from '@angular/router';
 import { LabelDTO } from '../../../../dto/LabelDTO';
 import { UserDTO } from '../../../../dto/UserDTO';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { KeywordService } from '../../../services/keyword.service';
 import { KeywordDTO } from '../../../../dto/KeywordDTO';
-import {LinkTKDTO} from '../../../../dto/LinkTKDTO'; 
+import {LinkTKDTO} from '../../../../dto/LinkTKDTO';
 import { LinkTKService } from '../../../services/linkTk.service';
 import { ThingDTO } from '../../../../dto/ThingDTO';
 
@@ -18,9 +18,9 @@ export class KeywordListComponent implements OnInit {
   private arrayLink: Array<LinkTKDTO>;
   private arrayLinkSession: Array<LinkTKDTO>;
   private thingDTO: ThingDTO;
-  
+
   private nomeKey: String;
-  
+
   constructor(private keywordService: KeywordService, private router: Router, private linkTKService: LinkTKService) { }
 
   ngOnInit() {
@@ -46,19 +46,19 @@ export class KeywordListComponent implements OnInit {
     sessionStorage.setItem("keySettata", JSON.stringify(keywordDTO));
     this.router.navigateByUrl("/showLinkThing");
   }
-  
+
   /*
   showTK(keywordDTO: KeywordDTO){
     // del seguente metodo ci arriva un array di LinkTKDTO non un array di ThingDTO.
     this.linkTKService.showThingOfKey(keywordDTO).subscribe((data: Array<LinkTKDTO>) => {
       if(data){
         this.arrayLink = data;
-        
+
         sessionStorage.setItem("arrayLink", JSON.stringify(this.arrayLink));
-        this.arrayLinkSession = JSON.parse(sessionStorage.getItem("arrayLink")) as Array<LinkTKDTO>;  
-        
+        this.arrayLinkSession = JSON.parse(sessionStorage.getItem("arrayLink")) as Array<LinkTKDTO>;
+
         //console.log("arrayLinkSession: ", this.arrayLinkSession);
-        
+
         for (var i=0; i<this.arrayLinkSession.length; i++) {
             this.thingDTO = this.arrayLinkSession[i].thing;
             this.nomeKey = this.arrayLinkSession[i].keyword.name;

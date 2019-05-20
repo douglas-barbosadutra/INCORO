@@ -46,6 +46,9 @@ import { LinkTkDeleteComponent } from './components/linkTK/link-tk-delete/link-t
 import { LinkTkUpdateComponent } from './components/linkTK/link-tk-update/link-tk-update.component';
 import { LinkTkShowThingComponent } from './components/linkTK/link-tk-show-thing/link-tk-show-thing.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { BoDashboardComponent } from './components/bo-dashboard/bo-dashboard.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { CoopThingService} from './services/coopThingService.service';
 
 let config = new AuthServiceConfig([
   {
@@ -98,6 +101,10 @@ export function provideConfig() {
 
     LinkTkShowThingComponent,
 
+    BoDashboardComponent,
+
+    AdminDashboardComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -111,7 +118,8 @@ export function provideConfig() {
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig
-    }],
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
