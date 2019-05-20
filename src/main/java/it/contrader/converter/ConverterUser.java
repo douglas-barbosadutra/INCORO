@@ -42,7 +42,6 @@ public class ConverterUser {
 		return listUserDTO;
 	}
 	
-
 	public static List<User> toListEntity(List<UserDTO> listUserDTO) {
 		List<User> list = new ArrayList<>();
 		if (!listUserDTO.isEmpty()) {

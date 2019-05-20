@@ -59,7 +59,6 @@ public class ConverterThing {
 			
 			Label label = new Label();
 			label = ConverterLabel.toEntity(thingDTO.getLabel());
-			//label.getUser().getIdUser();
 			
 			thing.setUser(user);
 			thing.setLabel(label);

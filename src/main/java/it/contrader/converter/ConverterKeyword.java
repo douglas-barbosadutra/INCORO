@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.contrader.dto.KeywordDTO;
-import it.contrader.dto.ThingDTO;
 import it.contrader.model.Keyword;
-import it.contrader.model.Thing;
 
 public class ConverterKeyword {
 	
@@ -65,5 +63,4 @@ public class ConverterKeyword {
 		}
 		return list;
 	}	
-
 }

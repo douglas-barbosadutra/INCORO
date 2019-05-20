@@ -8,7 +8,6 @@ import it.contrader.dto.UserDTO;
 
 @Service
 public class LoginService {
-
     private UserRepository userRepository;
 
     @Autowired

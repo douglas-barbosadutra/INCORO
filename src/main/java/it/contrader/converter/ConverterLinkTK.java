@@ -3,7 +3,6 @@ package it.contrader.converter;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import it.contrader.dto.LinkTKDTO;
 import it.contrader.model.LinkTK;
 import it.contrader.model.Thing;

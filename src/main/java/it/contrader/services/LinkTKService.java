@@ -6,23 +6,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ch.qos.logback.core.pattern.Converter;
 import it.contrader.converter.ConverterKeyword;
-import it.contrader.converter.ConverterLabel;
 import it.contrader.converter.ConverterLinkTK;
 import it.contrader.converter.ConverterThing;
 import it.contrader.dao.LinkTKRepository;
 
 import it.contrader.dto.ThingDTO;
 import it.contrader.dto.KeywordDTO;
-import it.contrader.dto.LabelDTO;
 import it.contrader.dto.LinkTKDTO;
 
 import it.contrader.model.LinkTK;
 import it.contrader.model.Keyword;
-import it.contrader.model.Label;
 import it.contrader.model.Thing;
-import it.contrader.model.User;
 
 
 @Service
@@ -53,7 +48,6 @@ public class LinkTKService {
 		return true;
 	}
 	
-	
 	public List<LinkTKDTO> getAllByKeyword(KeywordDTO key){
 		return ConverterLinkTK.toListDTO((List<LinkTK>) linkTKRepository.findAllByKeyword(ConverterKeyword.toEntity(key)));
 	}
@@ -69,7 +63,6 @@ public class LinkTKService {
 		LinkTKDTO linkTKDTO = ConverterLinkTK.toDTO(linkTK);
 		return linkTKDTO;
 	}
-	
 	
 	/*
 	public LinkTKDTO getLinkTKDTOById(int id) {

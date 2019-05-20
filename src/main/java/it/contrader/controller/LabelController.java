@@ -52,31 +52,10 @@ public class LabelController {
 		return this.labelService.findLabelbyUser(idUser);
 	}
 	
-	/*
-	@RequestMapping(value ="/deleteLabel", method = RequestMethod.DELETE)
-	public boolean delete(@RequestBody LabelDTO labelDto) {
-		int id = labelDto.getIdLabel();
-		this.labelService.deleteLabelById(id);
-		return true;
-	}*/
-	
 	@RequestMapping(value="/deleteLabel" , method= RequestMethod.DELETE)
 	public boolean deleteLabel(@RequestParam(value="id") Integer id) {		
 		return labelService.deleteLabel(id);
 	}
-	
-	/*
-	@RequestMapping(value="/insertLabel", method = RequestMethod.PUT)
-	private boolean insertLabel(@RequestBody LabelDTO labelDto) {
-		String name = labelDto.getName();
-		if (labelService.getLabelDTOByNameAndUser(name, ConverterUser.toEntity(labelDto.getUser())) == null) {
-			LabelDTO labelObj = new LabelDTO(0, name, labelDto.getUser());
-			labelService.insertLabel(labelObj);
-			return true;
-		} else {
-			return false;
-		}
-	}*/
 	
 	@RequestMapping(value="/insertLabel", method= RequestMethod.POST)
 	public LabelDTO insertLabel(@RequestBody LabelDTO label) {
@@ -131,3 +110,24 @@ public class LabelController {
 		}
 	}
 }
+
+/*
+@RequestMapping(value ="/deleteLabel", method = RequestMethod.DELETE)
+public boolean delete(@RequestBody LabelDTO labelDto) {
+	int id = labelDto.getIdLabel();
+	this.labelService.deleteLabelById(id);
+	return true;
+}*/
+
+/*
+@RequestMapping(value="/insertLabel", method = RequestMethod.PUT)
+private boolean insertLabel(@RequestBody LabelDTO labelDto) {
+	String name = labelDto.getName();
+	if (labelService.getLabelDTOByNameAndUser(name, ConverterUser.toEntity(labelDto.getUser())) == null) {
+		LabelDTO labelObj = new LabelDTO(0, name, labelDto.getUser());
+		labelService.insertLabel(labelObj);
+		return true;
+	} else {
+		return false;
+	}
+}*/
