@@ -9,10 +9,10 @@ export class ThingDTO{
     name: String;
     xml: String;
     protocol: String;
-    user: UserDTO;
+    idUser: number;
     label: LabelDTO;
 
-    constructor(id:number, code: String, description: String, image: String, name: String, xml: String, protocol: String, userDTO: UserDTO, labelDTO: LabelDTO){
+    constructor(id:number, code: String, description: String, image: String, name: String, xml: String, protocol: String, idUser:number, labelDTO: LabelDTO){
         this.idThing=id;
         this.code=code;
         this.description=description;
@@ -20,7 +20,7 @@ export class ThingDTO{
         this.name=name;
         this.xml=xml;
         this.protocol=protocol;
-        this.user=userDTO;
+        this.idUser=idUser;
         this.label=labelDTO;
     }
 }

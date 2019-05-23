@@ -10,6 +10,7 @@ import { KeywordDTO } from '../../../../dto/KeywordDTO';
 import { UserDTO } from '../../../../dto/UserDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
 import { LinkTKDTO } from '../../../../dto/LinkTKDTO';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
   selector: 'app-hardware-update',
@@ -24,18 +25,19 @@ export class HardwareUpdateComponent implements OnInit {
   private labelDTO: LabelDTO;
   private linkTKDTO: LinkTKDTO;
   private thingList: Array<ThingDTO>;
+  private paramDTO: ParamDTO;
 
   constructor(private hardwareService: HardwareService, private router: Router, private thingService: ThingService) { }
 
   ngOnInit() {
     
-    this.labelDTO = new LabelDTO(0,"",this.userDTO);
+    this.labelDTO = new LabelDTO(0,"",0);
     this.userDTO = new UserDTO(0,"","",0);
-    this.thingDTO = new ThingDTO(0,"","","","","","", this.userDTO, this.labelDTO);
+    this.thingDTO = new ThingDTO(0,"","","","","","", 0, this.labelDTO);
     //this.hardwareDTO = new HardwareDTO(0,"","",false,this.thingDTO);*/
     this.hardwareDTO = JSON.parse(sessionStorage.getItem("DTOpassato")) as HardwareDTO;
 
-    this.thingService.showThing().subscribe((data: any) =>{
+    this.thingService.showThing(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.thingList = data;

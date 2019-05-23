@@ -10,6 +10,7 @@ import { UserService } from '../../../../app/services/user.service';
 import { LabelService } from '../../../../app/services/label.service';
 import { NgModel } from '@angular/forms';
 import { ThingListComponent } from '../../../../app/components/thing/thing-list/thing-list.component';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
   selector: 'app-keyword-insert',
@@ -22,6 +23,7 @@ export class KeywordInsertComponent implements OnInit {
   private labelDTO: LabelDTO;
   private userDTO: UserDTO;
   private thingList: Array<ThingDTO>;
+  private paramDTO: ParamDTO;
 
   constructor(private thingService: ThingService, private router: Router, private keywordService: KeywordService, private userService: UserService, private labelService: LabelService) { }
 
@@ -31,7 +33,7 @@ export class KeywordInsertComponent implements OnInit {
     //this.thingDTO = new ThingDTO(0,"","","","","","", this.userDTO, this.labelDTO);
     this.keywordDTO = new KeywordDTO(0,"");
     
-    this.thingService.showThing().subscribe((data: any) => {
+    this.thingService.showThing(this.paramDTO).subscribe((data: any) => {
         if(data != null) {
           console.log(data);
           this.thingList = data;

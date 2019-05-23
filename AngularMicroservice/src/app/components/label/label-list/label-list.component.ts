@@ -4,6 +4,7 @@ import { UserDTO } from '../../../../dto/UserDTO';
 import { LabelService } from '../../../../app/services/label.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../../../app/services/user.service';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 
 @Component({
@@ -14,33 +15,47 @@ import { UserService } from '../../../../app/services/user.service';
 export class LabelListComponent implements OnInit {
   private labelList: Array<LabelDTO>;
   private labelDTO: LabelDTO;
-  private userDTO: UserDTO;
+  private paramDTO: ParamDTO;
+  private paramdeleteDTO: ParamDTO;
+  private jwt: string;
+  private jwtdelete: string;
+  private labelDeleteDTO: LabelDTO;
+
 
   constructor(private labelService: LabelService, private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-    this.labelService.showLabel().subscribe((data: any) =>{
+    this.jwt = sessionStorage.getItem("jwt");
+    console.log("in ngOnit arriva: " + this.jwt);
+    this.paramDTO = new ParamDTO(this.jwt, this.labelDTO);
+    this.labelService.showLabel(this.paramDTO).subscribe((data: Array<LabelDTO>) =>{
       if(data != null){
         console.log(data);
         this.labelList = data;
-        console.log(data);
+       
       }
     })
   }
 
   chooseLabel(idLabel: number){
     sessionStorage.setItem("idLabel", JSON.stringify(idLabel));
-    this.router.navigateByUrl("/updateLabel");
+    this.router.navigate(["/homeBo/updateLabel"]);
   }
 
-  setLabel(label: LabelDTO){
-    sessionStorage.setItem("LabelDTOpassato", JSON.stringify(label))
-    this.router.navigateByUrl("/updateLabel");
+  setLabel(labelDTO: LabelDTO){
+    alert("labelDTO" + labelDTO.name);
+    sessionStorage.setItem("LabelDTOpassato", JSON.stringify(labelDTO));
+    this.router.navigate(["homeBo/updateLabel"]);
   }
 
-  deleteLabel(labelDTO: LabelDTO){
+  deleteLabel(labelDeleteDTO: LabelDTO){
+    this.labelDeleteDTO = JSON.parse(sessionStorage.getItem("LabelDTOpassato")) as LabelDTO;
+    this.jwtdelete = sessionStorage.getItem("jwt");
+    //console.log("in deleteLabel arriva: " + this.jwtdelete);
+    this.paramdeleteDTO = new ParamDTO(this.jwtdelete, this.labelDeleteDTO);
+    console.log("paramDTO in deleteLabel", this.paramdeleteDTO)
 
-    this.labelService.deleteLabel(labelDTO).subscribe((data: any) =>{
+    this.labelService.deleteLabel(this.paramdeleteDTO).subscribe((data: any) =>{
 
       if(data){
         alert("Cancellazione effettuata");

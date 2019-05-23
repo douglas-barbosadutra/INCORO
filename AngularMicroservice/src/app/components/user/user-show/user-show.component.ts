@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserDTO } from '../../../../dto/UserDTO';
 import { UserService } from '../../../../../src/app/services/user.service';
 import { Router } from '@angular/router';
+import { ParamDTO } from '../../../../dto/ParamDTO';
+import { UserLoggedDTO } from '../../../../dto/UserLoggedDTO';
 
 @Component({
   selector: 'app-user-show',
@@ -11,12 +13,23 @@ import { Router } from '@angular/router';
 export class UserShowComponent implements OnInit {
   private userList: Array<UserDTO>;
   private userDTO: UserDTO;
+  private paramDTO: ParamDTO;
+  private jwt: string;
 
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.userService.showUser().subscribe((data: any) =>{
+    //alert("prima di prelevare: " + this.jwt);
+    this.jwt = sessionStorage.getItem("jwt");
+    //alert("nel show: " + this.jwt);
+    this.paramDTO = new ParamDTO(this.jwt, this.userDTO);
+    //alert("paramDTO nel show: " + this.paramDTO);
 
+    this.userService.showUser(this.paramDTO).subscribe((data: Array<UserDTO>) =>{
+      //alert(" param " + this.paramDTO);
+      console.log("user: ",data)
+     //alert("nel show: " + this.jwt);
+     // alert(" jwy " + this.jwt);
       if(data != null){
         this.userList = data;
       }
@@ -28,8 +41,10 @@ export class UserShowComponent implements OnInit {
     this.router.navigateByUrl("/updateUser");
   } 
   deleteUser(userDTO: UserDTO){
+    alert("param:" + this.jwt);
 
-    this.userService.deleteUser(userDTO).subscribe((data: any) =>{
+    this.userService.deleteUser(this.paramDTO).subscribe((data: any) =>{
+      //alert("param:" + this.jwt);
 
       if(data){
         alert("Cancellazione effettuata");

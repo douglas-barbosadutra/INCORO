@@ -8,6 +8,7 @@ import {  GoogleLoginProvider } from "angularx-social-login";
 import { SocialUser } from 'angularx-social-login';
 import { UserDTO } from '../../../../dto/UserDTO';
 import { UserService } from '../../../../app/services/user.service';
+import { UserLoggedDTO } from '../../../../dto/UserLoggedDTO';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,8 @@ export class LoginComponent implements OnInit {
   public loginDTO: LoginDTO;
   public userDTO: UserDTO;
   public user: SocialUser;
+  private jwt: string;
+  private userLoggedDTO: UserLoggedDTO;
 
   constructor(private loginService: LoginService, private router:  Router ,private authService: AuthService, private userService: UserService) { }
 
@@ -60,36 +63,23 @@ export class LoginComponent implements OnInit {
 
   login(): void{
 
-    console.log(this.loginDTO);
-      this.loginService.login(this.loginDTO).subscribe((response: any) => {
+    //console.log(this.loginDTO);
+      this.loginService.login(this.loginDTO).subscribe((response: UserLoggedDTO) => {
 
     if(response != null){
 
-      this.userDTO.idUser = response.idUser;
-      this.userDTO.username = response.password;
-      this.userDTO.password = response.username;
-      this.userDTO.type = response.type;
-      sessionStorage.setItem("idUser", JSON.stringify(response.idUser));
-      sessionStorage.setItem("username", JSON.stringify(response.username));
-      sessionStorage.setItem("password", JSON.stringify(response.password));
-      sessionStorage.setItem("type", JSON.stringify(response.type));
+        sessionStorage.setItem("jwt",response.jwt);
 
-      //sessionStorage.setItem("jwt") serve per l'autenticazione
-      //mi porto dietro l'utenteLoggato!
-
-    this.idUtenteLocale = response.idUser;
-      console.log(this.idUtenteLocale);
-      sessionStorage.setItem("idUser", JSON.stringify(this.idUtenteLocale));
-    if(response.type == 1){
-      this.router.navigateByUrl("/homeBo");
-    }
-    else if(response.type == 0)
-      this.router.navigateByUrl("/homeAdmin");
+      if(response.type == 1){
+        this.router.navigateByUrl("/homeBo");
+      }
+      else if(response.type == 0)
+        this.router.navigateByUrl("/homeAdmin");
 
     }
     else{
-    alert("username o password errati");
-    }
+      alert("username o password errati");
+      }
     });
   }
 }

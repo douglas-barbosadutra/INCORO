@@ -5,6 +5,7 @@ import { UserDTO } from '../../../../dto/UserDTO';
 import { ThingService } from '../../../../../src/app/services/thing.service';
 import {LabelService} from '../../../../../src/app/services/label.service';
 import { Router } from '@angular/router';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
   selector: 'app-thing-update',
@@ -16,6 +17,7 @@ export class ThingUpdateComponent implements OnInit {
   private labelDTO: LabelDTO;
   private userDTO: UserDTO;
   private labelList: Array<LabelDTO>;
+  private paramDTO: ParamDTO;
   
   constructor(private thingService: ThingService, private router: Router, private labelService: LabelService) { }
 
@@ -24,10 +26,10 @@ export class ThingUpdateComponent implements OnInit {
     //this.userDTO = new UserDTO(0,"","",0); 
     //this.thingDTO = new ThingDTO(parseInt(sessionStorage.getItem("idThing")),"","","","","","", this.userDTO, this.labelDTO);
 
-    this.labelDTO = new LabelDTO(0,"",this.userDTO);
+    this.labelDTO = new LabelDTO(0,"",0);
     this.thingDTO = JSON.parse(sessionStorage.getItem("DTOpassato")) as ThingDTO;
    
-    this.labelService.showLabel().subscribe((data: any) =>{
+    this.labelService.showLabel(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.labelList = data;
@@ -36,7 +38,7 @@ export class ThingUpdateComponent implements OnInit {
   }
 
   updateThing(){
-  this.thingDTO.user.idUser = parseInt(sessionStorage.getItem("idUser"));
+  //this.thingDTO.idUser = parseInt(sessionStorage.getItem("idUser"));
   this.thingService.updateThing(this.thingDTO).subscribe((data: any) => {
     
     if(data != null)

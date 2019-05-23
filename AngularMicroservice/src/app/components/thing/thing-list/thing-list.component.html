@@ -17,7 +17,7 @@
 							<tr *ngFor="let thingDTO of thingList">
                 <td>{{thingDTO.idThing}} </td>
                 <td>{{thingDTO.name}} </td>
-                <td>{{thingDTO.user.username}}</td>
+                <td>{{thingDTO.idUser}}</td>
                 <td>{{thingDTO.label.idLabel}}</td>
 								<td><button class="btn btn-primary" (click)="deleteThing(thingDTO)">Elimina</button></td>
 								<td><button class="btn btn-primary"(click)= "chooseThing(thingDTO.idThing)"  >Aggiorna</button>  </td> <!-- (click)="setDTO(thingDTO)" -->

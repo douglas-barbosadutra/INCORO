@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserDTO } from '../../../../dto/UserDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
 import { UserService } from '../../../services/user.service';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 
 @Component({
@@ -15,13 +16,16 @@ import { UserService } from '../../../services/user.service';
 export class ThingListComponent implements OnInit {
   private thingList: Array<ThingDTO>;
   private thingDTO: ThingDTO;
-  private userDTO: UserDTO;
   private labelDTO: LabelDTO;
+  private jwt: string;
+  private paramDTO: ParamDTO;
 
-  constructor(private thingService: ThingService, private router: Router, private userService: UserService) { }
+  constructor(private thingService: ThingService, private router: Router) { }
 
   ngOnInit() {
-    this.thingService.showThing().subscribe((data: any) =>{
+    this.jwt = sessionStorage.getItem("jwt");
+    this.paramDTO = new ParamDTO(this.jwt, this.thingDTO);
+    this.thingService.showThing(this.paramDTO).subscribe((data: Array<ThingDTO>) =>{
       if(data != null){
         console.log(data);
         this.thingList = data;

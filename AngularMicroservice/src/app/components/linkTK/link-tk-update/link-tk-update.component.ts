@@ -8,6 +8,7 @@ import { ThingService } from '../../../../app/services/thing.service';
 import { ThingDTO } from '../../../../dto/ThingDTO';
 import { UserDTO } from '../../../../dto/UserDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
   selector: 'app-link-tk-update',
@@ -21,20 +22,19 @@ export class LinkTkUpdateComponent implements OnInit {
   private linkTKDTO : LinkTKDTO;
   private keywordDTO: KeywordDTO;
   private thingDTO: ThingDTO;
-  private userDTO: UserDTO;
   private labelDTO: LabelDTO;
+  private paramDTO: ParamDTO;
 
 
   constructor(private thingService: ThingService, private keywordService: KeywordService, private linkTKService: LinkTKService, private router: Router) { }
 
   ngOnInit() {
-    this.userDTO = new UserDTO(0,"","",0);
-    this.labelDTO = new LabelDTO(0,"",this.userDTO);
-    this.thingDTO = new ThingDTO(0,"","","","","","", this.userDTO, this.labelDTO);
+    this.labelDTO = new LabelDTO(0,"",0);
+    this.thingDTO = new ThingDTO(0,"","","","","","", 0, this.labelDTO);
     this.keywordDTO = new KeywordDTO(0,"");
     this.linkTKDTO = new LinkTKDTO(0,this.thingDTO, this.keywordDTO);
 
-    this.thingService.showThing().subscribe((data: any) =>{
+    this.thingService.showThing(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.thingList = data;

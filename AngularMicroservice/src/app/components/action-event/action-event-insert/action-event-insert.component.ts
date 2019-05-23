@@ -5,6 +5,7 @@ import { ActionEventService } from '../../../../app/services/action-event.servic
 import { LabelService } from '../../../../app/services/label.service';
 import { Router } from '@angular/router';
 import { UserDTO } from '../../../../dto/UserDTO';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
   selector: 'app-action-event-insert',
@@ -16,16 +17,18 @@ export class ActionEventInsertComponent implements OnInit {
   private labelDTO: LabelDTO;
   private userDTO: UserDTO;
   private labelList: Array<LabelDTO>;
+  private paramDTO: ParamDTO;
 
   constructor(private actionEventService: ActionEventService, private labelService:LabelService, private router: Router) { }
 
   ngOnInit() {
-    this.userDTO = new UserDTO(0,"","",0);
-    this.labelDTO = new LabelDTO(0, "", this.userDTO);
+    //this.userDTO = new UserDTO(0,"","",0);
+    this.labelDTO = new LabelDTO(0, "", 0);
     this.actionEventDTO = new ActionEventDTO(0, "", "", 0, this.labelDTO);
     
+    
 
-    this.labelService.showLabel().subscribe((data: any) =>{
+    this.labelService.showLabel(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.labelList = data;

@@ -3,6 +3,7 @@ import { UserService } from '../../../../../src/app/services/user.service';
 import { UserDTO } from '../../../../dto/UserDTO';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
   selector: 'app-user-insert',
@@ -12,16 +13,22 @@ import { NgForm } from '@angular/forms';
 export class UserInsertComponent implements OnInit {
 
   private userDTO: UserDTO;
+  private paramDTO: ParamDTO;
+  private jwt: string;
 
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    console.log(this.jwt);
+    
     this.userDTO = new UserDTO(0,"","",0);
   }
 
     insertUser(){
-      console.log("arrivato")
-    this.userService.insertUser(this.userDTO).subscribe((data: any) => {
+      this.jwt= sessionStorage.getItem("jwt");
+      this.paramDTO = new ParamDTO(this.jwt, this.userDTO);
+      console.log("user: ",this.userDTO);
+      this.userService.insertUser(this.paramDTO).subscribe((data: any) => {
       console.log("arr")
 
       if(data != null)

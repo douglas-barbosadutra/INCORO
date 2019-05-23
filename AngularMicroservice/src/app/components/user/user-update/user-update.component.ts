@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserDTO } from '../../../../dto/UserDTO';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from '../../../../../src/app/services/user.service';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 export class UserUpdateComponent implements OnInit {
 
   public userDTO: UserDTO;
+  private paramDTO: ParamDTO;
 
   constructor(private router: Router, private userSerivce: UserService) { }
 
@@ -23,7 +25,7 @@ export class UserUpdateComponent implements OnInit {
   updateUser(){
     console.log(this.userDTO);
 
-    this.userSerivce.updateUser(this.userDTO).subscribe((data: any) => {
+    this.userSerivce.updateUser(this.paramDTO).subscribe((data: any) => {
 
       if(data != null)
         alert("Aggiornamento effettuato");

@@ -5,6 +5,7 @@ import { ThingDTO } from '../../../../dto/ThingDTO';
 import { Router } from '@angular/router';
 import { LabelDTO } from '../../../../dto/LabelDTO';
 import { UserDTO } from '../../../../dto/UserDTO';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
   selector: 'app-thing-insert',
@@ -14,17 +15,16 @@ import { UserDTO } from '../../../../dto/UserDTO';
 export class ThingInsertComponent implements OnInit {
   private thingDTO: ThingDTO;
   private labelDTO: LabelDTO;
-  private userDTO: UserDTO;
   private labelList: Array<LabelDTO>;
+  private paramDTO:ParamDTO;
 
   constructor(private thingService: ThingService, private router: Router, private labelService: LabelService) { }
 
   ngOnInit() {
-    this.labelDTO = new LabelDTO(0,"",this.userDTO);
-    this.userDTO = new UserDTO(0,"","",0);
-    this.thingDTO = new ThingDTO(0,"","","","","","", this.userDTO, this.labelDTO);
+    this.labelDTO = new LabelDTO(0,"",0);
+    this.thingDTO = new ThingDTO(0,"","","","","","", 0, this.labelDTO);
     
-    this.labelService.showLabel().subscribe((data: any) =>{
+    this.labelService.showLabel(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.labelList = data;
@@ -34,10 +34,11 @@ export class ThingInsertComponent implements OnInit {
 
   insertThing(){
     //this.thingDTO.user = JSON.parse(sessionStorage.getItem("User")) as UserDTO;
-    this.thingDTO.user.idUser = parseInt(sessionStorage.getItem("idUser"));
-    this.thingDTO.label.idLabel = this.labelDTO.idLabel;
+    //this.thingDTO.idUser = parseInt(sessionStorage.getItem("idUser"));
+    this.paramDTO = new ParamDTO(sessionStorage.getItem("jwt"), this.thingDTO);
+    //this.thingDTO.label.idLabel = this.labelDTO.idLabel;
    
-  this.thingService.insertThing(this.thingDTO).subscribe((data: any) => {
+  this.thingService.insertThing(this.paramDTO).subscribe((data: any) => {
     
     if(data != null)
       alert("Inserimento effettuato");

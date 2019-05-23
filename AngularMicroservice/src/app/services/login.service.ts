@@ -6,6 +6,7 @@ import { UserDTO } from '../../../src/dto/UserDTO';
 import { LoginDTO } from '../../../src/dto/LoginDTO';
 import {  GoogleLoginProvider } from "angularx-social-login";
 import { SocialUser } from 'angularx-social-login';
+import { UserLoggedDTO } from '../../dto/UserLoggedDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,8 @@ export class LoginService {
     };
   }
 
-  login(loginDTO: LoginDTO): Observable<UserDTO> {
-    return this.http.post<UserDTO>('//localhost:8080/User/login', loginDTO).pipe(tap((response) =>
+  login(loginDTO: LoginDTO): Observable<UserLoggedDTO> {
+    return this.http.post<UserLoggedDTO>('//localhost:8094/Login/login', loginDTO).pipe(tap((response) =>
     console.log(loginDTO.username), catchError(this.handleError("login error", {}))));
   }
 

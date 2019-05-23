@@ -7,6 +7,7 @@ import { HardwareService } from '../../../../../src/app/services/hardware.servic
 import {ThingService } from '../../../../../src/app/services/thing.service';
 import { LabelDTO } from '../../../../dto/LabelDTO';
 import { UserDTO } from '../../../../dto/UserDTO';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
   selector: 'app-hardware-insert',
@@ -17,18 +18,17 @@ export class HardwareInsertComponent implements OnInit {
   public hardwareDTO: HardwareDTO;
   public thingDTO: ThingDTO;
   private labelDTO: LabelDTO;
-  private userDTO: UserDTO;
   private thingList: Array<ThingDTO>
+  private paramDTO: ParamDTO;
 
   constructor(private hardwareService : HardwareService, private router: Router, private thingService: ThingService) { }
 
   ngOnInit() {
-    this.userDTO = new UserDTO(0,"","",0);
-    this.labelDTO = new LabelDTO(0,"",this.userDTO);
-    this.thingDTO = new ThingDTO(0,"","","","","","", this.userDTO, this.labelDTO);
+    this.labelDTO = new LabelDTO(0,"",0);
+    this.thingDTO = new ThingDTO(0,"","","","","","", 0, this.labelDTO);
 
     this.hardwareDTO = new HardwareDTO(0,"","", false,this.thingDTO);
-    this.thingService.showThing().subscribe((data: any) =>{
+    this.thingService.showThing(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.thingList = data;

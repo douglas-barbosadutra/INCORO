@@ -3,6 +3,7 @@ import { LabelDTO } from '../../../../dto/LabelDTO';
 import { UserDTO } from '../../../../dto/UserDTO';
 import { Router } from '@angular/router';
 import { LabelService } from '../../../../app/services/label.service';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 
 @Component({
@@ -13,20 +14,21 @@ import { LabelService } from '../../../../app/services/label.service';
 export class LabelUpdateComponent implements OnInit {
   private labelDTO: LabelDTO;
   private userDTO: UserDTO;
+  private paramDTO: ParamDTO;
   
 
   constructor(private router: Router, private labelService: LabelService) { }
 
   ngOnInit() {
-    this.userDTO = new UserDTO(0,"","",0);
     this.labelDTO = JSON.parse(sessionStorage.getItem("LabelDTOpassato")) as LabelDTO;
-    //this.labelDTO = new LabelDTO(parseInt(sessionStorage.getItem("idLabel")),"",this.userDTO);
-    
-  }
+    }
 
   updateLabel(){
-    this.labelDTO.user.idUser = parseInt(sessionStorage.getItem("idUser"));
-    this.labelService.updateLabel(this.labelDTO).subscribe((data: LabelDTO) => {
+    alert(this.labelDTO.name);
+    console.log("labelDTO in updateLabel: " , this.labelDTO);
+    this.paramDTO = new ParamDTO(sessionStorage.getItem("jwt"), this.labelDTO);
+    console.log("paramDTO in updateLabel: " , this.paramDTO);
+    this.labelService.updateLabel(this.paramDTO).subscribe((data: LabelDTO) => {
       
       if(data != null)
         alert("Aggiornamento effettuato");

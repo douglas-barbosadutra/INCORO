@@ -1,4 +1,4 @@
-import { ThingDTO } from '../../../IncAng/src/dto/ThingDTO';
+import { ThingDTO } from './ThingDTO';
 
 export class HardwareDTO{
     idHardware: number;

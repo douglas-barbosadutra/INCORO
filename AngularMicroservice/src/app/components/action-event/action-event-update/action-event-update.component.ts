@@ -5,6 +5,7 @@ import { UserDTO } from '../../../../dto/UserDTO';
 import { ActionEventService } from '../../../../app/services/action-event.service';
 import { Router } from '@angular/router';
 import { LabelService } from '../../../../app/services/label.service';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
   selector: 'app-action-event-update',
@@ -16,15 +17,16 @@ export class ActionEventUpdateComponent implements OnInit {
   private labelDTO: LabelDTO;
   private userDTO: UserDTO;
   private labelList: Array<LabelDTO>;
+  private paramDTO: ParamDTO;
 
   constructor(private actionEventService: ActionEventService, private router: Router, private labelService: LabelService) { }
 
   ngOnInit() {
     this.userDTO = new UserDTO(0, "", "", 0);
-    this.labelDTO = new LabelDTO(0,"",this.userDTO);
+    this.labelDTO = new LabelDTO(0,"",0);
     this.actionEventDTO = JSON.parse(sessionStorage.getItem("DTOpassato")) as ActionEventDTO;
     alert("ddd " + this.actionEventDTO.label.name);
-    this.labelService.showLabel().subscribe((data: any) =>{
+    this.labelService.showLabel(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.labelList = data;

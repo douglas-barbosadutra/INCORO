@@ -9,6 +9,7 @@ import { LabelDTO } from '../../../../dto/LabelDTO';
 import { UserDTO } from '../../../../dto/UserDTO';
 import { LinkTKDTO} from '../../../../dto/LinkTKDTO';
 import { KeywordDTO } from '../../../../dto/KeywordDTO';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
   selector: 'app-link-tk-insert',
@@ -20,20 +21,19 @@ export class LinkTKInsertComponent implements OnInit {
   private thingList: Array<ThingDTO>
   private thingDTO: ThingDTO;
   private labelDTO: LabelDTO;
-  private userDTO: UserDTO;
   private keywordDTO: KeywordDTO;
   private linkTkDTO: LinkTKDTO;
+  private paramDTO: ParamDTO;
 
   constructor(private thingService: ThingService, private keywordService: KeywordService, private linkTKService: LinkTKService, private router: Router) { }
 
   ngOnInit() {
-    this.userDTO = new UserDTO(0,"","",0);
-    this.labelDTO = new LabelDTO(0,"",this.userDTO);
-    this.thingDTO = new ThingDTO(0,"","","","","","", this.userDTO, this.labelDTO);
+    this.labelDTO = new LabelDTO(0,"",0);
+    this.thingDTO = new ThingDTO(0,"","","","","","", 0, this.labelDTO);
     this.keywordDTO = new KeywordDTO(0,"");
     this.linkTkDTO = new LinkTKDTO(0,this.thingDTO, this.keywordDTO);
 
-    this.thingService.showThing().subscribe((data: any) =>{
+    this.thingService.showThing(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.thingList = data;

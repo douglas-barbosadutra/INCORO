@@ -82,9 +82,9 @@ public class LabelController {
 			type = this.getTypeFromJwt(paramDTO.getJwt());
 			
 			if(type == 1) {
+				LinkedHashMap label = (LinkedHashMap) paramDTO.getParam();
 				
-				int idLabel = (int) paramDTO.getParam();
-				return ResponseEntity.status(HttpStatus.OK).body(labelService.deleteLabel(idLabel));
+				return ResponseEntity.status(HttpStatus.OK).body(labelService.deleteLabel(Integer.parseInt(label.get("idLabel").toString())));
 			}
 			
 			else

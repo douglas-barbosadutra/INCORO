@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserDTO } from '../../../src/dto/UserDTO';
 import { ConstantPool } from '@angular/compiler';
+import { ParamDTO } from '../../dto/ParamDTO';
 //import { UserDTO } from 'dto/UserDTO';
 
 @Injectable({
@@ -11,22 +12,22 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
   
-  insertUser(userDTO: UserDTO){
-    console.log(userDTO)
-    return this.http.post('http://localhost:8094/User/insertUser', userDTO);
+  insertUser(paramDTO: ParamDTO){
+    console.log(paramDTO)
+    return this.http.post('http://localhost:8094/User/insertUser', paramDTO);
   }
 
-  showUser(){
-    return this.http.get('http://localhost:8094/User/showUser');
+  showUser(paramDTO: ParamDTO){
+    return this.http.get('http://localhost:8094/User/showUser?jwt=' + paramDTO.jwt);
   }
 
-  deleteUser(userDTO: UserDTO){
-    console.log(userDTO);
-    return this.http.delete('http://localhost:8094/User/deleteUser?id='+userDTO.idUser);
+  deleteUser(paramDTO: ParamDTO){
+    console.log(paramDTO);
+    return this.http.post('http://localhost:8094/User/deleteUser', paramDTO);
   }
   
-  updateUser(userDTO: UserDTO) {
-    return this.http.put( 'http://localhost:8094/User/updateUser', userDTO);
+  updateUser(paramDTO: ParamDTO) {
+    return this.http.put( 'http://localhost:8094/User/updateUser', paramDTO);
   }
 
 }
