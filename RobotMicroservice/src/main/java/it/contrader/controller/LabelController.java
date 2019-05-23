@@ -1,7 +1,7 @@
 package it.contrader.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import io.jsonwebtoken.ExpiredJwtException;
 import it.contrader.dto.LabelDTO;
 import it.contrader.dto.ParamDTO;
-import it.contrader.dto.ThingDTO;
 
 import it.contrader.services.LabelService;
 import it.contrader.utils.JwtUtils;
@@ -31,48 +30,33 @@ import java.util.Map;
 @RequestMapping("/Label")
 public class LabelController {
 	
-	private final LabelService labelService;
-	private HttpSession session;
-	private int idLabel;
-	private int idUser;
+private final LabelService labelService;
 	
-	@Autowired
-	public LabelController(LabelService labelService) {
-		this.labelService = labelService;
+@Autowired
+public LabelController(LabelService labelService) {
+	this.labelService = labelService;	
+}
+	
+@RequestMapping(value = "/showLabel", method = RequestMethod.GET)
+// caso particolare di passaggio. la jwt ha id e tipo
+public ResponseEntity<List<LabelDTO>> showLabel(@RequestParam(value="jwt") String jwt) {
+	int type;
+	int idUser;
 		
-	}
-	
-	private void visualLabel(HttpServletRequest request) {
-		List<LabelDTO> allLabel = this.labelService.findLabelbyIdUser(idUser);
-		request.getSession().setAttribute("allLabel", allLabel);
-	}
-	
-	@RequestMapping(value = "/showLabel", method = RequestMethod.GET)
-	public ResponseEntity<List<LabelDTO>> showLabel(@RequestParam(value="jwt") String jwt) {
-		int type;
-		int idUser;
-		
-		try {
-			type = this.getTypeFromJwt(jwt);
-			
-			if(type == 1) {
-				
-				idUser = this.getIdUserFromJwt(jwt);
-				return ResponseEntity.status(HttpStatus.OK).body(labelService.findLabelbyIdUser(idUser));
+	try {			
+		type = this.getTypeFromJwt(jwt);
+		if(type == 1) {
+			idUser = this.getIdUserFromJwt(jwt);
+			return ResponseEntity.status(HttpStatus.OK).body(labelService.findLabelbyIdUser(idUser));
 			}
-			
 			else
 				return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
-			
 		} catch (ExpiredJwtException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
-		}
-		
-
-
 	}
+}
 	
+
 	@RequestMapping(value="/deleteLabel" , method= RequestMethod.POST)
 	public ResponseEntity<Boolean> deleteLabel(@RequestBody ParamDTO paramDTO) {		
 		
@@ -90,96 +74,95 @@ public class LabelController {
 			else
 				return ResponseEntity.status(HttpStatus.OK).body(null);
 			
+
 		} catch (ExpiredJwtException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}
 
 	}
 	
-	@RequestMapping(value="/insertLabel", method= RequestMethod.POST)
-	public ResponseEntity<LabelDTO> insertLabel(@RequestBody ParamDTO paramDTO) {
-		int rank;
-		int idUser;
+@RequestMapping(value="/insertLabel", method= RequestMethod.POST)
+public ResponseEntity<LabelDTO> insertLabel(@RequestBody ParamDTO paramDTO) {
+	int rank;
+	int idUser;
 		
-		try {
-			rank = this.getTypeFromJwt(paramDTO.getJwt());
+	try {
+		rank = this.getTypeFromJwt(paramDTO.getJwt());
 			
-			if(rank == 1) {
+		if(rank == 1) {
 				
-				idUser = this.getIdUserFromJwt(paramDTO.getJwt());
+			idUser = this.getIdUserFromJwt(paramDTO.getJwt());
 				
-				LinkedHashMap label = (LinkedHashMap) paramDTO.getParam();
-				LabelDTO labelDTO = new LabelDTO(0,label.get("name").toString(), idUser);
-				LabelDTO labelInsert = labelService.insertLabel(labelDTO);
+			LinkedHashMap label = (LinkedHashMap) paramDTO.getParam();
+			LabelDTO labelDTO = new LabelDTO(0,label.get("name").toString(), idUser);
+			LabelDTO labelInsert = labelService.insertLabel(labelDTO);
 				
-				if(labelInsert != null)
-					return ResponseEntity.status(HttpStatus.OK).body(labelInsert);
-				else
-					return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
-			}
-			
+			if(labelInsert != null)
+				return ResponseEntity.status(HttpStatus.OK).body(labelInsert);
 			else
 				return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
-			
-		} catch (ExpiredJwtException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 		}
-
+		else
+				return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);		
+		} catch (ExpiredJwtException | UnsupportedEncodingException e) {
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 	}
+}
 	
-	@RequestMapping(value="/updateLabel", method= RequestMethod.PUT)
-	public ResponseEntity<LabelDTO> updateLabel(@RequestBody ParamDTO paramDTO) {
-		int rank;
-		int idUser;
+@RequestMapping(value="/updateLabel", method= RequestMethod.PUT)
+public ResponseEntity<LabelDTO> updateLabel(@RequestBody ParamDTO paramDTO) {
+int rank;
+int idUser;
 		
-		try {
-			rank = this.getTypeFromJwt(paramDTO.getJwt());
-			
+try {
+		rank = this.getTypeFromJwt(paramDTO.getJwt());	
 			if(rank == 1) {
-				
 				idUser = this.getIdUserFromJwt(paramDTO.getJwt());
-				
 				LinkedHashMap label = (LinkedHashMap) paramDTO.getParam();
 				LabelDTO labelDTO = new LabelDTO(Integer.parseInt(label.get("idLabel").toString()),label.get("name").toString(), idUser);
 				LabelDTO labelInsert = labelService.insertLabel(labelDTO);
-				
 				if(labelInsert != null)
 					return ResponseEntity.status(HttpStatus.OK).body(labelInsert);
 				else
 					return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 			}
-			
 			else
 				return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 			
 		} catch (ExpiredJwtException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 		}
 
 	}
 	
 
-	
+// func che estrae il tipo utente dalla Jwt.	
 private int getTypeFromJwt(String jwt) throws ExpiredJwtException, UnsupportedEncodingException {
-		
 		Map<String, Object> data = JwtUtils.jwt2Map(jwt);
 		int type = Integer.parseInt(data.get("scope").toString());
-		
 		return type;
 	}
 	
-	private int getIdUserFromJwt(String jwt) throws ExpiredJwtException, UnsupportedEncodingException {
-		
+//func che estrae l'id utente dalla Jwt.
+private int getIdUserFromJwt(String jwt) throws ExpiredJwtException, UnsupportedEncodingException {
 		Map<String, Object> data = JwtUtils.jwt2Map(jwt);
 		int idUser = Integer.parseInt(data.get("subject").toString());
-		
 		return idUser;
 	}
-	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 @RequestMapping(value ="/deleteLabel", method = RequestMethod.DELETE)
@@ -200,4 +183,10 @@ private boolean insertLabel(@RequestBody LabelDTO labelDto) {
 	} else {
 		return false;
 	}
+}*/
+
+/*
+private void visualLabel(HttpServletRequest request) {
+List<LabelDTO> allLabel = this.labelService.findLabelbyIdUser(idUser);
+request.getSession().setAttribute("allLabel", allLabel);
 }*/
