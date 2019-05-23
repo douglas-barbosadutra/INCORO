@@ -17,17 +17,19 @@ export class ThingInsertComponent implements OnInit {
   private labelDTO: LabelDTO;
   private labelList: Array<LabelDTO>;
   private paramDTO:ParamDTO;
+  private jwt: string;
 
   constructor(private thingService: ThingService, private router: Router, private labelService: LabelService) { }
 
   ngOnInit() {
-    this.labelDTO = new LabelDTO(0,"",0);
-    this.thingDTO = new ThingDTO(0,"","","","","","", 0, this.labelDTO);
-    
-    this.labelService.showLabel(this.paramDTO).subscribe((data: any) =>{
+    this.jwt = sessionStorage.getItem("jwt");
+    console.log("in ngOnit arriva: " + this.jwt);
+    this.paramDTO = new ParamDTO(this.jwt, this.labelDTO);
+    this.labelService.showLabel(this.paramDTO).subscribe((data: Array<LabelDTO>) =>{
       if(data != null){
         console.log(data);
         this.labelList = data;
+       
       }
     })
   }
