@@ -19,7 +19,7 @@ export class LabelListComponent implements OnInit {
   private paramdeleteDTO: ParamDTO;
   private jwt: string;
   private jwtdelete: string;
-  private labelDeleteDTO: LabelDTO;
+  //private labelDeleteDTO: LabelDTO;
 
 
   constructor(private labelService: LabelService, private router: Router, private userService: UserService) { }
@@ -48,12 +48,12 @@ export class LabelListComponent implements OnInit {
     this.router.navigate(["homeBo/updateLabel"]);
   }
 
-  deleteLabel(labelDeleteDTO: LabelDTO){
-    this.labelDeleteDTO = JSON.parse(sessionStorage.getItem("LabelDTOpassato")) as LabelDTO;
+  deleteLabel(labelDTO: LabelDTO){
+    this.labelDTO = labelDTO; //?
+    alert("label DTO " + this.labelDTO.idLabel);
     this.jwtdelete = sessionStorage.getItem("jwt");
-    //console.log("in deleteLabel arriva: " + this.jwtdelete);
-    this.paramdeleteDTO = new ParamDTO(this.jwtdelete, this.labelDeleteDTO);
-    console.log("paramDTO in deleteLabel", this.paramdeleteDTO)
+    this.paramdeleteDTO = new ParamDTO(this.jwtdelete, this.labelDTO);
+    //console.log("paramDTO in deleteLabel", this.paramdeleteDTO)
 
     this.labelService.deleteLabel(this.paramdeleteDTO).subscribe((data: any) =>{
 

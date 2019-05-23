@@ -38,9 +38,12 @@ public class Label {
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<Thing> thing;
 	
-	@Column(name="id_user")
+	@Column(name="idUser")
 	@NotNull
 	private Integer idUser;
 	
+	@OneToMany(mappedBy="label")
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	private List<ActionEvent> actionEvent;
 	
 }

@@ -43,15 +43,17 @@ public class KeywordController {
 		return keywordService.insertKeyword(keywordDTO);
 	}*/
 	
+	/*
 	@RequestMapping(value="/updateKeyword", method= RequestMethod.PUT)
 	public boolean updateKeyword(@RequestBody KeywordDTO KeywordDTO) {
 		return keywordService.updateKeyword(KeywordDTO);
-	}
+	}*/
 	
+	/*
 	@RequestMapping(value="/deleteKeyword", method= RequestMethod.DELETE)
 	public boolean deleteKeyword(@RequestParam(value="id") Integer id) {		
 		return keywordService.deleteKeyword(id);
-	}
+	}*/
 
 	@RequestMapping (value="/showKeywords", method= RequestMethod.GET)
 	public List<KeywordDTO> showKeywords(){

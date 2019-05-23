@@ -20,7 +20,6 @@ import io.jsonwebtoken.ExpiredJwtException;
 
 
 import it.contrader.dto.BehaviorDTO;
-import it.contrader.dto.LabelDTO;
 import it.contrader.services.BehaviorService;
 import it.contrader.utils.JwtUtils;
 import it.contrader.dto.ParamDTO;
@@ -44,10 +43,11 @@ public boolean insertBehavior(@RequestBody BehaviorDTO BehaviorDTO) {
 	return behaviorService.insertBehavior(BehaviorDTO);
 }*/
 	
+/*
 @RequestMapping(value="/updateBehavior", method= RequestMethod.PUT)
 public boolean updateBehavior(@RequestBody BehaviorDTO BehaviorDTO) {
 	return behaviorService.updateBehavior(BehaviorDTO);
-}
+}*/
 	
 @RequestMapping(value = "/showBehavior", method = RequestMethod.GET)
 public ResponseEntity<List<BehaviorDTO>> showBehavior(@RequestParam(value="jwt") String jwt) {

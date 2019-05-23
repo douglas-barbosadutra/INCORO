@@ -35,7 +35,7 @@ export class ThingListComponent implements OnInit {
 
   chooseThing(idThing: number){
     sessionStorage.setItem("idThing", JSON.stringify(idThing));
-    this.router.navigate(["updateThing"]);
+    this.router.navigate(["homeBo/updateThing"]);
   }
 
   setDTO(thing: ThingDTO){

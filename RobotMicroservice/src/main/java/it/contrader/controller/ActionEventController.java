@@ -75,10 +75,11 @@ public class ActionEventController {
 		return listEventDTO;
 	}
 	
+	/*
 	@RequestMapping(value="/deleteActionEvent" , method= RequestMethod.DELETE)
 	public boolean deleteActionEvent(@RequestParam(value="id") Integer id) {		
 		return actionEventService.deleteActionEvent(id);
-	}
+	}*/
 	
 	@RequestMapping(value="/insertActionEvent", method= RequestMethod.POST)
 	public ActionEventDTO insertActionEvent(@RequestBody ActionEventDTO ActionEventDTO) {
