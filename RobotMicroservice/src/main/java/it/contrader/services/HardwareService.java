@@ -6,13 +6,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.contrader.converter.ConverterBehavior;
+
 //import java.util.ArrayList;
 //import java.util.List;
 
 import it.contrader.converter.ConverterHardware;
 import it.contrader.dao.HardwareRepository;
-
+import it.contrader.dto.BehaviorDTO;
 import it.contrader.dto.HardwareDTO;
+import it.contrader.model.Behavior;
 import it.contrader.model.Hardware;
 
 @Service
@@ -32,8 +35,15 @@ public class HardwareService {
 		return ConverterHardware.toDTO(hardwareRepository.findHardwareByIdHardware(id));
 	}
 
+	/*
 	public boolean insertHardware(HardwareDTO hardwareDTO) {
 		return hardwareRepository.save(ConverterHardware.toEntity(hardwareDTO)) != null;
+	}
+	*/
+	public HardwareDTO insertHardware(HardwareDTO hardwareDTO) {
+		Hardware hardware = ConverterHardware.toEntity(hardwareDTO);
+		hardwareRepository.save(hardware); 
+		return ConverterHardware.toDTO(hardware);
 	}
 
 	public boolean updateHardware(HardwareDTO hardwareDTO) {

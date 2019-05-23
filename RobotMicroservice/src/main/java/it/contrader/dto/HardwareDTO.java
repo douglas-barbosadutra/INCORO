@@ -12,5 +12,5 @@ public class HardwareDTO {
 	private String name;
 	private String description;
 	private boolean master;
-	private ThingDTO thing = new ThingDTO();
+	private ThingDTO thing;
 }

@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.contrader.dto.BehaviorDTO;
 import it.contrader.dto.LinkTKDTO;
 import it.contrader.dto.ParamDTO;
+import it.contrader.dto.ThingDTO;
+import it.contrader.dto.KeywordDTO;
 import it.contrader.services.LinkTKService;
 import it.contrader.utils.JwtUtils;
 
@@ -63,7 +65,7 @@ public class LinkTKController {
 			type = this.getTypeFromJwt(jwt);
 			if(type == 1) {
 				int idUser = this.getIdUserFromJwt(jwt);
-				return ResponseEntity.status(HttpStatus.OK).body(linkTKService.getAllLinkTK());
+				return ResponseEntity.status(HttpStatus.OK).body(linkTKService.getListLinkTKDTO());
 				}
 				else
 					return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
@@ -103,7 +105,7 @@ public class LinkTKController {
 				idUser = this.getIdUserFromJwt(paramDTO.getJwt());
 					
 				LinkedHashMap linkTK = (LinkedHashMap) paramDTO.getParam();
-				LinkTKDTO linkTKDTO = new LinkTKDTO(0, Integer.parseInt(linkTK.get("idLinkTK").toString()),  Integer.parseInt(linkTK.get("idThing").toString(), Integer.parseInt(linkTK.get("idKeyword").toString())));
+				LinkTKDTO linkTKDTO = new LinkTKDTO(0, (ThingDTO)(linkTK.get("thing")), (KeywordDTO)(linkTK.get("keyword")));
 				LinkTKDTO linkTKDTOInsert = linkTKService.insertLinkTK(linkTKDTO);
 					
 				if(linkTKDTOInsert != null)
@@ -128,7 +130,7 @@ public class LinkTKController {
 				if(rank == 1) {
 					idUser = this.getIdUserFromJwt(paramDTO.getJwt());
 					LinkedHashMap linkTK = (LinkedHashMap) paramDTO.getParam();
-					LinkTKDTO linkTKDTO = new LinkTKDTO(Integer.parseInt(linkTK.get("idLinkTK").toString()),Integer.parseInt(linkTK.get("idThing").toString()), Integer.parseInt(linkTK.get("idKeyword").toString()));
+					LinkTKDTO linkTKDTO = new LinkTKDTO(Integer.parseInt(linkTK.get("idLinkTK").toString()),(ThingDTO)(linkTK.get("thing")), (KeywordDTO)(linkTK.get("keyword")));
 					LinkTKDTO linkTKDTOInsert = linkTKService.insertLinkTK(linkTKDTO);
 					if(linkTKDTOInsert != null)
 						return ResponseEntity.status(HttpStatus.OK).body(linkTKDTOInsert);

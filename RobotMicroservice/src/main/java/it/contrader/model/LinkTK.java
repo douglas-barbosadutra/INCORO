@@ -26,21 +26,18 @@ public class LinkTK {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idLinkTK;
 	
-	/*
-	@Column(name = "fkThing")
-	@NotNull
-	private Integer fkThing;
-	
-	@Column(name = "fkKeyword")
-	@NotNull
-	private Integer fkKeyword;*/
-	
-	@ManyToOne
 	@JoinColumn(name="idThing")
 	private Thing thing;
 	
-	@ManyToOne
 	@JoinColumn(name="idKeyword")
 	private Keyword keyword;
-
 }
+
+/*
+@Column(name = "fkThing")
+@NotNull
+private Integer fkThing;
+
+@Column(name = "fkKeyword")
+@NotNull
+private Integer fkKeyword;*/

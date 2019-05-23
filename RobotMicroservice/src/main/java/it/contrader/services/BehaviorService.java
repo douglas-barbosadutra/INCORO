@@ -10,12 +10,13 @@ import org.springframework.stereotype.Service;
 //import java.util.List;
 
 import it.contrader.converter.ConverterBehavior;
-
+import it.contrader.converter.ConverterLabel;
 import it.contrader.dao.BehaviorRepository;
 
 import it.contrader.dto.BehaviorDTO;
-
+import it.contrader.dto.LabelDTO;
 import it.contrader.model.Behavior;
+import it.contrader.model.Label;
 
 
 @Service
@@ -34,17 +35,24 @@ public class BehaviorService {
 	public BehaviorDTO getBehaviorDTOById(int id) {
 		return ConverterBehavior.toDTO(behaviorRepository.findBehaviorByIdBehavior(id));
 	}
-
+	/*
 	public boolean insertBehavior(BehaviorDTO behaviorDTO) {
 		return behaviorRepository.save(ConverterBehavior.toEntity(behaviorDTO)) != null;
+	}*/
+	
+	public BehaviorDTO insertBehavior(BehaviorDTO behaviorDTO) {
+		Behavior behavior = ConverterBehavior.toEntity(behaviorDTO);
+		behaviorRepository.save(behavior); 
+		return ConverterBehavior.toDTO(behavior);
 	}
 
 	public boolean updateBehavior(BehaviorDTO behaviorDTO) {
 		return behaviorRepository.save(ConverterBehavior.toEntity(behaviorDTO)) != null;
 	}
 	
-	public void deleteBehaviorById(Integer id) {
+	public boolean deleteBehaviorById(Integer id) {
 		behaviorRepository.deleteById(id);
+		return true;
 	}
 
 	public List<BehaviorDTO> findBehaviorDTOByName(String name) {

@@ -12,5 +12,5 @@ import lombok.ToString;
 public class LinkTKDTO {
 	private Integer idLinkTK;
 	private ThingDTO thing;
-	private KeywordDTO keyword;
+	private KeywordDTO  keyword;
 }

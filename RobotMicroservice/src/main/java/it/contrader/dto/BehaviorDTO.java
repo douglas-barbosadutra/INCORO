@@ -12,5 +12,5 @@ import lombok.ToString;
 public class BehaviorDTO {
 	private Integer idBehavior;
 	private String name;
-	private ThingDTO thing = new ThingDTO();
+	private ThingDTO thing;
 }

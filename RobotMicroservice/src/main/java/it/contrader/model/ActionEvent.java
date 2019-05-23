@@ -8,13 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,13 +41,9 @@ public class ActionEvent {
 	@Column(name = "type")
 	@NotNull
 	private int type;
-	
-	
-	@ManyToOne
+
+	//@ManyToOne
 	@JoinColumn(name = "idLabel")
 	private Label label;
-	
-	
-
 
 }

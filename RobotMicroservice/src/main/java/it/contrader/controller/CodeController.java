@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.contrader.dto.CodeDTO;
+import it.contrader.dto.BehaviorDTO;
 import it.contrader.dto.LabelDTO;
 import it.contrader.dto.ParamDTO;
 import it.contrader.services.CodeService;
@@ -50,7 +51,7 @@ public class CodeController {
 			type = this.getTypeFromJwt(jwt);
 			if(type == 1) {
 				idUser = this.getIdUserFromJwt(jwt);
-				return ResponseEntity.status(HttpStatus.OK).body(codeService.getAllCode());
+				return ResponseEntity.status(HttpStatus.OK).body(codeService.getLisCodeDTO());
 				}
 				else
 					return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
@@ -66,7 +67,7 @@ public class CodeController {
 			type = this.getTypeFromJwt(paramDTO.getJwt());
 			if(type == 1) {
 				int idCode = (int) paramDTO.getParam();
-				return ResponseEntity.status(HttpStatus.OK).body(codeService.deleteCode(idCode));
+				return ResponseEntity.status(HttpStatus.OK).body(codeService.deleteCodeById(idCode));
 			}
 			else
 				return ResponseEntity.status(HttpStatus.OK).body(null);
@@ -89,7 +90,7 @@ public class CodeController {
 				idUser = this.getIdUserFromJwt(paramDTO.getJwt());
 					
 				LinkedHashMap code = (LinkedHashMap) paramDTO.getParam();
-				CodeDTO codeDTO = new CodeDTO(0,code.get("name").toString(), code.get("body").toString(), code.get("type").toString(), Integer.parseInt(code.get("idBehavior").toString()));
+				CodeDTO codeDTO = new CodeDTO(0,code.get("name").toString(), code.get("body").toString(), code.get("type").toString(),(BehaviorDTO)(code.get("behavior")));
 				CodeDTO codeInsert = codeService.insertCode(codeDTO);
 					
 				if(codeInsert != null)
@@ -114,7 +115,7 @@ try {
 			if(rank == 1) {
 				idUser = this.getIdUserFromJwt(paramDTO.getJwt());
 				LinkedHashMap code = (LinkedHashMap) paramDTO.getParam();
-				CodeDTO codeDTO = new CodeDTO(Integer.parseInt(code.get("idCode").toString()),code.get("name").toString(), code.get("body").toString(), code.get("type").toString(),  Integer.parseInt(code.get("idBehavior").toString()));
+				CodeDTO codeDTO = new CodeDTO(Integer.parseInt(code.get("idCode").toString()),code.get("name").toString(), code.get("body").toString(), code.get("type").toString(),  (BehaviorDTO) (code.get("behavior")));
 				CodeDTO codeInsert = codeService.insertCode(codeDTO);
 				if(codeInsert != null)
 					return ResponseEntity.status(HttpStatus.OK).body(codeInsert);

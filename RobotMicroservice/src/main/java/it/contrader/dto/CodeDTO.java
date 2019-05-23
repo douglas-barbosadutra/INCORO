@@ -14,5 +14,5 @@ public class CodeDTO {
 		private String name;
 		private String body;
 		private String type;
-		private BehaviorDTO behavior = new BehaviorDTO();
+		private BehaviorDTO behavior;
 }

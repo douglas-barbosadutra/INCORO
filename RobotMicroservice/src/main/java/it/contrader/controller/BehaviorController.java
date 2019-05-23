@@ -24,6 +24,7 @@ import it.contrader.dto.LabelDTO;
 import it.contrader.services.BehaviorService;
 import it.contrader.utils.JwtUtils;
 import it.contrader.dto.ParamDTO;
+import it.contrader.dto.ThingDTO;
 
 @CrossOrigin(value="*")
 @RestController
@@ -56,7 +57,7 @@ public ResponseEntity<List<BehaviorDTO>> showBehavior(@RequestParam(value="jwt")
 		type = this.getTypeFromJwt(jwt);
 		if(type == 1) {
 			//int idUser = this.getIdUserFromJwt(jwt);
-			return ResponseEntity.status(HttpStatus.OK).body(behaviorService.getAllBehavior());
+			return ResponseEntity.status(HttpStatus.OK).body(behaviorService.getListBehaviorDTO());
 			}
 			else
 				return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
@@ -72,7 +73,7 @@ public ResponseEntity<Boolean> deleteBehavior(@RequestBody ParamDTO paramDTO) {
 		type = this.getTypeFromJwt(paramDTO.getJwt());
 		if(type == 1) {
 			int idBehavior = (int) paramDTO.getParam();
-			return ResponseEntity.status(HttpStatus.OK).body(behaviorService.deleteBehavior(idBehavior));
+			return ResponseEntity.status(HttpStatus.OK).body(behaviorService.deleteBehaviorById(idBehavior));
 		}
 		else
 			return ResponseEntity.status(HttpStatus.OK).body(null);
@@ -84,7 +85,7 @@ public ResponseEntity<Boolean> deleteBehavior(@RequestBody ParamDTO paramDTO) {
 	}
 
 @RequestMapping(value="/insertBehavior", method= RequestMethod.POST)
-public ResponseEntity<BehaviorDTO> insertbehavior(@RequestBody ParamDTO paramDTO) {
+public ResponseEntity<BehaviorDTO> insertBehavior(@RequestBody ParamDTO paramDTO) {
 	int rank;
 	int idUser;
 		
@@ -96,7 +97,7 @@ public ResponseEntity<BehaviorDTO> insertbehavior(@RequestBody ParamDTO paramDTO
 			idUser = this.getIdUserFromJwt(paramDTO.getJwt());
 				
 			LinkedHashMap behavior = (LinkedHashMap) paramDTO.getParam();
-			BehaviorDTO behaviorDTO = new BehaviorDTO(0, behavior.get("name").toString(), idUser);
+			BehaviorDTO behaviorDTO = new BehaviorDTO(0, behavior.get("name").toString(), (ThingDTO) behavior.get("thing"));
 			BehaviorDTO behaviorInsert = behaviorService.insertBehavior(behaviorDTO);
 				
 			if(behaviorInsert != null)
@@ -121,7 +122,7 @@ try {
 			if(rank == 1) {
 				idUser = this.getIdUserFromJwt(paramDTO.getJwt());
 				LinkedHashMap behavior = (LinkedHashMap) paramDTO.getParam();
-				BehaviorDTO behaviorDTO = new BehaviorDTO(Integer.parseInt(behavior.get("idBehavior").toString()),behavior.get("name").toString(), idUser);
+				BehaviorDTO behaviorDTO = new BehaviorDTO(Integer.parseInt(behavior.get("idBehavior").toString()),behavior.get("name").toString(), (ThingDTO) behavior.get("thing"));
 				BehaviorDTO behaviorInsert = behaviorService.insertBehavior(behaviorDTO);
 				if(behaviorInsert != null)
 					return ResponseEntity.status(HttpStatus.OK).body(behaviorInsert);

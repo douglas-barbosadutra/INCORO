@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.contrader.dto.HardwareDTO;
 import it.contrader.dto.LabelDTO;
+import it.contrader.dto.ThingDTO;
 import it.contrader.dto.ParamDTO;
 import it.contrader.services.HardwareService;
 import it.contrader.utils.JwtUtils;
@@ -103,7 +104,7 @@ public class HardwareController {
 				idUser = this.getIdUserFromJwt(paramDTO.getJwt());
 					
 				LinkedHashMap hardware = (LinkedHashMap) paramDTO.getParam();
-				HardwareDTO hardwareDTO = new HardwareDTO(0,hardware.get("name").toString(), hardware.get("description").toString(), (Boolean) hardware.get("master") , Integer.parseInt(hardware.get("idThing").toString()));
+				HardwareDTO hardwareDTO = new HardwareDTO(0,hardware.get("name").toString(), hardware.get("description").toString(), (Boolean) hardware.get("master") , (ThingDTO)(hardware.get("thing")));
 				HardwareDTO hardwareInsert = hardwareService.insertHardware(hardwareDTO);
 					
 				if(hardwareInsert != null)
@@ -128,7 +129,7 @@ public class HardwareController {
 				if(rank == 1) {
 					idUser = this.getIdUserFromJwt(paramDTO.getJwt());
 					LinkedHashMap hardware = (LinkedHashMap) paramDTO.getParam();
-					HardwareDTO hardwareDTO = new HardwareDTO(Integer.parseInt(hardware.get("idHardware").toString()),hardware.get("name").toString(), hardware.get("description").toString(), (Boolean) hardware.get("master") , Integer.parseInt(hardware.get("idThing").toString()));
+					HardwareDTO hardwareDTO = new HardwareDTO(Integer.parseInt(hardware.get("idHardware").toString()),hardware.get("name").toString(), hardware.get("description").toString(), (Boolean) hardware.get("master") , (ThingDTO)(hardware.get("thing")));
 					HardwareDTO hardwareInsert = hardwareService.insertHardware(hardwareDTO);
 					if(hardwareInsert != null)
 						return ResponseEntity.status(HttpStatus.OK).body(hardwareInsert);

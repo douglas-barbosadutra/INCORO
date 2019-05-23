@@ -77,7 +77,7 @@ public class ThingController {
 			type = this.getTypeFromJwt(jwt);
 			if(type == 1) {
 				idUser = this.getIdUserFromJwt(jwt);
-				return ResponseEntity.status(HttpStatus.OK).body(thingService.getAllThing());
+				return ResponseEntity.status(HttpStatus.OK).body(thingService.getThingDTOByIdUser(idUser));
 				}
 				else
 					return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
@@ -92,8 +92,8 @@ public class ThingController {
 		try {
 			type = this.getTypeFromJwt(paramDTO.getJwt());
 			if(type == 1) {
-				int idThing = (int) paramDTO.getParam();
-				return ResponseEntity.status(HttpStatus.OK).body(thingService.deleteThing(idThing));
+				LinkedHashMap thing = (LinkedHashMap) paramDTO.getParam();
+				return ResponseEntity.status(HttpStatus.OK).body(thingService.deleteThing(Integer.parseInt(thing.get("idThing").toString())));
 			}
 			else
 				return ResponseEntity.status(HttpStatus.OK).body(null);
@@ -104,8 +104,8 @@ public class ThingController {
 
 		}
 		
-	@RequestMapping(value="/insertLabel", method= RequestMethod.POST)
-	public ResponseEntity<ThingDTO> insertLabel(@RequestBody ParamDTO paramDTO) {
+	@RequestMapping(value="/insertThing", method= RequestMethod.POST)
+	public ResponseEntity<ThingDTO> insertThing(@RequestBody ParamDTO paramDTO) {
 		int rank;
 		int idUser;
 			
@@ -117,7 +117,7 @@ public class ThingController {
 				idUser = this.getIdUserFromJwt(paramDTO.getJwt());
 					
 				LinkedHashMap thing = (LinkedHashMap) paramDTO.getParam();
-				ThingDTO thingDTO = new ThingDTO(0,thing.get("code").toString(), thing.get("description").toString(), thing.get("image").toString(), thing.get("name").toString(), thing.get("xml").toString(), thing.get("protocol").toString(), idUser, Integer.parseInt(thing.get("idLabel").toString()));
+				ThingDTO thingDTO = new ThingDTO(0,thing.get("code").toString(), thing.get("description").toString(), thing.get("image").toString(), thing.get("name").toString(), thing.get("xml").toString(), thing.get("protocol").toString(), idUser, (LabelDTO) thing.get("label"));
 				ThingDTO thingInsert = thingService.insertThing(thingDTO);
 					
 				if(thingInsert != null)
@@ -142,7 +142,7 @@ public class ThingController {
 				if(rank == 1) {
 					idUser = this.getIdUserFromJwt(paramDTO.getJwt());
 					LinkedHashMap thing = (LinkedHashMap) paramDTO.getParam();
-					ThingDTO thingDTO = new ThingDTO(Integer.parseInt(thing.get("idThing").toString()), thing.get("code").toString(), thing.get("description").toString(), thing.get("image").toString(), thing.get("name").toString(), thing.get("xml").toString(), thing.get("protocol").toString(), idUser, Integer.parseInt(thing.get("idLabel").toString()));
+					ThingDTO thingDTO = new ThingDTO(Integer.parseInt(thing.get("idThing").toString()),thing.get("code").toString(), thing.get("description").toString(), thing.get("image").toString(), thing.get("name").toString(), thing.get("xml").toString(), thing.get("protocol").toString(), idUser, (LabelDTO) thing.get("label"));
 					ThingDTO thingInsert = thingService.insertThing(thingDTO);
 					if(thingInsert != null)
 						return ResponseEntity.status(HttpStatus.OK).body(thingInsert);

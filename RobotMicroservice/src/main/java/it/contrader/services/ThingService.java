@@ -21,7 +21,7 @@ public class ThingService {
 		this.thingRepository = thingRepository;
 	}
 
-	public List<ThingDTO> getListThingDTO() {
+	public List<ThingDTO> getAllThing() {
 		return ConverterThing.toListDTO ((List<Thing>)thingRepository.findAll());
 	}
 

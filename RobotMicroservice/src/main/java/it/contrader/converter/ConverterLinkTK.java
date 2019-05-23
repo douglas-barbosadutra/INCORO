@@ -42,6 +42,7 @@ public class ConverterLinkTK {
 			
 			link.setThing(thing);
 			link.setKeyword(keyword);
+		
 		}
 		return link;
 	}
