@@ -1,0 +1,29 @@
+<div class ="row justify-content-center" style ="background-color: #212121">
+    <div class = "col-8 align-self-center">
+      <h1 class="welcome">Welcome to</h1>
+
+      <h1 class="title">INCORO
+
+      <img class="image" src ="assets/img/White.png"></h1>
+
+      <div class="form-group">
+          <label class="col-form-label"></label>
+          <input type="text" class="form-control" name="username" placeholder="Inserisci Username"
+          [(ngModel)]="loginDTO.username">
+
+          <label class="col-form-label"></label>
+          <input type="password" class="form-control" name="password" placeholder="Inserisci Password"
+          [(ngModel)]="loginDTO.password">
+      </div>
+
+        <div class="row" style ="margin-top:2%">
+          <div class="col-1">
+            <button class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
+          </div>
+          <div class="col">
+            <button  class="btn btn-primary mx-1" (click)="login()">LOGIN/REGISTER</button>
+          </div>
+        </div>
+
+    </div>
+</div>
