@@ -43,6 +43,7 @@ public class HardwareController {
 		return hardwareService.insertHardware(hardwareDTO);
 	}*/
 	
+	/*
 	@RequestMapping(value="/updateHardware", method= RequestMethod.PUT)
 	public boolean updateHardware(@RequestBody HardwareDTO hardwareDTO) {
 		return hardwareService.updateHardware(hardwareDTO);
@@ -52,11 +53,11 @@ public class HardwareController {
 	public boolean deleteHardware(@RequestParam(value="id") Integer id) {		
 	 	return hardwareService.deleteHardware(id);
 	}
-
+	
 	@RequestMapping(value="/showHardware", method= RequestMethod.GET)
 	public List<HardwareDTO> showHardware(){
 		return hardwareService.getAllHardware();
-	}
+	}*/
 	
 	@RequestMapping(value = "/showHardware", method = RequestMethod.GET)
 	public ResponseEntity<List<HardwareDTO>> showHardware(@RequestParam(value="jwt") String jwt) {

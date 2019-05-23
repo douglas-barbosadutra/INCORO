@@ -38,6 +38,7 @@ export class ThingListComponent implements OnInit {
     this.router.navigate(["/homeBo/updateThing"]);
   }
 
+
   setThing(thing: ThingDTO){
     sessionStorage.setItem("DTOpassato", JSON.stringify(thing));
     this.router.navigateByUrl("/homeBo/updateThing");

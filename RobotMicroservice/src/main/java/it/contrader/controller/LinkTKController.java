@@ -41,10 +41,11 @@ public class LinkTKController {
 		this.linkTKService = linkTKService;
 	}
 	
+	/*
 	@RequestMapping(value="/deleteLinkTK" , method= RequestMethod.DELETE)
 	public boolean deleteLinkTK(@RequestParam(value="id") Integer id) {		
 		return linkTKService.deleteLinkTK(id);
-	}
+	}*/
 	
 	/*
 	@RequestMapping(value="/showLinkTK" , method= RequestMethod.GET)
@@ -52,10 +53,11 @@ public class LinkTKController {
 		return lkts.getListLinkTKDTO();
 	}*/
 	
+	/*
 	@RequestMapping(value="/updateLinkTK" , method= RequestMethod.PUT)
 	public LinkTKDTO showLinkTK(@RequestBody LinkTKDTO link) {		
 		return linkTKService.insertLinkTK(link);
-	}
+	}*/
 	
 	@RequestMapping(value = "/showLinkTK", method = RequestMethod.GET)
 	public ResponseEntity<List<LinkTKDTO>> showLinkTK(@RequestParam(value="jwt") String jwt) {

@@ -38,7 +38,8 @@ public class Keyword {
 	@OneToMany(mappedBy = "keyword")
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<LinkTK> linktk;
-
+	
+	
 }
 
 

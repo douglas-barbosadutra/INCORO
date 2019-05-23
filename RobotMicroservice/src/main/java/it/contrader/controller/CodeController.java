@@ -37,10 +37,11 @@ public class CodeController {
 		this.codeService = codeService;
 	}
 	
+	/*
 	@RequestMapping(value="/updateCode", method= RequestMethod.PUT)
 	public boolean updateCode(@RequestBody CodeDTO CodeDTO) {
 		return codeService.updateCode(CodeDTO);
-	}
+	}*/
 	
 	@RequestMapping(value = "/showCodes", method = RequestMethod.GET)
 	public ResponseEntity<List<CodeDTO>> showCode(@RequestParam(value="jwt") String jwt) {
