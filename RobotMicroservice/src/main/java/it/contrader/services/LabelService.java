@@ -69,6 +69,12 @@ public class LabelService {
 		return labelDTO;
 	}
 	
+	public LabelDTO findLabelDTOByIdUser(int idUser) {
+		Label label = labelRepository.findLabelByIdUser(idUser);
+		LabelDTO labelDTO = ConverterLabel.toDto(label);
+		return labelDTO;
+	}
+	
 	public LabelDTO getLabelDTOByNameAndIdUser(String name, int idUser) {
 		Label label = labelRepository.findLabelByNameAndIdUser(name,idUser);
 		LabelDTO labelDTO = ConverterLabel.toDto(label);

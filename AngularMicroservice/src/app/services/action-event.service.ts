@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActionEventDTO } from '../../dto/ActionEventDTO';
+import { ParamDTO } from '../../dto/ParamDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -8,23 +8,33 @@ import { ActionEventDTO } from '../../dto/ActionEventDTO';
 export class ActionEventService {
 
   constructor(private http: HttpClient) { }
-    insertActionEvent(actionEventDTO: ActionEventDTO){
-      console.log(actionEventDTO.label.idLabel);
-      return this.http.post('http://localhost:8080/ActionEvent/insertActionEvent', actionEventDTO);
+    insertActionEvent(paramDTO: ParamDTO){
+      console.log("il paramDTO: ", paramDTO);
+      return this.http.post('http://localhost:8080/ActionEvent/insertActionEvent', paramDTO);
     }
   
-    updateActionEvent(actionEventDTO: ActionEventDTO){
-      console.log(actionEventDTO);
-      return this.http.put('http://localhost:8080/ActionEvent/updateActionEvent', actionEventDTO);
+    updateActionEvent(paramDTO: ParamDTO){
+      
+      return this.http.put('http://localhost:8080/ActionEvent/updateActionEvent', paramDTO);
     }
   
-    showActionEvent(){
-      return this.http.get('http://localhost:8080/ActionEvent/showActionEvent');
+    showActionEvent(paramDTO: ParamDTO){
+      return this.http.get('http://localhost:8080/ActionEvent/showActionEvent?jwt='+ paramDTO.jwt);
     }
   
-    deleteActionEvent(actionEventDTO: ActionEventDTO){
-      console.log(actionEventDTO);
-      return this.http.delete('http://localhost:8080/ActionEvent/deleteActionEvent?id='+actionEventDTO.idActionEvent);
+    deleteActionEvent(paramDTO: ParamDTO){
+      
+      return this.http.post('http://localhost:8080/ActionEvent/deleteActionEvent', paramDTO);
+    }
+
+    findAction(paramDTO: ParamDTO){
+      console.log("in findAction il param", paramDTO )
+      return this.http.post('http://localhost:8080/ActionEvent/findAction', paramDTO);
+    }
+
+    findEvent(paramDTO: ParamDTO){
+      console.log("in findAction il param", paramDTO )
+      return this.http.post('http://localhost:8080/ActionEvent/findEvent', paramDTO);
     }
   }
 

@@ -7,12 +7,12 @@ export class ActionEventDTO{
     type: number;
     label: LabelDTO;
 
-    constructor(id: number, name: String, description, type:number, labelDTO:LabelDTO){
+    constructor(id: number,  description: String, name: String,label:LabelDTO, type:number){
         this.idActionEvent = id;
-        this.name= name;
         this.description= description;
+        this.name= name;
+        this.label= label;
         this.type= type;
-        this.label= labelDTO;
 
     }
     

@@ -18,6 +18,11 @@
                 <td>{{labelDTO.name}} </td>
                 <td>{{labelDTO.idUser}}</td>
 								<td><button class="btn btn-primary" (click)="deleteLabel(labelDTO)">Elimina</button></td>
+							
+								<td><button class="btn btn-primary" (click)="findAction(labelDTO)">Azioni</button>  </td>
+
+								<td><button class="btn btn-primary" (click)="findEvent(labelDTO)">Eventi</button>  </td>
+
 								<td><button class="btn btn-primary" (click)="setLabel(labelDTO)">Aggiorna</button>  </td>
               </tr>
           </tbody>

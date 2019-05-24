@@ -5,6 +5,8 @@ import { LabelService } from '../../../../app/services/label.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../../../app/services/user.service';
 import { ParamDTO } from '../../../../dto/ParamDTO';
+import { ActionEventService } from '../../../../app/services/action-event.service';
+import { ActionEventDTO } from '../../../../dto/ActionEventDTO';
 
 
 @Component({
@@ -14,6 +16,7 @@ import { ParamDTO } from '../../../../dto/ParamDTO';
 })
 export class LabelListComponent implements OnInit {
   private labelList: Array<LabelDTO>;
+  private actionList: Array<ActionEventDTO>;
   private labelDTO: LabelDTO;
   private paramDTO: ParamDTO;
   private paramdeleteDTO: ParamDTO;
@@ -22,7 +25,7 @@ export class LabelListComponent implements OnInit {
   //private labelDeleteDTO: LabelDTO;
 
 
-  constructor(private labelService: LabelService, private router: Router, private userService: UserService) { }
+  constructor(private labelService: LabelService, private router: Router, private actionEventService: ActionEventService) { }
 
   ngOnInit() {
     this.jwt = sessionStorage.getItem("jwt");
@@ -47,6 +50,53 @@ export class LabelListComponent implements OnInit {
     sessionStorage.setItem("LabelDTOpassato", JSON.stringify(labelDTO));
     this.router.navigate(["homeBo/updateLabel"]);
   }
+
+  findAction(labelDTO: LabelDTO){
+    this.labelDTO = labelDTO; //?
+    alert("labelDTO" + labelDTO.name);
+    this.jwt = sessionStorage.getItem("jwt");
+    sessionStorage.setItem("LabelDTOpassato", JSON.stringify(labelDTO));
+    this.paramDTO = new ParamDTO(this.jwt, this.labelDTO);
+    this.actionEventService.findAction(this.paramDTO).subscribe((data: Array<ActionEventDTO>) =>{
+
+      if(data){
+        this.actionList = data;
+        
+        sessionStorage.setItem("ActionList", JSON.stringify(this.actionList));
+        this.router.navigate(["homeBo/listActionEvent"]);
+      }
+        
+      else
+       
+
+      this.router.navigateByUrl("homeBO");
+    })
+  }
+
+  findEvent(labelDTO: LabelDTO){
+    this.labelDTO = labelDTO; //?
+    alert("labelDTO" + labelDTO.name);
+    this.jwt = sessionStorage.getItem("jwt");
+    sessionStorage.setItem("LabelDTOpassato", JSON.stringify(labelDTO));
+    this.paramDTO = new ParamDTO(this.jwt, this.labelDTO);
+    this.actionEventService.findEvent(this.paramDTO).subscribe((data: Array<ActionEventDTO>) =>{
+
+      if(data){
+        this.actionList = data;
+        
+        sessionStorage.setItem("ActionList", JSON.stringify(this.actionList));
+        this.router.navigate(["homeBo/listActionEvent"]);
+      }
+        
+      else
+       
+
+      this.router.navigateByUrl("homeBO");
+    })
+  }
+
+  
+
 
   deleteLabel(labelDTO: LabelDTO){
     this.labelDTO = labelDTO; //?

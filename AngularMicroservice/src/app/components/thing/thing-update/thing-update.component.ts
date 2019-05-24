@@ -18,6 +18,7 @@ export class ThingUpdateComponent implements OnInit {
   private userDTO: UserDTO;
   private labelList: Array<LabelDTO>;
   private paramDTO: ParamDTO;
+  private jwt:string;
   
   constructor(private thingService: ThingService, private router: Router, private labelService: LabelService) { }
 
@@ -28,6 +29,8 @@ export class ThingUpdateComponent implements OnInit {
 
     this.labelDTO = new LabelDTO(0,"",0);
     this.thingDTO = JSON.parse(sessionStorage.getItem("DTOpassato")) as ThingDTO;
+    this.jwt = sessionStorage.getItem("jwt");
+    this.paramDTO = new ParamDTO(this.jwt, this.thingDTO);
    
     this.labelService.showLabel(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
@@ -38,8 +41,10 @@ export class ThingUpdateComponent implements OnInit {
   }
 
   updateThing(){
+    this.paramDTO = new ParamDTO(sessionStorage.getItem("jwt"), this.thingDTO);
   //this.thingDTO.idUser = parseInt(sessionStorage.getItem("idUser"));
-  this.thingService.updateThing(this.thingDTO).subscribe((data: any) => {
+  console.log("updateComponent: ", this.paramDTO);
+  this.thingService.updateThing(this.paramDTO).subscribe((data: any) => {
     
     if(data != null)
       alert("Inserimento effettuato");

@@ -36,7 +36,7 @@ export class ActionEventUpdateComponent implements OnInit {
   }
   updateActionEvent(){
     alert("ddd ");
-    this.actionEventService.updateActionEvent(this.actionEventDTO).subscribe((data: any) => {
+    this.actionEventService.updateActionEvent(this.paramDTO).subscribe((data: any) => {
       
       if(data != null)
         alert("Inserimento effettuato");

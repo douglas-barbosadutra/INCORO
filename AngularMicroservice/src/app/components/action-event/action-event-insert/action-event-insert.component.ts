@@ -24,26 +24,28 @@ export class ActionEventInsertComponent implements OnInit {
   ngOnInit() {
     //this.userDTO = new UserDTO(0,"","",0);
     this.labelDTO = new LabelDTO(0, "", 0);
-    this.actionEventDTO = new ActionEventDTO(0, "", "", 0, this.labelDTO);
+    this.actionEventDTO = new ActionEventDTO(0, "", "", this.labelDTO,0);
+    this.paramDTO = new ParamDTO(sessionStorage.getItem("jwt"), this.labelDTO);
     
     
 
-    this.labelService.showLabel(this.paramDTO).subscribe((data: any) =>{
+    this.labelService.showLabel(this.paramDTO).subscribe((data: Array<LabelDTO>) =>{
       if(data != null){
-        console.log(data);
+        console.log("lista label", data);
         this.labelList = data;
       }
     })
   
   }
   insertActionEvent(){
+    this.paramDTO = new ParamDTO(sessionStorage.getItem("jwt"), this.actionEventDTO);
     console.log("qua");
     console.log(this.actionEventDTO.label.name);
    
     
     this.actionEventDTO.label.idLabel = this.labelDTO.idLabel;
    
-  this.actionEventService.insertActionEvent(this.actionEventDTO).subscribe((data: any) => {
+  this.actionEventService.insertActionEvent(this.paramDTO).subscribe((data: any) => {
     
     if(data != null)
       alert("Inserimento effettuato");

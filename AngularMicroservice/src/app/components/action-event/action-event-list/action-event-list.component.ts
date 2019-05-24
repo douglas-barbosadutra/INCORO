@@ -3,6 +3,7 @@ import { ActionEventDTO } from '../../../../dto/ActionEventDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
 import { ActionEventService } from '../../../../app/services/action-event.service';
 import { Router } from '@angular/router';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
   selector: 'app-action-event-list',
@@ -13,16 +14,17 @@ export class ActionEventListComponent implements OnInit {
   private actionEventList: Array<ActionEventDTO>;
   private actionEventDTO: ActionEventDTO;
   private labelDTO: LabelDTO;
+  private jwt: string;
+  private paramDTO: ParamDTO;
 
   constructor(private actionEventService: ActionEventService, private router: Router) { }
 
   ngOnInit() {
-    this.actionEventService.showActionEvent().subscribe((data: any) =>{
-      if(data != null){
-        console.log(data);
-        this.actionEventList = data;
-      }
-    })
+    var RetriData= sessionStorage.getItem("ActionList");
+    this.actionEventList = JSON.parse(RetriData);
+    console.log("in ngOnit arriva: ", this.actionEventList);
+    //this.paramDTO = new ParamDTO(this.jwt, this.actionEventDTO);
+   
   
   }
   chooseActionEvent(idActionEvent: number){
@@ -40,7 +42,7 @@ export class ActionEventListComponent implements OnInit {
 
   deleteActionEvent(actionEventDTO: ActionEventDTO){
 
-    this.actionEventService.deleteActionEvent(actionEventDTO).subscribe((data: any) =>{
+    this.actionEventService.deleteActionEvent(this.paramDTO).subscribe((data: any) =>{
 
       if(data){
         alert("Cancellazione effettuata");

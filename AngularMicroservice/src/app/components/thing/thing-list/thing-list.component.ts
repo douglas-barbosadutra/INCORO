@@ -24,6 +24,7 @@ export class ThingListComponent implements OnInit {
 
   ngOnInit() {
     this.jwt = sessionStorage.getItem("jwt");
+    console.log("in ngOnit arriva: " + this.jwt);
     this.paramDTO = new ParamDTO(this.jwt, this.thingDTO);
     this.thingService.showThing(this.paramDTO).subscribe((data: Array<ThingDTO>) =>{
       if(data != null){

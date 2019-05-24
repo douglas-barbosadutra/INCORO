@@ -10,5 +10,6 @@ import it.contrader.model.Label;
 public interface ActionEventRepository extends CrudRepository<ActionEvent, Integer> {
 	public ActionEvent findActionEventByIdActionEvent(int idActionEvent);
 	public List<ActionEvent> findAllByLabel(Label label);
+	
 
 }
