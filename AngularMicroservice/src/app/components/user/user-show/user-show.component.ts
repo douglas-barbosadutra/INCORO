@@ -41,12 +41,13 @@ export class UserShowComponent implements OnInit {
 
   chooseUser(idUser: number){
     sessionStorage.setItem("idUser", JSON.stringify(idUser));
-    this.router.navigate(["/homeBo/updateUser"]);
+    this.router.navigate(["/homeAdmin/updateUser"]);
   } 
   deleteUser(userDTO: UserDTO){
-    alert("param:" + this.jwt);
+    this.userDTO = userDTO;
+    console.log("alla delete: ", this.userDTO);
 
-    this.userService.deleteUser(this.paramDTO).subscribe((data: any) =>{
+    this.userService.deleteUser(this.userDTO).subscribe((data: any) =>{
       //alert("param:" + this.jwt);
 
       if(data){

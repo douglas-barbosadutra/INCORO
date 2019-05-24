@@ -28,7 +28,7 @@ export class UserInsertComponent implements OnInit {
       this.jwt= sessionStorage.getItem("jwt");
       this.paramDTO = new ParamDTO(this.jwt, this.userDTO);
       console.log("user: ",this.paramDTO);
-      this.userService.insertUser(this.paramDTO).subscribe((data: any) => {
+      this.userService.insertUser(this.userDTO).subscribe((data: any) => {
       console.log("arr")
 
       if(data != null)

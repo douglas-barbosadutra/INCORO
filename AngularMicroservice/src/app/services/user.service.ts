@@ -12,23 +12,23 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
   
-  insertUser(paramDTO: ParamDTO){
-    console.log( "nella service arriva", paramDTO)
-    return this.http.post('http://localhost:8094/User/insertUser', paramDTO);
+  insertUser(userDTO: UserDTO){
+    console.log( "nella service arriva", userDTO)
+    return this.http.post('http://localhost:8094/User/insertUser', userDTO);
   }
 
   showUser(paramDTO: ParamDTO){
     return this.http.get('http://localhost:8094/User/showUser?jwt=' + paramDTO.jwt);
   }
 
-  deleteUser(paramDTO: ParamDTO){
-    console.log("nella service arriva", paramDTO);
-    return this.http.post('http://localhost:8094/User/deleteUser', paramDTO);
+  deleteUser(userDTO: UserDTO){
+    console.log("nella service arriva", userDTO);
+    return this.http.delete('http://localhost:8094/User/deleteUser?id=' + userDTO.idUser);
   }
   
-  updateUser(paramDTO: ParamDTO) {
-    console.log( "nella service arriva", paramDTO);
-    return this.http.put( 'http://localhost:8094/User/updateUser', paramDTO);
+  updateUser(userDTO: UserDTO) {
+    console.log( "nella service arriva", userDTO);
+    return this.http.put( 'http://localhost:8094/User/updateUser', userDTO);
   }
 
 }

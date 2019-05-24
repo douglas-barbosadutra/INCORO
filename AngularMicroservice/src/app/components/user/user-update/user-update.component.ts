@@ -26,7 +26,7 @@ export class UserUpdateComponent implements OnInit {
     console.log(this.userDTO);
     this.paramDTO = new ParamDTO(sessionStorage.getItem("jwt"), this.userDTO);
 
-    this.userSerivce.updateUser(this.paramDTO).subscribe((data: any) => {
+    this.userSerivce.updateUser(this.userDTO).subscribe((data: any) => {
 
       if(data != null)
         alert("Aggiornamento effettuato");
