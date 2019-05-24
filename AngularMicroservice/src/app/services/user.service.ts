@@ -13,7 +13,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
   
   insertUser(paramDTO: ParamDTO){
-    console.log(paramDTO)
+    console.log( "nella service arriva", paramDTO)
     return this.http.post('http://localhost:8094/User/insertUser', paramDTO);
   }
 
@@ -22,11 +22,12 @@ export class UserService {
   }
 
   deleteUser(paramDTO: ParamDTO){
-    console.log(paramDTO);
+    console.log("nella service arriva", paramDTO);
     return this.http.post('http://localhost:8094/User/deleteUser', paramDTO);
   }
   
   updateUser(paramDTO: ParamDTO) {
+    console.log( "nella service arriva", paramDTO);
     return this.http.put( 'http://localhost:8094/User/updateUser', paramDTO);
   }
 

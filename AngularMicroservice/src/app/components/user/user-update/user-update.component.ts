@@ -24,6 +24,7 @@ export class UserUpdateComponent implements OnInit {
 
   updateUser(){
     console.log(this.userDTO);
+    this.paramDTO = new ParamDTO(sessionStorage.getItem("jwt"), this.userDTO);
 
     this.userSerivce.updateUser(this.paramDTO).subscribe((data: any) => {
 
