@@ -5,6 +5,7 @@ import { KeywordDTO } from '../../../../dto/KeywordDTO';
 import {LinkTKDTO} from '../../../../dto/LinkTKDTO';
 import { LinkTKService } from '../../../services/linkTk.service';
 import { ThingDTO } from '../../../../dto/ThingDTO';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
   selector: 'app-keyword-list',
@@ -18,15 +19,19 @@ export class KeywordListComponent implements OnInit {
   private arrayLink: Array<LinkTKDTO>;
   private arrayLinkSession: Array<LinkTKDTO>;
   private thingDTO: ThingDTO;
+  private keywordDTO: KeywordDTO;
+  private paramDTO: ParamDTO;
+  private jwt: string;
 
   private nomeKey: String;
 
   constructor(private keywordService: KeywordService, private router: Router, private linkTKService: LinkTKService) { }
 
   ngOnInit() {
-    this.keywordService.showKeyword().subscribe((data: any) =>{
+    this.jwt = sessionStorage.getItem("jwt");
+    this.paramDTO = new ParamDTO(this.jwt, this.keywordDTO);
+    this.keywordService.showKeyword(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
-        console.log(data);
         this.keywordList = data;
       }
     })
@@ -39,38 +44,31 @@ export class KeywordListComponent implements OnInit {
 
   setDTO(keywordDTO: KeywordDTO){
     sessionStorage.setItem("KeywordDTOpassato", JSON.stringify(keywordDTO));
-    this.router.navigateByUrl("/updateKeyword")
+    this.router.navigate(["/homeBo//updateKeyword"])
   }
 
   showTK2(keywordDTO: KeywordDTO){
     sessionStorage.setItem("keySettata", JSON.stringify(keywordDTO));
-    this.router.navigateByUrl("/showLinkThing");
+    this.router.navigate(["homebO/showLinkThing"]);
   }
 
-  /*
-  showTK(keywordDTO: KeywordDTO){
+  showThingAssociate(keywordDTO: KeywordDTO){
     // del seguente metodo ci arriva un array di LinkTKDTO non un array di ThingDTO.
-    this.linkTKService.showThingOfKey(keywordDTO).subscribe((data: Array<LinkTKDTO>) => {
+    this.keywordDTO = keywordDTO;
+    this.jwt = sessionStorage.getItem("jwt");
+    this.paramDTO = new ParamDTO(this.jwt, this.keywordDTO);
+    this.linkTKService.findLinkTKByKeyword(this.paramDTO).subscribe((data: Array<LinkTKDTO>) => {
       if(data){
-        this.arrayLink = data;
-
-        sessionStorage.setItem("arrayLink", JSON.stringify(this.arrayLink));
-        this.arrayLinkSession = JSON.parse(sessionStorage.getItem("arrayLink")) as Array<LinkTKDTO>;
-
-        //console.log("arrayLinkSession: ", this.arrayLinkSession);
-
-        for (var i=0; i<this.arrayLinkSession.length; i++) {
-            this.thingDTO = this.arrayLinkSession[i].thing;
-            this.nomeKey = this.arrayLinkSession[i].keyword.name;
-            alert("La Keyword: " + this.nomeKey  + " ha associata la Thing: " + this.thingDTO.name);
+        if(data != null){
+          this.arrayLinkSession = data;
+          sessionStorage.setItem("arrayLinkSession", JSON.stringify(this.arrayLinkSession));
+          this.router.navigate(["/homeBo/showLinkThing"]);
         }
-      }
-    }
-    )
-  }*/
+      }}
+    ) 
+  }
 
   deleteKeyword(keywordDTO: KeywordDTO){
-
     this.keywordService.deleteKeyword(keywordDTO).subscribe((data: any) =>{
       if(data){
         alert("Cancellazione effettuata");
@@ -78,7 +76,7 @@ export class KeywordListComponent implements OnInit {
       }
       else
         alert("Cancellazione fallita");
-      this.router.navigateByUrl("homeBO");
+      this.router.navigate(["homeBO"]);
     })
   }
 

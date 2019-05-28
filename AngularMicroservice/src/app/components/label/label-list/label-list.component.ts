@@ -53,51 +53,35 @@ export class LabelListComponent implements OnInit {
 
   findAction(labelDTO: LabelDTO){
     this.labelDTO = labelDTO; //?
-    alert("labelDTO" + labelDTO.name);
     this.jwt = sessionStorage.getItem("jwt");
-    sessionStorage.setItem("LabelDTOpassato", JSON.stringify(labelDTO));
+    //sessionStorage.setItem("LabelDTOpassato", JSON.stringify(labelDTO));
     this.paramDTO = new ParamDTO(this.jwt, this.labelDTO);
     this.actionEventService.findAction(this.paramDTO).subscribe((data: Array<ActionEventDTO>) =>{
-
       if(data){
         this.actionList = data;
-        
         sessionStorage.setItem("ActionList", JSON.stringify(this.actionList));
-        this.router.navigate(["homeBo/listActionEvent"]);
+        this.router.navigate(["homeBo/showActionEvent"]);
       }
-        
       else
-       
-
-      this.router.navigateByUrl("homeBO");
+      this.router.navigate(["homeBO"]);
     })
   }
 
   findEvent(labelDTO: LabelDTO){
     this.labelDTO = labelDTO; //?
-    alert("labelDTO" + labelDTO.name);
     this.jwt = sessionStorage.getItem("jwt");
-    sessionStorage.setItem("LabelDTOpassato", JSON.stringify(labelDTO));
+    //sessionStorage.setItem("LabelDTOpassato", JSON.stringify(labelDTO));
     this.paramDTO = new ParamDTO(this.jwt, this.labelDTO);
     this.actionEventService.findEvent(this.paramDTO).subscribe((data: Array<ActionEventDTO>) =>{
-
       if(data){
         this.actionList = data;
-        
         sessionStorage.setItem("ActionList", JSON.stringify(this.actionList));
-        this.router.navigate(["homeBo/listActionEvent"]);
+        this.router.navigate(["homeBo/showActionEvent"]);
       }
-        
       else
-       
-
-      this.router.navigateByUrl("homeBO");
+      this.router.navigate(["homeBO"]);
     })
   }
-
-  
-
-
   deleteLabel(labelDTO: LabelDTO){
     this.labelDTO = labelDTO; //?
     alert("label DTO " + this.labelDTO.idLabel);
@@ -115,7 +99,7 @@ export class LabelListComponent implements OnInit {
       else
         alert("Cancellazione fallita");
 
-      this.router.navigateByUrl("homeBO");
+      this.router.navigate(["homeBO"]);
     })
   }
 

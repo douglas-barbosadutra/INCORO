@@ -23,14 +23,8 @@ export class ActionEventShowComponent implements OnInit {
 
   ngOnInit() {
     this.jwt = sessionStorage.getItem("jwt");
-    this.actionEventList = JSON.parse(sessionStorage.getItem("ActionList"));
+    //this.actionEventList = JSON.parse(sessionStorage.getItem("arrayLinkSession"));
     //this.actionEventList = JSON.parse("ActionList", JSON.stringify(this.actionList));
-    this.paramDTO = new ParamDTO(this.jwt, this.labelDTO);
-    this.labelService.showLabel(this.paramDTO).subscribe((data: any) => {
-      if(data != null){
-        this.labelList = data;
-    }}
-    )
-
+    
   }
 }

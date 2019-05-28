@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HardwareDTO } from '../../../src/dto/HardwareDTO';
+import { ParamDTO } from '../../../src/dto/ParamDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,12 @@ export class HardwareService {
 
   constructor(private http: HttpClient) { }
 
-  insertHardware(hardwareDTO: HardwareDTO) {
-    return this.http.post( 'http://localhost:8080/Hardware/insertHardware', hardwareDTO);
-    console.log(hardwareDTO.master);
+  insertHardware(paramDTO: ParamDTO){
+    return this.http.post( 'http://localhost:8080/Hardware/insertHardware', paramDTO);
   }
 
-  showHardware(){
-    return this.http.get('http://localhost:8080/Hardware/showHardware');
+  showHardware(paramDTO: ParamDTO){
+    return this.http.get('http://localhost:8080/Hardware/showHardware?jwt='+ paramDTO.jwt);
   }
 
   deleteHardware(hardwareDTO: HardwareDTO){

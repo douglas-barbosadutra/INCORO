@@ -18,13 +18,7 @@ export class LinkTkShowThingComponent implements OnInit {
   constructor(private router: Router, private linkTKService: LinkTKService) { }
 
   ngOnInit() {
-    this.keywordDTO = JSON.parse(sessionStorage.getItem("keySettata")) as KeywordDTO;
-    this.linkTKService.showThingOfKey(this.keywordDTO).subscribe((data: Array<LinkTKDTO>) => {
-      if(data){
-        this.arrayLink = data;
-      }
-    }
-    
-    )
+    this.arrayLink = JSON.parse(sessionStorage.getItem("arrayLinkSession")) as Array<LinkTKDTO>;
+   
   } 
 }

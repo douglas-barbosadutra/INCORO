@@ -49,14 +49,13 @@ import { AdminDashboardComponent} from './components/admin-dashboard/admin-dashb
 import { ActionEventInsertComponent } from './components/action-event/action-event-insert/action-event-insert.component';
 import { ActionEventListComponent } from './components/action-event/action-event-list/action-event-list.component';
 import { ActionEventUpdateComponent } from './components/action-event/action-event-update/action-event-update.component';
+import { ActionEventShowComponent } from './components/action-event/action-event-show/action-event-show.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  //behavior
-
-
-
+  
   //home
   {path: 'homeAdmin', component: HomeAdminComponent, children :[
       {path: '',redirectTo: 'dashboard', pathMatch :'full'},
@@ -102,7 +101,8 @@ const routes: Routes = [
     //actionEvent
     {path: 'insertActionEvent', component: ActionEventInsertComponent},
     {path: 'listActionEvent', component: ActionEventListComponent},
-    {path: 'updateActionEvent', component: ActionEventUpdateComponent}
+    {path: 'updateActionEvent', component: ActionEventUpdateComponent},
+    {path: 'showActionEvent', component: ActionEventShowComponent},
   
   ]},
   //menu

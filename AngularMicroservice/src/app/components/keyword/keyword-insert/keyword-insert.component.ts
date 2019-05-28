@@ -24,6 +24,7 @@ export class KeywordInsertComponent implements OnInit {
   private userDTO: UserDTO;
   private thingList: Array<ThingDTO>;
   private paramDTO: ParamDTO;
+  private jwt: string;
 
   constructor(private thingService: ThingService, private router: Router, private keywordService: KeywordService, private userService: UserService, private labelService: LabelService) { }
 
@@ -31,20 +32,22 @@ export class KeywordInsertComponent implements OnInit {
     //this.userDTO = new UserDTO(0,"","",0);
     //this.labelDTO = new LabelDTO(0,"",this.userDTO);
     //this.thingDTO = new ThingDTO(0,"","","","","","", this.userDTO, this.labelDTO);
+    /*
     this.keywordDTO = new KeywordDTO(0,"");
-    
+    this.jwt = sessionStorage.getItem("jwt");
     this.thingService.showThing(this.paramDTO).subscribe((data: any) => {
         if(data != null) {
           console.log(data);
           this.thingList = data;
         }
-    });
+    })*/
     
   }
 
   insertKeyword(){ 
-     //this.keywordDTO.thing = JSON.parse(sessionStorage.getItem("listaOfDTO")) as Array<ThingDTO>;
-     this.keywordService.insertKeyword(this.keywordDTO).subscribe((data: any) => {
+     this.jwt = sessionStorage.getItem("jwt");
+     this.paramDTO = new ParamDTO(this.jwt, this.keywordDTO);
+     this.keywordService.insertKeyword(this.paramDTO).subscribe((data: any) => {
       
        if(data != null)
          alert("Inserimento effettuato");

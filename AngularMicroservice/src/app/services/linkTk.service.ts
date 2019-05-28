@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LinkTKDTO } from '../../dto/LinkTkDTO';
 import { KeywordDTO } from '../../dto/KeywordDTO';
+import { ParamDTO } from '../../dto/ParamDTO';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +13,8 @@ export class LinkTKService {
 
     constructor(private http: HttpClient) { }
 
-    insertLinkTK(linkTKDTO: LinkTKDTO){
-      console.log(linkTKDTO);
-      return this.http.post('http://localhost:8080/LinkTK/insertLinkTK', linkTKDTO);
+    insertLinkTK(paramDTO: ParamDTO){
+      return this.http.post('http://localhost:8080/LinkTK/insertLinkTK', paramDTO);
     }
 
     updateLinkTK(linkTKDTO: LinkTKDTO){
@@ -21,12 +22,17 @@ export class LinkTKService {
       return this.http.put('http://localhost:8080/LinkTK/updateLinkTK', linkTKDTO);
     }
 
+    /*
     showThingOfKey(keywordDTO: KeywordDTO){
       return this.http.get('http://localhost:8080/Keyword/showThingOfKey?id='+ keywordDTO.idKeyword);
+    }*/
+
+    findLinkTKByKeyword(paramDTO: ParamDTO){
+      return this.http.post('http://localhost:8080/LinkTK/findLinkTKByKeyword', paramDTO);
     }
 
-    showLinkTK(){
-      return this.http.get('http://localhost:8080/LinkTK/showLinkTK');
+    showLinkTK(paramDTO: ParamDTO){
+      return this.http.get('http://localhost:8080/LinkTK/showLinkTK?jwt='+ paramDTO.jwt);
     }
 
     deleteLinkTK(linkTKDTO: LinkTKDTO){
