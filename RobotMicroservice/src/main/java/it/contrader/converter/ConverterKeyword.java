@@ -1,8 +1,6 @@
 package it.contrader.converter;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import it.contrader.dto.KeywordDTO;
 import it.contrader.model.Keyword;
 
@@ -14,14 +12,6 @@ public class ConverterKeyword {
 			keywordDTO = new KeywordDTO();
 			keywordDTO.setIdKeyword(keyword.getIdKeyword());
 			keywordDTO.setName(keyword.getName());
-			
-			/*
-			List<ThingDTO> listThingsDTO = new ArrayList();
-			for (Thing thing : keyword.getThing()) {
-				listThingsDTO.add(ConverterThing.toDTO(thing));
-			}
-			
-			keywordDTO.setThing(listThingsDTO);*/
 		}	
 		return keywordDTO; 
 	}
@@ -32,14 +22,6 @@ public class ConverterKeyword {
 			keyword = new Keyword();
 			keyword.setIdKeyword(keywordDTO.getIdKeyword());
 			keyword.setName(keywordDTO.getName());
-			
-			/*
-			List<Thing> listThings = new ArrayList();
-			for(ThingDTO thingDTO : keywordDTO.getThing()) {
-				listThings.add(ConverterThing.toEntity(thingDTO));
-			}
-				
-			keyword.setThing(listThings);*/
 		}
 		return keyword;
 	}

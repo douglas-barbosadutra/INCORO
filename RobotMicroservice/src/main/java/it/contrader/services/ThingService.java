@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import it.contrader.converter.ConverterThing;
 import it.contrader.dao.ThingRepository;
 import it.contrader.dto.ThingDTO;
@@ -28,11 +27,6 @@ public class ThingService {
 	public ThingDTO getThingDTOById(int id) {
 		return ConverterThing.toDTO(thingRepository.findThingByIdThing(id));
 	}
-
-	/*
-	public boolean insertThing(ThingDTO thingDTO) {
-		return thingRepository.save(ConverterThing.toEntity(thingDTO)) != null;
-	}*/
 	
 	// METODO DI REST CONTROLLER
 	public ThingDTO insertThing(ThingDTO thingDTO) {
@@ -44,11 +38,6 @@ public class ThingService {
 	public boolean updateThing(ThingDTO thingDTO) {
 		return thingRepository.save(ConverterThing.toEntity(thingDTO)) != null;
 	}
-	
-	/*
-	public void deleteThingById(Integer id) {
-		thingRepository.deleteById(id);
-	}*/
 	
 	// METODO DI REST CONTROLLER
 	public boolean deleteThing(int id) {

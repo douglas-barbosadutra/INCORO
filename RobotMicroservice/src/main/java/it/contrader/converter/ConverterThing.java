@@ -1,12 +1,9 @@
 package it.contrader.converter;
-
 import java.util.ArrayList;
 import java.util.List;
 import it.contrader.dto.ThingDTO;
-
 import it.contrader.dto.LabelDTO;
 import it.contrader.model.Thing;
-
 import it.contrader.model.Label;
 
 public class ConverterThing {
@@ -23,18 +20,9 @@ public class ConverterThing {
 			thingDTO.setXml(thing.getXml());
 			thingDTO.setProtocol(thing.getProtocol());
 			thingDTO.setIdUser(thing.getIdUser());
-			
 			LabelDTO label = new LabelDTO();
 			label = ConverterLabel.toDto(thing.getLabel());
 			thingDTO.setLabel(label);
-		
-			/*
-			List<KeywordDTO> listKeywordsDTO = new ArrayList();
-			for (Keyword keyword : thing.getKeyword()) {
-				listKeywordsDTO.add(ConverterKeyword.toDTO(keyword));
-			}
-			
-			thingDTO.setKeyword(listKeywordsDTO);*/
 		}
 		return thingDTO;
 	}
@@ -52,19 +40,9 @@ public class ConverterThing {
 			thing.setProtocol(thingDTO.getProtocol());
 			thing.setIdUser(thingDTO.getIdUser());
 			
-
 			Label label = new Label();
 			label = ConverterLabel.toEntity(thingDTO.getLabel());
-			
 			thing.setLabel(label);
-			
-			/*
-			List<Keyword> listKeywords = new ArrayList();
-			for (KeywordDTO keywordDTO : thingDTO.getKeyword()) {
-				listKeywords.add(ConverterKeyword.toEntity(keywordDTO));
-			}
-			
-			thing.setKeyword(listKeywords);*/
 		}
 		return thing;
 	}

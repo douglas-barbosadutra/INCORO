@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import io.jsonwebtoken.ExpiredJwtException;
-
-
-
 import it.contrader.dto.BehaviorDTO;
 import it.contrader.services.BehaviorService;
 import it.contrader.utils.JwtUtils;
@@ -36,18 +31,7 @@ private BehaviorService behaviorService;
 public BehaviorController(BehaviorService behaviorService) {
 	this.behaviorService = behaviorService;
 }
-	
-/*
-@RequestMapping(value="/insertBehavior", method= RequestMethod.POST)
-public boolean insertBehavior(@RequestBody BehaviorDTO BehaviorDTO) {
-	return behaviorService.insertBehavior(BehaviorDTO);
-}*/
-	
-/*
-@RequestMapping(value="/updateBehavior", method= RequestMethod.PUT)
-public boolean updateBehavior(@RequestBody BehaviorDTO BehaviorDTO) {
-	return behaviorService.updateBehavior(BehaviorDTO);
-}*/
+
 	
 @RequestMapping(value = "/showBehavior", method = RequestMethod.GET)
 public ResponseEntity<List<BehaviorDTO>> showBehavior(@RequestParam(value="jwt") String jwt) {
@@ -138,7 +122,6 @@ try {
 
 	}
 	
-
 private int getTypeFromJwt(String jwt) throws ExpiredJwtException, UnsupportedEncodingException {
 	Map<String, Object> data = JwtUtils.jwt2Map(jwt);
 	int type = Integer.parseInt(data.get("scope").toString());

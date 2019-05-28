@@ -41,32 +41,36 @@ public class UserController {
 
 	// METODI DI REST CONTROLLER
 	@RequestMapping(value="/insertUser", method= RequestMethod.POST)
-	public ResponseEntity<UserDTO> insertUser(@RequestBody UserDTO userDTO) throws UnsupportedEncodingException {
-		
+	public ResponseEntity<UserDTO> insertUser(@RequestBody ParamDTO paramDTO) {
+		LinkedHashMap user = (LinkedHashMap) paramDTO.getParam();
 		
 		try {
+			int type = this.getTypeFromJwt(paramDTO.getJwt());
 			
+			if(type == 0)
+				return ResponseEntity.status(HttpStatus.OK).body(userService.insertUser(new UserDTO(Integer.parseInt(user.get("idUser").toString()), user.get("username").toString(), user.get("password").toString(), Integer.parseInt(user.get("type").toString()))));
+			else
+				return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 			
-			
-				return ResponseEntity.status(HttpStatus.OK).body(userService.insertUser(userDTO));
-			
-			
-		} catch (ExpiredJwtException e) {
+		} catch (ExpiredJwtException | UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 		}
 	}
 
-	@RequestMapping(value="/deleteUser" , method= RequestMethod.DELETE)
-	public ResponseEntity<Boolean> deleteUsershowUser(@RequestParam(value="id") int idUser) throws UnsupportedEncodingException {		
+	@RequestMapping(value="/deleteUser" , method= RequestMethod.POST)
+	public ResponseEntity<Boolean> deleteUser(@RequestBody ParamDTO paramDTO) {		
 		
 		try {
 			
+			int type = this.getTypeFromJwt(paramDTO.getJwt());
 			
-				return ResponseEntity.status(HttpStatus.OK).body(userService.deleteUser(idUser));
+			if(type == 0)
+				return ResponseEntity.status(HttpStatus.OK).body(userService.deleteUser((int)paramDTO.getParam()));
+			else
+				return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 			
-			
-		} catch (ExpiredJwtException e) {
+		} catch (ExpiredJwtException | UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 		}
@@ -95,15 +99,19 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/updateUser" , method= RequestMethod.PUT)
-	public ResponseEntity<UserDTO> showUser(@RequestBody UserDTO userDTO) throws UnsupportedEncodingException {		
+	public ResponseEntity<UserDTO> showUser(@RequestBody ParamDTO paramDTO) {		
 		try {
+			Map<String, Object> data = JwtUtils.jwt2Map(paramDTO.getJwt());
+			int idUser = Integer.parseInt(data.get("subject").toString());
+			int type = Integer.parseInt(data.get("scope").toString());
+			LinkedHashMap user = (LinkedHashMap) paramDTO.getParam();
 			
+		if(type == 0)
+				return ResponseEntity.status(HttpStatus.OK).body(userService.insertUser(new UserDTO(idUser, user.get("username").toString(), user.get("password").toString(),Integer.parseInt(user.get("type").toString()))));
+			else
+				return ResponseEntity.status(HttpStatus.OK).body(null);
 			
-
-				return ResponseEntity.status(HttpStatus.OK).body(userService.insertUser(userDTO));
-			
-			
-		} catch (ExpiredJwtException e) {
+		} catch (ExpiredJwtException | UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}
@@ -149,13 +157,6 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.OK).body(userService.insertUser(new UserDTO(0, login.get("username").toString(), login.get("password").toString(), 1)));
 		}
 	}
-	
-	private int getIdUserFromJwt(String jwt) throws ExpiredJwtException, UnsupportedEncodingException {
-		Map<String, Object> data = JwtUtils.jwt2Map(jwt);
-		int idUser = Integer.parseInt(data.get("subject").toString());
-		return idUser;
-	}
-
 	
 private int getTypeFromJwt(String jwt) throws ExpiredJwtException, UnsupportedEncodingException {
 		

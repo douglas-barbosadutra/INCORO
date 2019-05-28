@@ -1,12 +1,8 @@
 package it.contrader.converter;
-
 import java.util.ArrayList;
 import java.util.List;
 import it.contrader.dto.LabelDTO;
-
 import it.contrader.model.Label;
-
-
 
 public class ConverterLabel {
 	
@@ -16,8 +12,7 @@ public class ConverterLabel {
 			labelDTO = new LabelDTO();
 			labelDTO.setIdLabel(label.getIdLabel());
 			labelDTO.setName(label.getName());
-			labelDTO.setIdUser(label.getIdUser());
-			
+			labelDTO.setIdUser(label.getIdUser());	
 		}
 		return labelDTO;		
 	}
@@ -29,7 +24,6 @@ public class ConverterLabel {
 			label.setIdLabel(labelDTO.getIdLabel());
 			label.setName(labelDTO.getName());
 			label.setIdUser(labelDTO.getIdUser());
-			
 		}
 		return label;
 	}

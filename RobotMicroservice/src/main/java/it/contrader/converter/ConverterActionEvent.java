@@ -26,45 +26,41 @@ public class ConverterActionEvent {
 			ActionEventDTO.setLabel(labelDTO);
 			
 		}
-		return ActionEventDTO;		
-	}
+	return ActionEventDTO;		
+}
 	
-	public static ActionEvent toEntity(ActionEventDTO ActionEventDTO) {
-		ActionEvent ActionEvent = null;
-		if(ActionEventDTO != null) {
-			ActionEvent = new ActionEvent();
-			ActionEvent.setIdActionEvent(ActionEventDTO.getIdActionEvent());
-			ActionEvent.setDescription(ActionEventDTO.getDescription());
-			ActionEvent.setName(ActionEventDTO.getName());
-			ActionEvent.setType(ActionEventDTO.getType());
-			
-			
-			Label label = new Label();
-			label = ConverterLabel.toEntity(ActionEventDTO.getLabel());
-			ActionEvent.setLabel(label);
-			
+public static ActionEvent toEntity(ActionEventDTO ActionEventDTO) {
+	ActionEvent ActionEvent = null;
+	if(ActionEventDTO != null) {
+		ActionEvent = new ActionEvent();
+		ActionEvent.setIdActionEvent(ActionEventDTO.getIdActionEvent());
+		ActionEvent.setDescription(ActionEventDTO.getDescription());
+		ActionEvent.setName(ActionEventDTO.getName());
+		ActionEvent.setType(ActionEventDTO.getType());		
+		Label label = new Label();
+		label = ConverterLabel.toEntity(ActionEventDTO.getLabel());
+		ActionEvent.setLabel(label);	
 		}
-		return ActionEvent;
-	}
+	return ActionEvent;
+}
 
-	public static List<ActionEventDTO> toListDTO(List<ActionEvent> list){
-		List<ActionEventDTO> listActionEventDTO = new ArrayList<>();
-		if (!list.isEmpty()) {
-			for(ActionEvent ActionEvent : list) {
-				listActionEventDTO.add(ConverterActionEvent.toDto(ActionEvent));
-			}
+public static List<ActionEventDTO> toListDTO(List<ActionEvent> list){
+	List<ActionEventDTO> listActionEventDTO = new ArrayList<>();
+	if (!list.isEmpty()) {
+		for(ActionEvent ActionEvent : list) {
+			listActionEventDTO.add(ConverterActionEvent.toDto(ActionEvent));
 		}
-		return listActionEventDTO;
 	}
+	return listActionEventDTO;
+}
 	
-	public static List<ActionEvent> toListEntity(List<ActionEventDTO> listActionEventDTO){
-		List<ActionEvent> listActionEvent = new ArrayList<>();
-		if (!listActionEventDTO.isEmpty()) {
-			for(ActionEventDTO ActionEventDTO : listActionEventDTO) {
-				listActionEvent.add(ConverterActionEvent.toEntity(ActionEventDTO));
-			}
+public static List<ActionEvent> toListEntity(List<ActionEventDTO> listActionEventDTO){
+	List<ActionEvent> listActionEvent = new ArrayList<>();
+	if (!listActionEventDTO.isEmpty()) {
+		for(ActionEventDTO ActionEventDTO : listActionEventDTO) {
+			listActionEvent.add(ConverterActionEvent.toEntity(ActionEventDTO));
 		}
-		return listActionEvent;
 	}
-
+	return listActionEvent;
+}
 }

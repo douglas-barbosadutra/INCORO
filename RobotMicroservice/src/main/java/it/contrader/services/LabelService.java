@@ -2,20 +2,12 @@ package it.contrader.services;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import it.contrader.converter.ConverterLabel;
-
-
 import it.contrader.dao.LabelRepository;
 import it.contrader.dto.LabelDTO;
-
-
 import it.contrader.model.Label;
-
-
 
 @Service
 public class LabelService {
@@ -26,12 +18,6 @@ public class LabelService {
 		this.labelRepository = labelRepository;
 	}
 	
-	/*
-	public boolean insertLabel(LabelDTO labelDTO) {
-		return labelRepository.save(ConverterLabel.convertToEntity(labelDTO)) != null;
-	}*/
-	
-	// METODO DI REST CONTROLLER
 	public LabelDTO insertLabel(LabelDTO labelDTO) {
 		Label label = ConverterLabel.toEntity(labelDTO);
 		labelRepository.save(label); 
@@ -96,7 +82,6 @@ public class LabelService {
 	}
 	
 	public List<LabelDTO> findLabelbyIdUser(int idUser){
-	
 		List<LabelDTO> listLabelDTO = new ArrayList<>();
 		List<Label> list = labelRepository.findAllByIdUser(idUser);
 		for(Label label : list) {

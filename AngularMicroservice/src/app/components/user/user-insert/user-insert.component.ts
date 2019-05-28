@@ -19,7 +19,7 @@ export class UserInsertComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    console.log("la jwt ",this.jwt);
+    console.log(this.jwt);
     
     this.userDTO = new UserDTO(0,"","",0);
   }
@@ -27,8 +27,8 @@ export class UserInsertComponent implements OnInit {
     insertUser(){
       this.jwt= sessionStorage.getItem("jwt");
       this.paramDTO = new ParamDTO(this.jwt, this.userDTO);
-      console.log("user: ",this.paramDTO);
-      this.userService.insertUser(this.userDTO).subscribe((data: any) => {
+      console.log("user: ",this.userDTO);
+      this.userService.insertUser(this.paramDTO).subscribe((data: any) => {
       console.log("arr")
 
       if(data != null)

@@ -10,7 +10,6 @@ public class ConnectionSingleton {
 
   private static Connection connection = null;
 
-
   private ConnectionSingleton() {
   }
 

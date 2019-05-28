@@ -78,17 +78,3 @@ public class Thing {
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<LinkTK> linktk;
 }
-
-
-/*
-@ManyToMany(mappedBy="thing")
-@OnDelete(action=OnDeleteAction.CASCADE)
-private List<Keyword> keyword;
-*/
-
-
-/*
-@OneToMany
-@JoinTable(name = "keyword_thing")
-private List<Keyword> keyword;
-*/

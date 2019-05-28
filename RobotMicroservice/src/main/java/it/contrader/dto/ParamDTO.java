@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ParamDTO {
-	
 	private String jwt;
 	private Object param;
 }

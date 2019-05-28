@@ -17,8 +17,8 @@
           <td>{{userDTO.password}}</td>
           <td>{{userDTO.type}}</td>
           <td>
-            <button class="btn"(click)="deleteUser(userDTO)"><i class="fa fa-trash"  ></i></button>
-            <button class="btn"(click)="chooseUser(userDTO.idUser)">Aggiorna<i class="fa fa-pen"></i></button>
+            <button class="btn"><i class="fa fa-trash" (click)="deleteUser(userDTO)" ></i></button>
+            <button class="btn"><i class="fa fa-pen"></i></button>
           </td>
         </tr>
       </tbody>

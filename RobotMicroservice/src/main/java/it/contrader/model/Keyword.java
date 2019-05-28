@@ -37,25 +37,5 @@ public class Keyword {
 	
 	@OneToMany(mappedBy = "keyword")
 	@OnDelete(action=OnDeleteAction.CASCADE)
-	private List<LinkTK> linktk;
-	
-	
+	private List<LinkTK> linktk;	
 }
-
-
-
-/*
-@ManyToMany(cascade = { CascadeType.ALL })
-   @JoinTable(
-       name = "keyword_thing", 
-       joinColumns = { @JoinColumn(name = "idKeyword") }, 
-       inverseJoinColumns = { @JoinColumn(name = "idThing") }
-   )
-   private List<Thing> thing;
-*/
-
-/*
-@OneToMany
-@JoinTable(name = "keyword_thing")
-private List<Thing> thing;
-*/

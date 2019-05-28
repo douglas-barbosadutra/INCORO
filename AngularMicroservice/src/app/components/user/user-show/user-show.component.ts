@@ -15,22 +15,19 @@ export class UserShowComponent implements OnInit {
   private userDTO: UserDTO;
   private paramDTO: ParamDTO;
   private jwt: string;
-  
 
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     //alert("prima di prelevare: " + this.jwt);
-    this.userDTO = new UserDTO(0, "", "", 0);
-    console.log("userDTO", this.userDTO);
     this.jwt = sessionStorage.getItem("jwt");
     //alert("nel show: " + this.jwt);
     this.paramDTO = new ParamDTO(this.jwt, this.userDTO);
-    console.log("paramDTO nel show: " ,this.paramDTO);
+    //alert("paramDTO nel show: " + this.paramDTO);
 
     this.userService.showUser(this.paramDTO).subscribe((data: Array<UserDTO>) =>{
       //alert(" param " + this.paramDTO);
-      console.log("userList: ",data)
+      console.log("user: ",data)
      //alert("nel show: " + this.jwt);
      // alert(" jwy " + this.jwt);
       if(data != null){
@@ -41,13 +38,12 @@ export class UserShowComponent implements OnInit {
 
   chooseUser(idUser: number){
     sessionStorage.setItem("idUser", JSON.stringify(idUser));
-    this.router.navigate(["/homeAdmin/updateUser"]);
+    this.router.navigateByUrl("/updateUser");
   } 
   deleteUser(userDTO: UserDTO){
-    this.userDTO = userDTO;
-    console.log("alla delete: ", this.userDTO);
+    alert("param:" + this.jwt);
 
-    this.userService.deleteUser(this.userDTO).subscribe((data: any) =>{
+    this.userService.deleteUser(this.paramDTO).subscribe((data: any) =>{
       //alert("param:" + this.jwt);
 
       if(data){
