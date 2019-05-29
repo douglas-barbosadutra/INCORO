@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LinkTKDTO } from '../../../../dto/LinkTkDTO';
 import { Router } from '@angular/router';
 import { LinkTKService } from '../../../../app/services/linkTk.service';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
   selector: 'app-link-tk-list',
@@ -11,12 +12,16 @@ import { LinkTKService } from '../../../../app/services/linkTk.service';
 export class LinkTkListComponent implements OnInit {
   private linkTKList : Array<LinkTKDTO>;
   private linkTKDTO : LinkTKDTO;
+  private jwt: string;
+  private paramDTO: ParamDTO;
 
   constructor(private router:Router, private linkTKService: LinkTKService) {
   }
 
   ngOnInit() {
-    this.linkTKService.showLinkTK().subscribe((data: any) =>{
+    this.jwt = sessionStorage.getItem("jwt");
+    this.paramDTO = new ParamDTO(this.jwt, this.linkTKDTO);
+    this.linkTKService.showLinkTK(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.linkTKList = data;

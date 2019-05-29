@@ -5,12 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.contrader.converter.ConverterBehavior;
 import it.contrader.converter.ConverterCode;
 import it.contrader.dao.CodeRepository;
-import it.contrader.dto.BehaviorDTO;
 import it.contrader.dto.CodeDTO;
-import it.contrader.model.Behavior;
 import it.contrader.model.Code;
 
 @Service
@@ -29,12 +26,6 @@ private CodeRepository codeRepository;
 	public CodeDTO getCodeDTOById(int id) {
 		return ConverterCode.toDTO(codeRepository.findCodeByIdCode(id));
 	}
-
-	/*
-	public boolean insertCode(CodeDTO codeDTO) {
-		return codeRepository.save(ConverterCode.toEntity(codeDTO)) != null;
-	}*/
-
 	public CodeDTO insertCode(CodeDTO codeDTO) {
 		Code code = ConverterCode.toEntity(codeDTO);
 		codeRepository.save(code); 
@@ -56,5 +47,4 @@ private CodeRepository codeRepository;
 		list.forEach(i -> codeDTOs.add(ConverterCode.toDTO(i)));
 		return codeDTOs;	
 	} 
-
 }

@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,12 +33,3 @@ public class LinkTK {
 	@JoinColumn(name="idKeyword")
 	private Keyword keyword;
 }
-
-/*
-@Column(name = "fkThing")
-@NotNull
-private Integer fkThing;
-
-@Column(name = "fkKeyword")
-@NotNull
-private Integer fkKeyword;*/

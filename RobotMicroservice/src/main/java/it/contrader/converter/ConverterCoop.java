@@ -1,16 +1,8 @@
 package it.contrader.converter;
-
-
 import java.util.ArrayList;
 import java.util.List;
-
 import it.contrader.dto.CoopDTO;
-import it.contrader.dto.LabelDTO;
-
 import it.contrader.model.Coop;
-import it.contrader.model.Label;
-
-
 
 public class ConverterCoop {
 	

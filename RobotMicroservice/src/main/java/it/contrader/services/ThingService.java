@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import it.contrader.converter.ConverterThing;
 import it.contrader.dao.ThingRepository;
 import it.contrader.dto.ThingDTO;
@@ -28,11 +27,6 @@ public class ThingService {
 	public ThingDTO getThingDTOById(int id) {
 		return ConverterThing.toDTO(thingRepository.findThingByIdThing(id));
 	}
-
-	/*
-	public boolean insertThing(ThingDTO thingDTO) {
-		return thingRepository.save(ConverterThing.toEntity(thingDTO)) != null;
-	}*/
 	
 	// METODO DI REST CONTROLLER
 	public ThingDTO insertThing(ThingDTO thingDTO) {
@@ -45,11 +39,6 @@ public class ThingService {
 		return thingRepository.save(ConverterThing.toEntity(thingDTO)) != null;
 	}
 	
-	/*
-	public void deleteThingById(Integer id) {
-		thingRepository.deleteById(id);
-	}*/
-	
 	// METODO DI REST CONTROLLER
 	public boolean deleteThing(int id) {
 		this.thingRepository.deleteById(id);
@@ -60,6 +49,25 @@ public class ThingService {
 	public ThingDTO findThingById(int id) {
 		return ConverterThing.toDTO(thingRepository.findThingByIdThing(id));
 	}
+	
+	
+	public List<ThingDTO> findAllThingById(List<String> strList) {
+		List<ThingDTO> listThing = new ArrayList<>();
+		List<Integer> intList= new ArrayList<>();
+		for(String s : strList) intList.add(Integer.valueOf(s));
+		
+		
+		for(int i: intList)
+		{
+			ThingDTO thing = ConverterThing.toDTO(thingRepository.findThingByIdThing(i));
+			listThing.add(thing);
+		}
+		return listThing;
+	}
+	
+	
+	
+	
 	
 	public List<ThingDTO> getAllThings(){
 		return ConverterThing.toListDTO((List<Thing>) thingRepository.findAll());

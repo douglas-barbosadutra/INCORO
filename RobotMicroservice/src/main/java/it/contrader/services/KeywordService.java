@@ -4,16 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import it.contrader.converter.ConverterBehavior;
 import it.contrader.converter.ConverterKeyword;
-
 import it.contrader.dao.KeywordRepository;
-import it.contrader.dto.BehaviorDTO;
 import it.contrader.dto.KeywordDTO;
-import it.contrader.model.Behavior;
 import it.contrader.model.Keyword;
-
 
 @Service
 public class KeywordService {
@@ -28,15 +22,10 @@ public class KeywordService {
 		return ConverterKeyword.toListDTO((List<Keyword>)keywordRepository.findAll());
 	}
 
-	public KeywordDTO getKeywordById(int id) {
+	public KeywordDTO findKeywordById(int id) {
 		return ConverterKeyword.toDTO(keywordRepository.findKeywordByIdKeyword(id));
 	}
 
-	/*
-	public boolean insertKeyword(KeywordDTO keywordDTO) {
-		return keywordRepository.save(ConverterKeyword.toEntity(keywordDTO)) != null;
-	}*/
-	
 	public boolean updateKeyword(KeywordDTO keywordDTO) {
 		return keywordRepository.save(ConverterKeyword.toEntity(keywordDTO)) != null;
 	}
@@ -45,11 +34,7 @@ public class KeywordService {
 		keywordRepository.save(keyword); 
 		return ConverterKeyword.toDTO(keyword);
 	}
-	/*
-	public void deleteKeywordById(Integer id) {
-		keywordRepository.deleteById(id);
-	}*/
-
+	
 	public boolean deleteKeyword(int id) {
 		this.keywordRepository.deleteById(id);
 		return true;

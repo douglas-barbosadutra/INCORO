@@ -53,7 +53,9 @@ import { ActionEventInsertComponent } from './components/action-event/action-eve
 import { ActionEventUpdateComponent } from './components/action-event/action-event-update/action-event-update.component';
 import { ActionEventDeleteComponent } from './components/action-event/action-event-delete/action-event-delete.component';
 import { ActionEventListComponent } from './components/action-event/action-event-list/action-event-list.component';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { ActionEventShowComponent } from './components/action-event/action-event-show/action-event-show.component';
+
 
 let config = new AuthServiceConfig([
   {
@@ -103,20 +105,14 @@ export function provideConfig() {
     LinkTkDeleteComponent,
     LinkTkUpdateComponent,
     NavbarComponent,
-
     LinkTkShowThingComponent,
-
     BoDashboardComponent,
-
     AdminDashboardComponent,
-
     ActionEventInsertComponent,
-
     ActionEventUpdateComponent,
-
     ActionEventDeleteComponent,
-
     ActionEventListComponent,
+    ActionEventShowComponent,
 
   ],
   imports: [

@@ -41,7 +41,7 @@ export class LinkTkUpdateComponent implements OnInit {
       }
     })
 
-    this.keywordService.showKeyword().subscribe((data: any) =>{
+    this.keywordService.showKeyword(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.keywordList = data;

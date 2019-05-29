@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HardwareDTO } from '../../../../../src/dto/HardwareDTO';
 import { Router } from '@angular/router';
 import { HardwareService } from '../../../../../src/app/services/hardware.service';
+import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
   selector: 'app-hardware-list',
@@ -11,11 +12,15 @@ import { HardwareService } from '../../../../../src/app/services/hardware.servic
 export class HardwareListComponent implements OnInit {
   private hardwareList: Array<HardwareDTO>;
   private hardwareDTO: HardwareDTO;
+  private jwt: string;
+  private paramDTO: ParamDTO;
 
   constructor(private hardwareService: HardwareService, private router: Router) { }
 
   ngOnInit() {
-    this.hardwareService.showHardware().subscribe((data: any) =>{
+    this.jwt = sessionStorage.getItem("jwt");
+    this.paramDTO = new ParamDTO(this.jwt, this.hardwareDTO);
+    this.hardwareService.showHardware(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
         console.log(data)
         this.hardwareList = data;

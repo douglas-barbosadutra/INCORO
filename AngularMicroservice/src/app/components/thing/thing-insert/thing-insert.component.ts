@@ -25,7 +25,6 @@ export class ThingInsertComponent implements OnInit {
     this.labelDTO = new LabelDTO(0, "", 0);
     this.thingDTO = new ThingDTO(0, "", "", "","","","", 0, this.labelDTO);
     this.jwt = sessionStorage.getItem("jwt");
-    console.log("in ngOnit arriva: " + this.jwt);
     this.paramDTO = new ParamDTO(this.jwt, this.labelDTO);
     this.labelService.showLabel(this.paramDTO).subscribe((data: Array<LabelDTO>) =>{
       if(data != null){
@@ -50,7 +49,7 @@ export class ThingInsertComponent implements OnInit {
     else
       alert("Inserimento fallito");
 
-      this.router.navigateByUrl("/homeBo");
+      this.router.navigate(["/homeBo"]);
   })
 }
 }

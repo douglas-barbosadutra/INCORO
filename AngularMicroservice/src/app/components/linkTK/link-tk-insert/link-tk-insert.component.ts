@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThingDTO } from '../../../../dto/ThingDTO';
 import { ThingService } from '../../../../../src/app/services/thing.service';
-
 import { KeywordService } from '../../../../../src/app/services/keyword.service';
 import { LinkTKService } from '../../../../../src/app/services/linkTk.service';
 import { Router } from '@angular/router';
@@ -24,6 +23,8 @@ export class LinkTKInsertComponent implements OnInit {
   private keywordDTO: KeywordDTO;
   private linkTkDTO: LinkTKDTO;
   private paramDTO: ParamDTO;
+  private paramDTO2: ParamDTO;
+  private jwt: string;
 
   constructor(private thingService: ThingService, private keywordService: KeywordService, private linkTKService: LinkTKService, private router: Router) { }
 
@@ -32,7 +33,9 @@ export class LinkTKInsertComponent implements OnInit {
     this.thingDTO = new ThingDTO(0,"","","","","","", 0, this.labelDTO);
     this.keywordDTO = new KeywordDTO(0,"");
     this.linkTkDTO = new LinkTKDTO(0,this.thingDTO, this.keywordDTO);
-
+    
+    this.jwt = sessionStorage.getItem("jwt");
+    this.paramDTO = new ParamDTO(this.jwt, this.thingDTO);
     this.thingService.showThing(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
         console.log(data);
@@ -40,7 +43,8 @@ export class LinkTKInsertComponent implements OnInit {
       }
     })
 
-    this.keywordService.showKeyword().subscribe((data: any) =>{
+    this.paramDTO2 = new ParamDTO(this.jwt, this.keywordDTO);
+    this.keywordService.showKeyword(this.paramDTO2).subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.keywordList = data;
@@ -48,18 +52,19 @@ export class LinkTKInsertComponent implements OnInit {
   })
   }
 
-  insertLinkTK(){
+  insertLinkTK(thingDTO: ThingDTO, keywordDTO: KeywordDTO){
     this.linkTkDTO.thing.idThing = this.thingDTO.idThing;
     this.linkTkDTO.keyword.idKeyword = this.keywordDTO.idKeyword;
-
-    this.linkTKService.insertLinkTK(this.linkTkDTO).subscribe((data: any) => {
+    this.jwt = sessionStorage.getItem("jwt");
+    this.paramDTO = new ParamDTO(this.jwt, this.linkTkDTO);
+    this.linkTKService.insertLinkTK(this.paramDTO).subscribe((data: any) => {
 
       if(data != null)
         alert("Inserimento effettuato");
       else
         alert("Collegamento già esistente");
 
-        this.router.navigateByUrl("/homeBo");
+        this.router.navigate(["/homeBo"]);
     })
 
 

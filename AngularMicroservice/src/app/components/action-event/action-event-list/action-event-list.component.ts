@@ -20,20 +20,23 @@ export class ActionEventListComponent implements OnInit {
   constructor(private actionEventService: ActionEventService, private router: Router) { }
 
   ngOnInit() {
+    this.jwt = sessionStorage.getItem("jwt");
+    this.paramDTO = new ParamDTO(this.jwt, this.actionEventDTO);
+    this.actionEventService.showActionEvent(this.paramDTO).subscribe((data: any) => {
+      if(data != null){
+        this.actionEventList = data;
+    }}
+    )
     var RetriData= sessionStorage.getItem("ActionList");
     this.actionEventList = JSON.parse(RetriData);
-    console.log("in ngOnit arriva: ", this.actionEventList);
-    //this.paramDTO = new ParamDTO(this.jwt, this.actionEventDTO);
-   
-  
+
   }
+  
   chooseActionEvent(idActionEvent: number){
     sessionStorage.setItem("idActionEvent", JSON.stringify(idActionEvent));
     this.router.navigate(["/homeBo/updateActionEvent"]);
 
   }
-
-
 
   setDTO(actionEvent: ActionEventDTO){
     sessionStorage.setItem("DTOpassato", JSON.stringify(actionEvent));
@@ -41,18 +44,14 @@ export class ActionEventListComponent implements OnInit {
   }
 
   deleteActionEvent(actionEventDTO: ActionEventDTO){
-
     this.actionEventService.deleteActionEvent(this.paramDTO).subscribe((data: any) =>{
-
       if(data){
         alert("Cancellazione effettuata");
         location.reload(true);
       }
-
       else
         alert("Cancellazione fallita");
-
-      this.router.navigateByUrl("homeBo");
+      this.router.navigate(["homeBo"]);
     })
   }
 

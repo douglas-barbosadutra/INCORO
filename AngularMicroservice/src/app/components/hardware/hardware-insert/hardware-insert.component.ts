@@ -20,6 +20,7 @@ export class HardwareInsertComponent implements OnInit {
   private labelDTO: LabelDTO;
   private thingList: Array<ThingDTO>
   private paramDTO: ParamDTO;
+  private jwt:string;
 
   constructor(private hardwareService : HardwareService, private router: Router, private thingService: ThingService) { }
 
@@ -27,7 +28,9 @@ export class HardwareInsertComponent implements OnInit {
     this.labelDTO = new LabelDTO(0,"",0);
     this.thingDTO = new ThingDTO(0,"","","","","","", 0, this.labelDTO);
 
+    this.jwt = sessionStorage.getItem("jwt");
     this.hardwareDTO = new HardwareDTO(0,"","", false,this.thingDTO);
+    this.paramDTO = new ParamDTO(this.jwt, this.hardwareDTO);
     this.thingService.showThing(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
         console.log(data);
@@ -37,13 +40,14 @@ export class HardwareInsertComponent implements OnInit {
   }
 
     insertHardware(){
-    console.log(this.hardwareDTO.master);
-    this.hardwareService.insertHardware(this.hardwareDTO).subscribe((data: any) => {
+    this.jwt = sessionStorage.getItem("jwt");
+    this.paramDTO = new ParamDTO(this.jwt, this.hardwareDTO);
+    this.hardwareService.insertHardware(this.paramDTO).subscribe((data: any) => {
       if(data != null)
         alert("Inserimento effettuato");
       else
         alert("Inserimento fallito");
-        this.router.navigateByUrl("/homeBo");
+        this.router.navigate(["/homeBo"]);
     })
   }
 }
