@@ -19,6 +19,11 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
+              {
+                "glob": "**/*",
+                "input":"./node_modules/sigma/build",
+                "output": "/assets/lib"
+              },
               "src/favicon.ico",
               "src/assets"
             ],
@@ -29,8 +34,12 @@
               "node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": [
+                "src/assets/lib/sigma/sigma.conf.js",
+                "node_modules/sigma/build/sigma.min.js",
                 "node_modules/jquery/dist/jquery.min.js",
-                "node_modules/bootstrap/dist/js/bootstrap.min.js"
+                "node_modules/bootstrap/dist/js/bootstrap.min.js",
+                "node_modules/sigma/plugins/sigma.layout.forceAtlas2/supervisor.js",
+                "node_modules/sigma/plugins/sigma.layout.forceAtlas2/worker.js"
             ],
             "es5BrowserSupport": true
           },

@@ -30,4 +30,7 @@ export class ThingService {
     return this.http.delete('http://localhost:8080/Thing/deleteThing?id='+thingDTO.idThing);
   }
 
+  listByIds(idList: Array<String>){
+      return this.http.post('http://localhost:8080/Thing/byIdList', idList);
+  }
 }

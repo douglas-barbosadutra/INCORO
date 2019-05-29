@@ -53,6 +53,7 @@ import { ActionEventInsertComponent } from './components/action-event/action-eve
 import { ActionEventUpdateComponent } from './components/action-event/action-event-update/action-event-update.component';
 import { ActionEventDeleteComponent } from './components/action-event/action-event-delete/action-event-delete.component';
 import { ActionEventListComponent } from './components/action-event/action-event-list/action-event-list.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 let config = new AuthServiceConfig([
   {
@@ -119,6 +120,8 @@ export function provideConfig() {
 
   ],
   imports: [
+
+    AngularFontAwesomeModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

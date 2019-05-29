@@ -6,11 +6,50 @@
 </head>
   <div class="clearfix" id="corpo">
   <div class="grid-container" id="menu-destra">
-    <a class="navbar-brand full-width" [routerLink]="['dashboard']">
-      <img src="assets/img/Black.png" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
-    </a>
-
-        <a [routerLink]="['insertThing']" class="btn btn-lg btn-primary btn-block" > Insert Thing </a>
+    <div class="row no-pad">
+      <div class="col-sm-4">
+      <img src="assets/img/photo3.jpg" class="rounded-circle img-fluid" alt="Responsive image" style="padding:5px">
+      </div>
+      <div class="col-sm-8" style ="position:relative">
+        <div class="dropdown" style="position:absolute ;right:0;bottom:5%;">
+          <button class="dropbtn" style=" font-size:12px;  text-align: right;    padding: 0px;  ">NOME UTENTE <i class="fas fa-chevron-down"></i></button>
+          <div class="dropdown-content">
+            <a href="#">LOGOUT</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row no-pad">
+      <div class="col-sm-12 right-choice choice-header bg-dark">
+        <p class="prodotti">Prodotti </p>
+        <i class="fas fa-plus piu-prodotti"></i>
+      </div>
+      <div class="col-sm-12 right-choice brd">
+        <a class="menu-thing">Name 1 </a>
+      </div>
+      <div class="col-sm-12 right-choice brd">
+        <a class="menu-thing">Name 2 </a>
+      </div>
+      <div class="col-sm-12 right-choice brd">
+        <a class="menu-thing">Name 3 </a>
+      </div>
+      <div class="col-sm-12 right-choice brd">
+        <a class="menu-thing">Name 4 </a>
+      </div>
+      <div class="col-sm-12 right-choice brd">
+        <a class="menu-thing">Name 5 </a>
+      </div>
+      <div class="col-sm-12 right-choice brd">
+        <a class="menu-thing">Name 6 </a>
+      </div>
+      <div class="col-sm-12 right-choice brd">
+        <a class="menu-thing">Name 7 </a>
+      </div>
+      <div class="col-sm-12 right-choice brd">
+        <a class="menu-thing">Name 8 </a>
+      </div>
+    </div>
+      <!--  <a [routerLink]="['insertThing']" class="btn btn-lg btn-primary btn-block" > Insert Thing </a>
 
         <a [routerLink]="['insertKeyword']"  class="btn btn-lg btn-primary btn-block" > Insert Keyword </a>
 
@@ -32,8 +71,8 @@
 
         <a [routerLink]="['listLinkTK']"   class="btn btn-lg btn-primary btn-block" > List LinkTK </a>
 
-        <a [routerLink]="['listActionEvent']"   class="btn btn-lg btn-primary btn-block" > List ActionEvent </a>
-        
+        <a [routerLink]="['listActionEvent']"   class="btn btn-lg btn-primary btn-block" > List ActionEvent </a> -->
+
 
   </div>
 </div>
