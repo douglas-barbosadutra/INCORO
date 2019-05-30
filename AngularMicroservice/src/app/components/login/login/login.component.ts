@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
       this.loginService.login(this.loginDTO).subscribe((response: UserLoggedDTO) => {
 
     if(response != null){
-
+        
         sessionStorage.setItem("jwt",response.jwt);
 
       if(response.type == 1){

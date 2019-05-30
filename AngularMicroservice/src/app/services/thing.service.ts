@@ -31,6 +31,8 @@ export class ThingService {
   }
 
   listByIds(idList: Array<String>){
-      return this.http.post('http://localhost:8080/Thing/byIdList', idList);
+    console.log("XXXXXXXXXXXXXXXXXXXXX");
+      console.log(idList);
+      return this.http.post('http://localhost:8080/Thing/byId', idList);
   }
 }

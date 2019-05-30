@@ -55,6 +55,7 @@ import { ActionEventDeleteComponent } from './components/action-event/action-eve
 import { ActionEventListComponent } from './components/action-event/action-event-list/action-event-list.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { ActionEventShowComponent } from './components/action-event/action-event-show/action-event-show.component';
+import { ThingInfoComponent } from './components/thing-info/thing-info.component';
 
 
 let config = new AuthServiceConfig([
@@ -113,6 +114,7 @@ export function provideConfig() {
     ActionEventDeleteComponent,
     ActionEventListComponent,
     ActionEventShowComponent,
+    ThingInfoComponent,
 
   ],
   imports: [

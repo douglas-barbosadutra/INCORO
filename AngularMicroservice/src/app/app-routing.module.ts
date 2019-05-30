@@ -50,12 +50,12 @@ import { ActionEventInsertComponent } from './components/action-event/action-eve
 import { ActionEventListComponent } from './components/action-event/action-event-list/action-event-list.component';
 import { ActionEventUpdateComponent } from './components/action-event/action-event-update/action-event-update.component';
 import { ActionEventShowComponent } from './components/action-event/action-event-show/action-event-show.component';
-
+import { ThingInfoComponent } from './components/thing-info/thing-info.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  
+
   //home
   {path: 'homeAdmin', component: HomeAdminComponent, children :[
       {path: '',redirectTo: 'dashboard', pathMatch :'full'},
@@ -68,7 +68,9 @@ const routes: Routes = [
 
   {path: 'homeBo', component: HomeBoComponent, children: [
     {path: '',redirectTo: 'dashboard', pathMatch :'full'},
-    {path: 'dashboard', component :BoDashboardComponent},
+    {path: 'dashboard', component :BoDashboardComponent, children:[
+      {path: 'info-thing/:id', component: ThingInfoComponent}
+    ]},
     {path: 'insertBehavior', component: BehaviorInsertComponent},
     {path: 'listBehavior', component: BehaviorListComponent},
     {path: 'updateBehavior', component: BehaviorUpdateComponent},
@@ -103,7 +105,7 @@ const routes: Routes = [
     {path: 'listActionEvent', component: ActionEventListComponent},
     {path: 'updateActionEvent', component: ActionEventUpdateComponent},
     {path: 'showActionEvent', component: ActionEventShowComponent},
-  
+
   ]},
   //menu
 

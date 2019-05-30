@@ -80,11 +80,16 @@
   position: absolute;
   top:45%;
   padding-left:10px;
+  color:inherit;
+}
+.menu-thing:hover{
+  color:inherit;
 }
 
 .brd{
   border-bottom: 1px solid;
   border-bottom-color: lightgray;
+  color:black;
 }
 
 .brd:hover {

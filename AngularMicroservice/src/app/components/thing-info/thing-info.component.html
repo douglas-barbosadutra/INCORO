@@ -1,0 +1,25 @@
+<div id="container">
+  <table class="table table-striped">
+    <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>ID Proprietario </th>
+          <th>ID Label</th>
+          <th></th>
+          <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let thing of thingList">
+          <td>{{thing.idThing}} </td>
+          <td>{{thing.name}} </td>
+          <td>{{thing.idUser}}</td>
+          <td>{{thing.label.idLabel}}</td>
+          <td><button class="btn btn-secondary" (click)="deleteThing(thing)"><i class="fas fa-trash-alt" style="color:white"></i></button></td>
+          <td><button class="btn btn-secondary" (click)="setThing(thing)"  ><i class="fas fa-pen-square" style="color:white"></i></button>  </td> <!-- (click)="setDTO(thingDTO)" -->
+        </tr>
+    </tbody>
+  </table>
+</div>

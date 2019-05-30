@@ -1,13 +1,17 @@
 .icon-padding {
   padding : 10px;
 }
+
+.no-padding{
+  padding :0px;
+}
 .searchbar{
    margin-bottom: auto;
    margin-top: auto;
-   height: 60px;
+   height: 40px;
    background-color: #353b48;
    border-radius: 30px;
-   padding: 10px;
+   padding: 1px;
    }
 
    .search_input{

@@ -13,6 +13,7 @@ import { ParamDTO } from '../../../../dto/ParamDTO';
   templateUrl: './thing-list.component.html',
   styleUrls: ['./thing-list.component.css']
 })
+
 export class ThingListComponent implements OnInit {
   private thingList: Array<ThingDTO>;
   private thingDTO: ThingDTO;

@@ -39,6 +39,7 @@ export class ActionEventService {
     }
 
     aeByLabel(labels:Array<LabelDTO>){
+      console.log(labels);
       return this.http.post('http://localhost:8080/ActionEvent/getByLabel', labels);
     }
   }
