@@ -34,7 +34,6 @@ export class ActionEventService {
     }
 
     findEvent(paramDTO: ParamDTO){
-      console.log("in findAction il param", paramDTO )
       return this.http.post('http://localhost:8080/ActionEvent/findEvent', paramDTO);
     }
 
@@ -42,4 +41,10 @@ export class ActionEventService {
       console.log(labels);
       return this.http.post('http://localhost:8080/ActionEvent/getByLabel', labels);
     }
-  }
+
+    findActionByName(paramDTO: ParamDTO){
+      console.log("arriva", paramDTO);
+      return this.http.post('http://localhost:8080/ActionEvent/findActionByName', paramDTO);
+    }
+
+}

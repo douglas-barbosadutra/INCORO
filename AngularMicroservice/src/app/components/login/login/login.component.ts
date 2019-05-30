@@ -69,12 +69,13 @@ export class LoginComponent implements OnInit {
     if(response != null){
         
         sessionStorage.setItem("jwt",response.jwt);
+        //localStorage.setItem("jwt",response.jwt);
 
       if(response.type == 1){
-        this.router.navigateByUrl("/homeBo");
+        this.router.navigate(["/homeBo"]);
       }
       else if(response.type == 0)
-        this.router.navigateByUrl("/homeAdmin");
+        this.router.navigate(["/homeAdmin"]);
 
     }
     else{

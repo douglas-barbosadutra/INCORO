@@ -93,6 +93,24 @@ public class UserController {
 		}
 	}
 	
+	@RequestMapping(value="/findById" , method= RequestMethod.GET)
+	public ResponseEntity<UserDTO> findUserById(@RequestParam(value="id") String jwt) {		
+		try {
+			int type = this.getTypeFromJwt(jwt);
+			int idUser = this.getIdUserFromJwt(jwt);
+			
+			
+			if(type == 0)
+				return ResponseEntity.status(HttpStatus.OK).body(userService.getUserDTOById(idUser));
+			else
+				return ResponseEntity.status(HttpStatus.OK).body(null);
+			
+		} catch (ExpiredJwtException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			return ResponseEntity.status(HttpStatus.OK).body(null);
+		}
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public UserDTO login( @RequestBody LoginDTO user) {
 		return(userService.login(user.getUsername() , user.getPassword()));
@@ -165,6 +183,12 @@ private int getTypeFromJwt(String jwt) throws ExpiredJwtException, UnsupportedEn
 		
 		return type;
 	}
+
+private int getIdUserFromJwt(String jwt) throws ExpiredJwtException, UnsupportedEncodingException {
+	Map<String, Object> data = JwtUtils.jwt2Map(jwt);
+	int idUser = Integer.parseInt(data.get("subject").toString());
+	return idUser;
+}	
 	
 }
 

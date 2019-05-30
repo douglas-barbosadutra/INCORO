@@ -21,6 +21,11 @@ export class LabelService {
     return this.http.get('http://localhost:8080/Label/showLabel?jwt=' + paramDTO.jwt);
   }
 
+  showLabelBYName(paramDTO: ParamDTO){
+    console.log("paramDTO " , paramDTO);
+    return this.http.post('http://localhost:8080/Label/showLabelNavbar', paramDTO);
+  }
+
   //anche qui andrà l'oggetto.. si utilizzerà POST
   deleteLabel(paramDTO: ParamDTO){
     console.log("nella deleteService: " , paramDTO);
@@ -31,5 +36,7 @@ export class LabelService {
     console.log(paramDTO);
     return this.http.put('http://localhost:8080/Label/updateLabel', paramDTO);
   }
+
+  
 
 }

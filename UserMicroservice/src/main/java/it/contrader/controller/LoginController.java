@@ -45,6 +45,7 @@ public class LoginController {
 			
 			try {
 				String jwt = loginService.createJwt(""+user.getIdUser(), user.getUsername()+" "+user.getPassword(), ""+user.getType(), new Date());
+				System.out.println(jwt);
 				UserLoggedDTO userLogged = new UserLoggedDTO(jwt,user.getType());
 				return ResponseEntity.status(HttpStatus.OK).header("jwt", jwt).body(userLogged);
 				

@@ -22,11 +22,11 @@ export class MenuBoComponent implements OnInit {
 
   ngOnInit() {
     this.jwt = sessionStorage.getItem("jwt");
-    this.userService.findUser(this.jwt).subscribe((data: any)=>{
-      if(data !=null){
-        this.userLog = data;
-      }
-    });
+    //this.userService.findUser(this.jwt).subscribe((data: any)=>{
+    //  if(data !=null){
+    //    this.userLog = data;
+    //  }
+    //});
     console.log("in ngOnit arriva: " + this.jwt);
     this.paramDTO = new ParamDTO(this.jwt, this.thingDTO);
     this.thingService.showThing(this.paramDTO).subscribe((data: Array<ThingDTO>) =>{

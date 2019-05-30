@@ -19,9 +19,8 @@ export class KeywordService {
     return this.http.post('http://localhost:8080/Keyword/insertKeyword', paramDTO);
   }
   
-  deleteKeyword(keywordDTO: KeywordDTO){
-    console.log(keywordDTO);
-    return this.http.delete('http://localhost:8080/Keyword/deleteKeyword?id='+ keywordDTO.idKeyword);
+  deleteKeyword(paramDTO: ParamDTO){
+    return this.http.post('http://localhost:8080/Keyword/deleteKeyword', paramDTO);
   }
 
   updateKeyword(keywordDTO: KeywordDTO){

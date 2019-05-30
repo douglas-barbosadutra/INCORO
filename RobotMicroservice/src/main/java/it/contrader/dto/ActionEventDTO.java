@@ -16,5 +16,5 @@ public class ActionEventDTO {
 	private String name;
 	private LabelDTO label;
 	private Integer type;
-
+	
 }

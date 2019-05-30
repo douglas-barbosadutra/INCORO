@@ -56,7 +56,8 @@ import { ActionEventListComponent } from './components/action-event/action-event
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import { ActionEventShowComponent } from './components/action-event/action-event-show/action-event-show.component';
 import { ThingInfoComponent } from './components/thing-info/thing-info.component';
-
+import { LabelNavbarComponent } from './components/label/label-navbar/label-navbar.component';
+import { ThingNavbarComponent } from './components/thing/thing-navbar/thing-navbar.component';
 
 let config = new AuthServiceConfig([
   {
@@ -115,6 +116,8 @@ export function provideConfig() {
     ActionEventListComponent,
     ActionEventShowComponent,
     ThingInfoComponent,
+    LabelNavbarComponent,
+    ThingNavbarComponent,
 
   ],
   imports: [

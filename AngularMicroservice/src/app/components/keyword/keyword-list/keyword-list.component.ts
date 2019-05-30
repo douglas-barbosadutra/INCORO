@@ -69,7 +69,10 @@ export class KeywordListComponent implements OnInit {
   }
 
   deleteKeyword(keywordDTO: KeywordDTO){
-    this.keywordService.deleteKeyword(keywordDTO).subscribe((data: any) =>{
+    this.keywordDTO = keywordDTO;
+    this.jwt = sessionStorage.getItem("jwt");
+    this.paramDTO = new ParamDTO(this.jwt, this.keywordDTO);
+    this.keywordService.deleteKeyword(this.paramDTO).subscribe((data: any) =>{
       if(data){
         alert("Cancellazione effettuata");
         location.reload(true);

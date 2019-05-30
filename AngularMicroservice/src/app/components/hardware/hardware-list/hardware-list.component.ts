@@ -30,18 +30,19 @@ export class HardwareListComponent implements OnInit {
 
   chooseHW(hardwareDTO: HardwareDTO){
     sessionStorage.setItem("DTOpassato", JSON.stringify(hardwareDTO));
-    this.router.navigateByUrl("/updateHardware");
+    this.router.navigate(["/homeBo/updateHardware"]);
   }
 
-  deleteHardware(hardwareDTO: HardwareDTO){
-    this.hardwareService.deleteHardware(hardwareDTO).subscribe((data: any) =>{
+  deleteHardware(paramDTO: ParamDTO){
+    this.jwt = sessionStorage.getItem("jwt");
+    this.paramDTO = new ParamDTO(this.jwt, this.hardwareDTO);
+    this.hardwareService.deleteHardware(this.paramDTO).subscribe((data: any) =>{
       if(data)
         alert("Cancellazione effettuata");
       else
         alert("Cancellazione fallita");
 
-      this.router.navigateByUrl("/listHardware");
+      this.router.navigate(["/homeBo/listHardware"]);
     })
   }
-
 }

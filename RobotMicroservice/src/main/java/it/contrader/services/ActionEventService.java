@@ -42,6 +42,10 @@ private final ActionEventRepository actionEventRepository;
 		return ConverterActionEvent.toListDTO((List<ActionEvent>) actionEventRepository.findAll());
 	}
 	
+	public List<ActionEventDTO> getAllActionEventByName(String name){
+		return ConverterActionEvent.toListDTO((List<ActionEvent>) actionEventRepository.findAllByName(name));
+	}
+	
 	public List<ActionEventDTO> getListActionEventDTO(){
 		List<ActionEvent> listActionEvent = (List<ActionEvent>) actionEventRepository.findAll();
 		List<ActionEventDTO> listActionEventDTO = ConverterActionEvent.toListDTO(listActionEvent);
@@ -75,5 +79,28 @@ private final ActionEventRepository actionEventRepository;
 			listActionEventDTO.add(ConverterActionEvent.toDto(actionEvent));
 		}
 		return listActionEventDTO;
+	}
+	
+	//metodo mio
+	public List<ActionEventDTO> getActionEventByLabelAndName(List<LabelDTO> listLabelDTO, String name){
+		//LabelDTO labelDTO;
+		List<ActionEventDTO> newList = new ArrayList<>();
+		List<ActionEvent> list = new ArrayList<>();
+		List<ActionEventDTO> listActionEventDTO = new ArrayList<>();
+		for (int i=0; i<listLabelDTO.size(); i++) {
+			LabelDTO labelDTO = listLabelDTO.get(i);
+			list = actionEventRepository.findAllByLabelAndName(ConverterLabel.toEntity(labelDTO), name);
+			for(int j=0; j<list.size(); j++) {
+				ActionEventDTO actionEventDTO = ConverterActionEvent.toDto(list.get(j));
+				newList.add(actionEventDTO);
+				
+			}
+		}
+		
+		
+		/*for(ActionEvent actionEvent : list) {
+			listActionEventDTO.add(ConverterActionEvent.toDto(actionEvent));
+		}*/
+		return newList;
 	}
 }

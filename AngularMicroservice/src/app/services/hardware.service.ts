@@ -18,11 +18,10 @@ export class HardwareService {
     return this.http.get('http://localhost:8080/Hardware/showHardware?jwt='+ paramDTO.jwt);
   }
 
-  deleteHardware(hardwareDTO: HardwareDTO){
-    alert(hardwareDTO.idHardware);
-    return this.http.delete('http://localhost:8080/Hardware/deleteHardware?id=' + hardwareDTO.idHardware);
+  deleteHardware(paramDTO: ParamDTO){
+    return this.http.post('http://localhost:8080/Hardware/deleteHardware', paramDTO);
   }
-  
+
   updateHardware(hardwareDTO: HardwareDTO) {
     return this.http.put( 'http://localhost:8080/Hardware/updateHardware', hardwareDTO);
   }

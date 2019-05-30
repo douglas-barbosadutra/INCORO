@@ -26,9 +26,7 @@ export class ActionEventInsertComponent implements OnInit {
     this.labelDTO = new LabelDTO(0, "", 0);
     this.actionEventDTO = new ActionEventDTO(0, "", "", this.labelDTO,0);
     this.paramDTO = new ParamDTO(sessionStorage.getItem("jwt"), this.labelDTO);
-    
-    
-
+  
     this.labelService.showLabel(this.paramDTO).subscribe((data: Array<LabelDTO>) =>{
       if(data != null){
         console.log("lista label", data);
@@ -45,14 +43,12 @@ export class ActionEventInsertComponent implements OnInit {
     
     this.actionEventDTO.label.idLabel = this.labelDTO.idLabel;
    
-  this.actionEventService.insertActionEvent(this.paramDTO).subscribe((data: any) => {
-    
-    if(data != null)
-      alert("Inserimento effettuato");
-    else
-      alert("Inserimento fallito");
-
-      this.router.navigateByUrl("/homeBo");
+    this.actionEventService.insertActionEvent(this.paramDTO).subscribe((data: any) => {
+      if(data != null)
+        alert("Inserimento effettuato");
+      else
+        alert("Inserimento fallito");
+      this.router.navigate(["/homeBo"]);
   })
 }
 }
