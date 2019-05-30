@@ -64,6 +64,23 @@ int idUser;
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 	}
 }
+
+
+@RequestMapping(value = "/byId", method = RequestMethod.POST)
+//caso particolare di passaggio. la jwt ha id e tipo
+public List<ThingDTO> showThingById(@RequestBody List<String> num) {
+
+	
+			return thingService.findAllThingById(num);
+			
+}
+
+
+
+
+
+
+
 	
 @RequestMapping(value="/deleteThing" , method= RequestMethod.POST)
 public ResponseEntity<Boolean> deleteThing(@RequestBody ParamDTO paramDTO) {			

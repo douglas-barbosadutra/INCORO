@@ -66,6 +66,14 @@ public ResponseEntity<List<ActionEventDTO>> showActionEvent(@RequestParam(value=
 	}
 }
 		
+
+@RequestMapping(value = "/getByLabel", method = RequestMethod.GET)
+public List<ActionEventDTO> showActionEventByLabelList(@RequestBody List<LabelDTO> labelList) {
+	
+			
+			return actionEventService.getActionEventByLabel(labelList);				
+		
+}
 // actionEvent type = 0 = out = action  actionEvent type = 1 = in = event
 @RequestMapping(value = "/findAction", method = RequestMethod.POST)
 public ResponseEntity<List<ActionEventDTO>> showAction(@RequestBody ParamDTO paramDTO) {
