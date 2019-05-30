@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.catalina.filters.AddDefaultCharsetFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.jsonwebtoken.ExpiredJwtException;
+import it.contrader.converter.ConverterActionEvent;
+import it.contrader.converter.ConverterLabel;
 import it.contrader.dto.ActionEventDTO;
 import it.contrader.dto.LabelDTO;
 import it.contrader.dto.ParamDTO;
+import it.contrader.dto.ThingDTO;
+import it.contrader.model.ActionEvent;
 import it.contrader.services.ActionEventService;
+import it.contrader.services.ThingService;
 import it.contrader.services.LabelService;
 import it.contrader.utils.JwtUtils;
 
@@ -31,11 +37,13 @@ public class ActionEventController {
 	
 	private final ActionEventService actionEventService;
 	private final LabelService labelService;
+	private final ThingService thingService;
 
 	@Autowired
-	public ActionEventController(ActionEventService actionEventService, LabelService labelService) {
+	public ActionEventController(ActionEventService actionEventService, LabelService labelService, ThingService thingService) {
 		this.actionEventService = actionEventService;
 		this.labelService= labelService;
+		this.thingService = thingService;
 	}
 	
 @RequestMapping(value = "/showActionEvent", method = RequestMethod.GET)
@@ -48,6 +56,7 @@ public ResponseEntity<List<ActionEventDTO>> showActionEvent(@RequestParam(value=
 			idUser = this.getIdUserFromJwt(jwt);
 			//LabelDTO labelDTO = labelService.findLabelDTOByIdUser(idUser); 
 			List<LabelDTO> listLabelDTO = labelService.getLabelDTOByIdUser(idUser);
+			//return ResponseEntity.status(HttpStatus.OK).body(actionEventService.getAllActionEvent());
 			return ResponseEntity.status(HttpStatus.OK).body(actionEventService.getActionEventByLabel(listLabelDTO));				
 		}
 			else
@@ -118,6 +127,41 @@ public ResponseEntity<List<ActionEventDTO>> showEvent(@RequestBody ParamDTO para
 	}
 }
 	
+
+@RequestMapping(value="/findActionByName", method= RequestMethod.POST)
+public ResponseEntity<List<ThingDTO>> findActionByName(@RequestBody ParamDTO paramDTO) {
+	int rank;
+	try {
+		rank = this.getTypeFromJwt(paramDTO.getJwt());
+		// recupero l'idUtente dalla Param e dalla Jwt
+		int idUser = this.getIdUserFromJwt(paramDTO.getJwt());
+		if(rank == 1) {
+			List<LabelDTO> labelByUser= labelService.findLabelbyIdUser(idUser);
+			LinkedHashMap actionDTOLHM = (LinkedHashMap) paramDTO.getParam();
+			String nome = actionDTOLHM.get("name").toString();
+			
+			List<ActionEventDTO> actionEventByName = actionEventService.getActionEventByLabelAndName(labelByUser, nome);
+			
+			ArrayList<LabelDTO> l = new ArrayList<LabelDTO>();
+			for (int i=0; i<actionEventByName.size(); i++) {
+				LabelDTO labelDTO = actionEventByName.get(i).getLabel();
+				l.add(labelDTO);
+			}
+			List<ThingDTO> listThing = thingService.getThingByLabel(l);
+			//List<ActionEventDTO> actionEventByName = actionEventService.getAllActionEventByName(nome);
+			// ho le azioni in base al nome dell'azione
+			if(listThing!= null)
+				return ResponseEntity.status(HttpStatus.OK).body(listThing);
+			else
+				return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+		}
+		else
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);		
+		} catch (ExpiredJwtException | UnsupportedEncodingException e) {
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+	}
+}
+
 @RequestMapping(value = "/showEventByLabel", method = RequestMethod.GET)
 public List<ActionEventDTO> showEvent(@RequestParam(value="id") Integer idLabel) {
 	LabelDTO labelDTO = labelService.findLabelById(idLabel);

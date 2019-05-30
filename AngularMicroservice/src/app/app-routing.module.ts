@@ -29,6 +29,7 @@ import { HomeBoComponent } from './components/home/home-bo/home-bo.component';
 import { LabelInsertComponent} from './components/label/label-insert/label-insert.component';
 import { LabelListComponent} from './components/label/label-list/label-list.component';
 import { LabelUpdateComponent} from './components/label/label-update/label-update.component';
+import { LabelNavbarComponent} from './components/label/label-navbar/label-navbar.component';
 // import dei component dei vari menu
 import { MenuAdminComponent} from './components/menu/menu-admin/menu-admin.component';
 import { MenuBoComponent} from './components/menu/menu-bo/menu-bo.component';
@@ -36,6 +37,7 @@ import { MenuBoComponent} from './components/menu/menu-bo/menu-bo.component';
 import { ThingInsertComponent} from './components/thing/thing-insert/thing-insert.component';
 import { ThingListComponent} from './components/thing/thing-list/thing-list.component';
 import { ThingUpdateComponent} from './components/thing/thing-update/thing-update.component';
+import { ThingNavbarComponent} from './components/thing/thing-navbar/thing-navbar.component';
 //import dei componet di user
 import { UserInsertComponent} from './components/user/user-insert/user-insert.component';
 import { UserShowComponent} from './components/user/user-show/user-show.component';
@@ -94,10 +96,13 @@ const routes: Routes = [
     {path: 'insertLabel', component: LabelInsertComponent},
     {path: 'listLabel', component: LabelListComponent},
     {path: 'updateLabel', component: LabelUpdateComponent},
+    {path: 'labelNavbar', component: LabelNavbarComponent},
+    
     //thing
     {path: 'insertThing', component: ThingInsertComponent},
     {path: 'listThing', component: ThingListComponent},
     {path: 'updateThing', component: ThingUpdateComponent},
+    {path: 'thingNavbar', component: ThingNavbarComponent},
     //actionEvent
     {path: 'insertActionEvent', component: ActionEventInsertComponent},
     {path: 'listActionEvent', component: ActionEventListComponent},

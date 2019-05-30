@@ -67,6 +67,7 @@ public class LabelService {
 		return labelDTO;
 	}
 	
+	
 	public List<LabelDTO> findLabelDTOByName (String name){
 		List<Label> listLabel = labelRepository.findAllByName(name);
 		List<LabelDTO> listLabelDTO = new ArrayList<>();
@@ -89,4 +90,23 @@ public class LabelService {
 		}
 		return listLabelDTO;
 	}
+	/*
+	public List<LabelDTO> findLabelDTOByPart (String place){
+		List<LabelDTO> listLabelDTO = new ArrayList<>();
+		List<Label> list = labelRepository.findByNameContainingIgnoreCase(place);
+		for(Label label : list) {
+			listLabelDTO.add(ConverterLabel.toDto(label));
+		}
+		return listLabelDTO;
+	}*/
+	
+	public List<LabelDTO> findLabelDTOByPartUser (String place, int idUser){
+		List<LabelDTO> listLabelDTO = new ArrayList<>();
+		List<Label> list = labelRepository.findByIdUserAndNameContainingIgnoreCase(idUser, place);
+		for(Label label : list) {
+			listLabelDTO.add(ConverterLabel.toDto(label));
+		}
+		return listLabelDTO;
+	}
+	
 }

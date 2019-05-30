@@ -25,17 +25,16 @@ export class ActionEventListComponent implements OnInit {
     this.actionEventService.showActionEvent(this.paramDTO).subscribe((data: any) => {
       if(data != null){
         this.actionEventList = data;
+        var RetriData= sessionStorage.getItem("ActionList");
+        this.actionEventList = JSON.parse(RetriData)
     }}
     )
-    var RetriData= sessionStorage.getItem("ActionList");
-    this.actionEventList = JSON.parse(RetriData);
-
+  
   }
   
   chooseActionEvent(idActionEvent: number){
     sessionStorage.setItem("idActionEvent", JSON.stringify(idActionEvent));
     this.router.navigate(["/homeBo/updateActionEvent"]);
-
   }
 
   setDTO(actionEvent: ActionEventDTO){

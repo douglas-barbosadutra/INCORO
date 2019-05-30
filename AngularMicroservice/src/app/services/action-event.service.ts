@@ -14,7 +14,6 @@ export class ActionEventService {
     }
   
     updateActionEvent(paramDTO: ParamDTO){
-      
       return this.http.put('http://localhost:8080/ActionEvent/updateActionEvent', paramDTO);
     }
   
@@ -23,7 +22,6 @@ export class ActionEventService {
     }
   
     deleteActionEvent(paramDTO: ParamDTO){
-      
       return this.http.post('http://localhost:8080/ActionEvent/deleteActionEvent', paramDTO);
     }
 
@@ -33,8 +31,12 @@ export class ActionEventService {
     }
 
     findEvent(paramDTO: ParamDTO){
-      console.log("in findAction il param", paramDTO )
       return this.http.post('http://localhost:8080/ActionEvent/findEvent', paramDTO);
     }
-  }
 
+    findActionByName(paramDTO: ParamDTO){
+      console.log("arriva", paramDTO);
+      return this.http.post('http://localhost:8080/ActionEvent/findActionByName', paramDTO);
+    }
+
+}

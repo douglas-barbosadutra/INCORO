@@ -50,7 +50,6 @@ public ResponseEntity<List<LabelDTO>> showLabel(@RequestParam(value="jwt") Strin
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 	}
 }
-	
 
 @RequestMapping(value="/deleteLabel" , method= RequestMethod.POST)
 public ResponseEntity<Boolean> deleteLabel(@RequestBody ParamDTO paramDTO) {		
@@ -90,6 +89,7 @@ public ResponseEntity<LabelDTO> insertLabel(@RequestBody ParamDTO paramDTO) {
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
 	}
 }
+
 	
 @RequestMapping(value="/updateLabel", method= RequestMethod.PUT)
 public ResponseEntity<LabelDTO> updateLabel(@RequestBody ParamDTO paramDTO) {
@@ -114,6 +114,30 @@ try {
 	}
 }
 	
+@RequestMapping(value="/showLabelNavbar", method= RequestMethod.POST)
+public ResponseEntity<List<LabelDTO>> showLabelNavbar(@RequestBody ParamDTO paramDTO) {
+	int rank;
+	try {
+		rank = this.getTypeFromJwt(paramDTO.getJwt());
+		// recupero l'idUtente dalla Param e dalla Jwt
+		int idUser = this.getIdUserFromJwt(paramDTO.getJwt());
+		if(rank == 1) {
+			//List<LabelDTO> labelByUser= labelService.findLabelbyIdUser(idUser);
+			LinkedHashMap label = (LinkedHashMap) paramDTO.getParam();
+			String nome = label.get("name").toString();
+			//List<LabelDTO> labelShow = labelService.findLabelDTOByPart(nome);
+			List<LabelDTO> labelShow = labelService.findLabelDTOByPartUser(nome, idUser);
+			if(labelShow!= null)
+				return ResponseEntity.status(HttpStatus.OK).body(labelShow);
+			else
+				return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+		}
+		else
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);		
+		} catch (ExpiredJwtException | UnsupportedEncodingException e) {
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+	}
+}
 
 // func che estrae il tipo utente dalla Jwt.	
 private int getTypeFromJwt(String jwt) throws ExpiredJwtException, UnsupportedEncodingException {

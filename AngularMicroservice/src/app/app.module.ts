@@ -54,6 +54,8 @@ import { ActionEventUpdateComponent } from './components/action-event/action-eve
 import { ActionEventDeleteComponent } from './components/action-event/action-event-delete/action-event-delete.component';
 import { ActionEventListComponent } from './components/action-event/action-event-list/action-event-list.component';
 import { ActionEventShowComponent } from './components/action-event/action-event-show/action-event-show.component';
+import { LabelNavbarComponent } from './components/label/label-navbar/label-navbar.component';
+import { ThingNavbarComponent } from './components/thing/thing-navbar/thing-navbar.component';
 
 let config = new AuthServiceConfig([
   {
@@ -111,6 +113,8 @@ export function provideConfig() {
     ActionEventDeleteComponent,
     ActionEventListComponent,
     ActionEventShowComponent,
+    LabelNavbarComponent,
+    ThingNavbarComponent,
 
   ],
   imports: [
