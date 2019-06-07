@@ -26,6 +26,32 @@ public class Thing implements Serializable {
     @NotNull
     @Field("description")
     private String description;
+    
+    @Field("actions")
+    private String [] actions;
+    
+    @Field("events")
+    private String[] events;
+    
+    
+    public String[] getActions() {
+        return actions;
+    }
+    public void setActions(String[] actions) {
+        this.actions = actions;
+    }
+    
+    public String[] getEvents() {
+        return events;
+    }
+    public void setEvents(String[] events) {
+        this.events = events;
+    }
+    
+    
+    
+    
+    
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getId() {
@@ -89,6 +115,10 @@ public class Thing implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", actions='" + getActions().toString() + "'"+
+            ", events='" + getEvents().toString() + "'" +
             "}";
+            
     }
 }

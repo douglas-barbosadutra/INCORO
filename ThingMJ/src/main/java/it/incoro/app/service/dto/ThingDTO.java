@@ -16,6 +16,24 @@ public class ThingDTO implements Serializable {
 
     @NotNull
     private String description;
+    
+    private String[] actions;
+    
+    private String[] events;
+    
+    public String[] getActions() {
+        return actions;
+    }
+    public void setActions(String[] actions) {
+        this.actions = actions;
+    }
+    
+    public String[] getEvents() {
+        return events;
+    }
+    public void setEvents(String[] events) {
+        this.events = events;
+    }
 
     public String getId() {
         return id;
