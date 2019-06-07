@@ -74,7 +74,7 @@ spring:
 #        key-alias: thingmj
 # ===================================================================
 server:
-    port: 8081
+    port: 8085
 
 # ===================================================================
 # JHipster specific properties
@@ -111,7 +111,7 @@ jhipster:
                 token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: ThingMJ@localhost
-        base-url: http://127.0.0.1:8081
+        base-url: http://127.0.0.1:8085
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx:
             enabled: true
