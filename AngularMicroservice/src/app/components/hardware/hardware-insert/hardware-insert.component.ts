@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
 import { HardwareService } from '../../../../../src/app/services/hardware.service';
 import {ThingService } from '../../../../../src/app/services/thing.service';
 import { LabelDTO } from '../../../../dto/LabelDTO';
-import { UserDTO } from '../../../../dto/UserDTO';
+import { UserDTO } from '../../../../dto/UtenteDTO';
 import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({

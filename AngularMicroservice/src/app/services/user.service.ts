@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserDTO } from '../../../src/dto/UserDTO';
+import { UserDTO } from '../../dto/UtenteDTO';
 import { ConstantPool } from '@angular/compiler';
 import { ParamDTO } from '../../dto/ParamDTO';
 //import { UserDTO } from 'dto/UserDTO';

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { KeywordDTO } from '../../../../dto/KeywordDTO';
 import { ThingDTO } from '../../../../dto/ThingDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
-import { UserDTO } from '../../../../dto/UserDTO';
+import { UserDTO } from '../../../../dto/UtenteDTO';
 import { UserService } from '../../../../app/services/user.service';
 import { LabelService } from '../../../../app/services/label.service';
 import { NgModel } from '@angular/forms';

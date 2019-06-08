@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { UserDTO } from '../../../src/dto/UserDTO';
+import { UserDTO } from '../../dto/UtenteDTO';
 import { LoginDTO } from '../../../src/dto/LoginDTO';
 import {  GoogleLoginProvider } from "angularx-social-login";
 import { SocialUser } from 'angularx-social-login';
@@ -27,8 +27,9 @@ export class LoginService {
     };
   }
 
-  login(loginDTO: LoginDTO): Observable<UserLoggedDTO> {
-    return this.http.post<UserLoggedDTO>('//localhost:8094/Login/login', loginDTO).pipe(tap((response) =>
+  login(loginDTO:LoginDTO) {
+    console.log("login alla service: ", loginDTO);
+    return this.http.post('http://localhost:8080/UserMJ/api/loginDTO', loginDTO).pipe(tap((response) =>
     console.log(loginDTO.username), catchError(this.handleError("login error", {}))));
   }
 

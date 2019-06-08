@@ -4,7 +4,7 @@ import {LabelService} from '../../../../../src/app/services/label.service';
 import { ThingDTO } from '../../../../dto/ThingDTO';
 import { Router } from '@angular/router';
 import { LabelDTO } from '../../../../dto/LabelDTO';
-import { UserDTO } from '../../../../dto/UserDTO';
+import { UserDTO } from '../../../../dto/UtenteDTO';
 import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({

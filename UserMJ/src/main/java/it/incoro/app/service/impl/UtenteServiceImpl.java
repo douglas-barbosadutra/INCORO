@@ -71,6 +71,13 @@ public class UtenteServiceImpl implements UtenteService {
         return utenteRepository.findById(id)
             .map(utenteMapper::toDto);
     }
+	
+	@Override
+    public Optional<UtenteDTO> findUsernameAndPassword(String username, String password) {
+        log.debug("Request to get Utente : {}", username);
+        return utenteRepository.findByUsernameAndPassword(username, password)
+            .map(utenteMapper::toDto);
+    }
 
     /**
      * Delete the utente by id.

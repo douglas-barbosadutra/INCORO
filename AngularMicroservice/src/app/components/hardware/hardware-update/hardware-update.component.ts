@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
 import { HardwareService } from '../../../../../src/app/services/hardware.service';
 import { ThingService } from '../../../../../src/app/services/thing.service';
 import { KeywordDTO } from '../../../../dto/KeywordDTO';
-import { UserDTO } from '../../../../dto/UserDTO';
+import { UserDTO } from '../../../../dto/UtenteDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
 import { LinkTKDTO } from '../../../../dto/LinkTKDTO';
 import { ParamDTO } from '../../../../dto/ParamDTO';

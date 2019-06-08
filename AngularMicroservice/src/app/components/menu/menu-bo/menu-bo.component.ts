@@ -3,7 +3,7 @@ import { ThingDTO } from '../../../../dto/ThingDTO';
 import { ThingService } from '../../../services/thing.service';
 import { Router } from '@angular/router';
 import { ParamDTO } from '../../../../dto/ParamDTO';
-import { UserDTO } from '../../../../dto/UserDTO';
+import { UserDTO } from '../../../../dto/UtenteDTO';
 import { UserService } from '../../../services/user.service';
 @Component({
   selector: 'app-menu-bo',

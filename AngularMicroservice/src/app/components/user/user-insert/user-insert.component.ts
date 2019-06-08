@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../../../src/app/services/user.service';
-import { UserDTO } from '../../../../dto/UserDTO';
+import { UserDTO } from '../../../../dto/UtenteDTO';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ParamDTO } from '../../../../dto/ParamDTO';

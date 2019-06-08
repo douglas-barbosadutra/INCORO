@@ -16,7 +16,17 @@
             "fieldValidateRules": [
                 "required"
             ]
-        }
+        },
+		{
+            "fieldName": "actions",
+            
+            
+        },
+		{
+            "fieldName": "events",
+            
+           
+        },
     ],
     "dto": "mapstruct",
     "searchEngine": false,

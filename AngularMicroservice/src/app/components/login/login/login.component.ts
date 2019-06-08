@@ -6,7 +6,7 @@ import { LoginDTO } from '../../../../../src/dto/LoginDTO';
 import { AuthService } from "angularx-social-login";
 import {  GoogleLoginProvider } from "angularx-social-login";
 import { SocialUser } from 'angularx-social-login';
-import { UserDTO } from '../../../../dto/UserDTO';
+import { UserDTO } from '../../../../dto/UtenteDTO';
 import { UserService } from '../../../../app/services/user.service';
 import { UserLoggedDTO } from '../../../../dto/UserLoggedDTO';
 
@@ -64,11 +64,11 @@ export class LoginComponent implements OnInit {
   login(): void{
 
     //console.log(this.loginDTO);
-      this.loginService.login(this.loginDTO).subscribe((response: UserLoggedDTO) => {
+      this.loginService.login(this.loginDTO).subscribe((response: any) => {
 
     if(response != null){
         
-        sessionStorage.setItem("jwt",response.jwt);
+      localStorage.setItem("currentUser", JSON.stringify({ "utentes": response}));
         //localStorage.setItem("jwt",response.jwt);
 
       if(response.type == 1){

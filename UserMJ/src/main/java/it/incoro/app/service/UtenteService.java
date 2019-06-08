@@ -43,4 +43,7 @@ public interface UtenteService {
      * @param id the id of the entity
      */
     void delete(String id);
+    
+    Optional<UtenteDTO> findUsernameAndPassword(String username, String password);
+	
 }

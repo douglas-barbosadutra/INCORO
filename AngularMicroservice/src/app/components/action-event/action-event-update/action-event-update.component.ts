@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionEventDTO } from '../../../../dto/ActionEventDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
-import { UserDTO } from '../../../../dto/UserDTO';
+import { UserDTO } from '../../../../dto/UtenteDTO';
 import { ActionEventService } from '../../../../app/services/action-event.service';
 import { Router } from '@angular/router';
 import { LabelService } from '../../../../app/services/label.service';

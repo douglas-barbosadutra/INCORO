@@ -4,6 +4,7 @@ import { GatewayUtenteModule as UserMjUtenteModule } from './UserMJ/utente/utent
 import { GatewayAsdfModule as UserMjAsdfModule } from './UserMJ/asdf/asdf.module';
 import { GatewayThingModule as ThingMjThingModule } from './ThingMJ/thing/thing.module';
 import { GatewayActioneventModule as ThingMjActioneventModule } from './ThingMJ/actionevent/actionevent.module';
+import { GatewayLoginModule as UserMjLoginModule } from './UserMJ/login/login.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -13,6 +14,7 @@ import { GatewayActioneventModule as ThingMjActioneventModule } from './ThingMJ/
         UserMjAsdfModule,
         ThingMjThingModule,
         ThingMjActioneventModule,
+        
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

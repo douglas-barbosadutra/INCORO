@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDTO } from '../../../../dto/UserDTO';
+import { UserDTO } from '../../../../dto/UtenteDTO';
 import { UserService } from '../../../../../src/app/services/user.service';
 import { Router } from '@angular/router';
 import { ParamDTO } from '../../../../dto/ParamDTO';

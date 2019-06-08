@@ -1,4 +1,4 @@
-import { UserDTO } from './UserDTO';
+import { UserDTO } from './UtenteDTO';
 
 export class LabelDTO{
     idLabel: number;

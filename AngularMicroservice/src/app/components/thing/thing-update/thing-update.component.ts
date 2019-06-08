@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ThingDTO } from '../../../../dto/ThingDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
-import { UserDTO } from '../../../../dto/UserDTO';
+import { UserDTO } from '../../../../dto/UtenteDTO';
 import { ThingService } from '../../../../../src/app/services/thing.service';
 import {LabelService} from '../../../../../src/app/services/label.service';
 import { Router } from '@angular/router';

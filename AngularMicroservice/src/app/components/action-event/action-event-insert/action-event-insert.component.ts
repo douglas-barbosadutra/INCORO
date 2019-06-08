@@ -4,7 +4,7 @@ import { LabelDTO } from '../../../../dto/LabelDTO';
 import { ActionEventService } from '../../../../app/services/action-event.service';
 import { LabelService } from '../../../../app/services/label.service';
 import { Router } from '@angular/router';
-import { UserDTO } from '../../../../dto/UserDTO';
+import { UserDTO } from '../../../../dto/UtenteDTO';
 import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({

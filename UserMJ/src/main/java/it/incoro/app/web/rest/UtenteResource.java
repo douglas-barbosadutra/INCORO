@@ -5,6 +5,7 @@ import it.incoro.app.service.UtenteService;
 import it.incoro.app.web.rest.errors.BadRequestAlertException;
 import it.incoro.app.web.rest.util.HeaderUtil;
 import it.incoro.app.web.rest.util.PaginationUtil;
+import it.incoro.app.service.dto.LoginDTO;
 import it.incoro.app.service.dto.UtenteDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -26,6 +27,7 @@ import java.util.Optional;
 /**
  * REST controller for managing Utente.
  */
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
 public class UtenteResource {
@@ -108,6 +110,18 @@ public class UtenteResource {
     public ResponseEntity<UtenteDTO> getUtente(@PathVariable String id) {
         log.debug("REST request to get Utente : {}", id);
         Optional<UtenteDTO> utenteDTO = utenteService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(utenteDTO);
+    }
+	
+	
+	@PostMapping("/loginDTO")
+	@Timed
+    public ResponseEntity<UtenteDTO> getUtenteLog(@Valid @RequestBody LoginDTO loginDTO) throws URISyntaxException {
+        log.debug("REST request to save Utente : {}", loginDTO);
+        String password= loginDTO.getPassword();
+        String username = loginDTO.getUsername();
+       
+        Optional<UtenteDTO> utenteDTO = utenteService.findUsernameAndPassword(username, password);
         return ResponseUtil.wrapOrNotFound(utenteDTO);
     }
 
