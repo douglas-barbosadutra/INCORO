@@ -6,9 +6,11 @@ import { LoginDTO } from '../../../../../src/dto/LoginDTO';
 import { AuthService } from "angularx-social-login";
 import {  GoogleLoginProvider } from "angularx-social-login";
 import { SocialUser } from 'angularx-social-login';
-import { UserDTO } from '../../../../dto/UtenteDTO';
-import { UserService } from '../../../../app/services/user.service';
+import { UtenteDTO } from '../../../../dto/UtenteDTO';
+import { UtenteService } from '../../../services/utente.service';
 import { UserLoggedDTO } from '../../../../dto/UserLoggedDTO';
+import { HttpClient } from '@angular/common/http';
+import { stringify } from '@angular/core/src/util';
 
 @Component({
   selector: 'app-login',
@@ -18,17 +20,22 @@ import { UserLoggedDTO } from '../../../../dto/UserLoggedDTO';
 export class LoginComponent implements OnInit {
   private idUtenteLocale: number;
   public loginDTO: LoginDTO;
-  public userDTO: UserDTO;
+  public utenteDTO: UtenteDTO;
   public user: SocialUser;
   private jwt: string;
   private userLoggedDTO: UserLoggedDTO;
+  private username: string;
+  private password: string;
+  private rememberMe: boolean;
 
-  constructor(private loginService: LoginService, private router:  Router ,private authService: AuthService, private userService: UserService) { }
+
+  constructor(private loginService: LoginService, private router:  Router ,
+    private authService: AuthService, private utenteService: UtenteService, private http: HttpClient) { }
 
   ngOnInit(){
     this.loginDTO = new LoginDTO(null,null);
 
-    this.userDTO = new UserDTO(0,null,null,0);
+    this.utenteDTO = new UtenteDTO(0,null,null,0, []);
     /*this.authService.authState.subscribe((user) => {
       this.user = user;
       console.log(user.name);
@@ -62,9 +69,33 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void{
+    this.loginService.login(this.loginDTO).subscribe((response: any) => {
+      
+      console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    });
+
+    this.loginService.getUserLogged(this.loginDTO.username).subscribe((response: UtenteDTO) => {
+      console.log(response);
+      localStorage.setItem("currentUserData", JSON.stringify(response));
+
+     
+        this.router.navigateByUrl("homeBo");
+    
+     
+    })
+
+  }
+
+}
+    
+    
+
+
+
+
 
     //console.log(this.loginDTO);
-      this.loginService.login(this.loginDTO).subscribe((response: any) => {
+    /*  this.loginService.login(this.loginDTO).subscribe((response: any) => {
 
     if(response != null){
         
@@ -81,6 +112,5 @@ export class LoginComponent implements OnInit {
     else{
       alert("username o password errati");
       }
-    });
-  }
-}
+    });*/
+

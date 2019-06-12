@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-import { UserDTO } from '../../dto/UtenteDTO';
+import { UtenteDTO } from '../../dto/UtenteDTO';
 import { LoginDTO } from '../../../src/dto/LoginDTO';
 import {  GoogleLoginProvider } from "angularx-social-login";
 import { SocialUser } from 'angularx-social-login';
@@ -27,17 +27,36 @@ export class LoginService {
     };
   }
 
-  login(loginDTO:LoginDTO) {
-    console.log("login alla service: ", loginDTO);
-    return this.http.post('http://localhost:8080/UserMJ/api/loginDTO', loginDTO).pipe(tap((response) =>
-    console.log(loginDTO.username), catchError(this.handleError("login error", {}))));
+  auth() {
+    var user = JSON.parse(localStorage.getItem("currentUser")) as UtenteDTO;
+    
+    if(user) {
+        return "Bearer " + user.authorities;
+    } else {
+        return "";
+    }
   }
 
-  googleLogin(socialUser : SocialUser) : Observable<UserDTO> {
+  login(logindto: LoginDTO){
+    console.log("wwww")
+    return this.http.post('http://localhost:8080/api/authenticate', logindto);
+    
+  }
+
+  getUserLogged(username: string){
+    console.log("qua: ", this.auth())
+    return this.http.get('http://localhost:8080/api/users/'+username, {
+      headers: {
+          "Authorization": this.auth()
+      }
+    });
+  }
+
+  googleLogin(socialUser : SocialUser) : Observable<UtenteDTO> {
 
     this.wrkUser.username = socialUser.name;
     this.wrkUser.password = socialUser.email;
-    return this.http.post<UserDTO>('//localhost:8080/User/loginGoogle',this.wrkUser).pipe(tap((response)=>
+    return this.http.post<UtenteDTO>('//localhost:8080/User/loginGoogle',this.wrkUser).pipe(tap((response)=>
     console.log(socialUser.name),catchError(this.handleError("login error2",{}))));
   }
 }

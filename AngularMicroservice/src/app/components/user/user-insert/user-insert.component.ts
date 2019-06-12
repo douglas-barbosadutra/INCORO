@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../../../src/app/services/user.service';
-import { UserDTO } from '../../../../dto/UtenteDTO';
+import { UtenteService } from '../../../services/utente.service';
+import { UtenteDTO } from '../../../../dto/UtenteDTO';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ParamDTO } from '../../../../dto/ParamDTO';
@@ -12,23 +12,23 @@ import { ParamDTO } from '../../../../dto/ParamDTO';
 })
 export class UserInsertComponent implements OnInit {
 
-  private userDTO: UserDTO;
+  private utenteDTO: UtenteDTO;
   private paramDTO: ParamDTO;
   private jwt: string;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private utenteService: UtenteService, private router: Router) { }
 
   ngOnInit() {
     console.log(this.jwt);
     
-    this.userDTO = new UserDTO(0,"","",0);
+    this.utenteDTO = new UtenteDTO(0,"","",0,[]);
   }
 
-    insertUser(){
+    insertUtente(){
       this.jwt= sessionStorage.getItem("jwt");
-      this.paramDTO = new ParamDTO(this.jwt, this.userDTO);
-      console.log("user: ",this.userDTO);
-      this.userService.insertUser(this.paramDTO).subscribe((data: any) => {
+      this.paramDTO = new ParamDTO(this.jwt, this.utenteDTO);
+      console.log("user: ",this.utenteDTO);
+      this.utenteService.insertUtente(this.paramDTO).subscribe((data: any) => {
       console.log("arr")
 
       if(data != null)

@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { KeywordDTO } from '../../../../dto/KeywordDTO';
 import { ThingDTO } from '../../../../dto/ThingDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
-import { UserDTO } from '../../../../dto/UtenteDTO';
-import { UserService } from '../../../../app/services/user.service';
+import { UtenteDTO } from '../../../../dto/UtenteDTO';
+import { UtenteService } from '../../../services/utente.service';
 import { LabelService } from '../../../../app/services/label.service';
 import { NgModel } from '@angular/forms';
 import { ThingListComponent } from '../../../../app/components/thing/thing-list/thing-list.component';
@@ -21,12 +21,12 @@ export class KeywordInsertComponent implements OnInit {
   private keywordDTO: KeywordDTO;
   private thingDTO: ThingDTO;
   private labelDTO: LabelDTO;
-  private userDTO: UserDTO;
+  private utenteDTO: UtenteDTO;
   private thingList: Array<ThingDTO>;
   private paramDTO: ParamDTO;
   private jwt: string;
 
-  constructor(private thingService: ThingService, private router: Router, private keywordService: KeywordService, private userService: UserService, private labelService: LabelService) { }
+  constructor(private thingService: ThingService, private router: Router, private keywordService: KeywordService, private utenteService: UtenteService, private labelService: LabelService) { }
 
   ngOnInit() {
     //this.userDTO = new UserDTO(0,"","",0);

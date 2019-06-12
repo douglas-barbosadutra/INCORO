@@ -7,7 +7,7 @@ import { GoogleLoginProvider, FacebookLoginProvider, LinkedInLoginProvider} from
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserService } from './services/user.service';
+import { UtenteService } from './services/utente.service';
 import { ThingListComponent } from './components/thing/thing-list/thing-list.component';
 import { UserInsertComponent } from './components/user/user-insert/user-insert.component';
 import { UserUpdateComponent } from './components/user/user-update/user-update.component';
@@ -130,7 +130,7 @@ export function provideConfig() {
     ReactiveFormsModule,
     SocialLoginModule
   ],
-  providers: [UserService, ThingService, HardwareService, LoginService,
+  providers: [UtenteService, ThingService, HardwareService, LoginService,
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig

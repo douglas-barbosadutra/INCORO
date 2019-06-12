@@ -5,7 +5,7 @@ import { KeywordService } from '../../../../../src/app/services/keyword.service'
 import { LinkTKService } from '../../../../../src/app/services/linkTk.service';
 import { Router } from '@angular/router';
 import { LabelDTO } from '../../../../dto/LabelDTO';
-import { UserDTO } from '../../../../dto/UtenteDTO';
+import { UtenteDTO } from '../../../../dto/UtenteDTO';
 import { LinkTKDTO} from '../../../../dto/LinkTKDTO';
 import { KeywordDTO } from '../../../../dto/KeywordDTO';
 import { ParamDTO } from '../../../../dto/ParamDTO';

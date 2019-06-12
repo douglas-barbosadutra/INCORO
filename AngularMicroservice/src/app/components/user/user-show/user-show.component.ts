@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDTO } from '../../../../dto/UtenteDTO';
-import { UserService } from '../../../../../src/app/services/user.service';
+import { UtenteDTO } from '../../../../dto/UtenteDTO';
+import { UtenteService } from '../../../services/utente.service';
 import { Router } from '@angular/router';
 import { ParamDTO } from '../../../../dto/ParamDTO';
 import { UserLoggedDTO } from '../../../../dto/UserLoggedDTO';
@@ -11,39 +11,39 @@ import { UserLoggedDTO } from '../../../../dto/UserLoggedDTO';
   styleUrls: ['./user-show.component.css']
 })
 export class UserShowComponent implements OnInit {
-  private userList: Array<UserDTO>;
-  private userDTO: UserDTO;
+  private utenteList: Array<UtenteDTO>;
+  private utenteDTO: UtenteDTO;
   private paramDTO: ParamDTO;
   private jwt: string;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private utenteService: UtenteService, private router: Router) { }
 
   ngOnInit() {
     //alert("prima di prelevare: " + this.jwt);
     this.jwt = sessionStorage.getItem("jwt");
     //alert("nel show: " + this.jwt);
-    this.paramDTO = new ParamDTO(this.jwt, this.userDTO);
+    this.paramDTO = new ParamDTO(this.jwt, this.utenteDTO);
     //alert("paramDTO nel show: " + this.paramDTO);
 
-    this.userService.showUser(this.paramDTO).subscribe((data: Array<UserDTO>) =>{
+    this.utenteService.showUtente(this.paramDTO).subscribe((data: Array<UtenteDTO>) =>{
       //alert(" param " + this.paramDTO);
       console.log("user: ",data)
      //alert("nel show: " + this.jwt);
      // alert(" jwy " + this.jwt);
       if(data != null){
-        this.userList = data;
+        this.utenteList = data;
       }
     })
   }
 
-  chooseUser(idUser: number){
-    sessionStorage.setItem("idUser", JSON.stringify(idUser));
+  chooseUtente(id: number){
+    sessionStorage.setItem("id", JSON.stringify(id));
     this.router.navigateByUrl("/updateUser");
   } 
-  deleteUser(userDTO: UserDTO){
+  deleteUtente(utenteDTO: UtenteDTO){
     alert("param:" + this.jwt);
 
-    this.userService.deleteUser(this.paramDTO).subscribe((data: any) =>{
+    this.utenteService.deleteUtente(this.paramDTO).subscribe((data: any) =>{
       //alert("param:" + this.jwt);
 
       if(data){

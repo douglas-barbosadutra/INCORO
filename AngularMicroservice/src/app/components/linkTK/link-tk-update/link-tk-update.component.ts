@@ -6,7 +6,7 @@ import { LinkTKService } from '../../../../app/services/linkTk.service';
 import { KeywordService } from '../../../../app/services/keyword.service';
 import { ThingService } from '../../../../app/services/thing.service';
 import { ThingDTO } from '../../../../dto/ThingDTO';
-import { UserDTO } from '../../../../dto/UtenteDTO';
+import { UtenteDTO } from '../../../../dto/UtenteDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
 import { ParamDTO } from '../../../../dto/ParamDTO';
 

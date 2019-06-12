@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LabelDTO } from '../../../../dto/LabelDTO';
-import { UserDTO } from '../../../../dto/UtenteDTO';
+import { UtenteDTO } from '../../../../dto/UtenteDTO';
 import { LabelService } from '../../../../app/services/label.service';
 import { Router } from '@angular/router';
-import { UserService } from '../../../../app/services/user.service';
+import { UtenteService } from '../../../services/utente.service';
 import { ParamDTO } from '../../../../dto/ParamDTO';
 import { ActionEventService } from '../../../../app/services/action-event.service';
 import { ActionEventDTO } from '../../../../dto/ActionEventDTO';

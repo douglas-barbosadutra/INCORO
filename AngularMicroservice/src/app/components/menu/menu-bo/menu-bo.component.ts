@@ -3,8 +3,8 @@ import { ThingDTO } from '../../../../dto/ThingDTO';
 import { ThingService } from '../../../services/thing.service';
 import { Router } from '@angular/router';
 import { ParamDTO } from '../../../../dto/ParamDTO';
-import { UserDTO } from '../../../../dto/UtenteDTO';
-import { UserService } from '../../../services/user.service';
+import { UtenteDTO } from '../../../../dto/UtenteDTO';
+import { UtenteService } from '../../../services/utente.service';
 @Component({
   selector: 'app-menu-bo',
   templateUrl: './menu-bo.component.html',
@@ -16,9 +16,9 @@ export class MenuBoComponent implements OnInit {
   private thingDTO: ThingDTO;
   private jwt: string;
   private paramDTO: ParamDTO;
-  private userLog: UserDTO;
+  private userLog: UtenteDTO;
 
-  constructor(private thingService: ThingService, private router: Router ,private userService : UserService) { }
+  constructor(private thingService: ThingService, private router: Router ,private utenteService : UtenteService) { }
 
   ngOnInit() {
     this.jwt = sessionStorage.getItem("jwt");

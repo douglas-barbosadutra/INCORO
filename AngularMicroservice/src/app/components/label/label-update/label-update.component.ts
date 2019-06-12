@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LabelDTO } from '../../../../dto/LabelDTO';
-import { UserDTO } from '../../../../dto/UtenteDTO';
+import { UtenteDTO } from '../../../../dto/UtenteDTO';
 import { Router } from '@angular/router';
 import { LabelService } from '../../../../app/services/label.service';
 import { ParamDTO } from '../../../../dto/ParamDTO';
@@ -13,7 +13,7 @@ import { ParamDTO } from '../../../../dto/ParamDTO';
 })
 export class LabelUpdateComponent implements OnInit {
   private labelDTO: LabelDTO;
-  private userDTO: UserDTO;
+  private utenteDTO: UtenteDTO;
   private paramDTO: ParamDTO;
   
 

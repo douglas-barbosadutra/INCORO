@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
 import { HardwareService } from '../../../../../src/app/services/hardware.service';
 import { ThingService } from '../../../../../src/app/services/thing.service';
 import { KeywordDTO } from '../../../../dto/KeywordDTO';
-import { UserDTO } from '../../../../dto/UtenteDTO';
+import { UtenteDTO } from '../../../../dto/UtenteDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
 import { LinkTKDTO } from '../../../../dto/LinkTKDTO';
 import { ParamDTO } from '../../../../dto/ParamDTO';
@@ -21,7 +21,7 @@ export class HardwareUpdateComponent implements OnInit {
   private hardwareDTO: HardwareDTO;
   private thingDTO: ThingDTO;
   private keywordDTO: KeywordDTO;
-  private userDTO: UserDTO;
+  private utenteDTO: UtenteDTO;
   private labelDTO: LabelDTO;
   private linkTKDTO: LinkTKDTO;
   private thingList: Array<ThingDTO>;
@@ -32,7 +32,7 @@ export class HardwareUpdateComponent implements OnInit {
   ngOnInit() {
     
     this.labelDTO = new LabelDTO(0,"",0);
-    this.userDTO = new UserDTO(0,"","",0);
+    this.utenteDTO = new UtenteDTO(0,"","",0, []);
     this.thingDTO = new ThingDTO(0,"","","","","","", 0, this.labelDTO);
     //this.hardwareDTO = new HardwareDTO(0,"","",false,this.thingDTO);*/
     this.hardwareDTO = JSON.parse(sessionStorage.getItem("DTOpassato")) as HardwareDTO;

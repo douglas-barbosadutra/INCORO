@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ThingDTO } from '../../../../dto/ThingDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
-import { UserDTO } from '../../../../dto/UtenteDTO';
+import { UtenteDTO } from '../../../../dto/UtenteDTO';
 import { ThingService } from '../../../../../src/app/services/thing.service';
 import {LabelService} from '../../../../../src/app/services/label.service';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ import { ParamDTO } from '../../../../dto/ParamDTO';
 export class ThingUpdateComponent implements OnInit {
   private thingDTO: ThingDTO;
   private labelDTO: LabelDTO;
-  private userDTO: UserDTO;
+  private utenteDTO: UtenteDTO;
   private labelList: Array<LabelDTO>;
   private paramDTO: ParamDTO;
   private jwt:string;

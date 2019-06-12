@@ -4,7 +4,7 @@ import { LabelDTO } from '../../../../dto/LabelDTO';
 import { ActionEventService } from '../../../../app/services/action-event.service';
 import { LabelService } from '../../../../app/services/label.service';
 import { Router } from '@angular/router';
-import { UserDTO } from '../../../../dto/UtenteDTO';
+import { UtenteDTO } from '../../../../dto/UtenteDTO';
 import { ParamDTO } from '../../../../dto/ParamDTO';
 
 @Component({
@@ -15,7 +15,7 @@ import { ParamDTO } from '../../../../dto/ParamDTO';
 export class ActionEventInsertComponent implements OnInit {
   private actionEventDTO: ActionEventDTO;
   private labelDTO: LabelDTO;
-  private userDTO: UserDTO;
+  private utenteDTO: UtenteDTO;
   private labelList: Array<LabelDTO>;
   private paramDTO: ParamDTO;
 

@@ -11,13 +11,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let userDTO of userList">
-          <th scope="row">{{userDTO.idUser}}</th>
-          <td>{{userDTO.username}}</td>
-          <td>{{userDTO.password}}</td>
-          <td>{{userDTO.type}}</td>
+        <tr *ngFor="let utenteDTO of utenteList">
+          <th scope="row">{{utenteDTO.id}}</th>
+          <td>{{utenteDTO.username}}</td>
+          <td>{{utenteDTO.password}}</td>
+          <td>{{utenteDTO.type}}</td>
           <td>
-            <button class="btn"><i class="fa fa-trash" (click)="deleteUser(userDTO)" ></i></button>
+            <button class="btn"><i class="fa fa-trash" (click)="deleteUtente(utenteDTO)" ></i></button>
             <button class="btn"><i class="fa fa-pen"></i></button>
           </td>
         </tr>

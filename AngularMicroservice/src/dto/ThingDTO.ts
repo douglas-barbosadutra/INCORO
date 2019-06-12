@@ -1,4 +1,4 @@
-import { UserDTO } from './UtenteDTO';
+import { UtenteDTO } from './UtenteDTO';
 import { LabelDTO } from './LabelDTO';
 
 export class ThingDTO{

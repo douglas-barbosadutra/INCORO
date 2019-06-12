@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserDTO } from '../../../../dto/UtenteDTO';
+import { UtenteDTO } from '../../../../dto/UtenteDTO';
 import { Router } from '@angular/router';
-import { UserService } from '../../../../../src/app/services/user.service';
+import { UtenteService } from '../../../services/utente.service';
 import { ParamDTO } from '../../../../dto/ParamDTO';
 
 
@@ -12,20 +12,20 @@ import { ParamDTO } from '../../../../dto/ParamDTO';
 })
 export class UserUpdateComponent implements OnInit {
 
-  public userDTO: UserDTO;
+  public utenteDTO: UtenteDTO;
   private paramDTO: ParamDTO;
 
-  constructor(private router: Router, private userSerivce: UserService) { }
+  constructor(private router: Router, private utenteService: UtenteService) { }
 
   ngOnInit() {
     //this.findUser();
-    this.userDTO = new UserDTO(parseInt(sessionStorage.getItem("idUser")),"","",0);
+    this.utenteDTO = new UtenteDTO(parseInt(sessionStorage.getItem("id")),"","",0, []);
   }
 
-  updateUser(){
-    console.log(this.userDTO);
+  updateUtente(){
+    console.log(this.utenteDTO);
 
-    this.userSerivce.updateUser(this.paramDTO).subscribe((data: any) => {
+    this.utenteService.updateUtente(this.paramDTO).subscribe((data: any) => {
 
       if(data != null)
         alert("Aggiornamento effettuato");
