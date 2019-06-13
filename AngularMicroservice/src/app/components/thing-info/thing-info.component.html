@@ -1,25 +1,60 @@
-<div id="container">
-  <table class="table table-striped">
-    <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>ID Proprietario </th>
-          <th>ID Label</th>
-          <th></th>
-          <th></th>
-        </tr>
-    </thead>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">DETTAGLI</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">AZIONI</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">EVENTI</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="behavior-tab" data-toggle="tab" href="#behavior" role="tab" aria-controls="behavior" aria-selected="false">COMPORTAMENTI</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div id="container">
+      <table class="table table-striped">
+        <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>ID Proprietario </th>
+              <th>ID Label</th>
+              <th></th>
+              <th></th>
+            </tr>
+        </thead>
 
-    <tbody>
-        <tr *ngFor="let thing of thingList">
-          <td>{{thing.idThing}} </td>
-          <td>{{thing.name}} </td>
-          <td>{{thing.idUser}}</td>
-          <td>{{thing.label.idLabel}}</td>
-          <td><button class="btn btn-secondary" (click)="deleteThing(thing)"><i class="fas fa-trash-alt" style="color:white"></i></button></td>
-          <td><button class="btn btn-secondary" (click)="setThing(thing)"  ><i class="fas fa-pen-square" style="color:white"></i></button>  </td> <!-- (click)="setDTO(thingDTO)" -->
+        <tbody>
+            <tr *ngFor="let thing of thingList">
+              <td>{{thing.idThing}} </td>
+              <td>{{thing.name}} </td>
+              <td>{{thing.idUser}}</td>
+              <td>{{thing.label.idLabel}}</td>
+              <td><button class="btn btn-secondary" (click)="deleteThing(thing)"><i class="fas fa-trash-alt" style="color:white"></i></button></td>
+              <td><button class="btn btn-secondary" (click)="setThing(thing)"  ><i class="fas fa-pen-square" style="color:white"></i></button>  </td> <!-- (click)="setDTO(thingDTO)" -->
+            </tr>
+        </tbody>
+      </table>
+      <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Descrizione<th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p> {{thingList[0].description}} </p>
+          <td>
+        </tr>
+      <tbody>
+      </table>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">profile</div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">contact</div>
+  <div class="tab-pane fade" id="behavior" role="tabpanel" aria-labelledby="behavior-tab">behavior</div>
 </div>

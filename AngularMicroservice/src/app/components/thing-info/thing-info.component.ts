@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ThingDTO } from '../../../dto/ThingDTO';
 import { ThingService } from '../../services/thing.service';
 import { Router } from '@angular/router';
+import { ActionEventDTO} from '../../../dto/ActionEventDTO';
 
 @Component({
   selector: 'app-thing-info',
@@ -13,6 +14,7 @@ export class ThingInfoComponent implements OnInit {
   id : String;
   thingList : Array<ThingDTO>;
   thing : ThingDTO;
+  aeList : Array<ActionEventDTO>;
   constructor(private activatedRoute: ActivatedRoute, private thingService:ThingService, private router : Router) { }
 
   ngOnInit() {
