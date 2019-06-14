@@ -30,6 +30,7 @@ export class LoginService {
   auth() {
     var user = JSON.parse(localStorage.getItem("currentUser")) as UtenteDTO;
     
+    console.log(user);
     if(user) {
         return "Bearer " + user.authorities;
     } else {
@@ -45,6 +46,7 @@ export class LoginService {
 
   getUserLogged(username: string){
     console.log("qua: ", this.auth())
+    console.log(this.auth());
     return this.http.get('http://localhost:8080/api/users/'+username, {
       headers: {
           "Authorization": this.auth()

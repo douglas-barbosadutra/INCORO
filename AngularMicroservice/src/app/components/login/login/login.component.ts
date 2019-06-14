@@ -70,7 +70,9 @@ export class LoginComponent implements OnInit {
 
   login(): void{
     this.loginService.login(this.loginDTO).subscribe((response: any) => {
-      
+      console.log(JSON.stringify(response));
+      localStorage.setItem("currentUser", JSON.stringify({ "authorities": response.id_token }));
+
       console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     });
 
