@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ThingDTO } from '../../../dto/ThingDTO';
 import { ThingService } from '../../services/thing.service';
 import { Router } from '@angular/router';
+import { ActioneventDTO} from '../../../dto/ActioneventDTO';
 
 @Component({
   selector: 'app-thing-info',
@@ -13,20 +14,21 @@ export class ThingInfoComponent implements OnInit {
   id : String;
   thingList : Array<ThingDTO>;
   thing : ThingDTO;
+  aeList : Array<ActioneventDTO>;
   constructor(private activatedRoute: ActivatedRoute, private thingService:ThingService, private router : Router) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(p => {
       this.id = p['id'];
-      console.log(this.id);
-      let idthing = new Array<String> ();
-      idthing.push(this.id);
-      this.thingService.listByIds(idthing).subscribe((data: any) =>{
+      console.log("thing-info:", this.id);
+      this.thingService.findOne(this.id).subscribe((data: ThingDTO) =>{
         if(data != null){
-          console.log(data);
-          this.thingList = data;
-        }
-      })
+          console.log("thingClick: ", data);
+          this.thing = data;
+          
+      }
+    })
+      
     });
   }
 

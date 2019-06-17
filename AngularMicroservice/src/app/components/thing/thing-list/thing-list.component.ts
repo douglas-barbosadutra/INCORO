@@ -24,10 +24,8 @@ export class ThingListComponent implements OnInit {
   constructor(private thingService: ThingService, private router: Router) { }
 
   ngOnInit() {
-    this.jwt = sessionStorage.getItem("jwt");
-    console.log("in ngOnit arriva: " + this.jwt);
-    this.paramDTO = new ParamDTO(this.jwt, this.thingDTO);
-    this.thingService.showThing(this.paramDTO).subscribe((data: Array<ThingDTO>) =>{
+    
+    this.thingService.showThing().subscribe((data: Array<ThingDTO>) =>{
       if(data != null){
         console.log(data);
         this.thingList = data;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionEventDTO } from '../../../../dto/ActionEventDTO';
+import { ActioneventDTO } from '../../../../dto/ActioneventDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
 import { UtenteDTO } from '../../../../dto/UtenteDTO';
 import { ActionEventService } from '../../../../app/services/action-event.service';
@@ -13,7 +13,7 @@ import { ParamDTO } from '../../../../dto/ParamDTO';
   styleUrls: ['./action-event-update.component.css']
 })
 export class ActionEventUpdateComponent implements OnInit {
-  private actionEventDTO: ActionEventDTO;
+  private actioneventDTO: ActioneventDTO;
   private labelDTO: LabelDTO;
   private utenteDTO: UtenteDTO;
   private labelList: Array<LabelDTO>;
@@ -24,8 +24,8 @@ export class ActionEventUpdateComponent implements OnInit {
   ngOnInit() {
     this.utenteDTO = new UtenteDTO(0, "", "", 0, []);
     this.labelDTO = new LabelDTO(0,"",0);
-    this.actionEventDTO = JSON.parse(sessionStorage.getItem("DTOpassato")) as ActionEventDTO;
-    alert("ddd " + this.actionEventDTO.label.name);
+    this.actioneventDTO = JSON.parse(sessionStorage.getItem("DTOpassato")) as ActioneventDTO;
+   
     this.labelService.showLabel(this.paramDTO).subscribe((data: any) =>{
       if(data != null){
         console.log(data);

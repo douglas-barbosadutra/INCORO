@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { UtenteService } from '../../../services/utente.service';
 import { ParamDTO } from '../../../../dto/ParamDTO';
 import { ActionEventService } from '../../../../app/services/action-event.service';
-import { ActionEventDTO } from '../../../../dto/ActionEventDTO';
+import { ActioneventDTO } from '../../../../dto/ActioneventDTO';
 import { ThingDTO } from '../../../../dto/ThingDTO';
 
 

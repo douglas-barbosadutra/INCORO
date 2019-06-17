@@ -9,6 +9,6 @@ export class BehaviorDTO {
 constructor(id: number, name: String, idThing: number){
     this.idBehavior = id;
     this.name = name;
-    idThing = this.thingDTO.idThing;
+    idThing = this.thingDTO.id;
 }
 }

@@ -23,7 +23,7 @@ export class ThingInsertComponent implements OnInit {
 
   ngOnInit() {
     this.labelDTO = new LabelDTO(0, "", 0);
-    this.thingDTO = new ThingDTO(0, "", "", "","","","", 0, this.labelDTO);
+    this.thingDTO = new ThingDTO(0, "", "", [],[]);
     this.jwt = sessionStorage.getItem("jwt");
     this.paramDTO = new ParamDTO(this.jwt, this.labelDTO);
     this.labelService.showLabel(this.paramDTO).subscribe((data: Array<LabelDTO>) =>{
@@ -39,7 +39,7 @@ export class ThingInsertComponent implements OnInit {
     //this.thingDTO.user = JSON.parse(sessionStorage.getItem("User")) as UserDTO;
     //this.thingDTO.idUser = parseInt(sessionStorage.getItem("idUser"));
     this.paramDTO = new ParamDTO(sessionStorage.getItem("jwt"), this.thingDTO);
-    this.thingDTO.label.idLabel = this.labelDTO.idLabel;
+    
 
    
   this.thingService.insertThing(this.paramDTO).subscribe((data: any) => {

@@ -30,7 +30,7 @@
       </div>
 
       <div *ngFor="let thingDTO of thingList" class="col-sm-12 right-choice brd">
-        <a class="menu-thing" [routerLink]="['dashboard/info-thing', thingDTO.idThing]"> {{thingDTO.name}} </a>
+        <a class="menu-thing" [routerLink]="['dashboard/info-thing', thingDTO.id]"> {{thingDTO.name}} </a>
       </div>
     </div>
       <!--  <a [routerLink]="['insertThing']" class="btn btn-lg btn-primary btn-block" > Insert Thing </a>

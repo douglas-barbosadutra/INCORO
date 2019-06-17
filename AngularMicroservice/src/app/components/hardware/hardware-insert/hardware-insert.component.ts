@@ -26,12 +26,12 @@ export class HardwareInsertComponent implements OnInit {
 
   ngOnInit() {
     this.labelDTO = new LabelDTO(0,"",0);
-    this.thingDTO = new ThingDTO(0,"","","","","","", 0, this.labelDTO);
+    this.thingDTO = new ThingDTO(0,"","",[],[]);
 
     this.jwt = sessionStorage.getItem("jwt");
     this.hardwareDTO = new HardwareDTO(0,"","", false,this.thingDTO);
     this.paramDTO = new ParamDTO(this.jwt, this.hardwareDTO);
-    this.thingService.showThing(this.paramDTO).subscribe((data: any) =>{
+    this.thingService.showThing().subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.thingList = data;

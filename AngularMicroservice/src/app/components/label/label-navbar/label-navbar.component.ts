@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { UtenteService } from '../../../services/utente.service';
 import { ParamDTO } from '../../../../dto/ParamDTO';
 import { ActionEventService } from '../../../../app/services/action-event.service';
-import { ActionEventDTO } from '../../../../dto/ActionEventDTO';
+import { ActioneventDTO } from '../../../../dto/ActioneventDTO';
 
 
 @Component({
@@ -16,7 +16,7 @@ import { ActionEventDTO } from '../../../../dto/ActionEventDTO';
 })
 export class LabelNavbarComponent implements OnInit {
   private labelList: Array<LabelDTO>;
-  private actionList: Array<ActionEventDTO>;
+  private actionList: Array<ActioneventDTO>;
   private labelDTO: LabelDTO;
   private paramDTO: ParamDTO;
   private paramdeleteDTO: ParamDTO;
@@ -35,7 +35,7 @@ export class LabelNavbarComponent implements OnInit {
     this.jwt = sessionStorage.getItem("jwt");
     //sessionStorage.setItem("LabelDTOpassato", JSON.stringify(labelDTO));
     this.paramDTO = new ParamDTO(this.jwt, this.labelDTO);
-    this.actionEventService.findAction(this.paramDTO).subscribe((data: Array<ActionEventDTO>) =>{
+    this.actionEventService.findAction(this.paramDTO).subscribe((data: Array<ActioneventDTO>) =>{
       if(data){
         this.actionList = data;
         sessionStorage.setItem("ActionList", JSON.stringify(this.actionList));
@@ -51,7 +51,7 @@ export class LabelNavbarComponent implements OnInit {
     this.jwt = sessionStorage.getItem("jwt");
     //sessionStorage.setItem("LabelDTOpassato", JSON.stringify(labelDTO));
     this.paramDTO = new ParamDTO(this.jwt, this.labelDTO);
-    this.actionEventService.findEvent(this.paramDTO).subscribe((data: Array<ActionEventDTO>) =>{
+    this.actionEventService.findEvent(this.paramDTO).subscribe((data: Array<ActioneventDTO>) =>{
       if(data){
         this.actionList = data;
         sessionStorage.setItem("ActionList", JSON.stringify(this.actionList));

@@ -30,13 +30,13 @@ export class LinkTKInsertComponent implements OnInit {
 
   ngOnInit() {
     this.labelDTO = new LabelDTO(0,"",0);
-    this.thingDTO = new ThingDTO(0,"","","","","","", 0, this.labelDTO);
+    this.thingDTO = new ThingDTO(0,"","",[],[]);
     this.keywordDTO = new KeywordDTO(0,"");
     this.linkTkDTO = new LinkTKDTO(0,this.thingDTO, this.keywordDTO);
     
     this.jwt = sessionStorage.getItem("jwt");
     this.paramDTO = new ParamDTO(this.jwt, this.thingDTO);
-    this.thingService.showThing(this.paramDTO).subscribe((data: any) =>{
+    this.thingService.showThing().subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.thingList = data;
@@ -53,7 +53,7 @@ export class LinkTKInsertComponent implements OnInit {
   }
 
   insertLinkTK(thingDTO: ThingDTO, keywordDTO: KeywordDTO){
-    this.linkTkDTO.thing.idThing = this.thingDTO.idThing;
+    this.linkTkDTO.thing.id = this.thingDTO.id;
     this.linkTkDTO.keyword.idKeyword = this.keywordDTO.idKeyword;
     this.jwt = sessionStorage.getItem("jwt");
     this.paramDTO = new ParamDTO(this.jwt, this.linkTkDTO);

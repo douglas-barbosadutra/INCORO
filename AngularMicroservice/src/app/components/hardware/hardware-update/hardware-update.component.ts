@@ -33,11 +33,11 @@ export class HardwareUpdateComponent implements OnInit {
     
     this.labelDTO = new LabelDTO(0,"",0);
     this.utenteDTO = new UtenteDTO(0,"","",0, []);
-    this.thingDTO = new ThingDTO(0,"","","","","","", 0, this.labelDTO);
+    this.thingDTO = new ThingDTO(0,"","",[],[]);
     //this.hardwareDTO = new HardwareDTO(0,"","",false,this.thingDTO);*/
     this.hardwareDTO = JSON.parse(sessionStorage.getItem("DTOpassato")) as HardwareDTO;
 
-    this.thingService.showThing(this.paramDTO).subscribe((data: any) =>{
+    this.thingService.showThing().subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.thingList = data;

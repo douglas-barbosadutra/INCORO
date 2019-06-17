@@ -30,11 +30,11 @@ export class LinkTkUpdateComponent implements OnInit {
 
   ngOnInit() {
     this.labelDTO = new LabelDTO(0,"",0);
-    this.thingDTO = new ThingDTO(0,"","","","","","", 0, this.labelDTO);
+    this.thingDTO = new ThingDTO(0,"","",[],[]);
     this.keywordDTO = new KeywordDTO(0,"");
     this.linkTKDTO = new LinkTKDTO(0,this.thingDTO, this.keywordDTO);
 
-    this.thingService.showThing(this.paramDTO).subscribe((data: any) =>{
+    this.thingService.showThing().subscribe((data: any) =>{
       if(data != null){
         console.log(data);
         this.thingList = data;
@@ -51,7 +51,7 @@ export class LinkTkUpdateComponent implements OnInit {
 
   aggiornaLinkTK(){
     this.linkTKDTO = JSON.parse(sessionStorage.getItem("DTOpassato")) as LinkTKDTO;   
-    this.linkTKDTO.thing.idThing = this.thingDTO.idThing;
+    this.linkTKDTO.thing.id = this.thingDTO.id;
     this.linkTKDTO.keyword.idKeyword = this.keywordDTO.idKeyword;
     
     this.linkTKService.updateLinkTK(this.linkTKDTO).subscribe((data: any) => {

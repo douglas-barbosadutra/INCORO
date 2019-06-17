@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionEventDTO } from '../../../../dto/ActionEventDTO';
+import { ActioneventDTO } from '../../../../dto/ActioneventDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
 import { ActionEventService } from '../../../../app/services/action-event.service';
 import { LabelService } from '../../../../app/services/label.service';
@@ -13,7 +13,7 @@ import { ParamDTO } from '../../../../dto/ParamDTO';
   styleUrls: ['./action-event-insert.component.css']
 })
 export class ActionEventInsertComponent implements OnInit {
-  private actionEventDTO: ActionEventDTO;
+  private actioneventDTO: ActioneventDTO;
   private labelDTO: LabelDTO;
   private utenteDTO: UtenteDTO;
   private labelList: Array<LabelDTO>;
@@ -24,7 +24,7 @@ export class ActionEventInsertComponent implements OnInit {
   ngOnInit() {
     //this.userDTO = new UserDTO(0,"","",0);
     this.labelDTO = new LabelDTO(0, "", 0);
-    this.actionEventDTO = new ActionEventDTO(0, "", "", this.labelDTO,0);
+    this.actioneventDTO = new ActioneventDTO(0, "", "",0);
     this.paramDTO = new ParamDTO(sessionStorage.getItem("jwt"), this.labelDTO);
   
     this.labelService.showLabel(this.paramDTO).subscribe((data: Array<LabelDTO>) =>{
@@ -36,12 +36,12 @@ export class ActionEventInsertComponent implements OnInit {
   
   }
   insertActionEvent(){
-    this.paramDTO = new ParamDTO(sessionStorage.getItem("jwt"), this.actionEventDTO);
+    this.paramDTO = new ParamDTO(sessionStorage.getItem("jwt"), this.actioneventDTO);
     console.log("qua");
-    console.log(this.actionEventDTO.label.name);
+    
    
     
-    this.actionEventDTO.label.idLabel = this.labelDTO.idLabel;
+    //this.actioneventDTO.label.idLabel = this.labelDTO.idLabel;
    
     this.actionEventService.insertActionEvent(this.paramDTO).subscribe((data: any) => {
       if(data != null)

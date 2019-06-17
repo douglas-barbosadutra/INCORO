@@ -1,26 +1,19 @@
-import { UtenteDTO } from './UtenteDTO';
-import { LabelDTO } from './LabelDTO';
+
 
 export class ThingDTO{
-    idThing: number;
-    code: String;
+    id: number;
     description: String;
-    image: String;
     name: String;
-    xml: String;
-    protocol: String;
-    idUser: number;
-    label: LabelDTO;
+    actions: Array<String>;
+    events: Array<String>;
 
-    constructor(id:number, code: String, description: String, image: String, name: String, xml: String, protocol: String, idUser:number, labelDTO: LabelDTO){
-        this.idThing=id;
-        this.code=code;
+    constructor(id:number, description: String, name: String, actions: Array<String>, events: Array<String> ){
+      
         this.description=description;
-        this.image=image;
+        this.actions=actions;
         this.name=name;
-        this.xml=xml;
-        this.protocol=protocol;
-        this.idUser=idUser;
-        this.label=labelDTO;
+        this.events=events;
+      
+        
     }
 }

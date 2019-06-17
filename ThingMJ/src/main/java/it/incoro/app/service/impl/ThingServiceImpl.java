@@ -4,6 +4,7 @@ import it.incoro.app.service.ThingService;
 import it.incoro.app.domain.Thing;
 import it.incoro.app.repository.ThingRepository;
 import it.incoro.app.service.dto.ThingDTO;
+
 import it.incoro.app.service.mapper.ThingMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-
+import java.util.List;
 import java.util.Optional;
 /**
  * Service Implementation for managing Thing.
@@ -82,4 +83,6 @@ public class ThingServiceImpl implements ThingService {
         log.debug("Request to delete Thing : {}", id);
         thingRepository.deleteById(id);
     }
+    
+   
 }

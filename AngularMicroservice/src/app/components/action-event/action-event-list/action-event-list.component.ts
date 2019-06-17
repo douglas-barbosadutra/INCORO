@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionEventDTO } from '../../../../dto/ActionEventDTO';
+import { ActioneventDTO } from '../../../../dto/ActioneventDTO';
 import { LabelDTO } from '../../../../dto/LabelDTO';
 import { ActionEventService } from '../../../../app/services/action-event.service';
 import { Router } from '@angular/router';
@@ -11,8 +11,8 @@ import { ParamDTO } from '../../../../dto/ParamDTO';
   styleUrls: ['./action-event-list.component.css']
 })
 export class ActionEventListComponent implements OnInit {
-  private actionEventList: Array<ActionEventDTO>;
-  private actionEventDTO: ActionEventDTO;
+  private actionEventList: Array<ActioneventDTO>;
+  private actioneventDTO: ActioneventDTO;
   private labelDTO: LabelDTO;
   private jwt: string;
   private paramDTO: ParamDTO;
@@ -21,7 +21,7 @@ export class ActionEventListComponent implements OnInit {
 
   ngOnInit() {
     this.jwt = sessionStorage.getItem("jwt");
-    this.paramDTO = new ParamDTO(this.jwt, this.actionEventDTO);
+    this.paramDTO = new ParamDTO(this.jwt, this.actioneventDTO);
     this.actionEventService.showActionEvent(this.paramDTO).subscribe((data: any) => {
       if(data != null){
         this.actionEventList = data;
@@ -37,12 +37,12 @@ export class ActionEventListComponent implements OnInit {
     this.router.navigate(["/homeBo/updateActionEvent"]);
   }
 
-  setDTO(actionEvent: ActionEventDTO){
+  setDTO(actionEvent: ActioneventDTO){
     sessionStorage.setItem("DTOpassato", JSON.stringify(actionEvent));
     this.router.navigate(["/homeBo/updateActionEvent"]);
   }
 
-  deleteActionEvent(actionEventDTO: ActionEventDTO){
+  deleteActionEvent(actionEventDTO: ActioneventDTO){
     this.actionEventService.deleteActionEvent(this.paramDTO).subscribe((data: any) =>{
       if(data){
         alert("Cancellazione effettuata");

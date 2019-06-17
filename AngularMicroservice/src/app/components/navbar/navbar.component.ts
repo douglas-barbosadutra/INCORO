@@ -4,7 +4,7 @@ import { LabelDTO } from '../../../dto/LabelDTO';
 import { Router } from '@angular/router';
 import { ParamDTO } from '../../../dto/ParamDTO';
 
-import { ActionEventDTO } from '../../../dto/ActionEventDTO';
+import { ActioneventDTO } from '../../../dto/ActioneventDTO';
 import { ActionEventService } from '../../../app/services/action-event.service';
 import { ThingDTO } from '../../../dto/ThingDTO';
 
@@ -20,8 +20,8 @@ export class NavbarComponent implements OnInit {
   private jwt: string;
   private paramDTO: ParamDTO;
   private labelDTO: LabelDTO;
-  private actionEventDTO: ActionEventDTO;
-  private actionEventList: Array<ActionEventDTO>;
+  private actioneventDTO: ActioneventDTO;
+  private actionEventList: Array<ActioneventDTO>;
   messaggio: string;
   messaggio2: string;
 
@@ -49,10 +49,10 @@ export class NavbarComponent implements OnInit {
 
     findAzione(){
       this.labelDTO = new LabelDTO (0, '', 0);
-      this.actionEventDTO = new ActionEventDTO (0, '','',this.labelDTO,0);
-      this.actionEventDTO.name = this.messaggio2;
+      this.actioneventDTO = new ActioneventDTO (0, '','',0);
+      this.actioneventDTO.name = this.messaggio2;
       this.jwt = sessionStorage.getItem("jwt");
-      this.paramDTO = new ParamDTO(this.jwt, this.actionEventDTO);
+      this.paramDTO = new ParamDTO(this.jwt, this.actioneventDTO);
       // immetto una string 
       this.actionEventService.findActionByName(this.paramDTO).subscribe((data: Array<ThingDTO>) =>{
         if(data != null){

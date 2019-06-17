@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionEventDTO } from '../../../../dto/ActionEventDTO';
+import { ActioneventDTO } from '../../../../dto/ActioneventDTO';
 import { Router } from '@angular/router';
 import { ActionEventService } from '../../../../app/services/action-event.service';
 import { LabelDTO } from '../../../../dto/LabelDTO';
@@ -12,9 +12,9 @@ import { ParamDTO } from '../../../../dto/ParamDTO';
   styleUrls: ['./action-event-show.component.css']
 })
 export class ActionEventShowComponent implements OnInit {
-  private actionEventList: Array<ActionEventDTO>;
+  private actionEventList: Array<ActioneventDTO>;
   private labelList: Array<LabelDTO>;
-  private actionEventDTO: ActionEventDTO;
+  private actioneventDTO: ActioneventDTO;
   private labelDTO: LabelDTO;
   private paramDTO: ParamDTO;
   private jwt: string;

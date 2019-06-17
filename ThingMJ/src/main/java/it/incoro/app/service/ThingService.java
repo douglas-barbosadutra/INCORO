@@ -2,9 +2,11 @@ package it.incoro.app.service;
 
 import it.incoro.app.service.dto.ThingDTO;
 
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,4 +45,5 @@ public interface ThingService {
      * @param id the id of the entity
      */
     void delete(String id);
+    
 }

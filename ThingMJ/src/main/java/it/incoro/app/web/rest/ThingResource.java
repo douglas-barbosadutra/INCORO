@@ -103,13 +103,15 @@ public class ThingResource {
      * @param id the id of the thingDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the thingDTO, or with status 404 (Not Found)
      */
-    @GetMapping("/things/{id}")
+    @GetMapping("/findOne/{id}")
     @Timed
     public ResponseEntity<ThingDTO> getThing(@PathVariable String id) {
         log.debug("REST request to get Thing : {}", id);
         Optional<ThingDTO> thingDTO = thingService.findOne(id);
         return ResponseUtil.wrapOrNotFound(thingDTO);
     }
+    
+   
 
     /**
      * DELETE  /things/:id : delete the "id" thing.
