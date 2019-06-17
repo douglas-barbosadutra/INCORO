@@ -39,7 +39,7 @@ export class ThingService {
   }
 
   findOne(id: String): Observable<ThingDTO>{
-    return this.http.get<ThingDTO>('http://localhost:8080/ThingMJ/api/findOne?id='+id, {
+    return this.http.get<ThingDTO>('http://localhost:8080/ThingMJ/api/findOne/'+id, {
       headers: {
           "Authorization": this.auth()
       }
